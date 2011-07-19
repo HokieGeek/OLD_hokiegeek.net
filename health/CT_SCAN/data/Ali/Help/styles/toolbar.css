@@ -1,0 +1,32 @@
+body {
+  background-color: ThreeDFace;
+}
+
+div.Toolbar {
+  position: absolute;
+  top: 4px;
+  left: 0px;
+  height: 26px;
+  width: 100%;
+  margin-top: 1px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+div.ToolbarButton {
+  background-color: ThreeDFace;
+  width: 30px;
+  float: left;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 8px;
+  margin-right: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: ThreeDFace;
+}
+
+div.ToolbarButton img {
+  margin-top: 1px;
+  margin-bottom: 0px;
+}

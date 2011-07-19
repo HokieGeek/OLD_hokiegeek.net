@@ -1,0 +1,28 @@
+/******************************************************************************/
+/* Style overrides for Netscape browsers                                      */
+/******************************************************************************/
+
+ol {
+  margin-left: -1em;
+}
+
+ul {
+  margin-left: -2em;
+}
+
+ul.TOC {
+  padding-left: 0em;
+}
+
+ul.Index ul {
+  margin-left: -2em;
+}
+
+li {
+  font-size: 11px;
+}
+
+body.Popup {
+  background-color: InfoBackground;
+  color: WindowText;
+}

@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>hokiegeek.net: Coins</title>
+<meta http-equiv="content-script-type" content="text/javascript">
+
+<link type="text/css" rel="StyleSheet" href="../css/hg_main.css" media="screen" />
+<link type="text/css" rel="StyleSheet" href="../css/hg_nav.css" media="screen" />
+<link type="text/css" rel="StyleSheet" href="../css/libtabs.css" media="screen"/>
+<link type="text/css" rel="StyleSheet" href="../css/libslideshow.css" media="screen"/>
+<link type="text/css" rel="StyleSheet" href="css/main.css" />
+<link type="text/css" rel="StyleSheet" href="css/CollectionsView.css" />
+
+<script type="text/JavaScript" src="../js/hg_main.js"></script>
+<script type="text/JavaScript" src="../js/hg_nav.js"></script>
+<script type="text/JavaScript" src="../js/libtabs.js"></script>
+<script type="text/JavaScript" src="../js/libslideshow.js"></script>
+<script type="text/JavaScript" src="../js/libhttprequest.js"></script>
+<script type="text/JavaScript" src="../js/libgspreadsheet.js"></script>
+
+<script type="text/JavaScript" src="js/data.js"></script>
+<script type="text/JavaScript" src="js/CollectionsView.js"></script>
+<script type="text/JavaScript" src="js/main.js"></script>
+
+<script type="text/Javascript">
+var loading_progress = null;
+var hostname = window.location.hostname;
+var collections = [];
+//var form_url = "https://spreadsheets.google.com/formResponse?formkey=dGpnYzlqbjc4aF9kbTlVNjBDRzYyZEE6MQ";
+var collections_url = "https://spreadsheets.google.com/feeds/list/tjgc9jn78h_dm9U60CG62dA/od6/private/full";
+function getData() {
+	getCollections(collections_url, collections, loadData);
+}
+function loadData() {
+	setStyle(loading_progress, "visibility: hidden;");	
+
+	// Format and display the data
+	var tabs = document.getElementById("tabs");
+	loadCollections(tabs, collections);
+
+	var exclusion_list = null;
+	//if (hostname != "localhost") {
+	//	exclusion_list = ["TODO"];
+	//}
+
+	// Setup the tabs
+	resizeTabs();
+	tabsObj = new LibTabs("tabsObj", document.getElementById("tabs"), 
+						  0, LibTabs_Orientation.TOP, exclusion_list);
+	tabsObj.HandleKeyboardInputs();
+	//tabsObj.AddToggleListener(onTabToggle);
+
+	// Listen for keypresses to perform some specific duties
+	//AddOKDListener(keyboardHandler);
+}
+window.onload = function() {
+	loadInBulk();
+
+	loading_progress = document.getElementById("loading");
+
+	// Retrieve and display the data
+	getData();
+	//loadDataWhenAvailable(loadData);
+	//loadData();
+
+	// Add the logo stuff
+	if (hostname == "localhost")
+		hg_subdomains_public_only = false;
+	hg_small_nav(); 
+}
+</script>
+</head>
+<body>
+<div id="loading">
+	Loading...
+	<img src="../img/progress.gif" style="width: 20px; height: 19px;" />
+</div>
+<div id="tabs"></div>
+</body>
+</html>

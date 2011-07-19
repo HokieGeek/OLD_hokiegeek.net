@@ -1,0 +1,1868 @@
+#################################################################################################################
+# Variables not used anymore (obsolete)
+# System`Link`Link={1} //replaced by System`Link`CrossStudy: cross-study linking enabled by default
+
+# System`ReportCloseNotify became obsolete, since Powerscribe voice reporting is not integrated with GX3.0
+# System`ReportCloseNotify is used to indicate whether the current anchor study (and any associated reference studies) 
+# is to be closed automatically when the user saves a new report and closes the report composition window.
+# IMPORTANT: enabling this variable will NOT cause the current study to be closed when an existing report 
+# is viewed and then the report viewing window is closed.  
+# 1 -	ALWAYS close the the current anchor study (and any associated reference studies)
+#		when user saves a NEW report and closes the report composition window
+# 0  -	NEVER  close the study when user saves a NEW report and closes the report composition window
+# System`ReportCloseNotify={0}
+
+# Method of Series Numbering is changed and System`Series`AutoNumber={1} is not relevant anymore.
+# <System`Series`AutoNumber> controls how a series will be numbered
+# System`Series`AutoNumber={0} file://series are numbered using DICOM info
+# System`Series`AutoNumber={1} file://unique series number to be generated
+
+# <System`Series`LiteralMonochrome> controls how MONOCHROME1 images are dealt with 
+# With new DICOM Library MONOCHROME1 images are displayed correctly and we do not need an option to invert them anymore. 
+# Previous default value for <System`Series`LiteralMonochrome> was {0} 
+# that meant that images are not to be inverted and this variable did not affect images. 
+# If <System`Series`LiteralMonochrome> is changed to {1}, MONOCHROME1 images are displayed black on white. 
+# System`Series`LiteralMonochrome={0} //MONOCHROME1 will be inverted so that they look the same as Monochrome2
+
+#################################################################################################################
+####################
+# VARIABLE_NAMES: System`OriginalCTWindowLevel
+#		 
+#		 
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: Enables display of the original W/L values for CT images as the default W/L values
+#
+# CONTEXT: Would be applied to all CT studies
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 0 (NO)
+#
+# EXCEPTIONS: 
+#
+####################
+System`OriginalCTWindowLevel={1}
+
+####################
+# VARIABLE_NAMES: System`EnableAutoOpenNextStudy
+#		 
+#		 
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: Enables/disables the AutoOpenNextStudy feature
+#
+# CONTEXT: Would be applied to studies opened from Inbox. This value can be changed by the user from GX and takes effect immediately
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 0 (NO)
+#
+# EXCEPTIONS: 
+#
+####################
+System`EnableAutoOpenNextStudy={0}
+
+####################
+# VARIABLE_NAMES: System`Monitor`wks0`PixelToSizeRatio
+#		 
+# VARIABLE_TYPE: float
+#
+# DESCRIPTION: Contains image pixel spacing information required for the display of real size images
+#
+# CONTEXT: It only has effect if System`Monitor`wks0`RealSizeImagesEnabled is enabled
+# This variable is a float number that represents the user monitor resolution in pixels
+# divided to monitor physical (viewable) resolution in millimeters. It is recommended to avoid a physical measurement 
+# of the monitor; technical specification should be used instead.
+#
+# RANGE OF VALUES: 
+#
+# SUGGESTED DEFAULT: 4.0
+#
+# EXCEPTIONS: 
+#
+####################
+System`Monitor`wks0`PixelToSizeRatio={4.02}
+
+####################
+# VARIABLE_NAMES: System`Monitor`wks0`RealSizeImagesEnabled
+#		 
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: Enables/disables the display of real size images
+#
+# CONTEXT: It only makes sense to turn it on if System`Monitor`wks0`PixelToSizeRatio has a meaningful value
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 0 (NO)
+#
+# EXCEPTIONS: 
+#
+####################
+System`Monitor`wks0`RealSizeImagesEnabled={0}
+
+####################
+# VARIABLE_NAMES: System`SendEnabled
+#		 
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: Enables/disables the send tool
+#
+# CONTEXT: It was introduced because some time ago we had the feature in code but it wasn't in the product requirements.
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 1 (YES)
+#
+# EXCEPTIONS: 
+#
+####################
+System`SendEnabled={1}
+
+####################
+# VARIABLE_NAMES: System`SendJobsRefreshTime
+#		 
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: Sets the value (in miliseconds) for the refresh interval in the SendJobs dialog
+#
+# CONTEXT: 
+#
+# RANGE OF VALUES: 
+#
+# SUGGESTED DEFAULT: 30000
+#
+# EXCEPTIONS: 
+#
+####################
+System`SendJobsRefreshTime={30000}
+
+####################
+# VARIABLE_NAMES: System`Desktop`Mode
+#		 
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: The user can resize the main window of GX if the value is 0
+#
+# CONTEXT: 
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 1 (YES)
+#
+# EXCEPTIONS: 
+#
+####################
+System`Desktop`Mode={1}
+
+####################
+# VARIABLE_NAMES: System`RGB`Mouse
+#		 
+# VARIABLE_TYPE: float
+#
+# DESCRIPTION: This variable will let you set two variables m_MouseStepFactor and m_MouseAccelFactor. 
+#
+# CONTEXT: The values are used for mouse operations from within the toolkit.
+#
+# RANGE OF VALUES: 
+#
+# SUGGESTED DEFAULT: 4.0
+#
+# EXCEPTIONS: 
+#
+####################
+System`RGB`Mouse={100,20}
+
+####################
+# VARIABLE_NAMES: System`RGB`Wheel
+#		 
+# VARIABLE_TYPE: float
+#
+# DESCRIPTION: This variable will set two other variables m_WheelStepFactor and m_WheelAccelFactor. 
+#
+# CONTEXT: The values are used for mouse operations from within the toolkit.
+#
+# RANGE OF VALUES: 
+#
+# SUGGESTED DEFAULT: 350
+#
+# EXCEPTIONS: 
+#
+####################
+System`RGB`Wheel={100,20}
+
+####################
+# VARIABLE_NAMES: System`RGB`MouseDoubleClickSpeed
+#		 
+# VARIABLE_TYPE: float
+#
+# DESCRIPTION: This variable will set the double click timeout in milliseconds. 
+#
+# CONTEXT: The values are used for mouse operations from within the toolkit.
+#
+# RANGE OF VALUES: 
+#
+# SUGGESTED DEFAULT: 350
+#
+# EXCEPTIONS: 
+#
+####################
+System`RGB`MouseDoubleClickSpeed={350}
+
+
+##<System`Link> controls state of cross-study linking 
+# System`Link`Mode={} defines if all scan lines are shown, or only scan line
+# of the active series(not active study as written in base file)
+# When this variable set to System`Link`Mode={1}  in same cases it does not
+# show scan lines for active series. 
+# System`Link`Mode={1} //all links for all series are shown
+
+# System`Link`CrossStudy={1}  // different studies link adjustment enabled
+# If System`Link`CrossStudy={0} link panel appears with "Same Study" button is
+# pressed (even two study are open) and "Cross Study Linking" check box unchecked.
+
+System`Link`Mode={0} //default value - only active study scan line is shown
+System`Link`CrossStudy={1} // cross-study linking enabled by defaul
+
+# 06-Nov-2000   CS Added System`EnableStudyReportedNotification
+# 14-Nov-2000   MS Added System`ReportCloseWithoutQueryDialog
+# 08-Mar-2001   MS Modified default colors for chits
+
+#####MultiViewer.site for color GX
+
+# For EACH CGX workstation there should be a pair of lines like the ones below
+# Specifying how many monitors are used!
+#System`Monitor`NWKS0`Count={2}
+#System`Monitor`NWKS0`Driver={GfxDrv.DLL}
+
+#<System`Printing`PrintTempPath> specifies temporary directory to be used for holding
+#Custom Print's temporary bitmap files 
+System`Printing`PrintTempPath={\\nserv0\ali\site\temp\PrintBitmaps}
+
+#Reporting is an optional feature
+#System`ReportAddin={ALIGX.Report} // Reporting is available 
+System`ReportAddin={} // by default Reporting is not included in the standard GX package
+
+# This determines whether warning dialogs about the system running low on resources turned off/on 
+# OverheadFactor is used to calculate the amount of memory needed to load a
+# study by multiplying the total file size by the OverheadFactor/100. 
+#
+# We divide by 100 to ensure that we use integers in the base/site files. The
+# default value for OverheadFactor should be 200. 
+#
+# MemoryFactor is used to determine the threshold value at which to warn the
+# user that resources are running low. MemoryFactor is a percentage value of
+# total physical memory. 
+#
+# The threshold value is calculated by (MemoryFactor/100 *
+# (totalPhysicalMemory + totalPagefilesize)), If, after subtracting the
+# estimated size of the study, the amount of physical ram + pagefile space
+# will be less than this value then we display a warning message to the user.
+# The default value for MemoryFactor should be 20. 
+System`MemoryFactor={0}   // (0 disables)turn on memory warning, 140 default value
+System`OverheadFactor={0} // (0 disables)turn on memory warning, 200 default value
+
+#<System`Designer> indicates if the system is in display protocol designer mode.
+#It is recommended to have the designer mode disabled 
+System`Designer={0}
+
+#This is the limit for the number of studies that the user allowed to open
+System`MaxStudy={20}
+#System`MaxPatient={10}	- not used anymore (ignored)
+
+##This variable determines whether GX reads DICOM shutter information from the DICOM header.
+System`Loader`ShutterEnabled={1} //default value
+
+## <System`Security`Level> controls the level of security used when saving exams.
+# 0 - no password is required
+# 1- password is required only when the person marking the exam is not the one who is logged 
+#	  on to the system
+# 2 - password is always required
+System`Security`Level={2} // default value
+
+##This variable controls the default sorting criteria for a series
+System`Series`PositionSort={1} // images are sorted by position
+
+#####################
+# VARIABLE_NAMES: System`Series`Glass`MinFactor,
+#		  System`Series`Glass`Factor,
+#		  System`Series`Glass`MaxFactor
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: Store the min/current/max size of magic glass reported to the image size
+#
+# CONTEXT: Glass Tool
+#
+# RANGE OF VALUES: 0 < MinFactor <= Factor <= MaxFactor < 1000
+#
+# SUGGESTED DEFAULT: 10, 20, 50
+#
+# EXCEPTIONS: 
+#
+####################
+System`Series`Glass`MinFactor={10}
+System`Series`Glass`Factor={20}
+System`Series`Glass`MaxFactor={50}
+
+#####################
+# VARIABLE_NAME: System`Series`Glass`ZoomFactor
+#
+# VARIABLE_TYPE: double
+#
+# DESCRIPTION: Store the current magnitude of magic glass
+#
+# CONTEXT: Glass Tool
+#
+# RANGE OF VALUES: 0, 128
+#
+# SUGGESTED DEFAULT: 0 (means the magnitude will be computed to a default value)
+#
+# EXCEPTIONS: 
+#
+####################
+System`Series`Glass`ZoomFactor={0.}
+
+
+#####Annotation Configuration
+System`Annotation`AnnotColor={255,255,0,0}
+System`Annotation`DoubleClickDelete={1}
+System`Annotation`AnnotPersistAngle={1}
+System`Annotation`AnnotPersistArrow={1}
+System`Annotation`AnnotPersistDistance={1}
+System`Annotation`AnnotPersistEllipse={1}
+System`Annotation`AnnotPersistRoi={1}
+System`Annotation`AnnotPersistScale={1}
+System`Annotation`AnnotPersistText={1}
+System`Annotation`AnnotScale={10}
+System`Annotation`Persist={1}
+System`Annotation`FontName={Arial}
+System`Annotation`LineWidth={1}
+System`Annotation`PrintLineWidth={4}
+System`Annotation`SelectedLineWidth={1}
+
+
+#2Mp Monitor System 
+#2 Monitors resolution - 2400x1600
+#4 Monitors resolution - 4800x1600
+System`Annotation`2400x1600`FontSize={120}
+System`Annotation`4800x1600`FontSize={120}
+
+#5Mp Monitor System
+#2 Monitors resolution - 4096x2560 
+#4 Monitors resolution - 8192x1600
+System`Annotation`4096x2560`FontSize={120}
+System`Annotation`8192x1600`FontSize={120}
+
+#Color monitors
+#1 monitor resolution - 1600x1200
+#2 monitors resolution - 3200x1200
+System`Annotation`1600x1200`FontSize={120}
+
+#####This is how to configure chit's height
+System`Caption`FontSize={16}
+
+#2Mp Monitor System 
+#2 Monitors resolution - 2400x1600
+#4 Monitors resolution - 4800x1600
+System`Caption`FontName={} 
+System`Caption`2400x1600`Height={20}
+System`Caption`4800x1600`Height={20}
+
+#5Mp Monitor System
+#2 Monitors resolution - 4096x2560 
+#4 Monitors resolution - 8192x1600
+System`Caption`FontName={4096x2560} 
+System`Caption`4096x2560`Height={30}
+System`Caption`8192x1600`Height={30}
+
+#Color monitors
+#1 monitor resolution - 1600x1200
+#2 monitors resolution - 3200x1200
+System`Caption`FontName={1600x1200} 
+System`Caption`1600x1200`Height={20}
+
+#Chits color
+#{ rectangle color, range of visible images }
+System`Caption`RGB`BkgndColor={0,16777215}
+#{ selected image, images not visible }
+System`Caption`RGB`DrawColor={65535,8421504}
+#{ text color, outside chits }
+System`Caption`RGB`TextColor={16777215,1}
+#{ flagged, already viewed }
+System`Caption`RGB`FlaggedAndViewedColor={255,12632256}
+
+#####Study toolbar area configuration 
+System`Folder`FontName={Arial} //study information font name
+
+#2Mp monitor System
+#2 Monitors resolution - 2400x1600
+#4 Monitors resolution - 4800x1600
+System`Folder`2400x1600`FontSize={150} //study information font size
+System`Folder`2400x1600`HeaderSize={40,0} //height of study toolbar area
+System`Folder`4800x1600`FontSize={150} //study information font size
+System`Folder`4800x1600`HeaderSize={40,0} //height of study toolbar area
+
+#5Mp monitor System
+#2 Monitors resolution - 4096x1600
+#4 Monitors resolution - 8192x1600
+System`Folder`4096x2560`FontSize={250} 
+System`Folder`4096x2560`HeaderSize={60,0}
+System`Folder`8192x1600`FontSize={250} 
+System`Folder`8192x1600`HeaderSize={60,0}
+
+#Color monitor System 
+#1 monitor resolution - 1600x1200
+#2 monitors resolution - 3200x1200
+System`Folder`FontSize={150} 
+System`Folder`HeaderSize={40,0}
+
+#####Thumbnail area configuration
+#2Mp monitor System
+#2 Monitors resolution - 2400x1600
+#4 Monitors resolution - 4800x1600
+System`Folder`2400x1600`Height={100} //height of thumbnail area
+System`Folder`2400x1600`IconSize={100,100} //Icon size (height x width)
+System`Folder`4800x1600`Height={100} //height of thumbnail area
+System`Folder`4800x1600`IconSize={100,100} //Icon size (height x width)
+
+#5Mp monitor System
+#2 Monitors resolution - 4096x2560 
+#4 Monitors resolution - 8192x1600
+System`Folder`4096x2560`Height={170} // height of the thumbnails area
+System`Folder`4096x2560`IconSize={170,170} //Icon size (height x width)
+System`Folder`8192x1600`Height={170} // height of the thumbnails area
+System`Folder`8192x1600`IconSize={170,170} //Icon size (height x width)
+
+
+#Color monitor System
+#1 monitor resolution - 1600x1200
+#2 monitors resolution - 3200x1200
+System`Folder`Height={100} // height of the thumbnails area
+System`Folder`IconSize={100,100} //Icon size (height x width)
+ 
+#####Text overlay configuration
+System`Overlay`Mode={1} //This determines whether text overlays are enabled
+System`Overlay`Orientation={1} //orientation tags are displayed
+System`Overlay`Scale={1} //ruler is drown on the right edge of image 
+System`Overlay`FontName={MS Sans Serif} //Specifies the font type to use for all overlays
+
+
+# 2Mp Monitor System
+#2 Monitors resolution - 2400x1600
+#4 Monitors resolution - 4800x1600
+System`Overlay`2400x1600`FontSize={240}
+System`Overlay`2400x1600`Max={100} 
+System`Overlay`2400x1600`Min={50}
+System`Overlay`2400x1600`ScaleOffset={40} //how far to offset the scale from the right edge of the image
+System`Overlay`2400x1600`Size={400}       //min overlay will be placed when the short edge of the image below this size
+System`Overlay`4800x1600`FontSize={240}
+System`Overlay`4800x1600`Max={100} 
+System`Overlay`4800x1600`Min={50}
+System`Overlay`4800x1600`ScaleOffset={40} //how far to offset the scale from the right edge of the image
+System`Overlay`4800x1600`Size={400}       //min overlay will be placed when the short edge of the image below this size
+
+#5Mp monitors 
+#2 Monitors resolution - 4096x1600
+#4 Monitors resolution - 8192x1600
+System`Overlay`4096x2560`FontSize={240}
+System`Overlay`4096x2560`Max={180}
+System`Overlay`4096x2560`Min={150}
+System`Overlay`4096x2560`ScaleOffset={50}
+System`Overlay`4096x2560`Size={400}
+System`Overlay`8192x1600`FontSize={240}
+System`Overlay`8192x1600`Max={180}
+System`Overlay`8192x1600`Min={150}
+System`Overlay`8192x1600`ScaleOffset={50}
+System`Overlay`8192x1600`Size={400}
+
+#Color monitors
+#1 monitor resolution - 1600x1200
+#2 monitors resolution - 3200x1200
+System`Overlay`1600x1200`FontSize={220}
+System`Overlay`1600x1200`Max={80}
+System`Overlay`1600x1200`Min={50}
+System`Overlay`1600x1200`ScaleOffset={30}
+System`Overlay`1600x1200`Size={350}
+
+#Font size configuration for thumbnails
+# 2Mp monitor System
+#2 Monitors resolution - 2400x1600
+#4 Monitors resolution - 4800x1600
+System`Series`Thumbnail`FontSize`2400x1600`Large={150} //font size for the series number for on screen series
+System`Series`Thumbnail`FontSize`2400x1600`Link={100} //font size for the link indicator
+System`Series`Thumbnail`FontSize`2400x1600`Small={100} //font size for the series number for off screen series
+System`Series`Thumbnail`FontSize`4800x1600`Large={150} //font size for the series number for on screen series
+System`Series`Thumbnail`FontSize`4800x1600`Link={100} //font size for the link indicator
+System`Series`Thumbnail`FontSize`4800x1600`Small={100} //font size for the series number for off screen series
+
+#5Mp monitor System
+#2 Monitors resolution - 4096x1600
+#4 Monitors resolution - 8192x1600
+System`Series`Thumbnail`FontSize`4096x2560`Large={240}
+System`Series`Thumbnail`FontSize`4096x2560`Link={120}
+System`Series`Thumbnail`FontSize`4096x2560`Small={120}
+System`Series`Thumbnail`FontSize`8192x1600`Large={240}
+System`Series`Thumbnail`FontSize`8192x1600`Link={120}
+System`Series`Thumbnail`FontSize`8192x1600`Small={120}
+
+#Color monitor System
+#1 monitor resolution - 1600x1200
+#2 monitors resolution - 3200x1200
+System`Series`Thumbnail`FontSize`1600x1200`Large={200}
+System`Series`Thumbnail`FontSize`1600x1200`Link={100}
+System`Series`Thumbnail`FontSize`1600x1200`Small={100}
+
+
+#Patient information configuration
+System`Tools`FontName={Arial} // patient info font name
+
+#2Mp monitor System
+#2 Monitors resolution - 2400x1600
+#4 Monitors resolution - 4800x1600
+System`Tools`2400x1600`FontSize={60}    //patient info font size
+System`Tools`4800x1600`FontSize={60}    //patient info font size
+
+#5Mp monitor System
+#2 Monitors resolution - 4096x1600
+#4 Monitors resolution - 8192x1600
+System`Tools`4096x2560`FontSize={70}
+System`Tools`8192x1600`FontSize={70}
+
+#Color monitor System
+#1 monitor resolution - 1600x1200
+#2 monitors resolution - 3200x1200
+System`Tools`1600x1200`FontSize={50}
+System`Tools`3200x1200`FontSize={50}
+
+#Right click menu configuration
+System`Tools`FontName={Arial}
+
+#2Mp monitor System
+#2 Monitors resolution - 2400x1600
+#4 Monitors resolution - 4800x1600
+System`Tools`2400x1600`Rect={0,0,220,40} //right click menu size 
+System`Tools`2400x1600`Scale={150}  //right click menu scale
+System`Tools`4800x1600`Rect={0,0,220,40} //right click menu size 
+System`Tools`4800x1600`Scale={150}  //right click menu scale
+
+#5Mp monitor System
+#2 Monitors resolution - 4096x1600
+#4 Monitors resolution - 8192x1600
+System`Tools`4096x2560`Rect={0,0,250,50}
+System`Tools`4096x2560`Scale={150}
+System`Tools`8192x1600`Rect={0,0,250,50}
+System`Tools`8192x1600`Scale={150}
+
+#Color monitor System
+#1 monitor resolution - 1600x1200
+#2 monitors resolution - 3200x1200
+System`Tools`1600x1200`Rect={0,0,220,40}
+System`Tools`1600x1200`Scale={150}
+System`Tools`3200x1200`Rect={0,0,220,40}
+System`Tools`3200x1200`Scale={150}
+
+#This controls which option will be selected in zoom/pan panel 
+System`Tools`Zoom`Default={0} //zoom option will be selected in zoom/pan panel
+
+#These variables control the context menu(right click menu) configuration. 
+#To enable animation all of these variables should be set
+System`ContextMenu`Entry`01`Node={GL_CMD_SELECT} //selection tool 
+System`ContextMenu`Entry`02`Node={GL_CMD_LEVEL} //window/level tool
+System`ContextMenu`Entry`03`Node={GL_CMD_ZOOM} //zoom/pan tool
+System`ContextMenu`Entry`04`Node={GL_CMD_STACK} //animation tool 
+System`ContextMenu`Entry`05`Node={GL_CMD_TILE} //tile layout tool
+System`ContextMenu`Entry`06`Node={GL_CMD_GLASS} //magic glass tool
+System`ContextMenu`Entry`07`Node={GL_CMD_ROTATE} //rotation tool
+System`ContextMenu`Entry`08`Node={GL_CMD_ANNOTATE} //annotation tool
+#System`ContextMenu`Entry`09`Node={GL_CMD_PRINT} //printing tool 
+#System`ContextMenu`Entry`10`Node={GL_CMD_SEND} //Send tool
+System`ContextMenu`Entry`11`Node={GL_CMD_LINK} //linking tool
+#System`ContextMenu`Entry`12`Node={GL_CMD_3D} //3D tool
+
+
+Protocol`Universal`Name={ALI Default Universal}
+Protocol`Universal`Node={PanelUniversal`Stack}
+Protocol`Universal`Origin={Universal}
+
+Protocol`CR`Name={ALI Default CR}
+Protocol`CR`Node={PanelCR`Stack}
+Protocol`CR`Origin={CR}
+
+Protocol`DR`Name={ALI Default DR}
+Protocol`DR`Node={PanelDR`Stack}
+Protocol`DR`Origin={DR}
+
+Protocol`RF`Name={ALI Default RF}
+Protocol`RF`Node={PanelRF`Stack}
+Protocol`RF`Origin={RF}
+
+Protocol`SC`Name={ALI Default SC}
+Protocol`SC`Node={PanelSC`Stack}
+Protocol`SC`Origin={SC}
+
+Protocol`XA`Name={ALI Default XA}
+Protocol`XA`Node={PanelXA`Stack}
+Protocol`XA`Origin={XA}
+
+Protocol`MR`Name={ALI Default MR}
+Protocol`MR`Node={PanelMR`Stack}
+Protocol`MR`Origin={MR}
+
+Protocol`CT`Name={ALI Default CT}
+Protocol`CT`Node={PanelCT`Stack}
+Protocol`CT`Origin={CT}
+
+Protocol`NM`Name={ALI Default NM}
+Protocol`NM`Node={PanelNM`Stack}
+Protocol`NM`Origin={NM}
+
+Protocol`US`Name={ALI Default US}
+Protocol`US`Node={PanelUS`Tile}
+Protocol`US`Origin={US}
+
+Display`Study`Entry`0`Node={Protocol`Universal}
+Display`Study`CR`Entry`1`Node={Protocol`CR}
+Display`Study`RF`Entry`2`Node={Protocol`RF}
+Display`Study`SC`Entry`3`Node={Protocol`SC}
+Display`Study`XA`Entry`4`Node={Protocol`XA}
+Display`Study`MR`Entry`5`Node={Protocol`MR}
+Display`Study`CT`Entry`6`Node={Protocol`CT}
+Display`Study`NM`Entry`7`Node={Protocol`NM}
+Display`Study`US`Entry`8`Node={Protocol`US}
+Display`Study`DR`Entry`9`Node={Protocol`DR}
+
+Display`Study`CR`Default={Protocol`CR}
+Display`Study`RF`Default={Protocol`RF}
+Display`Study`SC`Default={Protocol`SC}
+Display`Study`XA`Default={Protocol`XA}
+Display`Study`MR`Default={Protocol`MR}
+Display`Study`CT`Default={Protocol`CT}
+Display`Study`NM`Default={Protocol`NM}
+Display`Study`US`Default={Protocol`US}
+Display`Study`DR`Default={Protocol`DR}
+
+
+Display`Survey`CR`Node={PanelCR`Survey}
+
+Display`Survey`RF`Node={PanelRF`Survey}
+
+Display`Survey`SC`Node={PanelSC`Survey}
+
+Display`Survey`XA`Node={PanelXA`Survey}
+
+Display`Survey`MR`Node={PanelMR`Survey}
+
+Display`Survey`CT`Node={PanelCT`Survey}
+
+Display`Survey`NM`Node={PanelNM`Survey}
+
+Display`Survey`US`Node={PanelUS`Survey}
+
+Display`Survey`DR`Node={PanelDR`Survey}
+
+Panel`Level={0,0}
+Panel`Layout={2,3}
+Panel`Offset={0,0}
+Panel`Rect={0,0,1000000,1000000}
+Panel`Type={11}
+Panel`Zoom={100}
+Panel`Tile`Entry`*`*`TYPE={11}
+Panel`Tile`Entry`*`*`CR`Layout={1,1}
+Panel`Tile`Entry`*`*`CT`Layout={2,3}
+Panel`Tile`Entry`*`*`MR`Layout={3,4}
+Panel`Tile`Entry`*`*`US`Layout={3,4}
+
+PanelUniversal`ReadOnly={1}
+PanelCR`ReadOnly={1}
+PanelRF`ReadOnly={1}
+PanelSC`ReadOnly={1}
+PanelXA`ReadOnly={1}
+PanelMR`ReadOnly={1}
+PanelCT`ReadOnly={1}
+PanelNM`ReadOnly={1}
+PanelUS`ReadOnly={1}
+PanelDR`ReadOnly={1}
+
+PanelUniversal`Stack`Entry`1`01`Layout={1,1}
+PanelUniversal`Stack`Entry`1`01`Level={0,0}
+PanelUniversal`Stack`Entry`1`01`Offset={0,0}
+PanelUniversal`Stack`Entry`1`01`Rect={0,0,500000,500000}
+PanelUniversal`Stack`Entry`1`01`Rotation={0}
+PanelUniversal`Stack`Entry`1`01`Type={12}
+PanelUniversal`Stack`Entry`1`01`Zoom={100}
+PanelUniversal`Stack`Entry`1`02`Layout={1,1}
+PanelUniversal`Stack`Entry`1`02`Level={0,0}
+PanelUniversal`Stack`Entry`1`02`Offset={0,0}
+PanelUniversal`Stack`Entry`1`02`Rect={500000,0,1000000,500000}
+PanelUniversal`Stack`Entry`1`02`Rotation={0}
+PanelUniversal`Stack`Entry`1`02`Type={12}
+PanelUniversal`Stack`Entry`1`02`Zoom={100}
+PanelUniversal`Stack`Entry`1`03`Layout={1,1}
+PanelUniversal`Stack`Entry`1`03`Level={0,0}
+PanelUniversal`Stack`Entry`1`03`Offset={0,0}
+PanelUniversal`Stack`Entry`1`03`Rect={0,500000,500000,1000000}
+PanelUniversal`Stack`Entry`1`03`Rotation={0}
+PanelUniversal`Stack`Entry`1`03`Type={12}
+PanelUniversal`Stack`Entry`1`03`Zoom={100}
+PanelUniversal`Stack`Entry`1`04`Layout={1,1}
+PanelUniversal`Stack`Entry`1`04`Level={0,0}
+PanelUniversal`Stack`Entry`1`04`Offset={0,0}
+PanelUniversal`Stack`Entry`1`04`Rect={500000,500000,1000000,1000000}
+PanelUniversal`Stack`Entry`1`04`Rotation={0}
+PanelUniversal`Stack`Entry`1`04`Type={12}
+PanelUniversal`Stack`Entry`1`04`Zoom={100}
+PanelUniversal`Stack`Entry`2`01`Layout={1,1}
+PanelUniversal`Stack`Entry`2`01`Level={0,0}
+PanelUniversal`Stack`Entry`2`01`Offset={0,0}
+PanelUniversal`Stack`Entry`2`01`Rect={0,0,500000,500000}
+PanelUniversal`Stack`Entry`2`01`Rotation={0}
+PanelUniversal`Stack`Entry`2`01`Type={12}
+PanelUniversal`Stack`Entry`2`01`Zoom={100}
+PanelUniversal`Stack`Entry`2`02`Layout={1,1}
+PanelUniversal`Stack`Entry`2`02`Level={0,0}
+PanelUniversal`Stack`Entry`2`02`Offset={0,0}
+PanelUniversal`Stack`Entry`2`02`Rect={500000,0,1000000,500000}
+PanelUniversal`Stack`Entry`2`02`Rotation={0}
+PanelUniversal`Stack`Entry`2`02`Type={12}
+PanelUniversal`Stack`Entry`2`02`Zoom={100}
+PanelUniversal`Stack`Entry`2`03`Layout={1,1}
+PanelUniversal`Stack`Entry`2`03`Level={0,0}
+PanelUniversal`Stack`Entry`2`03`Offset={0,0}
+PanelUniversal`Stack`Entry`2`03`Rect={0,500000,500000,1000000}
+PanelUniversal`Stack`Entry`2`03`Rotation={0}
+PanelUniversal`Stack`Entry`2`03`Type={12}
+PanelUniversal`Stack`Entry`2`03`Zoom={100}
+PanelUniversal`Stack`Entry`2`04`Layout={1,1}
+PanelUniversal`Stack`Entry`2`04`Level={0,0}
+PanelUniversal`Stack`Entry`2`04`Offset={0,0}
+PanelUniversal`Stack`Entry`2`04`Rect={500000,500000,1000000,1000000}
+PanelUniversal`Stack`Entry`2`04`Rotation={0}
+PanelUniversal`Stack`Entry`2`04`Type={12}
+PanelUniversal`Stack`Entry`2`04`Zoom={100}
+PanelUniversal`Stack`Entry`3`01`Layout={1,1}
+PanelUniversal`Stack`Entry`3`01`Level={0,0}
+PanelUniversal`Stack`Entry`3`01`Offset={0,0}
+PanelUniversal`Stack`Entry`3`01`Rect={0,0,500000,500000}
+PanelUniversal`Stack`Entry`3`01`Rotation={0}
+PanelUniversal`Stack`Entry`3`01`Type={12}
+PanelUniversal`Stack`Entry`3`01`Zoom={100}
+PanelUniversal`Stack`Entry`3`02`Layout={1,1}
+PanelUniversal`Stack`Entry`3`02`Level={0,0}
+PanelUniversal`Stack`Entry`3`02`Offset={0,0}
+PanelUniversal`Stack`Entry`3`02`Rect={500000,0,1000000,500000}
+PanelUniversal`Stack`Entry`3`02`Rotation={0}
+PanelUniversal`Stack`Entry`3`02`Type={12}
+PanelUniversal`Stack`Entry`3`02`Zoom={100}
+PanelUniversal`Stack`Entry`3`03`Layout={1,1}
+PanelUniversal`Stack`Entry`3`03`Level={0,0}
+PanelUniversal`Stack`Entry`3`03`Offset={0,0}
+PanelUniversal`Stack`Entry`3`03`Rect={0,500000,500000,1000000}
+PanelUniversal`Stack`Entry`3`03`Rotation={0}
+PanelUniversal`Stack`Entry`3`03`Type={12}
+PanelUniversal`Stack`Entry`3`03`Zoom={100}
+PanelUniversal`Stack`Entry`3`04`Layout={1,1}
+PanelUniversal`Stack`Entry`3`04`Level={0,0}
+PanelUniversal`Stack`Entry`3`04`Offset={0,0}
+PanelUniversal`Stack`Entry`3`04`Rect={500000,500000,1000000,1000000}
+PanelUniversal`Stack`Entry`3`04`Rotation={0}
+PanelUniversal`Stack`Entry`3`04`Type={12}
+PanelUniversal`Stack`Entry`3`04`Zoom={100}
+PanelUniversal`Stack`Entry`4`01`Layout={1,1}
+PanelUniversal`Stack`Entry`4`01`Level={0,0}
+PanelUniversal`Stack`Entry`4`01`Offset={0,0}
+PanelUniversal`Stack`Entry`4`01`Rect={0,0,500000,500000}
+PanelUniversal`Stack`Entry`4`01`Rotation={0}
+PanelUniversal`Stack`Entry`4`01`Type={12}
+PanelUniversal`Stack`Entry`4`01`Zoom={100}
+PanelUniversal`Stack`Entry`4`02`Layout={1,1}
+PanelUniversal`Stack`Entry`4`02`Level={0,0}
+PanelUniversal`Stack`Entry`4`02`Offset={0,0}
+PanelUniversal`Stack`Entry`4`02`Rect={500000,0,1000000,500000}
+PanelUniversal`Stack`Entry`4`02`Rotation={0}
+PanelUniversal`Stack`Entry`4`02`Type={12}
+PanelUniversal`Stack`Entry`4`02`Zoom={100}
+PanelUniversal`Stack`Entry`4`03`Layout={1,1}
+PanelUniversal`Stack`Entry`4`03`Level={0,0}
+PanelUniversal`Stack`Entry`4`03`Offset={0,0}
+PanelUniversal`Stack`Entry`4`03`Rect={0,500000,500000,1000000}
+PanelUniversal`Stack`Entry`4`03`Rotation={0}
+PanelUniversal`Stack`Entry`4`03`Type={12}
+PanelUniversal`Stack`Entry`4`03`Zoom={100}
+PanelUniversal`Stack`Entry`4`04`Layout={1,1}
+PanelUniversal`Stack`Entry`4`04`Level={0,0}
+PanelUniversal`Stack`Entry`4`04`Offset={0,0}
+PanelUniversal`Stack`Entry`4`04`Rect={500000,500000,1000000,1000000}
+PanelUniversal`Stack`Entry`4`04`Rotation={0}
+PanelUniversal`Stack`Entry`4`04`Type={12}
+PanelUniversal`Stack`Entry`4`04`Zoom={100}
+
+PanelUniversal`Survey`Entry`1`01`Layout={2,3}
+PanelUniversal`Survey`Entry`1`01`Level={0,0}
+PanelUniversal`Survey`Entry`1`01`Offset={0,0}
+PanelUniversal`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelUniversal`Survey`Entry`1`01`Rotation={0}
+PanelUniversal`Survey`Entry`1`01`Type={11}
+PanelUniversal`Survey`Entry`1`01`Zoom={100}
+
+PanelCR`Stack`Entry`1`01`Layout0={1,1}
+PanelCR`Stack`Entry`1`01`Level={0,0}
+PanelCR`Stack`Entry`1`01`Offset={0,0}
+PanelCR`Stack`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelCR`Stack`Entry`1`01`Rotation={0}
+PanelCR`Stack`Entry`1`01`Type={12}
+PanelCR`Stack`Entry`1`01`Zoom={100}
+PanelCR`Stack`Entry`2`01`Layout={1,1}
+PanelCR`Stack`Entry`2`01`Level={0,0}
+PanelCR`Stack`Entry`2`01`Offset={0,0}
+PanelCR`Stack`Entry`2`01`Rect={0,0,1000000,1000000}
+PanelCR`Stack`Entry`2`01`Rotation={0}
+PanelCR`Stack`Entry`2`01`Type={12}
+PanelCR`Stack`Entry`2`01`Zoom={100}
+PanelCR`Stack`Entry`3`01`Layout={1,1}
+PanelCR`Stack`Entry`3`01`Level={0,0}
+PanelCR`Stack`Entry`3`01`Offset={0,0}
+PanelCR`Stack`Entry`3`01`Rect={0,0,1000000,1000000}
+PanelCR`Stack`Entry`3`01`Rotation={0}
+PanelCR`Stack`Entry`3`01`Type={12}
+PanelCR`Stack`Entry`3`01`Zoom={100}
+PanelCR`Stack`Entry`4`01`Layout={1,1}
+PanelCR`Stack`Entry`4`01`Level={0,0}
+PanelCR`Stack`Entry`4`01`Offset={0,0}
+PanelCR`Stack`Entry`4`01`Rect={0,0,1000000,1000000}
+PanelCR`Stack`Entry`4`01`Rotation={0}
+PanelCR`Stack`Entry`4`01`Type={12}
+PanelCR`Stack`Entry`4`01`Zoom={100}
+
+PanelCR`Survey`Entry`1`01`Layout={2,3}
+PanelCR`Survey`Entry`1`01`Level={0,0}
+PanelCR`Survey`Entry`1`01`Offset={0,0}
+PanelCR`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelCR`Survey`Entry`1`01`Rotation={0}
+PanelCR`Survey`Entry`1`01`Type={11}
+PanelCR`Survey`Entry`1`01`Zoom={100}
+
+PanelDR`Stack`Entry`1`01`Layout0={1,1}
+PanelDR`Stack`Entry`1`01`Level={0,0}
+PanelDR`Stack`Entry`1`01`Offset={0,0}
+PanelDR`Stack`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelDR`Stack`Entry`1`01`Rotation={0}
+PanelDR`Stack`Entry`1`01`Type={12}
+PanelDR`Stack`Entry`1`01`Zoom={100}
+PanelDR`Stack`Entry`2`01`Layout={1,1}
+PanelDR`Stack`Entry`2`01`Level={0,0}
+PanelDR`Stack`Entry`2`01`Offset={0,0}
+PanelDR`Stack`Entry`2`01`Rect={0,0,1000000,1000000}
+PanelDR`Stack`Entry`2`01`Rotation={0}
+PanelDR`Stack`Entry`2`01`Type={12}
+PanelDR`Stack`Entry`2`01`Zoom={100}
+PanelDR`Stack`Entry`3`01`Layout={1,1}
+PanelDR`Stack`Entry`3`01`Level={0,0}
+PanelDR`Stack`Entry`3`01`Offset={0,0}
+PanelDR`Stack`Entry`3`01`Rect={0,0,1000000,1000000}
+PanelDR`Stack`Entry`3`01`Rotation={0}
+PanelDR`Stack`Entry`3`01`Type={12}
+PanelDR`Stack`Entry`3`01`Zoom={100}
+PanelDR`Stack`Entry`4`01`Layout={1,1}
+PanelDR`Stack`Entry`4`01`Level={0,0}
+PanelDR`Stack`Entry`4`01`Offset={0,0}
+PanelDR`Stack`Entry`4`01`Rect={0,0,1000000,1000000}
+PanelDR`Stack`Entry`4`01`Rotation={0}
+PanelDR`Stack`Entry`4`01`Type={12}
+PanelDR`Stack`Entry`4`01`Zoom={100}
+
+PanelDR`Survey`Entry`1`01`Layout={2,3}
+PanelDR`Survey`Entry`1`01`Level={0,0}
+PanelDR`Survey`Entry`1`01`Offset={0,0}
+PanelDR`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelDR`Survey`Entry`1`01`Rotation={0}
+PanelDR`Survey`Entry`1`01`Type={11}
+PanelDR`Survey`Entry`1`01`Zoom={100}
+
+PanelRF`Stack`Entry`1`01`Layout={1,1}
+PanelRF`Stack`Entry`1`01`Level={0,0}
+PanelRF`Stack`Entry`1`01`Offset={0,0}
+PanelRF`Stack`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelRF`Stack`Entry`1`01`Rotation={0}
+PanelRF`Stack`Entry`1`01`Type={12}
+PanelRF`Stack`Entry`1`01`Zoom={100}
+PanelRF`Stack`Entry`2`01`Layout={1,1}
+PanelRF`Stack`Entry`2`01`Level={0,0}
+PanelRF`Stack`Entry`2`01`Offset={0,0}
+PanelRF`Stack`Entry`2`01`Rect={0,0,1000000,1000000}
+PanelRF`Stack`Entry`2`01`Rotation={0}
+PanelRF`Stack`Entry`2`01`Type={12}
+PanelRF`Stack`Entry`2`01`Zoom={100}
+PanelRF`Stack`Entry`3`01`Layout={1,1}
+PanelRF`Stack`Entry`3`01`Level={0,0}
+PanelRF`Stack`Entry`3`01`Offset={0,0}
+PanelRF`Stack`Entry`3`01`Rect={0,0,1000000,1000000}
+PanelRF`Stack`Entry`3`01`Rotation={0}
+PanelRF`Stack`Entry`3`01`Type={12}
+PanelRF`Stack`Entry`3`01`Zoom={100}
+PanelRF`Stack`Entry`4`01`Layout={1,1}
+PanelRF`Stack`Entry`4`01`Level={0,0}
+PanelRF`Stack`Entry`4`01`Offset={0,0}
+PanelRF`Stack`Entry`4`01`Rect={0,0,1000000,1000000}
+PanelRF`Stack`Entry`4`01`Rotation={0}
+PanelRF`Stack`Entry`4`01`Type={12}
+PanelRF`Stack`Entry`4`01`Zoom={100}
+
+PanelRF`Survey`Entry`1`01`Layout={2,3}
+PanelRF`Survey`Entry`1`01`Level={0,0}
+PanelRF`Survey`Entry`1`01`Offset={0,0}
+PanelRF`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelRF`Survey`Entry`1`01`Rotation={0}
+PanelRF`Survey`Entry`1`01`Type={11}
+PanelRF`Survey`Entry`1`01`Zoom={100}
+
+PanelSC`Stack`Entry`1`01`Layout={1,1}
+PanelSC`Stack`Entry`1`01`Level={0,0}
+PanelSC`Stack`Entry`1`01`Offset={0,0}
+PanelSC`Stack`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelSC`Stack`Entry`1`01`Rotation={0}
+PanelSC`Stack`Entry`1`01`Type={12}
+PanelSC`Stack`Entry`1`01`Zoom={100}
+PanelSC`Stack`Entry`2`01`Layout={1,1}
+PanelSC`Stack`Entry`2`01`Level={0,0}
+PanelSC`Stack`Entry`2`01`Offset={0,0}
+PanelSC`Stack`Entry`2`01`Rect={0,0,1000000,1000000}
+PanelSC`Stack`Entry`2`01`Rotation={0}
+PanelSC`Stack`Entry`2`01`Type={12}
+PanelSC`Stack`Entry`2`01`Zoom={100}
+PanelSC`Stack`Entry`3`01`Layout={1,1}
+PanelSC`Stack`Entry`3`01`Level={0,0}
+PanelSC`Stack`Entry`3`01`Offset={0,0}
+PanelSC`Stack`Entry`3`01`Rect={0,0,1000000,1000000}
+PanelSC`Stack`Entry`3`01`Rotation={0}
+PanelSC`Stack`Entry`3`01`Type={12}
+PanelSC`Stack`Entry`3`01`Zoom={100}
+PanelSC`Stack`Entry`4`01`Layout={1,1}
+PanelSC`Stack`Entry`4`01`Level={0,0}
+PanelSC`Stack`Entry`4`01`Offset={0,0}
+PanelSC`Stack`Entry`4`01`Rect={0,0,1000000,1000000}
+PanelSC`Stack`Entry`4`01`Rotation={0}
+PanelSC`Stack`Entry`4`01`Type={12}
+PanelSC`Stack`Entry`4`01`Zoom={100}
+
+PanelSC`Survey`Entry`1`01`Layout={2,3}
+PanelSC`Survey`Entry`1`01`Level={0,0}
+PanelSC`Survey`Entry`1`01`Offset={0,0}
+PanelSC`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelSC`Survey`Entry`1`01`Rotation={0}
+PanelSC`Survey`Entry`1`01`Type={11}
+PanelSC`Survey`Entry`1`01`Zoom={100}
+
+PanelXA`Stack`Entry`1`01`Layout={1,1}
+PanelXA`Stack`Entry`1`01`Level={0,0}
+PanelXA`Stack`Entry`1`01`Offset={0,0}
+PanelXA`Stack`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelXA`Stack`Entry`1`01`Rotation={0}
+PanelXA`Stack`Entry`1`01`Type={12}
+PanelXA`Stack`Entry`1`01`Zoom={100}
+PanelXA`Stack`Entry`2`01`Layout={1,1}
+PanelXA`Stack`Entry`2`01`Level={0,0}
+PanelXA`Stack`Entry`2`01`Offset={0,0}
+PanelXA`Stack`Entry`2`01`Rect={0,0,1000000,1000000}
+PanelXA`Stack`Entry`2`01`Rotation={0}
+PanelXA`Stack`Entry`2`01`Type={12}
+PanelXA`Stack`Entry`2`01`Zoom={100}
+PanelXA`Stack`Entry`3`01`Layout={1,1}
+PanelXA`Stack`Entry`3`01`Level={0,0}
+PanelXA`Stack`Entry`3`01`Offset={0,0}
+PanelXA`Stack`Entry`3`01`Rect={0,0,1000000,1000000}
+PanelXA`Stack`Entry`3`01`Rotation={0}
+PanelXA`Stack`Entry`3`01`Type={12}
+PanelXA`Stack`Entry`3`01`Zoom={100}
+PanelXA`Stack`Entry`4`01`Layout={1,1}
+PanelXA`Stack`Entry`4`01`Level={0,0}
+PanelXA`Stack`Entry`4`01`Offset={0,0}
+PanelXA`Stack`Entry`4`01`Rect={0,0,1000000,1000000}
+PanelXA`Stack`Entry`4`01`Rotation={0}
+PanelXA`Stack`Entry`4`01`Type={12}
+PanelXA`Stack`Entry`4`01`Zoom={100}
+
+PanelXA`Survey`Entry`1`01`Layout={2,3}
+PanelXA`Survey`Entry`1`01`Level={0,0}
+PanelXA`Survey`Entry`1`01`Offset={0,0}
+PanelXA`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelXA`Survey`Entry`1`01`Rotation={0}
+PanelXA`Survey`Entry`1`01`Type={11}
+PanelXA`Survey`Entry`1`01`Zoom={100}
+
+PanelMR`Stack`Entry`1`01`Layout={1,1}
+PanelMR`Stack`Entry`1`01`Level={0,0}
+PanelMR`Stack`Entry`1`01`Offset={0,0}
+PanelMR`Stack`Entry`1`01`Rect={0,0,500000,500000}
+PanelMR`Stack`Entry`1`01`Rotation={0}
+PanelMR`Stack`Entry`1`01`Type={12}
+PanelMR`Stack`Entry`1`01`Zoom={100}
+PanelMR`Stack`Entry`1`02`Layout={1,1}
+PanelMR`Stack`Entry`1`02`Level={0,0}
+PanelMR`Stack`Entry`1`02`Offset={0,0}
+PanelMR`Stack`Entry`1`02`Rect={500000,0,1000000,500000}
+PanelMR`Stack`Entry`1`02`Rotation={0}
+PanelMR`Stack`Entry`1`02`Type={12}
+PanelMR`Stack`Entry`1`02`Zoom={100}
+PanelMR`Stack`Entry`1`03`Layout={1,1}
+PanelMR`Stack`Entry`1`03`Level={0,0}
+PanelMR`Stack`Entry`1`03`Offset={0,0}
+PanelMR`Stack`Entry`1`03`Rect={0,500000,500000,1000000}
+PanelMR`Stack`Entry`1`03`Rotation={0}
+PanelMR`Stack`Entry`1`03`Type={12}
+PanelMR`Stack`Entry`1`03`Zoom={100}
+PanelMR`Stack`Entry`1`04`Layout={1,1}
+PanelMR`Stack`Entry`1`04`Level={0,0}
+PanelMR`Stack`Entry`1`04`Offset={0,0}
+PanelMR`Stack`Entry`1`04`Rect={500000,500000,1000000,1000000}
+PanelMR`Stack`Entry`1`04`Rotation={0}
+PanelMR`Stack`Entry`1`04`Type={12}
+PanelMR`Stack`Entry`1`04`Zoom={100}
+PanelMR`Stack`Entry`2`01`Layout={1,1}
+PanelMR`Stack`Entry`2`01`Level={0,0}
+PanelMR`Stack`Entry`2`01`Offset={0,0}
+PanelMR`Stack`Entry`2`01`Rect={0,0,500000,500000}
+PanelMR`Stack`Entry`2`01`Rotation={0}
+PanelMR`Stack`Entry`2`01`Type={12}
+PanelMR`Stack`Entry`2`01`Zoom={100}
+PanelMR`Stack`Entry`2`02`Layout={1,1}
+PanelMR`Stack`Entry`2`02`Level={0,0}
+PanelMR`Stack`Entry`2`02`Offset={0,0}
+PanelMR`Stack`Entry`2`02`Rect={500000,0,1000000,500000}
+PanelMR`Stack`Entry`2`02`Rotation={0}
+PanelMR`Stack`Entry`2`02`Type={12}
+PanelMR`Stack`Entry`2`02`Zoom={100}
+PanelMR`Stack`Entry`2`03`Layout={1,1}
+PanelMR`Stack`Entry`2`03`Level={0,0}
+PanelMR`Stack`Entry`2`03`Offset={0,0}
+PanelMR`Stack`Entry`2`03`Rect={0,500000,500000,1000000}
+PanelMR`Stack`Entry`2`03`Rotation={0}
+PanelMR`Stack`Entry`2`03`Type={12}
+PanelMR`Stack`Entry`2`03`Zoom={100}
+PanelMR`Stack`Entry`2`04`Layout={1,1}
+PanelMR`Stack`Entry`2`04`Level={0,0}
+PanelMR`Stack`Entry`2`04`Offset={0,0}
+PanelMR`Stack`Entry`2`04`Rect={500000,500000,1000000,1000000}
+PanelMR`Stack`Entry`2`04`Rotation={0}
+PanelMR`Stack`Entry`2`04`Type={12}
+PanelMR`Stack`Entry`2`04`Zoom={100}
+PanelMR`Stack`Entry`3`01`Layout={1,1}
+PanelMR`Stack`Entry`3`01`Level={0,0}
+PanelMR`Stack`Entry`3`01`Offset={0,0}
+PanelMR`Stack`Entry`3`01`Rect={0,0,500000,500000}
+PanelMR`Stack`Entry`3`01`Rotation={0}
+PanelMR`Stack`Entry`3`01`Type={12}
+PanelMR`Stack`Entry`3`01`Zoom={100}
+PanelMR`Stack`Entry`3`02`Layout={1,1}
+PanelMR`Stack`Entry`3`02`Level={0,0}
+PanelMR`Stack`Entry`3`02`Offset={0,0}
+PanelMR`Stack`Entry`3`02`Rect={500000,0,1000000,500000}
+PanelMR`Stack`Entry`3`02`Rotation={0}
+PanelMR`Stack`Entry`3`02`Type={12}
+PanelMR`Stack`Entry`3`02`Zoom={100}
+PanelMR`Stack`Entry`3`03`Layout={1,1}
+PanelMR`Stack`Entry`3`03`Level={0,0}
+PanelMR`Stack`Entry`3`03`Offset={0,0}
+PanelMR`Stack`Entry`3`03`Rect={0,500000,500000,1000000}
+PanelMR`Stack`Entry`3`03`Rotation={0}
+PanelMR`Stack`Entry`3`03`Type={12}
+PanelMR`Stack`Entry`3`03`Zoom={100}
+PanelMR`Stack`Entry`3`04`Layout={1,1}
+PanelMR`Stack`Entry`3`04`Level={0,0}
+PanelMR`Stack`Entry`3`04`Offset={0,0}
+PanelMR`Stack`Entry`3`04`Rect={500000,500000,1000000,1000000}
+PanelMR`Stack`Entry`3`04`Rotation={0}
+PanelMR`Stack`Entry`3`04`Type={12}
+PanelMR`Stack`Entry`3`04`Zoom={100}
+PanelMR`Stack`Entry`4`01`Layout={1,1}
+PanelMR`Stack`Entry`4`01`Level={0,0}
+PanelMR`Stack`Entry`4`01`Offset={0,0}
+PanelMR`Stack`Entry`4`01`Rect={0,0,500000,500000}
+PanelMR`Stack`Entry`4`01`Rotation={0}
+PanelMR`Stack`Entry`4`01`Type={12}
+PanelMR`Stack`Entry`4`01`Zoom={100}
+PanelMR`Stack`Entry`4`02`Layout={1,1}
+PanelMR`Stack`Entry`4`02`Level={0,0}
+PanelMR`Stack`Entry`4`02`Offset={0,0}
+PanelMR`Stack`Entry`4`02`Rect={500000,0,1000000,500000}
+PanelMR`Stack`Entry`4`02`Rotation={0}
+PanelMR`Stack`Entry`4`02`Type={12}
+PanelMR`Stack`Entry`4`02`Zoom={100}
+PanelMR`Stack`Entry`4`03`Layout={1,1}
+PanelMR`Stack`Entry`4`03`Level={0,0}
+PanelMR`Stack`Entry`4`03`Offset={0,0}
+PanelMR`Stack`Entry`4`03`Rect={0,500000,500000,1000000}
+PanelMR`Stack`Entry`4`03`Rotation={0}
+PanelMR`Stack`Entry`4`03`Type={12}
+PanelMR`Stack`Entry`4`03`Zoom={100}
+PanelMR`Stack`Entry`4`04`Layout={1,1}
+PanelMR`Stack`Entry`4`04`Level={0,0}
+PanelMR`Stack`Entry`4`04`Offset={0,0}
+PanelMR`Stack`Entry`4`04`Rect={500000,500000,1000000,1000000}
+PanelMR`Stack`Entry`4`04`Rotation={0}
+PanelMR`Stack`Entry`4`04`Type={12}
+PanelMR`Stack`Entry`4`04`Zoom={100}
+
+PanelMR`Survey`Entry`1`01`Layout={2,3}
+PanelMR`Survey`Entry`1`01`Level={0,0}
+PanelMR`Survey`Entry`1`01`Offset={0,0}
+PanelMR`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelMR`Survey`Entry`1`01`Rotation={0}
+PanelMR`Survey`Entry`1`01`Type={11}
+PanelMR`Survey`Entry`1`01`Zoom={100}
+
+PanelCT`Stack`Entry`1`01`Layout={1,1}
+PanelCT`Stack`Entry`1`01`Level={0,0}
+PanelCT`Stack`Entry`1`01`Offset={0,0}
+PanelCT`Stack`Entry`1`01`Rect={0,0,500000,500000}
+PanelCT`Stack`Entry`1`01`Rotation={0}
+PanelCT`Stack`Entry`1`01`Type={12}
+PanelCT`Stack`Entry`1`01`Zoom={100}
+PanelCT`Stack`Entry`1`02`Layout={1,1}
+PanelCT`Stack`Entry`1`02`Level={0,0}
+PanelCT`Stack`Entry`1`02`Offset={0,0}
+PanelCT`Stack`Entry`1`02`Rect={500000,0,1000000,500000}
+PanelCT`Stack`Entry`1`02`Rotation={0}
+PanelCT`Stack`Entry`1`02`Type={12}
+PanelCT`Stack`Entry`1`02`Zoom={100}
+PanelCT`Stack`Entry`1`03`Layout={1,1}
+PanelCT`Stack`Entry`1`03`Level={0,0}
+PanelCT`Stack`Entry`1`03`Offset={0,0}
+PanelCT`Stack`Entry`1`03`Rect={0,500000,500000,1000000}
+PanelCT`Stack`Entry`1`03`Rotation={0}
+PanelCT`Stack`Entry`1`03`Type={12}
+PanelCT`Stack`Entry`1`03`Zoom={100}
+PanelCT`Stack`Entry`1`04`Layout={1,1}
+PanelCT`Stack`Entry`1`04`Level={0,0}
+PanelCT`Stack`Entry`1`04`Offset={0,0}
+PanelCT`Stack`Entry`1`04`Rect={500000,500000,1000000,1000000}
+PanelCT`Stack`Entry`1`04`Rotation={0}
+PanelCT`Stack`Entry`1`04`Type={12}
+PanelCT`Stack`Entry`1`04`Zoom={100}
+PanelCT`Stack`Entry`2`01`Layout={1,1}
+PanelCT`Stack`Entry`2`01`Level={0,0}
+PanelCT`Stack`Entry`2`01`Offset={0,0}
+PanelCT`Stack`Entry`2`01`Rect={0,0,500000,500000}
+PanelCT`Stack`Entry`2`01`Rotation={0}
+PanelCT`Stack`Entry`2`01`Type={12}
+PanelCT`Stack`Entry`2`01`Zoom={100}
+PanelCT`Stack`Entry`2`02`Layout={1,1}
+PanelCT`Stack`Entry`2`02`Level={0,0}
+PanelCT`Stack`Entry`2`02`Offset={0,0}
+PanelCT`Stack`Entry`2`02`Rect={500000,0,1000000,500000}
+PanelCT`Stack`Entry`2`02`Rotation={0}
+PanelCT`Stack`Entry`2`02`Type={12}
+PanelCT`Stack`Entry`2`02`Zoom={100}
+PanelCT`Stack`Entry`2`03`Layout={1,1}
+PanelCT`Stack`Entry`2`03`Level={0,0}
+PanelCT`Stack`Entry`2`03`Offset={0,0}
+PanelCT`Stack`Entry`2`03`Rect={0,500000,500000,1000000}
+PanelCT`Stack`Entry`2`03`Rotation={0}
+PanelCT`Stack`Entry`2`03`Type={12}
+PanelCT`Stack`Entry`2`03`Zoom={100}
+PanelCT`Stack`Entry`2`04`Layout={1,1}
+PanelCT`Stack`Entry`2`04`Level={0,0}
+PanelCT`Stack`Entry`2`04`Offset={0,0}
+PanelCT`Stack`Entry`2`04`Rect={500000,500000,1000000,1000000}
+PanelCT`Stack`Entry`2`04`Rotation={0}
+PanelCT`Stack`Entry`2`04`Type={12}
+PanelCT`Stack`Entry`2`04`Zoom={100}
+PanelCT`Stack`Entry`3`01`Layout={1,1}
+PanelCT`Stack`Entry`3`01`Level={0,0}
+PanelCT`Stack`Entry`3`01`Offset={0,0}
+PanelCT`Stack`Entry`3`01`Rect={0,0,500000,500000}
+PanelCT`Stack`Entry`3`01`Rotation={0}
+PanelCT`Stack`Entry`3`01`Type={12}
+PanelCT`Stack`Entry`3`01`Zoom={100}
+PanelCT`Stack`Entry`3`02`Layout={1,1}
+PanelCT`Stack`Entry`3`02`Level={0,0}
+PanelCT`Stack`Entry`3`02`Offset={0,0}
+PanelCT`Stack`Entry`3`02`Rect={500000,0,1000000,500000}
+PanelCT`Stack`Entry`3`02`Rotation={0}
+PanelCT`Stack`Entry`3`02`Type={12}
+PanelCT`Stack`Entry`3`02`Zoom={100}
+PanelCT`Stack`Entry`3`03`Layout={1,1}
+PanelCT`Stack`Entry`3`03`Level={0,0}
+PanelCT`Stack`Entry`3`03`Offset={0,0}
+PanelCT`Stack`Entry`3`03`Rect={0,500000,500000,1000000}
+PanelCT`Stack`Entry`3`03`Rotation={0}
+PanelCT`Stack`Entry`3`03`Type={12}
+PanelCT`Stack`Entry`3`03`Zoom={100}
+PanelCT`Stack`Entry`3`04`Layout={1,1}
+PanelCT`Stack`Entry`3`04`Level={0,0}
+PanelCT`Stack`Entry`3`04`Offset={0,0}
+PanelCT`Stack`Entry`3`04`Rect={500000,500000,1000000,1000000}
+PanelCT`Stack`Entry`3`04`Rotation={0}
+PanelCT`Stack`Entry`3`04`Type={12}
+PanelCT`Stack`Entry`3`04`Zoom={100}
+PanelCT`Stack`Entry`4`01`Layout={1,1}
+PanelCT`Stack`Entry`4`01`Level={0,0}
+PanelCT`Stack`Entry`4`01`Offset={0,0}
+PanelCT`Stack`Entry`4`01`Rect={0,0,500000,500000}
+PanelCT`Stack`Entry`4`01`Rotation={0}
+PanelCT`Stack`Entry`4`01`Type={12}
+PanelCT`Stack`Entry`4`01`Zoom={100}
+PanelCT`Stack`Entry`4`02`Layout={1,1}
+PanelCT`Stack`Entry`4`02`Level={0,0}
+PanelCT`Stack`Entry`4`02`Offset={0,0}
+PanelCT`Stack`Entry`4`02`Rect={500000,0,1000000,500000}
+PanelCT`Stack`Entry`4`02`Rotation={0}
+PanelCT`Stack`Entry`4`02`Type={12}
+PanelCT`Stack`Entry`4`02`Zoom={100}
+PanelCT`Stack`Entry`4`03`Layout={1,1}
+PanelCT`Stack`Entry`4`03`Level={0,0}
+PanelCT`Stack`Entry`4`03`Offset={0,0}
+PanelCT`Stack`Entry`4`03`Rect={0,500000,500000,1000000}
+PanelCT`Stack`Entry`4`03`Rotation={0}
+PanelCT`Stack`Entry`4`03`Type={12}
+PanelCT`Stack`Entry`4`03`Zoom={100}
+PanelCT`Stack`Entry`4`04`Layout={1,1}
+PanelCT`Stack`Entry`4`04`Level={0,0}
+PanelCT`Stack`Entry`4`04`Offset={0,0}
+PanelCT`Stack`Entry`4`04`Rect={500000,500000,1000000,1000000}
+PanelCT`Stack`Entry`4`04`Rotation={0}
+PanelCT`Stack`Entry`4`04`Type={12}
+PanelCT`Stack`Entry`4`04`Zoom={100}
+
+PanelCT`Survey`Entry`1`01`Layout={2,3}
+PanelCT`Survey`Entry`1`01`Level={0,0}
+PanelCT`Survey`Entry`1`01`Offset={0,0}
+PanelCT`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelCT`Survey`Entry`1`01`Rotation={0}
+PanelCT`Survey`Entry`1`01`Type={11}
+PanelCT`Survey`Entry`1`01`Zoom={100}
+
+PanelNM`Stack`Entry`1`01`Layout={1,1}
+PanelNM`Stack`Entry`1`01`Level={0,0}
+PanelNM`Stack`Entry`1`01`Offset={0,0}
+PanelNM`Stack`Entry`1`01`Rect={0,0,500000,500000}
+PanelNM`Stack`Entry`1`01`Rotation={0}
+PanelNM`Stack`Entry`1`01`Type={12}
+PanelNM`Stack`Entry`1`01`Zoom={100}
+PanelNM`Stack`Entry`1`02`Layout={1,1}
+PanelNM`Stack`Entry`1`02`Level={0,0}
+PanelNM`Stack`Entry`1`02`Offset={0,0}
+PanelNM`Stack`Entry`1`02`Rect={500000,0,1000000,500000}
+PanelNM`Stack`Entry`1`02`Rotation={0}
+PanelNM`Stack`Entry`1`02`Type={12}
+PanelNM`Stack`Entry`1`02`Zoom={100}
+PanelNM`Stack`Entry`1`03`Layout={1,1}
+PanelNM`Stack`Entry`1`03`Level={0,0}
+PanelNM`Stack`Entry`1`03`Offset={0,0}
+PanelNM`Stack`Entry`1`03`Rect={0,500000,500000,1000000}
+PanelNM`Stack`Entry`1`03`Rotation={0}
+PanelNM`Stack`Entry`1`03`Type={12}
+PanelNM`Stack`Entry`1`03`Zoom={100}
+PanelNM`Stack`Entry`1`04`Layout={1,1}
+PanelNM`Stack`Entry`1`04`Level={0,0}
+PanelNM`Stack`Entry`1`04`Offset={0,0}
+PanelNM`Stack`Entry`1`04`Rect={500000,500000,1000000,1000000}
+PanelNM`Stack`Entry`1`04`Rotation={0}
+PanelNM`Stack`Entry`1`04`Type={12}
+PanelNM`Stack`Entry`1`04`Zoom={100}
+PanelNM`Stack`Entry`2`01`Layout={1,1}
+PanelNM`Stack`Entry`2`01`Level={0,0}
+PanelNM`Stack`Entry`2`01`Offset={0,0}
+PanelNM`Stack`Entry`2`01`Rect={0,0,500000,500000}
+PanelNM`Stack`Entry`2`01`Rotation={0}
+PanelNM`Stack`Entry`2`01`Type={12}
+PanelNM`Stack`Entry`2`01`Zoom={100}
+PanelNM`Stack`Entry`2`02`Layout={1,1}
+PanelNM`Stack`Entry`2`02`Level={0,0}
+PanelNM`Stack`Entry`2`02`Offset={0,0}
+PanelNM`Stack`Entry`2`02`Rect={500000,0,1000000,500000}
+PanelNM`Stack`Entry`2`02`Rotation={0}
+PanelNM`Stack`Entry`2`02`Type={12}
+PanelNM`Stack`Entry`2`02`Zoom={100}
+PanelNM`Stack`Entry`2`03`Layout={1,1}
+PanelNM`Stack`Entry`2`03`Level={0,0}
+PanelNM`Stack`Entry`2`03`Offset={0,0}
+PanelNM`Stack`Entry`2`03`Rect={0,500000,500000,1000000}
+PanelNM`Stack`Entry`2`03`Rotation={0}
+PanelNM`Stack`Entry`2`03`Type={12}
+PanelNM`Stack`Entry`2`03`Zoom={100}
+PanelNM`Stack`Entry`2`04`Layout={1,1}
+PanelNM`Stack`Entry`2`04`Level={0,0}
+PanelNM`Stack`Entry`2`04`Offset={0,0}
+PanelNM`Stack`Entry`2`04`Rect={500000,500000,1000000,1000000}
+PanelNM`Stack`Entry`2`04`Rotation={0}
+PanelNM`Stack`Entry`2`04`Type={12}
+PanelNM`Stack`Entry`2`04`Zoom={100}
+PanelNM`Stack`Entry`3`01`Layout={1,1}
+PanelNM`Stack`Entry`3`01`Level={0,0}
+PanelNM`Stack`Entry`3`01`Offset={0,0}
+PanelNM`Stack`Entry`3`01`Rect={0,0,500000,500000}
+PanelNM`Stack`Entry`3`01`Rotation={0}
+PanelNM`Stack`Entry`3`01`Type={12}
+PanelNM`Stack`Entry`3`01`Zoom={100}
+PanelNM`Stack`Entry`3`02`Layout={1,1}
+PanelNM`Stack`Entry`3`02`Level={0,0}
+PanelNM`Stack`Entry`3`02`Offset={0,0}
+PanelNM`Stack`Entry`3`02`Rect={500000,0,1000000,500000}
+PanelNM`Stack`Entry`3`02`Rotation={0}
+PanelNM`Stack`Entry`3`02`Type={12}
+PanelNM`Stack`Entry`3`02`Zoom={100}
+PanelNM`Stack`Entry`3`03`Layout={1,1}
+PanelNM`Stack`Entry`3`03`Level={0,0}
+PanelNM`Stack`Entry`3`03`Offset={0,0}
+PanelNM`Stack`Entry`3`03`Rect={0,500000,500000,1000000}
+PanelNM`Stack`Entry`3`03`Rotation={0}
+PanelNM`Stack`Entry`3`03`Type={12}
+PanelNM`Stack`Entry`3`03`Zoom={100}
+PanelNM`Stack`Entry`3`04`Layout={1,1}
+PanelNM`Stack`Entry`3`04`Level={0,0}
+PanelNM`Stack`Entry`3`04`Offset={0,0}
+PanelNM`Stack`Entry`3`04`Rect={500000,500000,1000000,1000000}
+PanelNM`Stack`Entry`3`04`Rotation={0}
+PanelNM`Stack`Entry`3`04`Type={12}
+PanelNM`Stack`Entry`3`04`Zoom={100}
+PanelNM`Stack`Entry`4`01`Layout={1,1}
+PanelNM`Stack`Entry`4`01`Level={0,0}
+PanelNM`Stack`Entry`4`01`Offset={0,0}
+PanelNM`Stack`Entry`4`01`Rect={0,0,500000,500000}
+PanelNM`Stack`Entry`4`01`Rotation={0}
+PanelNM`Stack`Entry`4`01`Type={12}
+PanelNM`Stack`Entry`4`01`Zoom={100}
+PanelNM`Stack`Entry`4`02`Layout={1,1}
+PanelNM`Stack`Entry`4`02`Level={0,0}
+PanelNM`Stack`Entry`4`02`Offset={0,0}
+PanelNM`Stack`Entry`4`02`Rect={500000,0,1000000,500000}
+PanelNM`Stack`Entry`4`02`Rotation={0}
+PanelNM`Stack`Entry`4`02`Type={12}
+PanelNM`Stack`Entry`4`02`Zoom={100}
+PanelNM`Stack`Entry`4`03`Layout={1,1}
+PanelNM`Stack`Entry`4`03`Level={0,0}
+PanelNM`Stack`Entry`4`03`Offset={0,0}
+PanelNM`Stack`Entry`4`03`Rect={0,500000,500000,1000000}
+PanelNM`Stack`Entry`4`03`Rotation={0}
+PanelNM`Stack`Entry`4`03`Type={12}
+PanelNM`Stack`Entry`4`03`Zoom={100}
+PanelNM`Stack`Entry`4`04`Layout={1,1}
+PanelNM`Stack`Entry`4`04`Level={0,0}
+PanelNM`Stack`Entry`4`04`Offset={0,0}
+PanelNM`Stack`Entry`4`04`Rect={500000,500000,1000000,1000000}
+PanelNM`Stack`Entry`4`04`Rotation={0}
+PanelNM`Stack`Entry`4`04`Type={12}
+PanelNM`Stack`Entry`4`04`Zoom={100}
+
+PanelNM`Survey`Entry`1`01`Layout={2,3}
+PanelNM`Survey`Entry`1`01`Level={0,0}
+PanelNM`Survey`Entry`1`01`Offset={0,0}
+PanelNM`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelNM`Survey`Entry`1`01`Rotation={0}
+PanelNM`Survey`Entry`1`01`Type={11}
+PanelNM`Survey`Entry`1`01`Zoom={100}
+
+PanelUS`Tile`Entry`1`01`Layout={3,4}
+PanelUS`Tile`Entry`1`01`Level={0,0}
+PanelUS`Tile`Entry`1`01`Offset={0,0}
+PanelUS`Tile`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelUS`Tile`Entry`1`01`Rotation={0}
+PanelUS`Tile`Entry`1`01`Type={11}
+PanelUS`Tile`Entry`1`01`Zoom={100}
+PanelUS`Tile`Entry`2`01`Layout={3,4}
+PanelUS`Tile`Entry`2`01`Level={0,0}
+PanelUS`Tile`Entry`2`01`Offset={0,0}
+PanelUS`Tile`Entry`2`01`Rect={0,0,1000000,1000000}
+PanelUS`Tile`Entry`2`01`Rotation={0}
+PanelUS`Tile`Entry`2`01`Type={11}
+PanelUS`Tile`Entry`2`01`Zoom={100}
+PanelUS`Tile`Entry`3`01`Layout={3,4}
+PanelUS`Tile`Entry`3`01`Level={0,0}
+PanelUS`Tile`Entry`3`01`Offset={0,0}
+PanelUS`Tile`Entry`3`01`Rect={0,0,1000000,1000000}
+PanelUS`Tile`Entry`3`01`Rotation={0}
+PanelUS`Tile`Entry`3`01`Type={11}
+PanelUS`Tile`Entry`3`01`Zoom={100}
+PanelUS`Tile`Entry`4`01`Layout={3,4}
+PanelUS`Tile`Entry`4`01`Level={0,0}
+PanelUS`Tile`Entry`4`01`Offset={0,0}
+PanelUS`Tile`Entry`4`01`Rect={0,0,1000000,1000000}
+PanelUS`Tile`Entry`4`01`Rotation={0}
+PanelUS`Tile`Entry`4`01`Type={11}
+PanelUS`Tile`Entry`4`01`Zoom={100}
+
+PanelUS`Survey`Entry`1`01`Layout={2,3}
+PanelUS`Survey`Entry`1`01`Level={0,0}
+PanelUS`Survey`Entry`1`01`Offset={0,0}
+PanelUS`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelUS`Survey`Entry`1`01`Rotation={0}
+PanelUS`Survey`Entry`1`01`Type={11}
+PanelUS`Survey`Entry`1`01`Zoom={100}
+
+Level`MR`Angio`Range={-50, 350}
+Level`MR`T1`Range={-32, 467}
+Level`MR`T2`Range={-170, 630}
+
+Level`CT`Abdomen`Range={-150, 250}
+Level`CT`Abdominal Angio`Range={-265, 401}
+Level`CT`Calcium`Range={-160, 240}
+Level`CT`Head Angio`Range={-297, 387}
+Level`CT`Head post fossa`Range={-65, 135}
+Level`CT`Head`Range={-30, 270}
+Level`CT`Liver`Range={-10, 260}
+Level`CT`Lung`Range={-1300, 200}
+Level`CT`Mediastinum`Range={-200, 300}
+Level`CT`Ortho bone`Range={-250, 950}
+Level`CT`Sinuses`Range={-800, 1200}
+Level`CT`Soft Tissue`Range={-260, 240}
+Level`CT`Spine neuro`Range={-700, 2300}
+Level`CT`Vertebrae`Range={-1500, 2500}
+
+Preset`CR`Stack_1x1`Layout={1,1}
+Preset`CR`Stack_1x1`Type={12}
+Preset`CR`Stack_2x1`Layout={2,1}
+Preset`CR`Stack_2x1`Type={12}
+Preset`CR`Stack_2x2`Layout={2,2}
+Preset`CR`Stack_2x2`Type={12}
+Preset`CR`Stack_2x3`Layout={2,3}
+Preset`CR`Stack_2x3`Type={12}
+Preset`CR`Stack_3x3`Layout={3,3}
+Preset`CR`Stack_3x3`Type={12}
+Preset`CR`Tile_3x4`Layout={3,4}
+Preset`CR`Tile_3x4`Type={11}
+
+Preset`RF`Stack_1x1`Layout={1,1}
+Preset`RF`Stack_1x1`Type={12}
+Preset`RF`Stack_2x1`Layout={2,1}
+Preset`RF`Stack_2x1`Type={12}
+Preset`RF`Stack_2x2`Layout={2,2}
+Preset`RF`Stack_2x2`Type={12}
+Preset`RF`Stack_2x3`Layout={2,3}
+Preset`RF`Stack_2x3`Type={12}
+Preset`RF`Stack_3x3`Layout={3,3}
+Preset`RF`Stack_3x3`Type={12}
+Preset`RF`Tile_3x4`Layout={3,4}
+Preset`RF`Tile_3x4`Type={11}
+
+Preset`SC`Stack_1x1`Layout={1,1}
+Preset`SC`Stack_1x1`Type={12}
+Preset`SC`Stack_2x1`Layout={2,1}
+Preset`SC`Stack_2x1`Type={12}
+Preset`SC`Stack_2x2`Layout={2,2}
+Preset`SC`Stack_2x2`Type={12}
+Preset`SC`Stack_2x3`Layout={2,3}
+Preset`SC`Stack_2x3`Type={12}
+Preset`SC`Stack_3x3`Layout={3,3}
+Preset`SC`Stack_3x3`Type={12}
+Preset`SC`Tile_3x4`Layout={3,4}
+Preset`SC`Tile_3x4`Type={11}
+
+Preset`XA`Stack_1x1`Layout={1,1}
+Preset`XA`Stack_1x1`Type={12}
+Preset`XA`Stack_2x1`Layout={2,1}
+Preset`XA`Stack_2x1`Type={12}
+Preset`XA`Stack_2x2`Layout={2,2}
+Preset`XA`Stack_2x2`Type={12}
+Preset`XA`Stack_2x3`Layout={2,3}
+Preset`XA`Stack_2x3`Type={12}
+Preset`XA`Stack_3x3`Layout={3,3}
+Preset`XA`Stack_3x3`Type={12}
+Preset`XA`Tile_3x4`Layout={3,4}
+Preset`XA`Tile_3x4`Type={11}
+
+Preset`MR`Stack_1x1`Layout={1,1}
+Preset`MR`Stack_1x1`Type={12}
+Preset`MR`Stack_2x1`Layout={2,1}
+Preset`MR`Stack_2x1`Type={12}
+Preset`MR`Stack_2x2`Layout={2,2}
+Preset`MR`Stack_2x2`Type={12}
+Preset`MR`Stack_2x3`Layout={2,3}
+Preset`MR`Stack_2x3`Type={12}
+Preset`MR`Stack_3x3`Layout={3,3}
+Preset`MR`Stack_3x3`Type={12}
+Preset`MR`Tile_3x4`Layout={3,4}
+Preset`MR`Tile_3x4`Type={11}
+
+Preset`CT`Stack_1x1`Layout={1,1}
+Preset`CT`Stack_1x1`Type={12}
+Preset`CT`Stack_2x1`Layout={2,1}
+Preset`CT`Stack_2x1`Type={12}
+Preset`CT`Stack_2x2`Layout={2,2}
+Preset`CT`Stack_2x2`Type={12}
+Preset`CT`Stack_2x3`Layout={2,3}
+Preset`CT`Stack_2x3`Type={12}
+Preset`CT`Stack_3x3`Layout={3,3}
+Preset`CT`Stack_3x3`Type={12}
+Preset`CT`Tile_3x4`Layout={3,4}
+Preset`CT`Tile_3x4`Type={11}
+
+Preset`NM`Stack_1x1`Layout={1,1}
+Preset`NM`Stack_1x1`Type={12}
+Preset`NM`Stack_2x1`Layout={2,1}
+Preset`NM`Stack_2x1`Type={12}
+Preset`NM`Stack_2x2`Layout={2,2}
+Preset`NM`Stack_2x2`Type={12}
+Preset`NM`Stack_2x3`Layout={2,3}
+Preset`NM`Stack_2x3`Type={12}
+Preset`NM`Stack_3x3`Layout={3,3}
+Preset`NM`Stack_3x3`Type={12}
+Preset`NM`Tile_3x4`Layout={3,4}
+Preset`NM`Tile_3x4`Type={11}
+
+Preset`US`Stack_1x1`Layout={1,1}
+Preset`US`Stack_1x1`Type={12}
+Preset`US`Tile_1x1`Layout={1,1}
+Preset`US`Tile_1x1`Type={11}
+Preset`US`Tile_2x2`Layout={2,2}
+Preset`US`Tile_2x2`Type={11}
+Preset`US`Tile_2x3`Layout={2,3}
+Preset`US`Tile_2x3`Type={11}
+Preset`US`Tile_3x3`Layout={3,3}
+Preset`US`Tile_3x3`Type={11}
+Preset`US`Tile_3x4`Layout={3,4}
+Preset`US`Tile_3x4`Type={11}
+Preset`US`Tile_4x4`Layout={4,4}
+Preset`US`Tile_4x4`Type={11}
+
+System`Series`AutoSplit`CR`Mode={1}
+System`Series`AutoSplit`DR`Mode={1}
+
+# Launching Third Party Applications
+# System`ListOfOtherApps = {app1 app2 app3 }  // applications' names are separated with spaces.
+# System`app1` LaunchPath = {launch_path}
+# System`app1` LaunchArguments = {launch_arguments}
+# System`app1`Description = { description }
+# System`app1` AllowedRolesForLaunchingThisApp  = {roles allowed}
+# Note that command line = LaunchPath + LaunchArguments
+#
+# Example of configuration in multiviewer.site that applies to ALL GX workstations:
+# System`ListOfOtherApps = {app1 app2 }
+# 
+# System`app1`LaunchPath = {ALIPatientMgr.exe}
+# System`app1`Description = {ALI Patient Manager}
+# System`app1`LaunchArguments = {rad1 rad2}
+# System`app1`AllowedRolesForLaunchingThisApp = {NONE}
+# 
+# System`app2`LaunchPath = {ALIPatientMgr.exe}
+# System`app2`LaunchPath = {d:\ali\sys\apps\ALIPatientMgr.exe}
+# System`app2`Description = {}
+# System`app2`LaunchArguments = {}
+# System`app2`AllowedRolesForLaunchingThisApp = {All}
+# 
+# Note: Configuration can be machine specific. Additionally, if no direct path is specified then the machine's defined paths should be tried.
+# 
+# Example of configuration in multiviewer.site that applies ONLY to nwks1 GX workstation:
+# System` nwks1`ListOfOtherApps = {app2}
+# 
+# System`app2`nwks1`LaunchPath = {ALIPatientMgr.exe}
+# System`app2`nwks1`LaunchPath = {d:\ali\sys\apps\ALIPatientMgr.exe}
+# System`app2`nwks1`Description = {}
+# System`app2`nwks1`LaunchArguments = {}
+# System`app2`nwks1`AllowedRolesForLaunchingThisApp = {All}
+
+# command line -> The command line GX will use is formed by appending the absolute path to the application ( from 'LaunchPath)
+# with the list of all the arguments (from 'LaunchArguments). If the absolute path is not present, the application should be  present
+# in a directory listed in the PATH system variable. 
+# 
+# Description->a text that GX uses to identify the application. We'll find this text in the menu. 
+# Any text can be present but it is a good choice to keep this string short. 
+# If no description is present then the application will consider as description the filename of the application(example AliPatientMgr)
+# 
+# Roles allowed->only the users that have these roles are allowed to launch the application. 
+# The roles that can be used here are: Administrator, Clerk, Performer, Radiologist, WebUser, Librarian,  All, None. 
+# If no value is present for this item then the default value will be None. Note that all the roles are case insensitive. 
+# If multiple roles are mentioned here then they have to be separated by spaces.
+
+#####################
+# VARIABLE_NAME: EnableStudyReportedNotification
+#
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: This variable enables study reported notification
+#
+# CONTEXT: Would be applied to all studies that are marked reported
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 0 (NO)
+#
+# EXCEPTIONS: 
+#
+####################
+
+System`EnableStudyReportedNotification={0}
+
+#####################
+# VARIABLE_NAME: EnableCrossReferenceLines
+#
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: This variable enables enables the number of cross reference lines 
+#
+# CONTEXT: Would be applied to all linked series
+#
+# RANGE OF VALUES: 1 for NONE, 2 for ONLY CURRNET CROSS REF. LINE and 3 for ALL CROSS REF. LINES
+#
+# SUGGESTED DEFAULT: 2 (ONLY CURRENT CROSS REF. LINE)
+#
+# EXCEPTIONS: 
+#
+####################
+System`EnableCrossReferenceLines={2}
+
+#####################
+# VARIABLE_NAME: EnableDicomOverlays
+#
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: This variable enables the DICOM overlay processing
+#
+# CONTEXT: Would be applied to all images at load time
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 0 (NO)
+#
+# EXCEPTIONS: 
+#
+####################
+System`EnableDicomOverlays={0}
+
+#####################
+# VARIABLE_NAME: AlwaysCreateNew3DSeriesOnSave
+#
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: This variable mandates or not the creation of a new 3dSnapshot hosting series on save
+#
+# CONTEXT: Would be applied to 3DSnapshot series on save in the loader
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 1 (YES)
+#
+# EXCEPTIONS: 
+#
+####################
+System`AlwaysCreateNew3DSeriesOnSave={1}
+
+
+#####################
+# VARIABLE_NAME: Is3dToolEnabled
+#
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: This variable allows or not the start of the 3d too from within GX
+#
+# CONTEXT: Would be applied to 3d tool
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 0 (NO)
+#
+# EXCEPTIONS: 
+#
+####################
+System`Is3dToolEnabled={0}
+
+#####################
+# VARIABLE_NAME: IsNMToolEnabled
+#
+# VARIABLE_TYPE: int
+#
+# DESCRIPTION: This variable allows or not the start of the NM tool from within GX
+#
+# CONTEXT: Would be applied to NM tool
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 0 (NO)
+#
+# EXCEPTIONS: 
+#
+####################
+System`IsNMToolEnabled={0}
+
+#####################
+# VARIABLE_NAMES:	WindowMouseDirection
+#					LevelMouseDirection
+#
+# VARIABLE_TYPE: enum
+#
+# DESCRIPTION: 
+#
+# CONTEXT:
+#
+# RANGE OF VALUES: LEFT, RIGHT, UP, DOWN
+#
+# SUGGESTED DEFAULT:	RIGHT
+#						UP
+# EXCEPTIONS: 
+#
+####################
+System`Tools`Window/Level`WindowMouseDirection={RIGHT}
+System`Tools`Window/Level`LevelMouseDirection={UP}
+
+#####################
+# VARIABLE_NAME: XX_Default_Orientation
+#
+# VARIABLE_TYPE: enum
+#
+# DESCRIPTION: This variable determines if the images will be displayed with the original orientation or they will be displayed 
+#				in a standardized way.
+# CONTEXT: Would be applied to a specific modality.
+#
+# RANGE OF VALUES: ORIGINAL, RIGHT_LEFT, LEFT_RIGHT
+#
+# SUGGESTED DEFAULT: ORIGINAL
+#
+# EXCEPTIONS: 
+#
+####################
+System`Loader`AS_Default_Orientation={ORIGINAL}
+
+System`Loader`BI_Default_Orientation={ORIGINAL}
+
+System`Loader`CD_Default_Orientation={ORIGINAL}
+
+System`Loader`CP_Default_Orientation={ORIGINAL}
+
+System`Loader`CR_Default_Orientation={ORIGINAL}
+
+System`Loader`CS_Default_Orientation={ORIGINAL}
+
+System`Loader`CT_Default_Orientation={ORIGINAL}
+
+System`Loader`DD_Default_Orientation={ORIGINAL}
+
+System`Loader`DG_Default_Orientation={ORIGINAL}
+
+System`Loader`DM_Default_Orientation={ORIGINAL}
+
+System`Loader`EC_Default_Orientation={ORIGINAL}
+
+System`Loader`ES_Default_Orientation={ORIGINAL}
+
+System`Loader`FA_Default_Orientation={ORIGINAL}
+
+System`Loader`FS_Default_Orientation={ORIGINAL}
+
+System`Loader`HC_Default_Orientation={ORIGINAL}
+
+System`Loader`LP_Default_Orientation={ORIGINAL}
+
+System`Loader`LS_Default_Orientation={ORIGINAL}
+
+System`Loader`MA_Default_Orientation={ORIGINAL}
+
+System`Loader`MR_Default_Orientation={ORIGINAL}
+
+System`Loader`MS_Default_Orientation={ORIGINAL}
+
+System`Loader`NM_Default_Orientation={ORIGINAL}
+
+System`Loader`OT_Default_Orientation={ORIGINAL}
+
+System`Loader`PT_Default_Orientation={ORIGINAL}
+
+System`Loader`RF_Default_Orientation={ORIGINAL}
+
+System`Loader`RG_Default_Orientation={ORIGINAL}
+
+System`Loader`SC_Default_Orientation={ORIGINAL}
+
+System`Loader`ST_Default_Orientation={ORIGINAL}
+
+System`Loader`TG_Default_Orientation={ORIGINAL}
+
+System`Loader`US_Default_Orientation={ORIGINAL}
+
+System`Loader`XA_Default_Orientation={ORIGINAL}
+
+#####################
+# VARIABLE_NAME: ThumbPos`xx
+#
+# VARIABLE_TYPE: enum
+#
+# DESCRIPTION: This variables determines the position of thumbnails
+# CONTEXT: Would be applied to a specific modality (xx)
+#
+# RANGE OF VALUES: BAR_HIDE BAR_TOP BAR_LEFT BAR_RIGHT BAR_SIDE	
+#
+# SUGGESTED DEFAULT: BAR_TOP
+#
+# EXCEPTIONS: 
+#
+####################
+System`Desktop`ThumbPos`AS={BAR_TOP}
+
+System`Desktop`ThumbPos`BI={BAR_TOP}
+
+System`Desktop`ThumbPos`CD={BAR_TOP}
+
+System`Desktop`ThumbPos`CP={BAR_TOP}
+
+System`Desktop`ThumbPos`CR={BAR_TOP}
+
+System`Desktop`ThumbPos`CS={BAR_TOP}
+
+System`Desktop`ThumbPos`CT={BAR_TOP}
+
+System`Desktop`ThumbPos`DD={BAR_TOP}
+
+System`Desktop`ThumbPos`DG={BAR_TOP}
+
+System`Desktop`ThumbPos`DM={BAR_TOP}
+
+System`Desktop`ThumbPos`EC={BAR_TOP}
+
+System`Desktop`ThumbPos`ES={BAR_TOP}
+
+System`Desktop`ThumbPos`FA={BAR_TOP}
+
+System`Desktop`ThumbPos`FS={BAR_TOP}
+
+System`Desktop`ThumbPos`HC={BAR_TOP}
+
+System`Desktop`ThumbPos`LP={BAR_TOP}
+
+System`Desktop`ThumbPos`LS={BAR_TOP}
+
+System`Desktop`ThumbPos`MA={BAR_TOP}
+
+System`Desktop`ThumbPos`MR={BAR_TOP}
+
+System`Desktop`ThumbPos`MS={BAR_TOP}
+
+System`Desktop`ThumbPos`NM={BAR_TOP}
+
+System`Desktop`ThumbPos`OT={BAR_TOP}
+
+System`Desktop`ThumbPos`PT={BAR_TOP}
+
+System`Desktop`ThumbPos`RF={BAR_TOP}
+
+System`Desktop`ThumbPos`RG={BAR_TOP}
+
+System`Desktop`ThumbPos`SC={BAR_TOP}
+
+System`Desktop`ThumbPos`ST={BAR_TOP}
+
+System`Desktop`ThumbPos`TG={BAR_TOP}
+
+System`Desktop`ThumbPos`US={BAR_TOP}
+
+System`Desktop`ThumbPos`XA={BAR_TOP}
+
+
+#####################
+# VARIABLE_NAME: ForceRefreshAfterLoad
+#
+# VARIABLE_TYPE: bool
+#
+# DESCRIPTION: This variable forces a display refresh of the study after it is loaded
+#
+# CONTEXT: it affects every study 
+#
+# RANGE OF VALUES: 0 for NO, 1 for YES
+#
+# SUGGESTED DEFAULT: 0 (NO)
+#
+# EXCEPTIONS: 
+#
+####################
+
+System`ForceRefreshAfterLoad={0}
+
+

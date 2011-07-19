@@ -1,0 +1,30 @@
+	.DocInfoAuthor { font-family:Arial;font-size:10pt;}
+	.DocInfoTitle { font-size:14pt;font-weight:bold; }
+	.DocInfoInfo { font-family:Arial;font-size:10pt; }
+	.DocInfoLink { font-family:Arial;font-size:10pt; }
+	.DocHeadBody { color:#000000;background:#CCCC99;margin:0px;border:0; }
+	.DocHeadComments { font-family:Arial;font-size:10pt;color:blue; }
+	.DocHeadPatientHeader { font-family:Arial;font-size:12pt;font-weight:bold; }
+	.DocHeadStudyHeader { font-family:Arial;font-size:10pt;font-weight:bold; }
+	.DocHeadStudyItem { font-family:Arial;font-size:10pt;color:blue;text-decoration:underline; }
+	.DocInfoAuthor { font-family:Arial;font-size:10pt;}
+	.DocInfoTitle { font-size:14pt;font-weight:bold; }
+	.DocInfoInfo { font-family:Arial;font-size:10pt; }
+	.DocInfoLink { font-family:Arial;font-size:10pt; }
+	.RepBottomText {  font-family:Arial; font-size:12pt }
+	.RepBottomInfo {  padding-right: 40px; font-family:Arial; font-size:12pt; font-weight:bold }
+	.ImgLinkBody { background-color: #000000; margin:10px;}
+	.ImgLinkTable { border-width:0; border-collapse: collapse;}
+	.ImgLinkColumn { background-color: #000000;vertical-align: middle; text-align:center; border: 1px solid #000000;}
+	.ImgLeftBody { background-color:#E5E5CC; margin:0px;}
+	.ImgLeftImage { border:3px solid white; }
+	.ImgLeftText { font-family:Arial;font-size:8pt;text-align:center; }
+	.ImgTopBody {margin:5px;background:#CCCC99;color:#000000}
+	.ImgTopPatientInfo {font-family:Arial;font-size:12pt;}
+	.CineBody { background:#FFFFFF;text:#000000;margin:0;border-top:10px solid #CCCC99; }
+	.CineTable { font-family:Arial;font-size:12pt;width:80%;border:0;cellspacing:0;cellpadding:3; }
+	.CineOddItem { background:#C2C28F; }
+	.CineEvenItem { background:#D6D6A3; }
+	.ListItem { font-family:arial;font-size:12pt;}
+	.ListHeader { font-family:arial;font-size:12pt;font-weight:bold;}
+	.TopAlert {font-family:Arial;font-size:8pt;height:20px;}

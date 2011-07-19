@@ -1,0 +1,190 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<title>Untitled Document</title>
+<style type="text/css">
+.a1 {  color: #FFFFFF; text-decoration: none; background-color: #FFFFFF}
+.a2 {  padding-top:5px}
+.a3 {  padding-right: 10px}
+	.TopAlert {font-family:Arial;font-size:8pt;height:20px;}
+</style>
+<script language="JavaScript">
+var ws=0;
+var holdrow=1;
+function RememberRow(row) 
+{
+	holdrow=row;
+}
+
+function RemindRow()
+{
+	return(holdrow);
+}
+
+var series2image=new Array();
+var holdseries=1;
+
+function RememberPosition(series,image)
+{
+	series2image[series]=image;
+	holdseries=series;
+}
+
+function RemindPosition(series)
+{
+	if( !series2image[series] || isNaN(series2image[series])) return 1;
+	return(series2image[series]);
+}
+
+function RemindSeries()
+{
+	return(holdseries);
+}
+
+function F1(isOpen)
+{
+      if (document.images.docFrame != null)
+	{ 
+		document.images.docFrame.src='../Controls/Doc2.gif';
+		if(isOpen) window.open("../../"+STUDYFOLDER+"/Doc.htm","mainFrame");
+	}
+      if (document.images.imageFrame != null)
+		document.images.imageFrame.src='../Controls/Img1.gif';
+      if (document.images.clipFrame != null)
+		document.images.clipFrame.src='../Controls/Cine1.gif';
+}
+function F2(isOpen)
+{
+      if (document.images.docFrame != null) 
+		document.images.docFrame.src='../Controls/Doc1.gif';
+      if (document.images.imageFrame != null)
+	{
+		document.images.imageFrame.src='../Controls/Img2.gif';
+		if(isOpen) window.open("../../"+STUDYFOLDER+"/Img.htm","mainFrame");
+	}
+      if (document.images.clipFrame != null)
+		document.images.clipFrame.src='../Controls/Cine1.gif';
+}
+function F3(isOpen)
+{
+      if (document.images.docFrame != null) 
+		document.images.docFrame.src='../Controls/Doc1.gif';
+      if (document.images.imageFrame != null)
+		document.images.imageFrame.src='../Controls/Img1.gif';
+      if (document.images.clipFrame != null)
+	{
+		document.images.clipFrame.src='../Controls/Cine2.gif';
+		if(isOpen) window.open("../../"+STUDYFOLDER+"/Cine.htm","mainFrame");
+	}
+}
+
+var STUDYID=0;
+var STUDYFOLDER="exp00000";
+var STUDYTABFOLDERS=7;
+var HASDICOM=true;
+var ONESTUDY=true;
+
+function ShowStudyList()
+{
+      ONESTUDY=false;
+}
+function isOneStudy()
+{
+      return(ONESTUDY);
+}
+
+function RememberFolder(folder) 
+{
+	if(STUDYFOLDER == folder) return;
+	STUDYFOLDER=folder;
+}
+
+function UpdateStudyInfo(StudyID,StudyTabFolders,hasDicom)
+{
+	if(StudyID == STUDYID) return;
+	holdrow=1;
+	holdseries=1;
+	series2image.length=0;
+	STUDYID=StudyID;
+	STUDYTABFOLDERS=StudyTabFolders;
+	HASDICOM=hasDicom;
+	UpdateTabFolders();
+}
+	
+function  LaunchApp(StudyID) 
+{
+	if (!document.all) 
+	{
+		alert ("Available only with Internet Explorer.");
+		return;
+	}
+	var path = document.location.pathname; 
+	var dir = path.substring(1, path.lastIndexOf('T'));
+
+	if(!ws) ws = new ActiveXObject("WScript.Shell");
+	if(!ws)	 {
+		alert ("Cannot start application");
+		return;
+	}
+	if(StudyID == 0) StudyID=STUDYID;
+	if(StudyID == 0) {setTimeout('LaunchApp(0)',250); return;}
+	var launcherCmd = dir + "..\\Launcher.exe " + dir + "..\\..\\Viewer\\ " + StudyID;
+	ws.Run(launcherCmd);
+}
+
+function UpdateTabFolders()
+{
+	var col = document.getElementById('T2');
+	if (col !=  null){
+		if(HASDICOM) col.style.display='inline';
+		else col.style.display='none';
+	}
+	col = document.getElementById('T1');
+	if (col !=  null){
+		if(ONESTUDY) col.style.display='none';
+		else col.style.display='inline';
+	}
+	var StudyTabFolders = STUDYTABFOLDERS;
+	col = document.images.docFrame;
+	if(StudyTabFolders > 3)
+	{
+		StudyTabFolders = StudyTabFolders - 4;
+		if (col !=  null) col.style.display='inline';
+	}else{
+		if (col !=  null) col.style.display='none';	
+	}
+	col = document.images.imageFrame;
+	if(StudyTabFolders > 1)
+	{
+		StudyTabFolders = StudyTabFolders - 2;
+		if (col !=  null) col.style.display='inline';
+	}else{
+		if (col !=  null) col.style.display='none';	
+	}
+	col = document.images.clipFrame;
+	if(StudyTabFolders > 0) 
+	{
+		if (col !=  null) col.style.display='inline';
+	}else{
+		if (col !=  null) col.style.display='none';	
+	}
+}
+</script>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" style="margin:0px;">
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="144" class="a2" height="100%" onClick="JavaScript:F1(1)"><img name="docFrame" src="../Controls/Doc2.gif" width="100%" border="0"></td>
+<td width="144" class="a2" height="100%" onClick="JavaScript:F2(1)"><img name="imageFrame" src="../Controls/Img1.gif" width="100%" border="0"></td>
+<td width="144" class="a2" height="100%" onClick="JavaScript:F3(1)"><img name="clipFrame" src="../Controls/Cine1.gif" width="100%" border="0"></td>
+<td width="100%"><img src="../Controls/blank.gif"></td>
+<td class="a3" align="center"><a id="T2" href="JavaScript:LaunchApp(0)"><img Title="Advanced Viewer" border="0" src="../Controls/viewer.gif" width="32px"><br><font face="Arial" size="2"><b>Advanced&#160;Viewer</b></font></a></td>
+<td class="a3" align="center"><a id="T1" href="./MainFrame.htm" target="mainFrame"><img Title="Study List" border="0" src="../Controls/list.gif" width="32px"><br><font face="Arial" size="2"><b>Other&#160;Studies</b></font></a></td>
+<td class="a3" align="center"><a href="../Help/doc_frameset.htm" target="_blank"><img id="T3" Title="Help" border="0" src="../Controls/help.gif" width="32px"><br><font face="Arial" size="2"><b>User&#160;Help</b></font></a></td>
+</tr>
+<tr border="0" style="background:#CCCC99;" valign="top">
+<td class="TopAlert" colspan="7" valign="bottom" align="right">Not intended for diagnostic use <img width="10" src="../Controls/blank.gif"></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<html>
+<head>
+<title>hokiegeek.net</title>
+<script type="text/JavaScript" src="js/hg_main.js"></script>
+<script type="text/JavaScript" src="js/hg_nav.js"></script>
+<script type="text/JavaScript" src="js/libhttprequest.js"></script>
+<link type="text/css" rel="StyleSheet" href="css/hg_nav.css" media="screen" />
+<link type="text/css" rel="StyleSheet" href="css/hg_main.css" media="screen" />
+<script type="text/javascript">
+var twitterJSON = 
+	"http://api.twitter.com/1/statuses/user_timeline/hokiegeek.json?count=1";
+var nav_desc_lyr = null;
+var tweet_msg_lyr = null;
+var TWEET_UPDATE_INTERVAL = 50000; // Every 50 seconds
+function updateTwitter(ret) {
+	var msg = null;
+	var time = "\u00a0";
+	if (ret == null) {
+		msg = "No tweets!";
+	} else {
+		//console.log("updateTwitter()", ret);
+		if (eval(ret) == null || eval(ret)[0] == null) return;
+		var update = eval(ret)[0];
+
+		// Format the text
+		var tweet_text = update.text;
+		var special = tweet_text.match(/(https?:\/\/|[@#])\S+/g);
+		msg = document.createElement('span');
+		if (special != null && special.length > 0) {
+			var pos = 0;
+			var last_pos = 0;
+			for (i in special) {
+				var s = special[i];
+				pos = tweet_text.indexOf(s);
+				var text = tweet_text.substring(last_pos, pos);
+				last_pos = pos+s.length;
+
+				if (text.length > 0) {
+					//console.log("TEXT: ", text);
+					msg.appendChild(document.createTextNode(text));
+				}
+				var lnk = document.createElement('a');
+				var l = "";
+				var ttl = "";
+				var s2 = s.substring(1);
+				switch (s.charAt(0)) {
+				case '@': l = "http://twitter.com/"+s2; 
+						  ttl = "View "+s2+"'s twitter stream";
+						  break;
+				case '#': l = "http://twitter.com/search?q=%23"+s2; 
+						  ttl = "Search twitter for how '"+s2+"' is trending";
+						  break;
+			    	default: l = s; break;
+				}
+				lnk.setAttribute('href', l);
+				lnk.setAttribute('title', ttl);
+				lnk.appendChild(document.createTextNode(s));
+				//console.log("LINK: ", lnk);
+				msg.appendChild(lnk);
+			}
+		} else
+			msg.appendChild(document.createTextNode(tweet_text));
+
+		// Now take care of the time
+		var t = update.created_at;
+		time = "shhhh....";
+		if (t != null) {
+			var today = new Date();
+			t = new Date(t);
+			time = "";
+
+			// First we do the date. We only care if it's not from today
+			if (today.getFullYear() != t.getFullYear()) {
+				time = t.getMonth()+"/"+t.getDate()+"/"+t.getFullYear()+" ";
+			} else if (!sameDay(today, t)) {
+				if (sameWeek(today, t)) { // this week
+					if (today.getDate()-1 == t.getDate())
+						time = "Yesterday ";
+					else
+						time = weekdays_short[t.getDay()]+" ";
+				} else { // this month
+					time = months_short[t.getMonth()]+" "+t.getDate()+" ";
+				}
+			}
+
+			// Next we do the time	
+			time += (t.getHours() % 12)+":"+t.getMinutes();
+			time += (t.getHours() > 11) ? "pm" : "am";
+			if (sameDay(today, t)) { //<1hr ago
+				if (t.getHours() > today.getHours()) // The FUTURE!
+					time = "From the mysterious future!";
+				else if (today.getHours() == t.getHours()) //<1hr ago
+					time = t.getMinutes()+" mins ago";
+			}
+		}
+	} 
+
+	if (tweet_msg_lyr == null)
+		tweet_msg_lyr = document.getElementById("tweet").getElementsByTagName('div')[0];
+	if (msg != null) {
+		tweet_msg_lyr.removeChild(tweet_msg_lyr.firstChild);
+		tweet_msg_lyr.insertBefore(msg, tweet_msg_lyr.firstChild);
+		if (time != null)
+			tweet_msg_lyr.firstChild.nextSibling.innerHTML = time;
+	}
+}
+function requestTweet() {
+	(new libHTTPRequest()).getData(twitterJSON, "l=HokieGeek:keri2782", updateTwitter, true);
+}
+function showSubDesc(sub) {
+	setStyle(nav_desc_lyr, "visibility: visible;");
+	nav_desc_lyr.innerHTML = hg_subdomains[sub][1];
+}
+function setupSubdomainDesc() {
+	var subs = document.getElementById(hg_nav_subs_id).getElementsByTagName('a');
+	for (var i = subs.length-1; i >= 0; i--) {
+		subs[i].setAttribute("onmouseover", "showSubDesc("+i+")");
+		subs[i].setAttribute("onmouseout", "setStyle(nav_desc_lyr, 'visibility: hidden;')");
+	}
+}
+window.onload = function() {
+	// Setup the nav
+	nav_desc_lyr = document.getElementById("main_nav").getElementsByTagName('div')[0];
+	hg_nav_main("main_nav");
+	setupSubdomainDesc();
+
+	// Now update the tweet box
+	requestTweet();
+	setInterval("requestTweet()", TWEET_UPDATE_INTERVAL);
+}
+</script>
+<style type="text/css">
+/*
+body { text-align: center; }
+#hg_subdomains {
+	position: relative;
+	right: 43%;
+	top: 20px;
+	text-align: right;
+}
+*/
+#main_nav {
+	float: right;
+	text-align: right;
+	margin-right: 10px;
+}
+#main_nav div.sub_description {
+	display: inline;
+	position: relative;
+	float: left;
+	left: -50px;
+	top: -90px;
+	width: 160px;
+	background-color: #887466;
+	font-family: Helvetical, Arial, sans-serif;
+	color: #1f0f04;
+	padding: 5px;
+	visibility: hidden;
+}
+#hg_subdomains {
+	position: relative;
+	top: 10px;
+}
+#hg_subdomains a { color: #fff; }
+#hg_subdomains a span span { color: #1f0f04; }
+#hg_subdomains a:hover { font-size: 1.09em; }
+
+#social {
+	position: absolute;
+	top: 80px;
+	width: 420px;
+}
+
+#tweet img {
+	float: left;
+	width: 80px;
+	padding-top: 30px;
+	margin-right: 15px;
+	border: none;
+}
+#tweet div {
+	overflow: hidden;
+	background-color: #fff;
+	width: 300px;
+	height: 70px;
+	text-align: center;
+	padding: 2px;
+	font-family: Verdana, sans-serif;
+	font-size: .8em;
+	border: 2px solid #bfa391;
+}
+#tweet div span a {
+	color: #65310d;
+}
+#tweet div span a:hover {
+	text-decoration: underline;
+}
+
+#tweet div span + span {
+	font-size: .7em;
+	color: #c0c0c0;
+	margin-left: 5px;
+}
+#other {
+	position: relative;
+	top: 15px;
+	float: right;
+}
+#other img {
+	width: 40px;
+	margin-right: 5px;
+	border: none;
+}
+</style>
+</head>
+<body>
+	<div id="main_nav">
+		<div class="sub_description"></div>
+	</div>
+	<div id="social">
+		<div id="tweet">
+			<a href="http://twitter.com/HokieGeek" title="My Twitter page"><img src="img/twitter.png" /></a>
+			<div>
+				<span></span>
+			</div>
+		</div>
+		<div id="other">
+			<a href="http://www.facebook.com/HokieGeek" title="My Facebook profile"><img src="img/facebook.png" /></a>
+			<a href="http://friendfeed.com/HokieGeek" title="My Friendfeed stream"><img src="img/friendfeed.png" /></a>
+			<a href="http://myspace.com/HokieGeek" title="My MySpace Profile"><img src="img/myspace.png" /></a>
+			<!--a href="http://www.google.com/profiles/andres.f.perez" title="My Google Profile"><img src="img/google.png" /></a-->
+			<a href="http://www.linkedin.com/in/andresperez" title="My LinkedIn Profile"><img src="img/linkedin.png" /></a>
+			<a href="http://del.icio.us/HokieGeek" title="My Delicious Bookmarks"><img src="img/delicious.png" /></a>
+		</div>
+	</div>
+</body>
+</html>

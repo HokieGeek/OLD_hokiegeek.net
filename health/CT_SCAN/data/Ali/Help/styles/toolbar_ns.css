@@ -1,0 +1,13 @@
+div.Toolbar {
+  top: 5px;
+  height: 26px;
+}
+
+div.ToolbarButton {
+  height: 24px;
+  width: 28px;
+}
+
+div.ToolbarButton#BackButton {
+  margin-left: 16px;
+}

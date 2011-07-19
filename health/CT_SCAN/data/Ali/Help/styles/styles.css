@@ -1,0 +1,523 @@
+/******************************************************************************/
+/* Uses "em" unit of measure so spacing stays proportional to font size.       /
+/******************************************************************************/
+
+/**************************************************************/
+/* Links                                                      */
+/**************************************************************/
+
+a:active  {color: #004DEA}
+a:link    {color: #004DEA}
+a:visited {color: #004DEA}
+a:link:hover {color: #004DEA}
+a:visited:hover {color: #004DEA}
+
+a.TocLink:active  {color: WindowText}
+a.TocLink:link    {color: WindowText}
+a.TocLink:visited {color: WindowText}
+a.TocLink:link:hover {color: WindowText}
+a.TocLink:visited:hover {color: WindowText}
+
+a.TocLink {
+  text-decoration: none;
+  border-color: WindowText;
+}
+
+a.TocLink:hover {
+  text-decoration: underline;
+  border-color: WindowText;
+}
+
+a.Popup {
+  text-decoration: none;
+  border-bottom-style: dotted;
+  border-color: #004DEA;
+  border-width: thin;
+}
+
+a.Popup:active  {color: #004DEA}
+a.Popup:link    {color: #004DEA}
+a.Popup:visited {color: #004DEA}
+
+a.Popup:link:hover {
+  color: #004DEA;
+  border-color: #004DEA;
+}
+
+a.Popup:visited:hover {
+  color: #004DEA;
+  border-color: #004DEA;
+}
+
+a.DropDownLink:active  {color: #004DEA}
+a.DropDownLink:link    {color: #004DEA}
+a.DropDownLink:visited {color: #004DEA}
+a.DropDownLink:link:hover {color: #004DEA}
+a.DropDownLink:visited:hover {color: #004DEA}
+
+
+/**************************************************************/
+/* Character text                                             */
+/**************************************************************/
+
+span.CautionLabel {
+  color: #CC0000;
+  font-weight: bold
+}
+
+span.Keyboard {
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+span.SubLabel {
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+span.NoteLabel {
+  font-weight: bold;
+}
+
+span.ScreenItem {
+  font-weight: bold;
+}
+
+span.SoftwareCode {
+  font-family: "Courier New", Courier, mono;
+  font-weight: bold;
+}
+
+span.SoftwareMessage {
+  font-family: "Courier New", Courier, mono;
+  font-weight: bold;
+}
+
+span.UserEntry {
+  font-family: "Courier New", Courier, mono;
+  font-weight: bold;
+}
+
+span.WarningLabel {
+  color: #CC0000;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* The WP superscript in the Horizon product name */
+span.WebPowered {
+  font-size: 0.8em;
+  font-style: italic;
+  position: relative;
+  bottom: 0.3em;
+}
+
+span.Superscript {
+  font-size: 0.8em;
+  position: relative;
+  bottom: 0.3em;
+}
+
+span.Subscript {
+  font-size: 0.8em;
+  position: relative;
+  bottom: -0.3em;
+}
+
+span.ChangeBar {
+  padding-left: 1em;
+  border-left-style: solid;
+  border-left-width: 1px;
+}
+
+
+/**************************************************************/
+/* Body paragraphs                                            */
+/**************************************************************/
+
+/* Default style for the page */
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  background-color: Window;
+  color: WindowText;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.2em;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0em;
+  text-transform: none;
+  margin-left: 24px;
+}
+
+body.Popup {
+  background-color: InfoBackground;
+  color: WindowText;
+}
+
+p {
+  margin-top: 0em;
+  margin-bottom: 0.8em;
+}
+
+p.RelatedTopicLink
+{
+  margin-top: 0em;
+  margin-bottom: 0.5em;
+}
+
+p.FigureCaption {
+  font-size: 10px;
+  font-style: italic;
+}
+
+
+/**************************************************************/
+/* Headings                                                   */
+/**************************************************************/
+
+/* Topic headings */
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #003399;
+  line-height: 1.2em;
+  margin-top: 0.1em;
+  margin-bottom: 1.2em;
+  margin-left: -12px;
+}
+
+/* Subheads */
+h3 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #003399;
+  line-height: 1.2em;
+  margin-top: 1.25em;
+  margin-bottom: 0.4em;
+  margin-left: -12px;
+}
+
+h4.GlossaryTerm {
+  font-size: 12px;
+  color: #000000;
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  margin-left: -12px;
+}
+
+h4.ItemName {
+  font-size: 12px;
+  color: #000000;
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  margin-left: -12px;
+}
+
+h4.RelatedTopicsHead {
+  font-size: 14px;
+  color: #003399;
+  font-weight: bold;
+  margin-top: 0.3em;
+  margin-bottom: 0.6em;
+  margin-left: -12px;
+}
+
+
+/**************************************************************/
+/* Lists                                                      */
+/**************************************************************/
+
+ul {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  margin-left: 1.6em;
+}
+
+ul.TOC {
+  margin-left: 0em;
+}
+
+ul.TOC li {
+  margin-left: 0.3em;
+}
+
+ul.TOC img {
+  margin-top: -0.1em;
+  margin-right: 3px;
+}
+
+ol {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  margin-left: 2.7em;
+}
+
+/* Decimal instead of lowercase alpha in numbered sub-lists */
+ol ol {
+  list-style-type: decimal;
+}
+
+/* Space between nested ul and ol lists */
+ol ul, ul ol {
+  margin-top: 0.8em;
+}
+
+ul p, ol p {
+  margin-top: 0.8em;
+}
+
+li {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+table ul, table ol {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+
+/**************************************************************/
+/* Tables                                                     */
+/**************************************************************/
+
+table {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  border-collapse: collapse;
+  border-color: #DDDDDD;
+}
+
+table p {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+td {
+  text-align: left;
+  vertical-align: top;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  border-color: #DDDDDD;
+}
+
+th {
+  font-weight: bold;
+  background-color: #DDDDDD;
+  text-align: left;
+  vertical-align: top;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  border-color: #DDDDDD;
+}
+
+table.Note td, table.Caution td {
+  background-color: InfoBackground;
+  border-style: none;
+}
+
+table.NoLines {
+  border-style: none;
+}
+
+table.NoLines p {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+td p, p.TableText {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+th p, p.TableHeader {
+  font-weight: bold;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+p.TableHeaderCenter, p.tableTextCenter {
+  text-align: center;
+}
+
+p.TableSubhead {
+  font-weight: bold;
+  margin-bottom: 0em;
+  margin-top: 0.75em;
+}
+
+
+/**************************************************************/
+/* SoftwareCode and SoftwareMessage paragraphs                */
+/**************************************************************/
+
+pre {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+}
+
+td pre {
+  font-size: 11px;
+}
+
+ul pre, ol pre {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+
+/**************************************************************/
+/* Popups and drop-downs                                      */
+/**************************************************************/
+
+/* Empty styles just so they appear in FrontPage's style list */
+p.DropDownLink {
+}
+
+p.DropDownStop {
+}
+
+div.PopupBlock {
+  background-color: InfoBackground;
+  color: WindowText;
+  position: absolute;
+  width: 250;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+div.PopupBlock h3 {
+  font-size: 12px;
+  color: WindowText;
+  margin-top: 0.5em;
+  margin-left: 0em;
+}
+
+div.PopupBlock h4 {
+  font-size: 12px;
+  color: WindowText;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0em;
+}
+
+div.DropDownBlock {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+div.DropDownBlock p {
+  margin-top: 0.8em;
+}
+
+img.DropDownIcon {
+  margin-right: 6px;
+  border-style: none;
+}
+
+
+/**************************************************************/
+/* Graphics                                                   */
+/**************************************************************/
+
+/* Normal graphics */
+div img {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+
+/**************************************************************/
+/* TOC and index                                              */
+/**************************************************************/
+
+ul.TOC {
+  margin-left: 0em;
+}
+
+ul.TOC li {
+  list-style-type: none;
+  margin-top: 0em;
+  margin-bottom: 0.3em
+}
+
+ul.Index li {
+  list-style-type: none;
+  margin-top: 0em;
+  margin-bottom: 0.2em;
+  margin-left: 0em;
+}
+
+ul.Index ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+  margin-left: 1.5em;
+}
+
+/* Multiple links for a single index entry */
+p.IXMultiLink {
+  margin-top: 0em;
+  margin-bottom: 0.2em;
+  margin-left: 1.5em;
+}
+
+p.IXGroupTitle {
+  font-size: 14px;
+  font-weight: bold;
+  color: #003399;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  margin-left: -1em;
+}
+
+
+/**************************************************************/
+/* Footer                                                     */
+/**************************************************************/
+
+/* Prevents the footer info from being displayed on the screen,
+   but allows it to be printed. */
+.ShowFooter {
+  display: none;
+}
+
+/* Formats the first line of a footer section at the end of every topic. Used only 
+   in the footer generated by JavaScript. */
+p.FooterFirst {
+  font-size: 7pt;
+  margin-top: 0em;
+  margin-bottom: 0.5em;
+}
+
+/* Formats the line above footer text. */
+hr.FooterLine {
+  margin-top: 0.5em;
+  margin-left: -12px;
+}
+
+/* Formats the second and subsequent lines in a footer section. Used only in the footer 
+   generated by JavaScript. */
+p.FooterNext {
+  font-size: 7pt;
+  margin-top: 0em;
+  margin-bottom: 0em;
+}

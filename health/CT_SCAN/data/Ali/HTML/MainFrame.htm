@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format">
+	<xsl:output method="html"/>
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Horizon MI DiscView. Select a study to view.</title>
+			</head>
+			<frameset rows="53,*,100" frameborder="NO" border="0" framespacing="0" cols="*">
+			<frame name="topFrame" scrolling="NO" src="IndexTop.htm"/>
+			<frame name="listFrame" src="List.htm"/>
+			<frame name="bottomFrame" scrolling="NO" src="IndexBot.htm"/>
+			</frameset>
+			<noframes>
+			<body bgcolor="#CCCC99" style="margin:0px">
+			</body>
+			</noframes>
+</html>
+	</xsl:template>
+</xsl:stylesheet>

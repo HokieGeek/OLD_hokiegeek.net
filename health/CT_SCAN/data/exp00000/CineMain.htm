@@ -1,0 +1,46 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<title>Voice clips selection</title>
+<link href="../ali/HTML/style.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="../ali/HTML/style.js"></script><script language="JavaScript">
+// var CineOverBgColor='#DDDDCC'; // in js file now
+
+
+var StudyID = 939708;
+
+var StudyTabFolders = 6;
+var hasDicom = true;
+		
+
+var rowbcolor;
+var cur='default';
+function Over(elem)
+{
+	cur=elem.style.cursor;
+	elem.style.cursor='hand';
+	rowbcolor=elem.style.backgroundColor;
+	elem.style.backgroundColor=CineOverBgColor;
+}
+
+function Out(elem)
+{
+	elem.style.cursor=cur;
+	elem.style.backgroundColor=rowbcolor;
+}
+
+function UpdateTop()
+{
+	var myFrame = window.parent.parent.frames[0];
+	if(myFrame)
+	{
+		myFrame.UpdateStudyInfo(StudyID,StudyTabFolders,hasDicom);
+		myFrame.F3(0);
+	}
+	myFrame=window.parent.parent.document.getElementById("frameHolder");
+	if(myFrame) myFrame.rows = "73,*";
+	myFrame=window.parent.parent.document;
+	if(myFrame) myFrame.title="Study Cine Clip page";
+}
+</script></head>
+<body onload="UpdateTop()" class="CineBody" scroll="no"></body>
+</html>

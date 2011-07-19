@@ -1,0 +1,1717 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<title>Untitled Document</title>
+<style type="text/css">
+.a1 { background-color: #CCCC99; margin:0px;}
+.a2 { border-width:0; border-collapse: collapse;table-layout:fixed;}
+.a3 { background-color: #000000;; border: 1px solid gray;}
+.a4 { background-color: #000000;vertical-align: middle; text-align:center; border: 2px solid #000000;}
+.a5 { background-color: #FFFFFF;}
+.a6 { width: 100%; height: 100%; overflow: auto; border-width:0px;}
+.a7 {border-style:none;border-left: 1px solid gray; height:30px;cursor:default;}
+.a8 { width: 100%; height: 100%; overflow: hidden; border-width:0px;}
+</style>
+</head>
+<body class="a1" onload="UpdateTop();LoadNavBar();ResizeNavImg()" onmouseup="OutUp()" onresize="ResizeNavBar()">
+<table width="100%" height="32px" cellspacing="0" cellpadding="0" class="a2" id="tableAreaWidth">
+<tr height="30px">
+<td height="30px" class="a3">
+<table width="100%" height="30px" cellspacing="0" cellpadding="0" class="a2">
+<tr>
+<td width="32px"><img id="PrevId" onload="GetSeries()" width="100%" src="../ali/controls/prev.JPG" onClick="Prev()"></td>
+<td width="32px"><img id="NextId" width="100%" src="../ali/controls/next.JPG" onClick="Next()"></td>
+<td id="userArea"><img src="../ali/Controls/blank.gif"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table><script language="JavaScript">
+// last td's id clicked
+var serieId = 0;
+// current img in serie
+var imgInSerie = 0;
+// max images in serie
+var maxImgInSerie = 0;
+var firstTouch = 0;
+var imgPerChit = 1;
+var imgPerChitCol = 0;
+var mouseStatus = 0;
+
+
+var openTable = "<table class='a2' height='100%' width='100%' cellspacing='0' cellpadding='0'><tr>";
+var openTd = "<td class='a7' onmousedown='Down()' ondragstart='CancelDrag()' onmouseup='Up(this)' onmouseover='Over(this)' id='S_";
+var closeTd = "'>&nbsp;</td>"
+var lastTD = "<td class='a7' >&nbsp;</td>";
+var closeTable= "</tr></table>";
+
+var StudyID = 939708;
+
+var StudyTabFolders = 6;
+var hasDicom = true;
+		
+ var images = [  
+ [
+  
+						'exp0217.jpg'
+  ,
+		                        
+						'exp0218.jpg'
+  ,
+		                        
+						'exp0219.jpg'
+  ,
+		                        
+						'exp0220.jpg'
+  ,
+		                        
+						'exp0221.jpg'
+  ,
+		                        
+						'exp0222.jpg'
+  ,
+		                        
+						'exp0223.jpg'
+  ,
+		                        
+						'exp0224.jpg'
+  ,
+		                        
+						'exp0225.jpg'
+  ,
+		                        
+						'exp0226.jpg'
+  ,
+		                        
+						'exp0227.jpg'
+  ,
+		                        
+						'exp0228.jpg'
+  ,
+		                        
+						'exp0229.jpg'
+  ,
+		                        
+						'exp0230.jpg'
+  ,
+		                        
+						'exp0231.jpg'
+  ,
+		                        
+						'exp0232.jpg'
+  ,
+		                        
+						'exp0233.jpg'
+  ,
+		                        
+						'exp0234.jpg'
+  ,
+		                        
+						'exp0235.jpg'
+  ,
+		                        
+						'exp0236.jpg'
+  ,
+		                        
+						'exp0237.jpg'
+  ,
+		                        
+						'exp0238.jpg'
+  ,
+		                        
+						'exp0239.jpg'
+  ,
+		                        
+						'exp0240.jpg'
+  ,
+		                        
+						'exp0241.jpg'
+  ,
+		                        
+						'exp0242.jpg'
+  ,
+		                        
+						'exp0243.jpg'
+  ,
+		                        
+						'exp0244.jpg'
+  ,
+		                        
+						'exp0245.jpg'
+  ,
+		                        
+						'exp0246.jpg'
+  ,
+		                        
+						'exp0247.jpg'
+  ,
+		                        
+						'exp0248.jpg'
+  ,
+		                        
+						'exp0249.jpg'
+  ,
+		                        
+						'exp0250.jpg'
+  ,
+		                        
+						'exp0251.jpg'
+  ,
+		                        
+						'exp0252.jpg'
+  ,
+		                        
+						'exp0253.jpg'
+  ,
+		                        
+						'exp0254.jpg'
+  ,
+		                        
+						'exp0255.jpg'
+  ,
+		                        
+						'exp0256.jpg'
+  ,
+		                        
+						'exp0257.jpg'
+  ,
+		                        
+						'exp0258.jpg'
+  ,
+		                        
+						'exp0259.jpg'
+  ,
+		                        
+						'exp0260.jpg'
+  ,
+		                        
+						'exp0261.jpg'
+  ,
+		                        
+						'exp0262.jpg'
+  ,
+		                        
+						'exp0263.jpg'
+  ,
+		                        
+						'exp0264.jpg'
+  ,
+		                        
+						'exp0265.jpg'
+  ,
+		                        
+						'exp0266.jpg'
+  ,
+		                        
+						'exp0267.jpg'
+  ,
+		                        
+						'exp0268.jpg'
+  ,
+		                        
+						'exp0269.jpg'
+  ,
+		                        
+						'exp0270.jpg'
+  ,
+		                        
+						'exp0271.jpg'
+  ,
+		                        
+						'exp0272.jpg'
+  ,
+		                        
+						'exp0273.jpg'
+  ,
+		                        
+						'exp0274.jpg'
+  ,
+		                        
+						'exp0275.jpg'
+  ,
+		                        
+						'exp0276.jpg'
+  ,
+		                        
+						'exp0277.jpg'
+  ,
+		                        
+						'exp0278.jpg'
+  ,
+		                        
+						'exp0279.jpg'
+  ,
+		                        
+						'exp0280.jpg'
+  ,
+		                        
+						'exp0281.jpg'
+  ,
+		                        
+						'exp0282.jpg'
+  ,
+		                        
+						'exp0283.jpg'
+  ,
+		                        
+						'exp0284.jpg'
+  ,
+		                        
+						'exp0285.jpg'
+  ,
+		                        
+						'exp0286.jpg'
+  ,
+		                        
+						'exp0287.jpg'
+  ,
+		                        
+						'exp0288.jpg'
+  ,
+		                        
+						'exp0289.jpg'
+  ,
+		                        
+						'exp0290.jpg'
+  ,
+		                        
+						'exp0291.jpg'
+  ,
+		                        
+						'exp0292.jpg'
+  ,
+		                        
+						'exp0293.jpg'
+  ,
+		                        
+						'exp0294.jpg'
+  ,
+		                        
+						'exp0295.jpg'
+  ,
+		                        
+						'exp0296.jpg'
+  ,
+		                        
+						'exp0297.jpg'
+  ,
+		                        
+						'exp0298.jpg'
+  ,
+		                        
+						'exp0299.jpg'
+  ,
+		                        
+						'exp0300.jpg'
+  ,
+		                        
+						'exp0301.jpg'
+  ,
+		                        
+						'exp0302.jpg'
+  ,
+		                        
+						'exp0303.jpg'
+  ,
+		                        
+						'exp0304.jpg'
+  ,
+		                        
+						'exp0305.jpg'
+  ,
+		                        
+						'exp0306.jpg'
+  ,
+		                        
+						'exp0307.jpg'
+  ,
+		                        
+						'exp0308.jpg'
+  ,
+		                        
+						'exp0309.jpg'
+  ,
+		                        
+						'exp0310.jpg'
+  ,
+		                        
+						'exp0311.jpg'
+  ,
+		                        
+						'exp0312.jpg'
+  ,
+		                        
+						'exp0313.jpg'
+  ,
+		                        
+						'exp0314.jpg'
+  ,
+		                        
+						'exp0315.jpg'
+  ,
+		                        
+						'exp0316.jpg'
+  ,
+		                        
+						'exp0317.jpg'
+  ,
+		                        
+						'exp0318.jpg'
+  ,
+		                        
+						'exp0319.jpg'
+  ,
+		                        
+						'exp0320.jpg'
+  ,
+		                        
+						'exp0321.jpg'
+  ,
+		                        
+						'exp0322.jpg'
+  ,
+		                        
+						'exp0323.jpg'
+  ,
+		                        
+						'exp0324.jpg'
+  ,
+		                        
+						'exp0325.jpg'
+  ,
+		                        
+						'exp0326.jpg'
+  ,
+		                        
+						'exp0327.jpg'
+  ,
+		                        
+						'exp0328.jpg'
+  ,
+		                        
+						'exp0329.jpg'
+  ,
+		                        
+						'exp0330.jpg'
+  ,
+		                        
+						'exp0331.jpg'
+  ,
+		                        
+						'exp0332.jpg'
+  ,
+		                        
+						'exp0333.jpg'
+  ,
+		                        
+						'exp0334.jpg'
+  ,
+		                        
+						'exp0335.jpg'
+  ,
+		                        
+						'exp0336.jpg'
+  ,
+		                        
+						'exp0337.jpg'
+  ,
+		                        
+						'exp0338.jpg'
+  ,
+		                        
+						'exp0339.jpg'
+  ,
+		                        
+						'exp0340.jpg'
+  ,
+		                        
+						'exp0341.jpg'
+  ,
+		                        
+						'exp0342.jpg'
+  ,
+		                        
+						'exp0343.jpg'
+  ,
+		                        
+						'exp0344.jpg'
+  ,
+		                        
+						'exp0345.jpg'
+  ,
+		                        
+						'exp0346.jpg'
+  ,
+		                        
+						'exp0347.jpg'
+  ,
+		                        
+						'exp0348.jpg'
+  ,
+		                        
+						'exp0349.jpg'
+  ,
+		                        
+						'exp0350.jpg'
+  ,
+		                        
+						'exp0351.jpg'
+  ,
+		                        
+						'exp0352.jpg'
+  ,
+		                        
+						'exp0353.jpg'
+  ,
+		                        
+						'exp0354.jpg'
+  ,
+		                        
+						'exp0355.jpg'
+  ,
+		                        
+						'exp0356.jpg'
+  ,
+		                        
+						'exp0357.jpg'
+  ,
+		                        
+						'exp0358.jpg'
+  ,
+		                        
+						'exp0359.jpg'
+  ,
+		                        
+						'exp0360.jpg'
+  ],
+   					[
+  
+						'exp0073.jpg'
+  ,
+		                        
+						'exp0074.jpg'
+  ,
+		                        
+						'exp0075.jpg'
+  ,
+		                        
+						'exp0076.jpg'
+  ,
+		                        
+						'exp0077.jpg'
+  ,
+		                        
+						'exp0078.jpg'
+  ,
+		                        
+						'exp0079.jpg'
+  ,
+		                        
+						'exp0080.jpg'
+  ,
+		                        
+						'exp0081.jpg'
+  ,
+		                        
+						'exp0082.jpg'
+  ,
+		                        
+						'exp0083.jpg'
+  ,
+		                        
+						'exp0084.jpg'
+  ,
+		                        
+						'exp0085.jpg'
+  ,
+		                        
+						'exp0086.jpg'
+  ,
+		                        
+						'exp0087.jpg'
+  ,
+		                        
+						'exp0088.jpg'
+  ,
+		                        
+						'exp0089.jpg'
+  ,
+		                        
+						'exp0090.jpg'
+  ,
+		                        
+						'exp0091.jpg'
+  ,
+		                        
+						'exp0092.jpg'
+  ,
+		                        
+						'exp0093.jpg'
+  ,
+		                        
+						'exp0094.jpg'
+  ,
+		                        
+						'exp0095.jpg'
+  ,
+		                        
+						'exp0096.jpg'
+  ,
+		                        
+						'exp0097.jpg'
+  ,
+		                        
+						'exp0098.jpg'
+  ,
+		                        
+						'exp0099.jpg'
+  ,
+		                        
+						'exp0100.jpg'
+  ,
+		                        
+						'exp0101.jpg'
+  ,
+		                        
+						'exp0102.jpg'
+  ,
+		                        
+						'exp0103.jpg'
+  ,
+		                        
+						'exp0104.jpg'
+  ,
+		                        
+						'exp0105.jpg'
+  ,
+		                        
+						'exp0106.jpg'
+  ,
+		                        
+						'exp0107.jpg'
+  ,
+		                        
+						'exp0108.jpg'
+  ,
+		                        
+						'exp0109.jpg'
+  ,
+		                        
+						'exp0110.jpg'
+  ,
+		                        
+						'exp0111.jpg'
+  ,
+		                        
+						'exp0112.jpg'
+  ,
+		                        
+						'exp0113.jpg'
+  ,
+		                        
+						'exp0114.jpg'
+  ,
+		                        
+						'exp0115.jpg'
+  ,
+		                        
+						'exp0116.jpg'
+  ,
+		                        
+						'exp0117.jpg'
+  ,
+		                        
+						'exp0118.jpg'
+  ,
+		                        
+						'exp0119.jpg'
+  ,
+		                        
+						'exp0120.jpg'
+  ,
+		                        
+						'exp0121.jpg'
+  ,
+		                        
+						'exp0122.jpg'
+  ,
+		                        
+						'exp0123.jpg'
+  ,
+		                        
+						'exp0124.jpg'
+  ,
+		                        
+						'exp0125.jpg'
+  ,
+		                        
+						'exp0126.jpg'
+  ,
+		                        
+						'exp0127.jpg'
+  ,
+		                        
+						'exp0128.jpg'
+  ,
+		                        
+						'exp0129.jpg'
+  ,
+		                        
+						'exp0130.jpg'
+  ,
+		                        
+						'exp0131.jpg'
+  ,
+		                        
+						'exp0132.jpg'
+  ,
+		                        
+						'exp0133.jpg'
+  ,
+		                        
+						'exp0134.jpg'
+  ,
+		                        
+						'exp0135.jpg'
+  ,
+		                        
+						'exp0136.jpg'
+  ,
+		                        
+						'exp0137.jpg'
+  ,
+		                        
+						'exp0138.jpg'
+  ,
+		                        
+						'exp0139.jpg'
+  ,
+		                        
+						'exp0140.jpg'
+  ,
+		                        
+						'exp0141.jpg'
+  ,
+		                        
+						'exp0142.jpg'
+  ,
+		                        
+						'exp0143.jpg'
+  ,
+		                        
+						'exp0144.jpg'
+  ,
+		                        
+						'exp0145.jpg'
+  ,
+		                        
+						'exp0146.jpg'
+  ,
+		                        
+						'exp0147.jpg'
+  ,
+		                        
+						'exp0148.jpg'
+  ,
+		                        
+						'exp0149.jpg'
+  ,
+		                        
+						'exp0150.jpg'
+  ,
+		                        
+						'exp0151.jpg'
+  ,
+		                        
+						'exp0152.jpg'
+  ,
+		                        
+						'exp0153.jpg'
+  ,
+		                        
+						'exp0154.jpg'
+  ,
+		                        
+						'exp0155.jpg'
+  ,
+		                        
+						'exp0156.jpg'
+  ,
+		                        
+						'exp0157.jpg'
+  ,
+		                        
+						'exp0158.jpg'
+  ,
+		                        
+						'exp0159.jpg'
+  ,
+		                        
+						'exp0160.jpg'
+  ,
+		                        
+						'exp0161.jpg'
+  ,
+		                        
+						'exp0162.jpg'
+  ,
+		                        
+						'exp0163.jpg'
+  ,
+		                        
+						'exp0164.jpg'
+  ,
+		                        
+						'exp0165.jpg'
+  ,
+		                        
+						'exp0166.jpg'
+  ,
+		                        
+						'exp0167.jpg'
+  ,
+		                        
+						'exp0168.jpg'
+  ,
+		                        
+						'exp0169.jpg'
+  ,
+		                        
+						'exp0170.jpg'
+  ,
+		                        
+						'exp0171.jpg'
+  ,
+		                        
+						'exp0172.jpg'
+  ,
+		                        
+						'exp0173.jpg'
+  ,
+		                        
+						'exp0174.jpg'
+  ,
+		                        
+						'exp0175.jpg'
+  ,
+		                        
+						'exp0176.jpg'
+  ,
+		                        
+						'exp0177.jpg'
+  ,
+		                        
+						'exp0178.jpg'
+  ,
+		                        
+						'exp0179.jpg'
+  ,
+		                        
+						'exp0180.jpg'
+  ,
+		                        
+						'exp0181.jpg'
+  ,
+		                        
+						'exp0182.jpg'
+  ,
+		                        
+						'exp0183.jpg'
+  ,
+		                        
+						'exp0184.jpg'
+  ,
+		                        
+						'exp0185.jpg'
+  ,
+		                        
+						'exp0186.jpg'
+  ,
+		                        
+						'exp0187.jpg'
+  ,
+		                        
+						'exp0188.jpg'
+  ,
+		                        
+						'exp0189.jpg'
+  ,
+		                        
+						'exp0190.jpg'
+  ,
+		                        
+						'exp0191.jpg'
+  ,
+		                        
+						'exp0192.jpg'
+  ,
+		                        
+						'exp0193.jpg'
+  ,
+		                        
+						'exp0194.jpg'
+  ,
+		                        
+						'exp0195.jpg'
+  ,
+		                        
+						'exp0196.jpg'
+  ,
+		                        
+						'exp0197.jpg'
+  ,
+		                        
+						'exp0198.jpg'
+  ,
+		                        
+						'exp0199.jpg'
+  ,
+		                        
+						'exp0200.jpg'
+  ,
+		                        
+						'exp0201.jpg'
+  ,
+		                        
+						'exp0202.jpg'
+  ,
+		                        
+						'exp0203.jpg'
+  ,
+		                        
+						'exp0204.jpg'
+  ,
+		                        
+						'exp0205.jpg'
+  ,
+		                        
+						'exp0206.jpg'
+  ,
+		                        
+						'exp0207.jpg'
+  ,
+		                        
+						'exp0208.jpg'
+  ,
+		                        
+						'exp0209.jpg'
+  ,
+		                        
+						'exp0210.jpg'
+  ,
+		                        
+						'exp0211.jpg'
+  ,
+		                        
+						'exp0212.jpg'
+  ,
+		                        
+						'exp0213.jpg'
+  ,
+		                        
+						'exp0214.jpg'
+  ,
+		                        
+						'exp0215.jpg'
+  ,
+		                        
+						'exp0216.jpg'
+  ],
+   					[
+  
+						'exp0001.jpg'
+  ,
+		                        
+						'exp0002.jpg'
+  ,
+		                        
+						'exp0003.jpg'
+  ,
+		                        
+						'exp0004.jpg'
+  ,
+		                        
+						'exp0005.jpg'
+  ,
+		                        
+						'exp0006.jpg'
+  ,
+		                        
+						'exp0007.jpg'
+  ,
+		                        
+						'exp0008.jpg'
+  ,
+		                        
+						'exp0009.jpg'
+  ,
+		                        
+						'exp0010.jpg'
+  ,
+		                        
+						'exp0011.jpg'
+  ,
+		                        
+						'exp0012.jpg'
+  ,
+		                        
+						'exp0013.jpg'
+  ,
+		                        
+						'exp0014.jpg'
+  ,
+		                        
+						'exp0015.jpg'
+  ,
+		                        
+						'exp0016.jpg'
+  ,
+		                        
+						'exp0017.jpg'
+  ,
+		                        
+						'exp0018.jpg'
+  ,
+		                        
+						'exp0019.jpg'
+  ,
+		                        
+						'exp0020.jpg'
+  ,
+		                        
+						'exp0021.jpg'
+  ,
+		                        
+						'exp0022.jpg'
+  ,
+		                        
+						'exp0023.jpg'
+  ,
+		                        
+						'exp0024.jpg'
+  ,
+		                        
+						'exp0025.jpg'
+  ,
+		                        
+						'exp0026.jpg'
+  ,
+		                        
+						'exp0027.jpg'
+  ,
+		                        
+						'exp0028.jpg'
+  ,
+		                        
+						'exp0029.jpg'
+  ,
+		                        
+						'exp0030.jpg'
+  ,
+		                        
+						'exp0031.jpg'
+  ,
+		                        
+						'exp0032.jpg'
+  ,
+		                        
+						'exp0033.jpg'
+  ,
+		                        
+						'exp0034.jpg'
+  ,
+		                        
+						'exp0035.jpg'
+  ,
+		                        
+						'exp0036.jpg'
+  ,
+		                        
+						'exp0037.jpg'
+  ,
+		                        
+						'exp0038.jpg'
+  ,
+		                        
+						'exp0039.jpg'
+  ,
+		                        
+						'exp0040.jpg'
+  ,
+		                        
+						'exp0041.jpg'
+  ,
+		                        
+						'exp0042.jpg'
+  ,
+		                        
+						'exp0043.jpg'
+  ,
+		                        
+						'exp0044.jpg'
+  ,
+		                        
+						'exp0045.jpg'
+  ,
+		                        
+						'exp0046.jpg'
+  ,
+		                        
+						'exp0047.jpg'
+  ,
+		                        
+						'exp0048.jpg'
+  ,
+		                        
+						'exp0049.jpg'
+  ,
+		                        
+						'exp0050.jpg'
+  ,
+		                        
+						'exp0051.jpg'
+  ,
+		                        
+						'exp0052.jpg'
+  ,
+		                        
+						'exp0053.jpg'
+  ,
+		                        
+						'exp0054.jpg'
+  ,
+		                        
+						'exp0055.jpg'
+  ,
+		                        
+						'exp0056.jpg'
+  ,
+		                        
+						'exp0057.jpg'
+  ,
+		                        
+						'exp0058.jpg'
+  ,
+		                        
+						'exp0059.jpg'
+  ,
+		                        
+						'exp0060.jpg'
+  ,
+		                        
+						'exp0061.jpg'
+  ,
+		                        
+						'exp0062.jpg'
+  ,
+		                        
+						'exp0063.jpg'
+  ,
+		                        
+						'exp0064.jpg'
+  ,
+		                        
+						'exp0065.jpg'
+  ,
+		                        
+						'exp0066.jpg'
+  ,
+		                        
+						'exp0067.jpg'
+  ,
+		                        
+						'exp0068.jpg'
+  ,
+		                        
+						'exp0069.jpg'
+  ,
+		                        
+						'exp0070.jpg'
+  ,
+		                        
+						'exp0071.jpg'
+  ,
+		                        
+						'exp0072.jpg'
+  ],
+   					[
+  
+						'exp0000.jpg'
+  ],
+   					[
+  
+						'exp0361.jpg'
+  ,
+		                        
+						'exp0362.jpg'
+  ,
+		                        
+						'exp0363.jpg'
+  ,
+		                        
+						'exp0364.jpg'
+  ,
+		                        
+						'exp0365.jpg'
+  ,
+		                        
+						'exp0366.jpg'
+  ,
+		                        
+						'exp0367.jpg'
+  ,
+		                        
+						'exp0368.jpg'
+  ,
+		                        
+						'exp0369.jpg'
+  ,
+		                        
+						'exp0370.jpg'
+  ,
+		                        
+						'exp0371.jpg'
+  ,
+		                        
+						'exp0372.jpg'
+  ,
+		                        
+						'exp0373.jpg'
+  ,
+		                        
+						'exp0374.jpg'
+  ,
+		                        
+						'exp0375.jpg'
+  ,
+		                        
+						'exp0376.jpg'
+  ,
+		                        
+						'exp0377.jpg'
+  ,
+		                        
+						'exp0378.jpg'
+  ,
+		                        
+						'exp0379.jpg'
+  ,
+		                        
+						'exp0380.jpg'
+  ,
+		                        
+						'exp0381.jpg'
+  ,
+		                        
+						'exp0382.jpg'
+  ,
+		                        
+						'exp0383.jpg'
+  ,
+		                        
+						'exp0384.jpg'
+  ,
+		                        
+						'exp0385.jpg'
+  ,
+		                        
+						'exp0386.jpg'
+  ,
+		                        
+						'exp0387.jpg'
+  ,
+		                        
+						'exp0388.jpg'
+  ,
+		                        
+						'exp0389.jpg'
+  ,
+		                        
+						'exp0390.jpg'
+  ,
+		                        
+						'exp0391.jpg'
+  ,
+		                        
+						'exp0392.jpg'
+  ,
+		                        
+						'exp0393.jpg'
+  ,
+		                        
+						'exp0394.jpg'
+  ,
+		                        
+						'exp0395.jpg'
+  ,
+		                        
+						'exp0396.jpg'
+  ,
+		                        
+						'exp0397.jpg'
+  ,
+		                        
+						'exp0398.jpg'
+  ,
+		                        
+						'exp0399.jpg'
+  ,
+		                        
+						'exp0400.jpg'
+  ,
+		                        
+						'exp0401.jpg'
+  ,
+		                        
+						'exp0402.jpg'
+  ,
+		                        
+						'exp0403.jpg'
+  ,
+		                        
+						'exp0404.jpg'
+  ,
+		                        
+						'exp0405.jpg'
+  ,
+		                        
+						'exp0406.jpg'
+  ,
+		                        
+						'exp0407.jpg'
+  ,
+		                        
+						'exp0408.jpg'
+  ],
+   					[
+  
+						'exp0409.jpg'
+  ,
+		                        
+						'exp0410.jpg'
+  ,
+		                        
+						'exp0411.jpg'
+  ,
+		                        
+						'exp0412.jpg'
+  ,
+		                        
+						'exp0413.jpg'
+  ,
+		                        
+						'exp0414.jpg'
+  ,
+		                        
+						'exp0415.jpg'
+  ,
+		                        
+						'exp0416.jpg'
+  ,
+		                        
+						'exp0417.jpg'
+  ,
+		                        
+						'exp0418.jpg'
+  ,
+		                        
+						'exp0419.jpg'
+  ,
+		                        
+						'exp0420.jpg'
+  ,
+		                        
+						'exp0421.jpg'
+  ,
+		                        
+						'exp0422.jpg'
+  ,
+		                        
+						'exp0423.jpg'
+  ,
+		                        
+						'exp0424.jpg'
+  ,
+		                        
+						'exp0425.jpg'
+  ,
+		                        
+						'exp0426.jpg'
+  ,
+		                        
+						'exp0427.jpg'
+  ,
+		                        
+						'exp0428.jpg'
+  ,
+		                        
+						'exp0429.jpg'
+  ,
+		                        
+						'exp0430.jpg'
+  ,
+		                        
+						'exp0431.jpg'
+  ,
+		                        
+						'exp0432.jpg'
+  ,
+		                        
+						'exp0433.jpg'
+  ,
+		                        
+						'exp0434.jpg'
+  ,
+		                        
+						'exp0435.jpg'
+  ,
+		                        
+						'exp0436.jpg'
+  ,
+		                        
+						'exp0437.jpg'
+  ,
+		                        
+						'exp0438.jpg'
+  ,
+		                        
+						'exp0439.jpg'
+  ,
+		                        
+						'exp0440.jpg'
+  ,
+		                        
+						'exp0441.jpg'
+  ,
+		                        
+						'exp0442.jpg'
+  ,
+		                        
+						'exp0443.jpg'
+  ,
+		                        
+						'exp0444.jpg'
+  ,
+		                        
+						'exp0445.jpg'
+  ,
+		                        
+						'exp0446.jpg'
+  ,
+		                        
+						'exp0447.jpg'
+  ,
+		                        
+						'exp0448.jpg'
+  ,
+		                        
+						'exp0449.jpg'
+  ,
+		                        
+						'exp0450.jpg'
+  ,
+		                        
+						'exp0451.jpg'
+  ,
+		                        
+						'exp0452.jpg'
+  ,
+		                        
+						'exp0453.jpg'
+  ,
+		                        
+						'exp0454.jpg'
+  ,
+		                        
+						'exp0455.jpg'
+  ,
+		                        
+						'exp0456.jpg'
+  ]
+   					];
+ 
+
+function Down()
+{
+	mouseStatus = 1;
+}
+
+function Up(chit)
+{
+	if (mouseStatus > 0)
+ 	{
+  		mouseStatus = 0;
+  		F2(chit);
+ 	}
+}
+
+function CancelDrag()
+{
+	window.event.returnValue = false;
+}
+
+function OutUp()
+{
+	mouseStatus = 0;
+}
+
+function Over(chit)
+{
+	if (mouseStatus > 0)
+		F2(chit);
+}
+
+function ResizeNavImg()
+{
+	if(navigator.userAgent.indexOf("Netscape")>-1)
+	{
+  	  var col = document.getElementById("PrevId");
+	  col.style.height='30px';
+	  col = document.getElementById("NextId");
+	  col.style.height='30px';
+	}
+	
+}
+
+function OneSerie()
+{
+	var col = GetMainImg();
+	if (col == null)
+	{
+    		setTimeout('OneSerie()',250);
+		return;
+	}
+	firstTouch = 0;
+	serieId =1;
+//	col[0].src=images[0][0]; // Now we get it through GetPosition();
+	if(navigator.userAgent.indexOf("Netscape")>-1)
+	{
+		LoadNavBar();
+	}
+}
+
+function ResizeNavBar()
+{
+// get new size of chit column:
+	var areaWidth = document.getElementById('tableAreaWidth').offsetWidth - 64;
+	var colWidth=Math.floor((areaWidth + 1)/nrCols);
+
+	for(var i=1;i <= nrCols; i++)
+	{
+		document.getElementById("S_" + i).style.width=colWidth;
+	}
+}
+
+var nrCols = 0; // number of chit columns
+
+function LoadNavBar()
+{
+	GetPosition();	
+	if (firstTouch > 0)
+	{
+		return;
+	}
+
+	firstTouch = 1;
+	
+	maxImgInSerie = images[serieId-1].length;
+
+	if(maxImgInSerie < 2) 
+	{
+		frameElement.parentElement.rows="0,*";
+		return(SelImage(imgInSerie));
+	}
+	else frameElement.parentElement.rows="32,*";
+
+//	imgInSerie = 0; // Now we get it through GetPosition();
+	imgPerChitCol = maxImgInSerie;
+	imgPerChit = 1;
+
+	var col = document.getElementById('tableAreaWidth');
+	var areaWidth = col.offsetWidth - 64;
+	col = document.getElementById('userArea');
+	
+	if (maxImgInSerie > 0)
+	{
+		var colWidth = 2;
+		var maxCols = Math.floor((areaWidth + 1)/colWidth);
+	
+		if (maxImgInSerie > maxCols)
+		{
+			imgPerChit = Math.floor((maxImgInSerie + maxCols -1)/maxCols);
+			imgPerChitCol = maxImgInSerie % maxCols;
+			if (imgPerChitCol == 0)
+				imgPerChitCol = maxCols;
+			nrCols = maxCols;
+			colWidth = 0;
+		}
+		else if (maxCols == maxImgInSerie)
+		{
+			nrCols = maxCols;
+			colWidth = 0;
+		}
+		else
+		{
+			nrCols = maxImgInSerie;
+			colWidth = Math.floor(areaWidth/maxImgInSerie);
+		}
+	
+		if (nrCols > 0)
+		{
+			var innerHtml = openTable;
+			for(i=1;i <= nrCols; i++)
+			{
+				innerHtml += openTd;
+				innerHtml += i;
+				if (colWidth > 0)
+				{
+					innerHtml +="' width='" + colWidth;
+				}
+				innerHtml += closeTd;
+			}
+			if (colWidth > 0)
+			{
+				innerHtml += lastTD;
+			}
+			innerHtml += closeTable;
+			col.innerHTML=innerHtml;
+		}
+//		Next(); // Now we move it to the current position in series
+		SetChit(imgInSerie, '#FFCC00');
+		SelImage(imgInSerie);
+	}
+}
+
+function F2(chit)
+{
+	SetChit(imgInSerie, '#BBBBBB');
+	var nrId = chit.id.split('_');
+	var colId = parseInt(nrId[1]);
+
+	if (colId > imgPerChitCol)
+	{
+		imgInSerie = imgPerChit*imgPerChitCol + 1;
+		imgInSerie += (imgPerChit-1)* (colId - imgPerChitCol-1);
+	}
+	else
+	{
+		imgInSerie = imgPerChit*(colId-1) + 1;
+	}
+
+	var col = document.getElementById(chit.id);
+	col.style.backgroundColor= '#FFCC00';
+
+	SelImage(imgInSerie);
+}
+
+function Prev()
+{
+	if (imgInSerie <= 1)
+		return;
+		
+	SetChit(imgInSerie, '#BBBBBB');
+	imgInSerie = imgInSerie-1;
+	SetChit(imgInSerie, '#FFCC00');
+	SelImage(imgInSerie);
+}
+
+function Next()
+{
+	if (imgInSerie >= maxImgInSerie)
+		return;
+	if (imgInSerie > 0)
+		SetChit(imgInSerie, '#BBBBBB');
+	imgInSerie = imgInSerie+1;
+	SetChit(imgInSerie, '#FFCC00');
+	SelImage(imgInSerie);
+}
+
+function SetChit(id, color)
+{
+	var index = id;
+	if (imgPerChit > 1)
+	{
+		var rangeCols = imgPerChit*imgPerChitCol;
+		if (id > rangeCols)
+		{
+			var delta = Math.floor((id - rangeCols)/(imgPerChit -1));
+			if (((id - rangeCols)%(imgPerChit -1)) > 0)
+				delta++;
+			index = imgPerChitCol + delta;
+		}
+		else
+		{
+			index = Math.floor(id/imgPerChit);
+			if ((id % imgPerChit) > 0)
+				index++;
+		}
+	}
+	var col = document.getElementById("S_" + index);
+	col.style.backgroundColor= color;
+}
+
+function SelImage(id)
+{
+	var selImg = GetMainImg();
+	if (selImg == null)
+	{
+    		setTimeout('SelImage('+id+')',250);
+		return;
+	}
+	RememberPosition(id);
+	selImg[0].src=images[serieId-1][id-1];
+}
+
+function GetMainImg()
+{
+	var index = window.parent.frames.length-1;
+
+	var imgFrame = window.parent.frames[index];
+	if(imgFrame == null)
+	{
+		return null;
+	}
+
+	var selImg = imgFrame.document.getElementsByName('MainImg');
+	if(selImg.length == 0) return null;
+	return selImg;
+}
+
+function RememberPosition(id)
+{
+	var myFrame = window.parent.parent.frames[0];
+	if(myFrame) myFrame.RememberPosition(serieId,id);
+}
+
+
+function GetPosition()
+{
+	var myFrame = window.parent.parent.frames[0];
+	if(myFrame) imgInSerie=myFrame.RemindPosition(serieId);
+
+}
+
+function GetSeries()
+{
+	var myFrame = window.parent.parent.frames[0];
+	if(myFrame) serieId=myFrame.RemindSeries();
+	myFrame = window.parent.imgPageLeft;
+	if(myFrame) myFrame.SelSerie(serieId,serieId+'_1',0);
+}
+
+
+function UpdateTop()
+{
+	var myFrame=window.parent.parent.frames[0];	
+	if(myFrame)
+	{
+		myFrame.UpdateStudyInfo(StudyID,StudyTabFolders,hasDicom);
+		myFrame.F2(0);
+	}
+	myFrame=window.parent.parent.document.getElementById("frameHolder");
+	if(myFrame) myFrame.rows = "73,*";
+	myFrame=window.parent.parent.document;
+	if(myFrame) myFrame.title="Study Image page";
+}
+</script></body>
+</html>

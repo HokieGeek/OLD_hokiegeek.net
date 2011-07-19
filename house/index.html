@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>hokiegeek.net: Our House</title>
+<script type="text/JavaScript" src="../js/jquery-1.5.1.js"></script>
+<script type="text/JavaScript" src="../js/hg_main.js"></script>
+<script type="text/JavaScript" src="../js/hg_nav.js"></script>
+<link type="text/css" rel="StyleSheet" href="../css/hg_main.css" media="screen" />
+<link type="text/css" rel="StyleSheet" href="../css/hg_nav.css" media="screen" />
+
+<script type="text/JavaScript" src="../js/libtabs.js"></script>
+<script type="text/JavaScript" src="../js/libslideshow.js"></script>
+<script type="text/JavaScript" src="../js/libhttprequest.js"></script>
+<script type="text/JavaScript" src="../js/libgoogledata.js"></script>
+<script type="text/JavaScript" src="../js/libpicasaweb.js"></script>
+
+<link type="text/css" rel="StyleSheet" href="../css/libtabs.css">
+<link type="text/css" rel="StyleSheet" href="../css/libpicasaweb.css">
+
+<script id="house_data" type="text/JavaScript" src="20409_Sunbright_Lane/data.js"></script>
+
+<script type="text/JavaScript">
+    var electrical_base = 'electrical';
+</script>
+<script type="text/JavaScript" src="electrical/main.js"></script>
+<link type="text/css" rel="StyleSheet" href="electrical/main.css">
+
+<script type="text/JavaScript">
+var tabsObj = null;
+var projTabsObj = null;
+var pics_id = "house_pics";
+var pw_albums = null;
+var pics_album_view = null;
+function sizeTabs() {
+    var contents = $('.tab_content');
+    contents.css("background-color", "#FFFFFF"); 
+    contents.css("height", (parseInt(document.documentElement.clientHeight-50))+"px");
+    contents.css("padding", "1px");
+}
+function loadPics() {
+	//console.log("loadPics()");
+	if (pw_albums == null) return;
+
+	if (!pw_albums.isLoaded(pics_album_name)) {
+		setTimeout("loadPics()", 1500);
+		return;
+	}
+
+    //pics_album_view = new PicasaWeb_AlbumView(pw_albums.getAlbum(pics_album_name), $("#"+pics_id));
+    pics_album_view = new PicasaWeb_AlbumView(pw_albums.getAlbum(pics_album_name), 
+											  document.getElementById(pics_id),
+											  false);
+}
+function addTab(name, id) {
+    var t = $('<div></div>').addClass("tab");
+    t.append($('<span></span>')
+            .addClass("tab_name")
+            .append(document.createTextNode(name.charAt(0).toUpperCase()+name.substr(1)))
+    );
+    t.append($("<div id="+id+"></div>")
+            .addClass("tab_content")
+    );
+    $("#tabs").append(t);
+}
+function buildHouseContent() {
+    // Add the floorplans iframe (might need to re evaluate this later on)
+    if (floorplans_url != undefined && floorplans_url != null) {
+        addTab("Floorplans", "floorplans");
+        $("#floorplans").append($('<iframe></iframe>').attr("src", floorplans_url));
+    }
+
+	// Load the pictures
+    if (pics_album_name != undefined && pics_album_name != null) {
+        addTab("Pictures", pics_id);
+
+	    pw_albums = new PicasaWeb("andres.f.perez");
+	    if (pw_albums != null) loadPics();
+	    else console.log("WhiskeyTangoFoxtrot");
+    }
+
+    // Load the address
+    $("#address").append(house_address);
+
+    // Create the overlays tabs
+    for (o in overlays) {
+        if (overlays[o] == null) continue;
+        var overlay = o.toLowerCase();
+        addTab(overlay, overlay);
+
+        switch (overlay) {
+        case 'electrical': init_electrical("electrical"); break;
+        default: break;
+        }
+    }
+}
+function init() {
+    hg_small_nav(); 
+
+    buildHouseContent();
+
+	// Setup the tabs
+	sizeTabs();
+    tabsObj = new LibTabs("tabsObj", document.getElementById("tabs"), 0);
+	tabsObj.HandleKeyboardInputs();
+
+	$("#tabs_progress").attr("style", "visibility: hidden");
+}
+</script>
+<style type="text/css">
+#tabs {
+	height: 92%;
+}
+.tab { 
+	width: 99% !important; 
+}
+.tab_content {
+	width: 99.3% !important;
+}
+.tab_content iframe {
+	background-color: #fff;
+	border: none !important;
+	padding: 0px;
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+}
+#hg_nav {
+	top: 6px;
+}
+#address {
+	position: absolute;
+	top: 9px;
+	left: 250px;
+	color: #1F0F04;
+	font-weight: bold;
+	font-size: 1.2em;
+	font-family: helvetica;
+}
+#electrical {
+    overflow-x: hidden;
+}
+</style>
+</head>
+<body onload="init()">
+    <span id="address"></span>
+    <span id="tabs_progress" style="cursor: wait">
+	    Loading tabs ... &nbsp;<img src="../img/progress.gif" />
+    </span>
+    <div id="tabs"></div>
+</body>
+</html>

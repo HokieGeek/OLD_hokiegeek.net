@@ -1,0 +1,10 @@
+BEGIN_PATIENT_INFO 
+PrivateID=236137;
+PublicID=723909;
+LastName=Perez;
+FirstName=Andres;
+BirthDate=1982 Feb 07;
+Gender=M;
+StudyPrivateIDs=939708,;
+StudyUniqueIDs=1.2.840.113619.2.55.3.2831188585.719.1259063715.612,;
+END_PATIENT_INFO 

@@ -1,0 +1,148 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<title>Untitled Document</title>
+<link href="../ali/HTML/style.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="../ali/HTML/style.js"></script><script language="JavaScript">
+var StudyID = 939708;
+
+var StudyTabFolders = 6;
+var hasDicom = true;
+		
+var reportTitleArray =
+			[
+   					
+				'CT CT MAXILLOFACIAL SINUS NO CONTRAST'
+			];
+
+var reportLink = 	[
+   					
+				'Rep0000.htm'
+			];
+var reportSignedBy = 	[
+   					
+				'Allyn Cohen MD'
+			];
+var reportSignedAt = 	[
+   					
+				'24-Nov-2009'
+			];
+		
+
+//var DocumentOverBgColor='#DDDDCC';
+//var DocumentOverColor='#FF0000';
+//var DocumentSelectBgColor='#EEEECC';
+//var DocumentSelectColor='#FF6600';
+// in js file now		
+
+var sReportLink = null;
+function UpdateReportInfo(position)
+{
+	sReportLink = reportLink[position-1];
+	var reportFrameInfo = window.parent.frames[2];
+	if((!reportFrameInfo) || (reportFrameInfo.name != 'docInfo')){ setTimeout('UpdateReportInfo('+position+')',250); return;}
+	var reportTitle = reportFrameInfo.document.getElementById('ReportTitle');
+	if(!reportTitle){ setTimeout('UpdateReportInfo('+position+')',250); return;}
+	var htmltext=document.getElementById(position).children[2].innerHTML;
+	htmltext+="<br>"+reportTitleArray[position-1];
+	reportTitle.innerHTML = htmltext;
+
+	var reportFrameBottom = window.parent.frames[4];
+	if(typeof(reportFrameBottom) == 'undefined'){ setTimeout('UpdateReportInfo('+position+')',250); return;}
+	if(!reportFrameBottom.document.getElementById('signedBy')){ setTimeout('UpdateReportInfo('+position+')',250); return;}
+	reportFrameBottom.document.getElementById('signedBy').innerHTML = reportSignedBy[position-1];
+	if(!reportFrameBottom.document.getElementById('signedAt')){ setTimeout('UpdateReportInfo('+position+')',250); return;}
+	reportFrameBottom.document.getElementById('signedAt').innerHTML = reportSignedAt[position-1];
+
+	Select(position);
+}
+
+var rowbcolor;
+var rowtcolor;
+var cur='default';
+var selectedrow=1;
+function Over(elem)
+{
+	cur=elem.style.cursor;
+	elem.style.cursor='hand';
+
+	rowbcolor=elem.style.backgroundColor;
+	elem.style.backgroundColor=DocumentOverBgColor;
+
+	rowtcolor=elem.children[2].style.color;
+	elem.children[2].style.color=DocumentOverColor;
+}
+
+function Out(elem)
+{
+	elem.style.cursor=cur;
+	elem.style.backgroundColor=rowbcolor;
+	elem.children[2].style.color=rowtcolor;
+}
+
+function Select(position)
+{
+	var elem=document.getElementById(selectedrow);
+	elem.style.backgroundColor=document.bgColor;
+	elem.children[2].style.color=document.vlinkColor;
+	elem=document.getElementById(position);
+	elem.style.backgroundColor=DocumentSelectBgColor;
+	rowbcolor=DocumentSelectBgColor;
+	elem.children[2].style.color=DocumentSelectColor;
+	rowtcolor=DocumentSelectColor;
+	selectedrow=position;
+}
+
+function RememberRow()
+{
+	var myFrame = window.parent.parent.frames[0];
+	if(myFrame) myFrame.RememberRow(selectedrow);
+}
+
+function GetRow()
+{
+	var myFrame = window.parent.parent.frames[0];
+	if(myFrame)  selectedrow=myFrame.RemindRow();
+// should update document itself also:
+	if(selectedrow != 1)
+	{
+		var repname=document.getElementById(selectedrow).parentElement.nameProp;
+		var docDetailsFrame = window.parent.frames[3];
+		if(typeof(docDetailsFrame) == 'undefined') setTimeout("GetRow()",250);
+		else window.open(repname,'docDetails');
+	}
+	return(selectedrow);
+}
+
+function UpdateTop()
+{
+	var myFrame=window.parent.parent.frames[0];	
+	if(myFrame)
+	{
+		myFrame.UpdateStudyInfo(StudyID,StudyTabFolders,hasDicom);
+		myFrame.F1(0);
+	}
+	myFrame=window.parent.parent.document.getElementById("frameHolder");
+	if(myFrame) myFrame.rows = "73,*";
+	myFrame=window.parent.parent.document;
+	if(myFrame) myFrame.title="Study Document page";
+}
+
+</script></head>
+<body class="DocHeadBody" onLoad="UpdateTop();UpdateReportInfo(GetRow())" onunload="RememberRow()">
+<table width="100%" cellspacing="0" cellpadding="3" border="0">
+<tr><td colspan="3" class="DocHeadComments">Documents for</td></tr>
+<tr id="patient">
+<td colspan="3" style="text-align:left;" class="DocHeadPatientHeader">Perez, Andres<br>
+				ID: 723909</td>
+</tr>
+<tr id="study">
+<td valign="top" align="left"><img src="../ali/Controls/study.gif"></td>
+<td colspan="2" class="DocHeadStudyHeader" style="text-align:left;padding-right:4px;">24-Nov-2009 CT<br>CT MAXILLOFACIAL SINUS NO CONTRAST 
+				</td>
+</tr><a target="docDetails" href="Rep0000.htm"><tr onmouseover="Over(this)" onmouseout="Out(this)" height="20px" id="1" onClick="UpdateReportInfo(1)">
+<td></td><td><img src="../ali/Controls/report.gif"></td>
+<td class="DocHeadStudyItem">Final
+						 Report</td>
+</tr></a></table>
+</body>
+</html>

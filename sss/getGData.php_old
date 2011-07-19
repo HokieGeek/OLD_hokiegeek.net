@@ -1,0 +1,92 @@
+<?php
+// Decode the variables
+if (array_key_exists("u", $_GET)) $u = urldecode($_GET["u"]);
+if (array_key_exists("v", $_GET)) $v = urldecode($_GET["v"]);
+if (array_key_exists("o", $_GET)) $v = urldecode($_GET["o"]);
+
+if (!array_key_exists("txt", $_GET)) header('Content-Type: text/javascript');
+//echo $u
+
+$ch = curl_init() or die ($v." = [null]; var getJSON_ERR = 'Unable to initialize curl';");
+curl_setopt($ch, CURLOPT_URL, $u);
+curl_setopt($ch, CURLOPT_HEADER, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$c = curl_exec($ch);
+echo "CONTENT: ".curl_error($ch);
+//echo "CONTENT: ".curl_errno($ch);
+//echo curl_getinfo($ch, CURLINFO_CONTENT_TYPE).":::";
+curl_close($ch);
+
+// Authenticate
+
+
+// Perform data request
+/*curl_setopt($ch, CURLOPT_URL, $u);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+curl_setopt($ch, CURLOPT_USERAGENT, ''); 
+curl_setopt($ch, CURLOPT_VERBOSE, 1);
+curl_setopt($ch, CURLOPT_NOBODY, 0);
+curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+if (array_key_exists("l", $_GET))
+	curl_setopt($ch, CURLOPT_USERPWD, urldecode($_GET["l"]));
+if (array_key_exists("b", $_GET))
+	curl_setopt($ch, CURLOPT_COOKIE, urldecode($_GET["b"]));
+//$headers = array('X-Twitter-Client: ',  'X-Twitter-Client-Version: ', 'X-Twitter-Client-URL: '); 
+//curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$c = curl_exec($ch);
+(!curl_errno($ch)) 
+	or die ($v."var getDataERR = 'An error ocurred with curl: [".curl_errno($ch)."] ".curl_error($ch)."';");
+	//or die ($v." = [null]; var getJSON_ERR = 'An error ocurred with curl: [".curl_errno($ch)."] ".curl_error($ch)."';");
+//$curlInfo = 
+if(!ereg("[123][0-9][0-9]", curl_getinfo($ch, CURLINFO_HTTP_CODE))) $c = "null"; //"{error: '".curl_getinfo($ch, CURLINFO_HTTP_CODE)."'}";
+
+//echo curl_getinfo($ch, CURLINFO_CONTENT_TYPE).":::";
+$content_type = explode("/", curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
+$content_type = explode(";", $content_type[1]);
+$content_type = $content_type[0];
+curl_close($ch);
+
+//echo $content_type.":::";
+//echo "{".$c."}";
+
+switch ($content_type) {
+	case "x-javascript": 
+	case "json":
+		// Fix the content  
+		if (!array_key_exists("txt", $_GET)) $c = str_replace("\n", "", $c);
+		if ($c[0] != '[') $c = '['.$c.']';
+		//$c = "json";
+		$c = 'if(typeof('.$v.') == \'undefined\') '.$v.' = {};\nvar '.$v.' = '.$c.';';
+		break;
+	//case "html":
+	case "plain":
+		// Fix the content  
+		//if (!array_key_exists("txt", $_GET)) $c = str_replace("\n", "", $c);
+		//$c = str_replace("\r\n", "AFP", $c);
+		//$c = nl2br($c);
+		$c = preg_replace("/(\r\n)+|(\n|\r)+/", " ", $c);
+		$c = str_replace("\"", "\\\"", $c);
+		if ($c[0] != '[') $c = '"'.$c.'"';
+		$c = 'if(typeof('.$v.') == \'undefined\') '.$v.' = {}; var '.$v.' = '.$c.';';
+		//$c = "html";
+		break;
+	case "html":
+	case "xml": 
+		$c = preg_replace("/(\r\n)+|(\n|\r)+/", " ", $c);
+		$c = str_replace("\"", "\\\"", $c);
+		
+		if (!array_key_exists("v", $_GET))
+			$c = 'getData_ret = "'.$c.'";';	
+		else
+			$c = $v.' = "'.$c.'";';	
+		//$c = ' = "html"';
+		break;
+	default: break;
+}
+#echo urldecode($_GET["b"]);
+echo $c; // Return the content
+*/
+?>

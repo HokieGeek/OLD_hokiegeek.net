@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>This is the navigation banner page</title>
+
+<script type="text/javascript" language="JavaScript1.2" src="scripts/scripts_toolbar.js"></script>
+
+<link href="styles/styles.css" rel="stylesheet" type="text/css">
+<link href="styles/toolbar.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" language="JavaScript1.2">
+  if (is_ns || is_gecko) {
+    document.write("<link href='styles/styles_ns.css' rel='stylesheet' type='text/css'>");
+    document.write("<link href='styles/toolbar_ns.css' rel='stylesheet' type='text/css'>");
+  }
+</script>
+
+</head>
+
+<body>
+
+<!-- The "onSelectStart" attribute prevents selecting (highlighting) the buttons in IE. -->
+<div id="HelpToolBar" class="Toolbar" onSelectStart="return false">
+
+<div id="BackButton" class="ToolbarButton" title="No previous topic"
+    cellpadding="0" cellspacing="0" border="0"
+    onMouseOver="mouseOverButton(this);" onMouseOut="mouseOffButton(this);"
+    onMouseDown="mouseClickDown(this);" onMouseUp="mouseClickUp(this);">
+  <img id="BackButtonIcon" height="20" width="20" border="0" src="images/back_disabled.gif">
+</div>
+
+<div id="PrintButton" class="ToolbarButton" title="Print the topic"
+    cellpadding="0" cellspacing="0" border="0"
+    onMouseOver="mouseOverButton(this);" onMouseOut="mouseOffButton(this);"
+    onMouseDown="mouseClickDown(this);" onMouseUp="mouseClickUp(this);">
+  <img id="PrintButtonIcon" height="20" width="20" border="0" src="images/print_off.gif">
+</div>
+
+<div id="PopoutButton" class="ToolbarButton" title="Display the topic in a large window"
+    cellpadding="0" cellspacing="0" border="0"
+    onMouseOver="mouseOverButton(this);" onMouseOut="mouseOffButton(this);"
+    onMouseDown="mouseClickDown(this);" onMouseUp="mouseClickUp(this);">
+  <img id="PopoutButtonIcon" height="20" width="20" border="0" src="images/popout_off.gif">
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+body.TitleBody {
+  margin-top: 0em;
+  margin-bottom: 0em;
+  margin-left: 0em;
+  margin-right: 0em;
+}
+
+td.TitleRow1 {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #000000;
+}
+
+img.TitleOrangeBlock {
+  margin-left: 10px;
+}
+
+hr.TitleOrangeRule {
+  color: #FF6600;
+  height: 3px;
+  margin-left: 10px;
+}
+
+td.TitleRow2 {
+  height: 70%;
+  align: right;
+}
+
+td.TitleRow3 {
+  background-color: #003399;
+  color:#FFFFFF;
+  height: 30%;
+}
+
+img.TitleLogo {
+  margin-top: 12px;
+  margin-bottom: 36px;
+  float: right;
+}
+
+p.TitleProductFamily {
+  font-size: 20pt;
+  font-weight: bold;
+  line-height: 1em;
+  color: #003399;
+  padding-top: 6px;
+  padding-bottom: 32px;
+  text-align: right;
+}
+
+p.TitleProduct {
+  font-size: 26pt;
+  font-weight: bold;
+  line-height: 1em;
+  color: #003399;
+  text-align: right;
+}
+
+p.TitleModule {
+  font-size: 26pt;
+  font-weight: bold;
+  line-height: 1em;
+  color: #003399;
+  text-align: right;
+  margin-top: 0em;
+}
+
+p.TitleDoc {
+  font-size: 26pt;
+  font-weight: bold;
+  line-height: 1em;
+  color: #003399;
+  text-align: right;
+}

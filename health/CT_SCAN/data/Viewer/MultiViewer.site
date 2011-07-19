@@ -1,0 +1,256 @@
+System`Monitor`Count={1}
+System`Monitor`PixelToSizeRatio={4.02}
+System`Monitor'RealSizeImagesEnabled={1}
+System`Monitor`Driver={GfxDrv.DLL}
+System`Monitor`Metheus`Offset={-1}
+System`Monitor`Metheus`Size={0,0}
+
+System`EnableLevelEstimation={1}
+System`ModalityIDs`1.2.840.113701.4.2.120`Mode={1}
+System`ModalityIDs`22222`Mode={0}
+
+System`ReportAddin={ALIGX.Report} // by default Reporting is not included in the standard GX package
+
+
+System`Loader`Entry={CreateDataLoader}
+System`Loader`Name={ImgLdr.dll}
+System`Loader`Timeout={60000}
+
+
+System`MaxStudy={20}
+
+#<System`Printing`PrintTempPath> specifies temporary directory to be used for holding
+#Custom Print's temporary bitmap files 
+System`Printing`PrintTempPath={}
+
+System`Is3dToolEnabled={1}
+
+
+
+
+Display`Study`RG`Default={Protocol`RG}
+Display`Study`RG`Entry`1`Node={Protocol`RG}
+Display`Survey`RG`Node={PanelRG`Survey}
+LEVEL`CT`Head post fossa`Range={-2, 72}
+LEVEL`CT`Head`Range={8, 72}
+
+PanelRG`ReadOnly={1}
+PanelRG`Stack`Entry`1`01`Layout0={1,1}
+PanelRG`Stack`Entry`1`01`Level={0,0}
+PanelRG`Stack`Entry`1`01`Offset={0,0}
+PanelRG`Stack`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelRG`Stack`Entry`1`01`Rotation={0}
+PanelRG`Stack`Entry`1`01`Type={12}
+PanelRG`Stack`Entry`1`01`Zoom={100}
+PanelRG`Stack`Entry`2`01`Layout={1,1}
+PanelRG`Stack`Entry`2`01`Level={0,0}
+PanelRG`Stack`Entry`2`01`Offset={0,0}
+PanelRG`Stack`Entry`2`01`Rect={0,0,1000000,1000000}
+PanelRG`Stack`Entry`2`01`Rotation={0}
+PanelRG`Stack`Entry`2`01`Type={12}
+PanelRG`Stack`Entry`2`01`Zoom={100}
+PanelRG`Stack`Entry`3`01`Layout={1,1}
+PanelRG`Stack`Entry`3`01`Level={0,0}
+PanelRG`Stack`Entry`3`01`Offset={0,0}
+PanelRG`Stack`Entry`3`01`Rect={0,0,1000000,1000000}
+PanelRG`Stack`Entry`3`01`Rotation={0}
+PanelRG`Stack`Entry`3`01`Type={12}
+PanelRG`Stack`Entry`3`01`Zoom={100}
+PanelRG`Stack`Entry`4`01`Layout={1,1}
+PanelRG`Stack`Entry`4`01`Level={0,0}
+PanelRG`Stack`Entry`4`01`Offset={0,0}
+PanelRG`Stack`Entry`4`01`Rect={0,0,1000000,1000000}
+PanelRG`Stack`Entry`4`01`Rotation={0}
+PanelRG`Stack`Entry`4`01`Type={12}
+PanelRG`Stack`Entry`4`01`Zoom={100}
+PanelRG`Survey`Entry`1`01`Layout={2,3}
+PanelRG`Survey`Entry`1`01`Level={0,0}
+PanelRG`Survey`Entry`1`01`Offset={0,0}
+PanelRG`Survey`Entry`1`01`Rect={0,0,1000000,1000000}
+PanelRG`Survey`Entry`1`01`Rotation={0}
+PanelRG`Survey`Entry`1`01`Type={11}
+PanelRG`Survey`Entry`1`01`Zoom={100}
+
+Panel`Tile`Entry`*`*`RG`Layout={1,1}
+
+Preset`RG`Stack_1x1`Layout={1,1}
+Preset`RG`Stack_1x1`Type={12}
+Preset`RG`Stack_2x1`Layout={2,1}
+Preset`RG`Stack_2x1`Type={12}
+Preset`RG`Stack_2x2`Layout={2,2}
+Preset`RG`Stack_2x2`Type={12}
+Preset`RG`Stack_2x3`Layout={2,3}
+Preset`RG`Stack_2x3`Type={12}
+Preset`RG`Stack_3x3`Layout={3,3}
+Preset`RG`Stack_3x3`Type={12}
+Preset`RG`Tile_3x4`Layout={3,4}
+Preset`RG`Tile_3x4`Type={11}
+
+Protocol`RG`Name={ALI Default RG}
+Protocol`RG`Node={PanelRG`Stack}
+Protocol`RG`Origin={RG}
+
+#Chits
+System`Caption`FontName={1024x768} 
+System`Caption`Height={14}
+System`Caption`RGB`BkgndColor={0,16777215} //{ rectangle color, range of visible images }
+System`Caption`RGB`DrawColor={65535,8421504} //{ selected image, images not visible }
+System`Caption`RGB`TextColor={16777215,1} //{ text color, outside chits }
+System`Caption`RGB`FlaggedAndViewedColor={255,12632256} //{ flagged, already viewed }
+
+
+# This is to configure the font size for the study info displayed on the top toolbar
+System`Folder`BkgndColor={1,16}
+System`Folder`DrawColor={1,1}
+System`Folder`FontName={Arial}
+System`Folder`FontSize={90} // study info font
+System`Folder`HeaderSize={32,0} //{36,0}
+System`Folder`Height={80} // height of the thumbnails area
+System`Folder`IconSize={80,80} // 
+System`Folder`TextColor={18,14}
+
+System`OriginalCTWindowLevel={1}
+System`Series`PositionSort={0}
+System`Series`AutoSplit`RG`Mode={1}
+
+# This is to configure the font size for the text displayed on the thumbnails
+System`Series`Thumbnail`FontSize`Large={80} //font size for the series number for on screen series
+System`Series`Thumbnail`FontSize`Small={80} //font size for the series number for off screen series
+System`Series`Thumbnail`FontSize`Link={60} //font size for the link indicator
+
+#Right click menu configuration
+System`Tools`FontName={Arial}
+System`Tools`FontSize={60}    //patient info font size
+System`Tools`Rect={0,0,140,30}
+System`Tools`Scale={100}
+
+# This is to configure the the toolbar size and configuration buttons
+System`ToolBar`0`DockID={0}
+System`ToolBar`0`FloatPos={0,0}
+System`ToolBar`0`FloatStyle={0}
+System`ToolBar`0`Items={57665,5,1,14,32912,64,32921,32906,32814,3,32772,32924,}
+System`ToolBar`0`Name={}
+System`ToolBar`0`Rect={-2,-2,500,52}
+System`ToolBar`0`Width={10}
+System`ToolBar`0`Scale={1.250000}
+System`ToolBar`0`800x600`Scale={1.500000}
+System`ToolBar`0`1024x768`Scale={1.250000}
+
+System`Security`Level={2}
+
+#####Text overlay configuration
+System`Overlay`Mode={1} //This determines whether text overlays are enabled
+System`Overlay`Orientation={1} //orientation tags are displayed
+System`Overlay`Scale={1} //ruler is drown on the right edge of image 
+System`Overlay`FontName={Arial} //Specifies the font type to use for all overlays
+System`Overlay`FontSize={120}
+System`Overlay`Max={100} 	// Baseline factor OK
+System`Overlay`Min={80}	// Maximum point size OK
+System`Overlay`Mode={1}  	// Minimum point size OK
+System`Overlay`FontSize_Percent={2} // font size percent to use for all overlays
+
+# This is to enable the drawing of the ruler
+System`Overlay`Scale={1}
+System`Overlay`ScaleOffset={20}
+System`Overlay`Size={60}
+
+##############################################################
+#New for GX_4.0 - based on textoverlays.base (from PACSKit)
+#Separate multiple entries with spaces
+System`Overlay`Default`Top_Left={PATIENT_NAME PATIENT_ID PATIENT_DOB_AGE PATIENT_GENDER}
+System`Overlay`Default`Top_Center={NONE}
+System`Overlay`Default`Top_Right={INSTITUTION_NAME}
+System`Overlay`Default`Center_Left={NONE}
+System`Overlay`Default`Center_Right={NONE}
+System`Overlay`Default`Bottom_Left={NONE}
+System`Overlay`Default`Bottom_Center={NONE}
+System`Overlay`Default`Bottom_Right={NONE}
+
+System`Overlay`CR`Top_Left={NONE}
+System`Overlay`CR`Top_Center={NONE}
+System`Overlay`CR`Top_Right={IMAGE_DATE_TIME SERIES_NUMBER IMAGE_NUMBER CASSETTE_SIZE}
+System`Overlay`CR`Center_Left={NONE}
+System`Overlay`CR`Center_Right={NONE}
+System`Overlay`CR`Bottom_Left={DERIVATION_DESCRIPTION}
+System`Overlay`CR`Bottom_Center={NONE}
+System`Overlay`CR`Bottom_Right={WINDOW_LEVEL_VALUE MANUFACTURER_MODEL_STATION}
+
+System`Overlay`CT`Top_Left={NONE}
+System`Overlay`CT`Top_Center={NONE}
+System`Overlay`CT`Top_Right={STUDY_DESCRIPTION IMAGE_DATE_TIME SERIES_NUMBER IMAGE_NUMBER}
+System`Overlay`CT`Center_Left={NONE}
+System`Overlay`CT`Center_Right={NONE}
+System`Overlay`CT`Bottom_Left={CONVOLUTION_KERNEL TUBE_VOLTAGE TUBE_CURRENT GANTRY_TILT SLICE_THICKNESS_LOCATION SERIES_DESCRIPTION}
+System`Overlay`CT`Bottom_Center={NONE}
+System`Overlay`CT`Bottom_Right={WINDOW_LEVEL_VALUE MANUFACTURER_MODEL_STATION}
+
+System`Overlay`MR`Top_Left={NONE}
+System`Overlay`MR`Top_Center={NONE}
+System`Overlay`MR`Top_Right={INSTITUTION_NAME MANUFACTURER_MODEL_STATION MATRIX_PATIENT_POSITION IMAGE_FORMAT STUDY_DESCRIPTION}
+System`Overlay`MR`Center_Left={NONE}
+System`Overlay`MR`Center_Right={NONE}
+System`Overlay`MR`Bottom_Left={SCAN_OPTION ECHO_NUMBER REP_TIME ECHO_TIME INVERSION_TIME SLICE_THICKNESS_LOCATION}
+System`Overlay`MR`Bottom_Center={NONE}
+System`Overlay`MR`Bottom_Right={RECEIVING_COIL CONTRAST NO_OF_AVG DATA_DIAM PHASE_VECTOR FLIP_ANGLE WINDOW_LEVEL_VALUE}
+
+System`Overlay`NM`Top_Left={NONE}
+System`Overlay`NM`Top_Center={NONE}
+System`Overlay`NM`Top_Right={STUDY_DESCRIPTION STUDY_DATE_TIME SERIES_DESCRIPTION}
+System`Overlay`NM`Center_Left={NONE}
+System`Overlay`NM`Center_Right={NONE}
+System`Overlay`NM`Bottom_Left={ENERGY_WINDOW_VECTOR DETECTOR_VECTOR PHASE_VECTOR TIME_SLICE_VECTOR}
+System`Overlay`NM`Bottom_Center={NONE}
+System`Overlay`NM`Bottom_Right={RR_INTERVAL_VECTOR TIME_SLOT_VECTOR SLICE_VECTOR ROTATION_VECTOR ANGULAR_VIEW_VECTOR}
+
+#Try to keep the following overlay formats in alphabetical order
+System`Overlay`ACQUISITION_DATE_TIME`Format={%<0008/0022> %<0008/0032>}
+System`Overlay`ACCESSION_NUMBER`Format={Study %S}
+System`Overlay`ANGULAR_VIEW_VECTOR`Format={%<0054/0090>}
+System`Overlay`CASSETTE_SIZE`Format={Size %<0018/1403>}
+System`Overlay`CONTRAST`Format={Contrast: %<0018/0010>}
+System`Overlay`CONVOLUTION_KERNEL`Format={%<0018/1210>}
+System`Overlay`DATA_DIAM`Format={FOV %<0018/0090>}
+System`Overlay`DERIVATION_DESCRIPTION`FontSize_Percent={1.5}
+System`Overlay`DERIVATION_DESCRIPTION`Format={%<0008/2111>}
+System`Overlay`DETECTOR_VECTOR`Format={%<0054/0020>}
+System`Overlay`ECHO_NUMBER`Format={Echo %<0018/0086>}
+System`Overlay`ECHO_TIME`Format={TE %1<0018/0081>}
+System`Overlay`ENERGY_WINDOW_VECTOR`Format={%<0054/0010>}
+System`Overlay`FLIP_ANGLE`Format={Flip %<0018/1314>}
+System`Overlay`GANTRY_TILT`Format={Tilt: %1<0018/1120>}
+System`Overlay`IMAGE_DATE_TIME`Format={%<0008/0023> %<0008/0033>}
+System`Overlay`IMAGE_FORMAT`Format={%<0028/0010> x %<0028/0011> x %<0028/0100>}
+System`Overlay`IMAGE_NUMBER`Format={Image %<0020/0013>}
+System`Overlay`INSTITUTION_NAME`Format={%<0008/0080>}
+System`Overlay`INVERSION_TIME`Format={TI %<0008/0082>}
+System`Overlay`MANUFACTURER_MODEL_STATION`Format={%<0008/1090> %<0008/1010>}
+System`Overlay`MATRIX_PATIENT_POSITION`Format={%<0021/1132> %<0018/5100> %<0021/1130>}
+System`Overlay`NO_OF_AVG`Format={NEX %<0018/0083>}
+System`Overlay`PATIENT_DOB_AGE`Format={DOB: %D %A}
+System`Overlay`PATIENT_GENDER`Format={Gender: %G}
+System`Overlay`PATIENT_ID`Format={ID: %I}
+System`Overlay`PATIENT_NAME`FontName={Helvetica-Bold}
+System`Overlay`PATIENT_NAME`FontSize_Percent={3}
+System`Overlay`PATIENT_NAME`Format={%L, %F}
+System`Overlay`PERCENT_PHASE`Format={%<0018/0094>}
+System`Overlay`PHASE_VECTOR`Format={%% FOV %<0054/0030>}
+System`Overlay`RECEIVING_COIL`Format={Coil: %<0018/1250>}
+System`Overlay`REP_TIME`Format={TR %<0018/0080>}
+System`Overlay`REPETITION_TIME`Format={TR %1<0021/1356>}
+System`Overlay`ROTATION_VECTOR`Format={%<0054/0050>}
+System`Overlay`RR_INTERVAL_VECTOR`Format={%<0054/0060>}
+System`Overlay`SCAN_OPTION`Format={%<0018/0024> %<0018/0023>}
+System`Overlay`SERIES_DESCRIPTION`Format={%<0008/103E>}
+System`Overlay`SERIES_NUMBER`Format={Series %<0020/0011>}
+System`Overlay`SLICE_THICKNESS_LOCATION`Format={Slice:%<0018/0050> Loc:%<0020/1041>}
+System`Overlay`SLICE_VECTOR`Format={%<0054/0080>}
+System`Overlay`STUDY_DATE_TIME`Format={%T}
+System`Overlay`STUDY_DESCRIPTION`Format={%<0008/1030>}
+System`Overlay`STUDY_ID`Format={Study %<0020/0010>}
+System`Overlay`TIME_SLICE_VECTOR`Format={%<0054/0100>}
+System`Overlay`TIME_SLOT_VECTOR`Format={%<0054/0070>}
+System`Overlay`TUBE_CURRENT`Format={mA %<0018/1151>}
+System`Overlay`TUBE_VOLTAGE`Format={kV %<0018/0060>}
+System`Overlay`WINDOW_LEVEL_VALUE`Format={W:%1<0028/1051> L:%0<0028/1050>}
+#end of new overlay stuff
+##################################

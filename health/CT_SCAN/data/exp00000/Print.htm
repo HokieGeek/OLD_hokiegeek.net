@@ -1,0 +1,21 @@
+<html>
+<head>
+<link href="../ali/HTML/style.css" type="text/css" rel="stylesheet">
+<script language="Javascript">
+function loadReport()
+{
+	if(!window.opener)
+	{
+		alert("This page should be opened from the report page");
+		return;
+	}
+	var myBody=document.getElementById('text');
+	myBody.innerHTML = window.opener.document.hiddenForm.printReport.value;
+}
+</script>
+<title>Report
+</title>
+</head>
+<body id="text" onload="loadReport();window.print()">
+</body>
+</html>

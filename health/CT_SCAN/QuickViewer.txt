@@ -1,0 +1,6 @@
+This file serves as a marker for an export destination.
+
+If the name of this file:
+
+	AdvancedViewer.txt - the exported studies use Advanced Viewer to show images
+	QuickViewer.txt   - the studies use Quick (html-based) Viewer by default

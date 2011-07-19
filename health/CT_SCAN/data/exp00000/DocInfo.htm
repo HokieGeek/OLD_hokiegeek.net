@@ -1,0 +1,52 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<title>Untitled Document</title>
+<link href="../ali/HTML/style.css" type="text/css" rel="stylesheet"><script language="JavaScript">
+function openPrint() 
+{
+	var report = "<table><tr><td><img style='height:103px;' src='../Ali/Logo/Logo.gif' border='0'/></td><td align='right' width=100%><table>";
+	report += document.getElementById("PatientInfo").innerHTML+"</table></td></tr></table><hr/>";
+	var title=new String(document.getElementById("ReportTitle").innerHTML);
+	title=title.replace('<BR>',' - ');
+	report += "<p class='DocInfoTitle'>"+title+"</p>";
+	report += window.parent.frames[3].document.body.innerHTML+"<hr/>";
+	report += window.parent.frames[4].document.body.innerHTML;
+	document.hiddenForm.printReport.value=report;
+
+	var win = window.open('Print.htm','_blank','left=100,top=100,toolbar=no,scrollbars=yes,menubar=yes,location=no,status=no');
+}
+</script></head>
+<body bgcolor="#FFFFFF" text="#000000" style="margin:5px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+<tr>
+<td id="ReportTitle" class="DocInfoTitle" style="width:60%;text-align:left"></td>
+<td style="font-size:10pt;text-align:right;">
+<table id="PatientInfo">
+<tr class="DocInfoInfo">
+<td style="text-align:right;">Name:</td>
+<td style="font-weight:bold;text-align:left;">Perez, Andres</td>
+</tr>
+<tr class="DocInfoInfo">
+<td style="text-align:right;">DOB:</td>
+<td style="font-weight:bold;text-align:left;">07-Feb-1982</td>
+</tr>
+<tr class="DocInfoInfo">
+<td style="text-align:right;">ID:</td>
+<td style="font-weight:bold;text-align:left;">723909</td>
+</tr>
+<tr class="DocInfoInfo">
+<td style="text-align:right;">Study Date:</td>
+<td style="font-weight:bold;text-align:left;">24-Nov-2009</td>
+</tr>
+</table>
+</td>
+<td style="width:5%;"></td>
+</tr>
+<tr>
+<td colspan="3">
+<form name="hiddenForm"><input type="hidden" name="printReport" value="Can not create printer-friendly Report<BR/>Please close this window and try again"></form><a class="DocInfoLink" href="javascript:openPrint()">Show Printer-Friendly Version</a></td>
+</tr>
+</table>
+</body>
+</html>

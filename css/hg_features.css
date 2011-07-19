@@ -1,0 +1,169 @@
+.hg_features { 
+	text-align: center;
+}
+
+.hg_feature {
+	height: 200px;
+	width: 47%;
+	min-width: 200px;
+	border: 4px double #333333;
+	background-color: tan;
+	background-image: url('../img/hg_feature.jpg');
+	padding: 5px;
+	margin-right: 5px;
+	margin-left: 7px;
+	margin-bottom: 10px;
+	float: left;
+    overflow-y: hidden;
+}
+
+.hg_feature_header {
+    text-align: right;
+    font-family: helvetica;
+    color: #1F0F04;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.hg_feature_header hr {
+    width: 80%;
+    border-top-style: solid;
+	border-color: #8b7143;
+    text-align: center;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+.hg_feature_content {
+    height: 100%;
+}
+
+.hg_feature_content img {
+    float: left;
+    border: 1px solid black;
+    width: 200px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.hg_feature_content table tr td {
+    font-weight: bold;
+    font-size: .98em;
+    vertical-align: top;
+    text-align: right;
+}
+
+.hg_feature_content table tr td + td {
+    font-weight: normal;
+    text-align: left;
+    padding-left: 6px;
+}
+.hg_feature_content table tr td + td span img {
+    width: 22px;
+    border: none;
+    margin-right: 2px;
+}
+
+.feature_tabs {
+    height: 100%;
+}
+.feature_tabs div.tab {
+    height: 135px;
+    width: 48%;
+}
+.feature_tabs span.selected_tab {
+    background: transparent !important;
+}
+
+.feature_tabs div.selected_content {
+    left: -5px;
+    background: transparent !important;
+    border-width: 0px 0px 1px 0px;
+    text-align: center;
+}
+
+div.tab_gutter {
+    width: 101.7%;
+    background-color: #C6AA85;
+    bottom: 57px;
+    position: relative;
+    height: 29px;
+    margin: 0px;
+    padding: 0px;
+    left: -5px;
+    z-index: 0;
+}    
+
+#feature_baby_butt_smooth div table + div ,
+.hg_feature_content table tr td + td div {
+	margin-top: 10px;
+	margin-left: 20px;
+	text-align: center;
+}
+#feature_baby_butt_smooth div table + div img ,
+.hg_feature_content table tr td + td div img {
+    width: 30px;
+    border: none;
+    margin-right: 4px;
+}
+
+/*
+#feature_baby_butt_smooth table tr td {
+    font-weight: bold;
+    font-size: .98em;
+    vertical-align: top;
+    text-align: right;
+}
+
+#feature_baby_butt_smooth table tr td + td {
+    font-weight: normal;
+    text-align: left;
+    padding-left: 6px;
+}
+#feature_baby_butt_smooth table tr td + td span img {
+    width: 22px;
+    border: none;
+    margin-right: 2px;
+}
+*/
+
+#feature_give_us_a_cuppa_govna {
+	font-family: Helvetica;
+}
+
+#feature_give_us_a_cuppa_govna div {
+	text-align: center;
+	/*height: 48%;*/
+}
+
+#latest_cuppa_tea_name {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#latest_cuppa_tea_fixins {
+	font-size: 0.75em;
+}
+
+#latest_cuppa_steeping_details {
+	position: relative;
+	top: 10px;
+	/*margin-top: 20px;*/
+	font-size: 1.0em;
+	font-weight: normal;
+}
+
+#latest_cuppa_rating {
+	/*margin-top: 15px;*/
+	position: relative;
+	top: 25px;
+	left: 15%;
+	width: 80%;
+	font-weight: bold; 
+	font-size: 1.5em;
+}
+#latest_cuppa_rating img {
+    width: 30px;
+    border: none;
+    margin-right: 4px;
+}

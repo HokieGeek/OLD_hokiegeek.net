@@ -1,0 +1,89 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<title>Untitled Document</title>
+<link href="../ali/HTML/style.css" type="text/css" rel="stylesheet">
+</head>
+<body class="ImgLinkBody" onload="UpdateTop()" onresize="ResizeImage()">
+<table width="100%" height="100%" cellspacing="0" cellpadding="0" class="ImgLinkTable" id="tableAreaWidth"> 
+<tr> 
+<td class="ImgLinkColumn">
+<img name="MainImg" src="exp0000.jpg" onload="ResizeImage()">
+</td>
+</tr>
+</table>
+<script language="JavaScript">
+function SelFirstImage()
+{
+	var selImg = GetMainImg();
+	if (selImg == null)
+	{
+    		setTimeout('SelFirstImage()',250);
+		return;
+	}
+	var index = window.parent.frames.length-2;
+	var chitFrame = window.parent.frames[index];
+	if (chitFrame == null)
+	{
+    		setTimeout('SelFirstImage()',250);
+		return;		
+	}
+	selImg[0].src=chitFrame.document.images[0][0];
+}
+
+function GetMainImg()
+{
+	var selImg = document.getElementsByName('MainImg');
+	if(selImg.length == 0) return null;
+	return selImg;
+}
+
+function ResizeImage()
+{
+	var im = GetMainImg();
+	if (im == null)
+	{
+    		setTimeout('ResizeImage()',250);
+		return;
+	}
+
+// need it because screen is not square!!!
+	var screenwidth;
+	var screenheight;
+
+	var ns = (!document.all && document.getElementById); // ns6
+	if(!ns) ns = (document.layers); // ns4
+	var ie = (document.all);
+
+	if(ie)
+	{
+		screenwidth =document.body.clientWidth;
+		screenheight=document.body.clientHeight;
+	}
+	else if(ns)
+	{
+		screenwidth =innerWidth;
+		screenheight=innerHeight;
+	}
+
+	var st = im[0].style;
+	if((!screenwidth)||(!screenheight))
+	{
+// default width/height coef: 1.5
+		if(im[0].width>im[0].height*1.5) {st.width='100%';st.height='';}
+		else {st.height='100%';st.width='';}
+	}else{
+		if(im[0].width>im[0].height*screenwidth/screenheight) {st.width=String(screenwidth-22);st.height='';}
+		else {st.height=String(screenheight-26);st.width='';} // there are some margins and borders: we need -22 and -26 to adjust them 
+	}
+}
+
+function UpdateTop()
+{
+	var myFrame = window.parent.parent.frames[0];
+	myFrame.F2();
+}
+</script>
+</body>
+</html>
+

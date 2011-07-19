@@ -1,0 +1,190 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<title>Untitled Document</title>
+<link href="../ali/HTML/style.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="../ali/HTML/style.js"></script><script language="JavaScript">
+			 var images = [  
+			
+						['exp0217.jpg']
+					
+						,['exp0073.jpg']
+					
+						,['exp0001.jpg']
+					
+						,['exp0000.jpg']
+					
+						,['exp0361.jpg']
+					
+						,['exp0409.jpg']
+					
+			  ]
+		 
+
+//var ImgLeftSize=161;
+//var ImgLeftSelectedBorder='3px solid yellow';
+//var ImgLeftLookedBorder='3px solid blue';
+// in js file now
+
+var lastCol = 0; // last td's id clicked
+var lastImg = 0; // last serie's id clicked
+
+var patientInfoText = null;
+
+
+
+function ResetSerie()
+{
+	if (null == lastCol)
+		return;
+		
+	var col = document.getElementById(lastCol);
+	if (null == col)
+		return;
+	col.style.fontWeight='normal';
+
+	col = document.getElementsByName(lastImg);
+	if (null == col)
+		return;
+	col[0].style.border=ImgLeftLookedBorder;
+}
+
+// we don't need it now: one column thumbnails
+/*
+function UpdateTop(colText)
+{
+	if (null == colText)
+		return;
+
+	var topFrame = window.parent.frames[0];
+	if(!topFrame){ setTimeout('UpdateTop('+colText+')',250); return;}
+ 	var patientInfo = topFrame.document.getElementById("PatientInfo");
+	if(!patientInfo){ setTimeout('UpdateTop('+colText+')',250); return;}
+	if (null == patientInfoText)
+		patientInfoText = patientInfo.innerHTML;
+	var currSerie =	colText.split('#');
+	patientInfo.innerHTML = patientInfoText + "-  Series " + currSerie[1];
+}
+*/
+
+function SelSerie(id1, id2, id3)
+{
+	ResetSerie();
+	lastCol = id1;
+	lastImg = id2;
+	firstTouch = true;
+
+	var col = document.getElementById(id1);
+	if(col) col.style.fontWeight='bold';
+	else{ setTimeout('SelSerie('+id1+','+id2+','+id3+')',250); return;}
+
+// we don't need it now: one column thumbnails
+//	col = document.getElementById(id3);
+//	var colText = col.innerHTML;
+
+	col = document.getElementsByName(id2);
+	if(col) col[0].style.border=ImgLeftSelectedBorder;
+	else{ setTimeout('SelSerie('+id1+','+id2+','+id3+')',250); return;}
+
+// now we use id3 to define, is it application call or user click: 
+	if(id3) SelImage();
+}
+
+function SelImage()
+{
+	var mainFrame = window.parent.frames[3];
+	if(mainFrame == null)
+	{
+		setTimeout('SelImage()',250);
+		return;
+	}
+	var imgFrame = window.parent.frames[4];
+	if(imgFrame == null)
+	{
+		setTimeout('SelImage()',250);
+		return;
+	}
+
+	var selImg = imgFrame.document.getElementsByName('MainImg');
+	if(selImg == null)
+	{
+		setTimeout('SelImage()',250);
+		return;
+	}
+	mainFrame.firstTouch = 0;
+	mainFrame.serieId = lastCol;
+	mainFrame.LoadNavBar();
+//	selImg[0].src=images[lastCol-1][0]; // Now we select first image through LoadNavBar()
+}
+
+function ResizeImages()
+{
+	var numSeries=0;
+	try{
+		numSeries=document.getElementById('MainTable').children[0].children.length/2;
+	}catch(err){
+		setTimeout('ResizeImages()',250);
+	}
+
+	for(var i=0; i < numSeries; i++)
+	{
+		var im=document.getElementsByName(""+(i+1)+"_1");
+		var st = im[0].style;
+		if(im[0].width > im[0].height) st.width=ImgLeftSize;
+		else st.height=ImgLeftSize;
+	}
+}
+ 
+</script></head>
+<body class="ImgLeftBody" onload="ResizeImages()">
+<table id="MainTable" cellpadding="0" cellspacing="0" style="border-width:0; border-collapse: collapse;width:100%;">
+<tr height="10"><td></td><td></td></tr>
+<tr style="cursor:hand;" id="1" onclick="JavaScript:SelSerie('1', '1_1', '1_2')
+				">
+<td width="8" height="10"></td>
+<td valign="top" align="center"><img class="ImgLeftImage" name="1_1" src="exp0217.jpg"><div class="ImgLeftText" id="1_2">
+					#1 (144 images)</div>
+</td>
+</tr>
+<tr height="10"><td></td><td></td></tr>
+<tr style="cursor:hand;" id="2" onclick="JavaScript:SelSerie('2', '2_1', '2_2')
+				">
+<td width="8" height="10"></td>
+<td valign="top" align="center"><img class="ImgLeftImage" name="2_1" src="exp0073.jpg"><div class="ImgLeftText" id="2_2">
+					#2 (144 images)</div>
+</td>
+</tr>
+<tr height="10"><td></td><td></td></tr>
+<tr style="cursor:hand;" id="3" onclick="JavaScript:SelSerie('3', '3_1', '3_2')
+				">
+<td width="8" height="10"></td>
+<td valign="top" align="center"><img class="ImgLeftImage" name="3_1" src="exp0001.jpg"><div class="ImgLeftText" id="3_2">
+					#3 (72 images)</div>
+</td>
+</tr>
+<tr height="10"><td></td><td></td></tr>
+<tr style="cursor:hand;" id="4" onclick="JavaScript:SelSerie('4', '4_1', '4_2')
+				">
+<td width="8" height="10"></td>
+<td valign="top" align="center"><img class="ImgLeftImage" name="4_1" src="exp0000.jpg"><div class="ImgLeftText" id="4_2">
+					#4 (1 images)</div>
+</td>
+</tr>
+<tr height="10"><td></td><td></td></tr>
+<tr style="cursor:hand;" id="5" onclick="JavaScript:SelSerie('5', '5_1', '5_2')
+				">
+<td width="8" height="10"></td>
+<td valign="top" align="center"><img class="ImgLeftImage" name="5_1" src="exp0361.jpg"><div class="ImgLeftText" id="5_2">
+					#5 (48 images)</div>
+</td>
+</tr>
+<tr height="10"><td></td><td></td></tr>
+<tr style="cursor:hand;" id="6" onclick="JavaScript:SelSerie('6', '6_1', '6_2')
+				">
+<td width="8" height="10"></td>
+<td valign="top" align="center"><img class="ImgLeftImage" name="6_1" src="exp0409.jpg"><div class="ImgLeftText" id="6_2">
+					#6 (48 images)</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

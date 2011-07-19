@@ -1,0 +1,24 @@
+<html xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<script language="JavaScript">
+var StudyTabFolders = 6;
+		
+
+function Reload()
+{
+	if(StudyTabFolders>3)
+	{
+		window.open("Doc.htm","mainFrame","",1);
+		return;
+	}
+	if(StudyTabFolders>1)
+	{
+		window.open("Img.htm","mainFrame","",1);
+		return;
+	}
+	window.open("Cine.htm","mainFrame","",1);
+}
+</script></head>
+<body onload="Reload()"></body>
+</html>
