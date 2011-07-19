@@ -1,2 +1,3 @@
-sss/*.json
 *~
+sss/*.json
+sss/gen/gauth.keys
