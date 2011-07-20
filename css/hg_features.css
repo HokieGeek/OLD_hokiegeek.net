@@ -19,7 +19,8 @@
 
 .hg_feature_header {
     text-align: right;
-    font-family: helvetica;
+    font-family: "Century Gothic", helvetica;
+    font-weight: bold;
     color: #1F0F04;
     padding-right: 4px;
     padding-left: 4px;
@@ -47,8 +48,9 @@
 }
 
 .hg_feature_content table tr td {
+    font-family: Tahoma;
     font-weight: bold;
-    font-size: .98em;
+    font-size: .9em;
     vertical-align: top;
     text-align: right;
 }
@@ -94,10 +96,14 @@ div.tab_gutter {
     z-index: 0;
 }    
 
-#feature_baby_butt_smooth div table + div ,
 .hg_feature_content table tr td + td div {
-	margin-top: 10px;
+	margin-top: 8px;
 	margin-left: 20px;
+	text-align: center;
+}
+#feature_baby_butt_smooth div table + div {
+	margin-top: 10px;
+	margin-left: 25px;
 	text-align: center;
 }
 #feature_baby_butt_smooth div table + div img ,
@@ -128,7 +134,7 @@ div.tab_gutter {
 */
 
 #feature_give_us_a_cuppa_govna {
-	font-family: Helvetica;
+	/*font-family: Helvetica;*/
 }
 
 #feature_give_us_a_cuppa_govna div {
@@ -137,7 +143,7 @@ div.tab_gutter {
 }
 
 #latest_cuppa_tea_name {
-	font-size: 1.2em;
+	font-size: 1.3em;
 	font-weight: bold;
 }
 
