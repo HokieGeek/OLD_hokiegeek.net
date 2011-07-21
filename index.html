@@ -257,6 +257,7 @@ function setupFeatures(e) {
 
 			var table = document.createElement("table");
 			var row = null;
+			var cell = null;
 
 			// Name
 			var tea_name = document.createElement("td");
@@ -285,14 +286,16 @@ function setupFeatures(e) {
 			} 
 
 			row = document.createElement("tr");
+			//cell = document.createElement("td");
 			row.appendChild(tea_name);
+			//row.appendChild(cell);
 			table.appendChild(row);
 
 			// Steeping details
 			if (d.EntryDate != null || d.SteepTime != null || 
 				d.Temperature != null || d.SteepingVessel != null) {
 
-				var steeping_details = document.createElement("div");
+				var steeping_details = document.createElement("td");
 				steeping_details.setAttribute("id", "latest_cuppa_steeping_details");
 				steeping_details.innerHTML = "Steeped ";
 				steeping_details.innerHTML += getVagueTime(d.getEntryDate()).toLowerCase()+" ";
@@ -304,13 +307,15 @@ function setupFeatures(e) {
 				if (d.SteepingVessel != null) 
 					steeping_details.innerHTML += "using the "+d.SteepingVessel.toLowerCase();
 				row = document.createElement("tr");
+				//cell = document.createElement("td");
 				row.appendChild(steeping_details);
+				//row.appendChild(cell);
 				table.appendChild(row);
 			}
 
 			// Rating
 			var tea_ratings_num = 4;
-			var rating = document.createElement("div");
+			var rating = document.createElement("td");
 			rating.setAttribute("id", "latest_cuppa_rating");
 			for (var ii = 0; ii < tea_ratings_num; ii++) {
 				var img = document.createElement("img");
@@ -322,7 +327,9 @@ function setupFeatures(e) {
 				rating.appendChild(img);
 			}
 			row = document.createElement("tr");
+			//cell = document.createElement("td");
 			row.appendChild(rating);
+			//row.appendChild(cell);
 			table.appendChild(row);
 
 			details.appendChild(table);
