@@ -19,7 +19,7 @@
 
 .hg_feature_header {
     text-align: right;
-    font-family: "Century Gothic", helvetica;
+    font-family: "Century Gothic", Helvetica;
     font-weight: bold;
     color: #1F0F04;
     padding-right: 4px;
@@ -37,20 +37,32 @@
 
 .hg_feature_content {
     height: 100%;
+    font-family: Tahoma;
+    font-size: .82em !important;
 }
 
-.hg_feature_content img {
+.hg_feature_content_pic {
+    height: 160px;
+    width: 160px;
     float: left;
-    border: 1px solid black;
-    width: 200px;
     margin-right: 5px;
     margin-left: 5px;
+	text-align: center;
+}
+
+.hg_feature_content_pic img, 
+.hg_feature_content img {
+    border: 1px solid black;
+    height: 150px;
+    float: left;
+    margin-right: 5px;
+    margin-left: 5px;
+	text-align: center;
 }
 
 .hg_feature_content table tr td {
-    font-family: Tahoma;
+    font-size: .842em !important;
     font-weight: bold;
-    font-size: .9em;
     vertical-align: top;
     text-align: right;
 }
@@ -108,7 +120,7 @@ div.tab_gutter {
 }
 #feature_baby_butt_smooth div table + div img ,
 .hg_feature_content table tr td + td div img {
-    width: 30px;
+    height: 30px;
     border: none;
     margin-right: 4px;
 }
@@ -142,6 +154,10 @@ div.tab_gutter {
 	/*height: 48%;*/
 }
 
+#feature_give_us_a_cuppa_govna div table td {
+	text-align: center;
+}
+
 #latest_cuppa_tea_name {
 	font-size: 1.3em;
 	font-weight: bold;
@@ -151,16 +167,15 @@ div.tab_gutter {
 	font-size: 0.75em;
 }
 
+/*
 #latest_cuppa_steeping_details {
 	position: relative;
 	top: 10px;
-	/*margin-top: 20px;*/
 	font-size: 1.0em;
 	font-weight: normal;
 }
 
 #latest_cuppa_rating {
-	/*margin-top: 15px;*/
 	position: relative;
 	top: 25px;
 	left: 15%;
@@ -168,8 +183,9 @@ div.tab_gutter {
 	font-weight: bold; 
 	font-size: 1.5em;
 }
+*/
 #latest_cuppa_rating img {
-    width: 30px;
+    height: 30px;
     border: none;
     margin-right: 4px;
 }
