@@ -245,9 +245,9 @@ function setupFeatures(e) {
 
             var d = this.data.data;
 
-			var pic = document.createElement("div");
-			pic.setAttribute("class", "hg_feature_content_pic");
+			//var pic = document.createElement("div");
 			var img = document.createElement("img");
+			img.setAttribute("class", "hg_feature_content_pic");
 			img.setAttribute("src", d.Tea.Pictures[0].getURL(200));
 			//pic.appendChild(img);
 			//content_elem.appendChild(pic);
@@ -260,7 +260,7 @@ function setupFeatures(e) {
 			var cell = null;
 
 			// Name
-			var tea_name = document.createElement("td");
+			var tea_name = document.createElement("div");
 			tea_name.setAttribute("id", "latest_cuppa_tea_name");
 			tea_name.appendChild(document.createTextNode(d.Tea.getName()));
 			if (d.Tea.Type != "Blend")
@@ -268,6 +268,7 @@ function setupFeatures(e) {
 		
 			// Fixins
 			var tea_fixins = d.Fixins;
+			//tea_fixins = ["Milk", "Honey"]; // FIXME
 			if (tea_fixins != null) {
 				var fixins_list = document.createElement("div");
 				fixins_list.setAttribute("id", "latest_cuppa_tea_fixins");
@@ -285,82 +286,10 @@ function setupFeatures(e) {
 				tea_name.appendChild(fixins_list);
 			} 
 
-			row = document.createElement("tr");
-			//cell = document.createElement("td");
-			row.appendChild(tea_name);
-			//row.appendChild(cell);
-			table.appendChild(row);
-
-			// Steeping details
-			if (d.EntryDate != null || d.SteepTime != null || 
-				d.Temperature != null || d.SteepingVessel != null) {
-
-				var steeping_details = document.createElement("td");
-				steeping_details.setAttribute("id", "latest_cuppa_steeping_details");
-				steeping_details.innerHTML = "Steeped ";
-				steeping_details.innerHTML += getVagueTime(d.getEntryDate()).toLowerCase()+" ";
-
-				if (d.SteepTime != null) 
-					steeping_details.innerHTML += "for <i>"+d.SteepTime+"</i> ";
-				if (d.Temperature != null) 
-				steeping_details.innerHTML += "<br />at <i>"+d.Temperature+"&deg;F</i> ";
-				if (d.SteepingVessel != null) 
-					steeping_details.innerHTML += "using the "+d.SteepingVessel.toLowerCase();
-				row = document.createElement("tr");
-				//cell = document.createElement("td");
-				row.appendChild(steeping_details);
-				//row.appendChild(cell);
-				table.appendChild(row);
-			}
-
-			// Rating
-			var tea_ratings_num = 4;
-			var rating = document.createElement("td");
-			rating.setAttribute("id", "latest_cuppa_rating");
-			for (var ii = 0; ii < tea_ratings_num; ii++) {
-				var img = document.createElement("img");
-				var img_src = "tea/img/tea_cup";
-				if (ii > d.Rating-1) img_src += "_greyed";
-				img_src += ".png";
-				img.setAttribute("src", img_src);
-				img.setAttribute("title", d.Rating+"/"+tea_ratings_num+" steaming tea cups");
-				rating.appendChild(img);
-			}
-			row = document.createElement("tr");
-			//cell = document.createElement("td");
-			row.appendChild(rating);
-			//row.appendChild(cell);
-			table.appendChild(row);
-
-			details.appendChild(table);
-
-			/*
-			// Name
-			var tea_name = document.createElement("div");
-			tea_name.setAttribute("id", "latest_cuppa_tea_name");
-			tea_name.appendChild(document.createTextNode(d.Tea.getName()));
-			if (d.Tea.Type != "Blend")
-				tea_name.appendChild(document.createTextNode(" ("+d.Tea.Type+")"));
-			details.appendChild(tea_name);
-
-			// Fixins
-			var tea_fixins = d.Fixins;
-			if (tea_fixins != null) {
-				var fixins_list = document.createElement("div");
-				fixins_list.setAttribute("id", "latest_cuppa_tea_fixins");
-				fixins_list.innerHTML = "with ";
-				//for (var i = 0; i < tea_fixins.length; i++) {
-				for (var i = tea_fixins.length-1; i >= 0; i--) {
-					//if (i == tea_fixins.length-1)
-					if (i == 0)
-						fixins_list.innerHTML += " and ";
-					//else if (i != 0)
-					else if (i != tea_fixins.length-1)
-						fixins_list.innerHTML += ", ";
-					fixins_list.innerHTML += tea_fixins[i].toLowerCase();;
-				}
-				details.appendChild(fixins_list);
-			} 
+			//row = document.createElement("tr");
+			//row.appendChild(tea_name);
+			//table.appendChild(row);
+			content_elem.appendChild(tea_name);
 
 			// Steeping details
 			if (d.EntryDate != null || d.SteepTime != null || 
@@ -377,7 +306,11 @@ function setupFeatures(e) {
 				steeping_details.innerHTML += "<br />at <i>"+d.Temperature+"&deg;F</i> ";
 				if (d.SteepingVessel != null) 
 					steeping_details.innerHTML += "using the "+d.SteepingVessel.toLowerCase();
-				details.appendChild(steeping_details);
+				//row = document.createElement("tr");
+				//row.appendChild(steeping_details);
+				//table.appendChild(row);
+				content_elem.appendChild(steeping_details);
+
 			}
 
 			// Rating
@@ -393,10 +326,16 @@ function setupFeatures(e) {
 				img.setAttribute("title", d.Rating+"/"+tea_ratings_num+" steaming tea cups");
 				rating.appendChild(img);
 			}
-			details.appendChild(rating);
-			*/
+			//row = document.createElement("tr");
+			//cell = document.createElement("td");
+			//cell.appendChild(rating);
+			//row.appendChild(cell);
+			//table.appendChild(row);
 
-			content_elem.appendChild(details);
+			//details.appendChild(table);
+			content_elem.appendChild(rating);
+
+			//content_elem.appendChild(details);
 
             return true;
         }

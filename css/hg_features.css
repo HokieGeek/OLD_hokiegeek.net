@@ -41,15 +41,21 @@
     font-size: .82em !important;
 }
 
+/*
 .hg_feature_content_pic {
     height: 160px;
-    width: 160px;
     float: left;
     margin-right: 5px;
     margin-left: 5px;
 	text-align: center;
 }
 
+.hg_feature_content_pic {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+*/
 .hg_feature_content_pic img, 
 .hg_feature_content img {
     border: 1px solid black;
@@ -146,20 +152,24 @@ div.tab_gutter {
 */
 
 #feature_give_us_a_cuppa_govna {
-	/*font-family: Helvetica;*/
+	font-size: .99em !important;
 }
 
 #feature_give_us_a_cuppa_govna div {
 	text-align: center;
-	/*height: 48%;*/
+	height: 25%;
 }
 
+/*
+#feature_give_us_a_cuppa_govna div table {
+	width: 60%;
+}
 #feature_give_us_a_cuppa_govna div table td {
 	text-align: center;
 }
+*/
 
 #latest_cuppa_tea_name {
-	font-size: 1.3em;
 	font-weight: bold;
 }
 
@@ -167,25 +177,24 @@ div.tab_gutter {
 	font-size: 0.75em;
 }
 
-/*
 #latest_cuppa_steeping_details {
-	position: relative;
-	top: 10px;
-	font-size: 1.0em;
 	font-weight: normal;
 }
 
 #latest_cuppa_rating {
+	/*
+	margin-top: 25px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	*/
 	position: relative;
-	top: 25px;
-	left: 15%;
-	width: 80%;
-	font-weight: bold; 
-	font-size: 1.5em;
+	top: 8%;
+	float: right;
+	width: 49%;
 }
-*/
 #latest_cuppa_rating img {
-    height: 30px;
+    height: 40px;
     border: none;
     margin-right: 4px;
 }
