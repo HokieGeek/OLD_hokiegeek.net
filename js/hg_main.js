@@ -233,21 +233,24 @@ function getVagueTime(t) {
 
 	// Next we do the time	
 	if (sameDay(today, t)) { //<1hr ago
+		var delta_hours = today.getHours()-t.getHours();
 		if (t.getHours() > today.getHours()) // The FUTURE!
 			time = "From the mysterious future!";
-		else if (today.getHours() == t.getHours()) //<1hr ago
-			time = t.getMinutes()+" mins ago";
+		else if (delta_hours < 1) 
+			time = "A few minutes ago";
+		else if (delta_hours >= 1 && delta_hours < 2) 
+			time = "About an hour ago";
+		else if (delta_hours >= 2 && delta_hours < 4)
+			time = "A couple of hours ago";
+		else if (delta_hours >= 4 && delta_hours <= 6)
+			time = "A few hours ago";
 		else {
-			if (today.getHours()-t.getHours() < 2)
-				time = "A couple of hours ago";
-			else {
-				if (t.getHours() < 11)
-					time = "This morning";
-				else if (t.getHours() > 11 && t.getHours() < 17)
-					time = "This afternoon";
-				else
-					time = "Earlier this evening";
-			}
+			if (t.getHours() < 11)
+				time = "This morning";
+			else if (t.getHours() > 11 && t.getHours() < 17)
+				time = "This afternoon";
+			else
+				time = "Earlier this evening";
 		}
 	} else if (today.getDate()-1 == t.getDate()) { // Yesterday
 		if (t.getHours() < 11)
