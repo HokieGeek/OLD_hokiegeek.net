@@ -1,0 +1,23 @@
+#!/bin/bash
+
+function doCompile() {
+    out=$1; shift
+    args=""
+    for l in $@; do
+        args="--js=$l "$args
+    done
+    [ -f $out ] && rm -rf $out
+    java -jar compiler.jar $args --js_output_file=$out
+}
+
+## First, we create the libs js
+#doCompile hg_libs.js uncompiled/jquery*.js `ls -1 uncompiled/lib*.js | grep -v libanimation.js`
+#doCompile hg_libs.js `ls -1 uncompiled/lib*.js | grep -v libanimation.js`
+doCompile hg_libs.js uncompiled/libtabs.js uncompiled/libhttprequest.js uncompiled/libpicasaweb.js uncompiled/libslideshow.js uncompiled/libgoogledata.js uncompiled/libgspreadsheet.js
+
+## Create the js for the other pages
+doCompile hg_featurepages.js hg_libs.js `ls -1 uncompiled/hg_*.js | grep -v hg_features.js`
+
+## Create the js for the main page
+doCompile hg_mainpage.js hg_featurepages.js uncompiled/hg_features.js
+
