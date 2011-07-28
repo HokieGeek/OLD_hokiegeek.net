@@ -1,19 +1,19 @@
 <html>
 <head>
 <title>hokiegeek.net</title>
-<script type="text/JavaScript" src="js/jquery-1.5.1.js"></script>
-<script type="text/JavaScript" src="js/hg_main.js"></script>
-<script type="text/JavaScript" src="js/hg_nav.js"></script>
+<script type="text/JavaScript" src="js/jquery-1.5.1.js" async="true"></script>
+<script type="text/JavaScript" src="js/hg_main.js" async="true"></script>
+<script type="text/JavaScript" src="js/hg_nav.js" async="true"></script>
 
-<script type="text/JavaScript" src="js/libtabs.js"></script>
+<script type="text/JavaScript" src="js/libtabs.js" async="true"></script>
 <script type="text/JavaScript" src="js/libhttprequest.js"></script>
 <script type="text/JavaScript" src="js/libgoogledata.js"></script>
 <script type="text/JavaScript" src="js/libpicasaweb.js"></script>
 
-<script type="text/JavaScript" src="shaving/js/data.js"></script>
-<script type="text/JavaScript" src="tea/js/data.js"></script>
-<script type="text/JavaScript" src="js/hg_features.js"></script>
-<script type="text/JavaScript" src="js/hg_journals.js"></script>
+<script type="text/JavaScript" src="shaving/js/data.js" async="true"></script>
+<script type="text/JavaScript" src="tea/js/data.js" async="true"></script>
+<script type="text/JavaScript" src="js/hg_features.js" async="true"></script>
+<script type="text/JavaScript" src="js/hg_journals.js" async="true"></script>
 
 <link rel="shortcut icon" type="image/x-icon" href="img/hg_icon.png">
 <link type="text/css" rel="StyleSheet" href="css/hg_nav.css" media="screen" />
@@ -173,6 +173,11 @@ function setupFeatures(e) {
 			if (!this.data.data_updated || this.data.data == null) return false;
 
 			var d = this.data.data;
+            if (d == null) {
+                console.log("ERROR: Could not find shaving data!");
+                return false;
+            } else
+                console.log("Found shaving data: ", d);
 
             // TODO: This should be a looping slideshow of all the primary pictures in this shave
 			var picLyr = document.createElement("div");
@@ -643,6 +648,35 @@ a { text-decoration: none; }
     margin-bottom: 5px;
     width: 98%;
     text-align: center;
+}
+.tab { 
+	border-color: #fff !important;
+}
+.tab_name {
+	background-color: #bfa391 !important;
+	border-color: #d3b4a0 !important;
+}
+.tab_name:hover {
+	background-color: #d3b4a0 !important;
+}
+.left_tab > .tab_name {
+	border-right-color: #af9685 !important;
+}
+.left_tab .tab_content {
+	width: 91% !important;
+}
+.selected_tab , 
+.selected_tab:hover {
+	background-color: #fff !important;
+	border-color: #998374 !important;
+	font-weight: bold !important;
+}
+.selected_tab_bridge {
+	border-color: #998374 !important;
+}
+.tab_content {
+	background-color: #fff !important;
+	border-color: #998374 !important;
 }
 </style>
 <!--script type="text/JavaScript" src="js/hg_googleanalytics.js"></script-->
