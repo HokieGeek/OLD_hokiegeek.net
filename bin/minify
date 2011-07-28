@@ -22,6 +22,7 @@ function doJsMinify() {
 }
 
 function doCssMinify() {
+    # TODO: if not worth minifying, then just copy over
     out=$1; shift
     [ -f $out ] && rm -rf $out
     java -jar $css_minifier --verbose --type css -o $out $@
@@ -29,23 +30,24 @@ function doCssMinify() {
 
 if $js_only; then
     ## First, we create the libs js
-    doJsMinify $js_bin_dir/hg_libs.js \
-               $js_src_dir/libtabs.js $js_src_dir/libhttprequest.js $js_src_dir/libpicasaweb.js \
-                                      $js_src_dir/libslideshow.js $js_src_dir/libgoogledata.js
+    #doJsMinify $js_bin_dir/hg_libs.js \
+    #           $js_src_dir/libtabs.js $js_src_dir/libhttprequest.js $js_src_dir/libgoogledata.js \
+    #           $js_src_dir/libpicasaweb.js $js_src_dir/libslideshow.js 
 
     ## Create the js for the other pages
-    doJsMinify $js_bin_dir/hg_featurepages.js \
-               $js_bin_dir/hg_libs.js `ls -1 $js_src_dir/hg_*.js | grep -v hg_features.js`
+    #doJsMinify $js_bin_dir/hg_featurepages.js \
+    #           $js_bin_dir/hg_libs.js `ls -1 $js_src_dir/hg_*.js | grep -v hg_features.js`
 
     ## Create the js for the main page
-    doJsMinify $js_bin_dir/hg_mainpage.js \
-               $js_bin_dir/hg_featurepages.js $js_src_dir/hg_features.js
+    #doJsMinify $js_bin_dir/hg_mainpage.js \
+    #           $js_bin_dir/hg_featurepages.js $js_src_dir/hg_features.js
 
-    #for c in `ls -1 $js_src_dir/*.js`; do
-        #minified=$js_bin_dir/opt/`basename $c`
-        #[ -f $minified ] && rm -rf $minified
-        #doJsMinify $minified $c
-    #done
+    for c in `ls -1 $js_src_dir/*.js`; do
+        [ `basename $c` == "hg_journals.js" ] && continue
+        minified=$js_bin_dir/`basename $c`
+        [ -f $minified ] && rm -rf $minified
+        doJsMinify $minified $c
+    done
 fi
 
 ## Minify the css libs
