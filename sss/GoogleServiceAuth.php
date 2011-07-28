@@ -47,6 +47,7 @@ function get_key($service) {
 	global $authKeys;
 	$key = null;
 	if ($authKeys == null) get_keys();
+    if ($authKeys == null) return $key;
 	if (array_key_exists($service, $authKeys) && !over_23hours($authkeys[$service][1]))
 		$key = $authKeys[$service][0];
 	return $key;
