@@ -8,8 +8,8 @@ js_bin_dir=../js
 js_src_dir=../js/uncompiled
 
 css_minifier="yuicompressor.jar"
-css_bin_dir=css
-css_src_dir=css/uncompiled
+css_bin_dir=../css
+css_src_dir=../css/uncompiled
 
 function doJsMinify() {
     out=$1; shift
@@ -40,6 +40,12 @@ if $js_only; then
     ## Create the js for the main page
     doJsMinify $js_bin_dir/hg_mainpage.js \
                $js_bin_dir/hg_featurepages.js $js_src_dir/hg_features.js
+
+    #for c in `ls -1 $js_src_dir/*.js`; do
+        #minified=$js_bin_dir/opt/`basename $c`
+        #[ -f $minified ] && rm -rf $minified
+        #doJsMinify $minified $c
+    #done
 fi
 
 ## Minify the css libs
