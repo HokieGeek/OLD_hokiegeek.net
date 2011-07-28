@@ -9,12 +9,11 @@ var libHTTPRequest_Constants = {
 };
 function libHTTPRequest_DataManager() {
 	//FTP: server26.000webhost.com/a4877499/hughkares69 hughkares@guerrillamailblock.com
-	this.Scripts = [ "http://"+window.location.hostname+"/sss/XDRequest.php",
-			    "http://hokiegeek.thruhere.net/sss/XDRequest.php",
-			    "http://workhorse.comuv.com/XDRequest.php"];
-	//this.StoreLocation = "http://dl.dropbox.com/u/6524/hokiegeek.net/sss/gen";
+    this.Scripts = [ "http://"+window.location.hostname+"/sss/XDRequest.php" ];
+			    //"http://hokiegeek.thruhere.net/sss/XDRequest.php",
+			    //"http://workhorse.comuv.com/XDRequest.php"];
 	this.StoreLocation = "http://"+window.location.hostname+"/sss/gen";
-	//this.StoreLocation = "http://"+window.location.hostname+"/sss/gen";
+	//this.StoreLocation = "http://dl.dropbox.com/u/6524/hokiegeek.net/sss/gen";
 };
 
 function libHTTPRequest () {

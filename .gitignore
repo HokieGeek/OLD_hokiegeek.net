@@ -1,9 +1,16 @@
 *~
 
+.bashrc
 .bash_history
 .viminfo
 .lesshst
+.ssh
 
 logs
 sss/*
 hg.git
+
+js/hg_featurepages.js
+js/hg_libs.js
+js/hg_mainpage.js
+
