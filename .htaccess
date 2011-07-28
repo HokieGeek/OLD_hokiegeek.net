@@ -1,5 +1,9 @@
 AddType 'text/html; charset=ISO-8859-1' html
 
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript application/json
+</IfModule>
+
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|xml|gz)$">
     Header append Vary Accept-Encoding
@@ -9,5 +13,6 @@ AddType 'text/html; charset=ISO-8859-1' html
 <IfModule mod_cache.c>
     <FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|js|css)$">
         Header set Cache-Control "max-age=259200, public"
+#        Header set Last-Modified "?????"
     </FilesMatch>
 </IfModule>
