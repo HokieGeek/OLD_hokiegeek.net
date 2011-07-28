@@ -6,8 +6,8 @@ AddType 'text/html; charset=ISO-8859-1' html
   </FilesMatch>
 </IfModule>
 
-#<IfModule mod_cache.c>
-#    <FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|js|css)$">
-#        Header set Cache-Control "max-age=259200, public"
-#    </FilesMatch>
-#</IfModule>
+<IfModule mod_cache.c>
+    <FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|js|css)$">
+        Header set Cache-Control "max-age=259200, public"
+    </FilesMatch>
+</IfModule>
