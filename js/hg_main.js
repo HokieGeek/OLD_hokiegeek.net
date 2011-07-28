@@ -347,3 +347,11 @@ function HG_loadOnCondition(condition, cb, time) {
 		setTimeout(function() { HG_loadOnCondition(condition, cb, time); }, time);
 	}
 }
+
+
+// TODO: add a function which returns an array of the url arguments
+//       1) Retrieve address and unescape
+//       2) Split at '?'
+//       3) Split at '&'
+//       4) Split at '='
+
