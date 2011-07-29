@@ -7,6 +7,7 @@ AddType 'text/html; charset=ISO-8859-1' html
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|xml|gz)$">
     Header append Vary Accept-Encoding
+    Header add Access-Control-Allow-Origin *
   </FilesMatch>
 </IfModule>
 
