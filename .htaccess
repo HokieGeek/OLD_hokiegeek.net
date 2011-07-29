@@ -12,7 +12,7 @@ AddType 'text/html; charset=ISO-8859-1' html
 
 <IfModule mod_cache.c>
     <FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|js|css)$">
-        Header set Cache-Control "max-age=259200, public"
-#        Header set Last-Modified "?????"
+        Header set Expires "Sun, 01 Jan 2012 23:30:00 GMT"
+        Header set Last-Modified "Thu, 28 Jul 2011 01:00:00 GMT"
     </FilesMatch>
 </IfModule>
