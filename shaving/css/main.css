@@ -13,6 +13,21 @@
 #metrics tr td {
 	font-weight: bold;
 }
+.tab_name {
+	background-color: #b58455;/*ac7e51;a87b4f;*/
+	/*border-color: #ce9660;8b6541;694d31;*/
+	border-color: #8b6541;/*694d31;*/
+}
+.tab_name:hover {
+	background-color: #cc9f72;
+}
+.top_tab > .selected_tab {
+	background-color: #ffffff;
+	border-color: #c0c0c0;
+}
+.tab_content {
+	background-color: #ffffff;
+}
 /* JOURNAL */
 .entry_grades img {
 	width: 25px;
@@ -30,9 +45,9 @@
 	padding-right: 55px;
 }
 #journal_scroller {
-/*#journal {*/
 	overflow-y: scroll;
 	overflow-x: hidden;
+	height: 57%;
 }
 #journal_product_preview {
 	position: absolute;
@@ -185,6 +200,7 @@
 	padding: 5px;
 	margin-bottom: 10px;
 	z-index: 9;
+	width: 94%;
 }
 .review_entry table {
 	display: inline;

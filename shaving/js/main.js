@@ -1,6 +1,6 @@
 var journalSorterLyr = null;
 var journalTable = null;
-var filteredTabsHeight = 105;
+var filteredTabsHeight = 305;
 
 /* Metrics */
 
@@ -1110,7 +1110,7 @@ function loadExtras() {
 
 	// Journal tab TODO: this needs to happen on each resize
 	var journal_lyr = document.getElementById('journal_scroller');
-	setStyle(journal_lyr, "height: "+parseInt(document.documentElement.clientHeight-110)+"px;");
+	//setStyle(journal_lyr, "height: "+parseInt(document.documentElement.clientHeight-310)+"px;");
 
 	HG_Journal_tabsObj.AddToggleListener(onTabToggle);
 
