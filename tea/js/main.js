@@ -1,4 +1,26 @@
 var tabsObj = null;
+function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
+	//console.log("renderShavingJournalEntry(", entry, ", ", num_displayed, ")");
+	var row = null;
+	var cell = null;
+
+	var img = document.createElement("img");
+	img.setAttribute("src", entry.Tea.Pictures[0].getURL(100));
+
+	row = document.createElement("tr");
+	cell = document.createElement("td");
+	cell.appendChild(img);
+	row.appendChild(cell);
+	cell = document.createElement("td");
+	cell.appendChild(document.createTextNode(entry.Tea.getName()));
+	row.appendChild(cell);
+	entry_elem.appendChild(row);
+
+	if (row != undefined) delete row;
+	if (cell != undefined) delete cell;
+
+	return true;
+}
 function loadTeaJournal(sort_field, sort_dir, filter) {
     var table = $("<table></table>");
     for (var ii = 0; ii < TeaJournalEntries.length; ii++) {
@@ -38,10 +60,11 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
               );
     }
     $("#products_tab").append(table);
-    console.log("Done adding products");
+    //console.log("Done adding products");
 }
 
 function loadExtras() {
+	sortTeaJournal();
     //if (ShavingCombos == null || ShavingCombos.length <= 0) createShavingCombos();
 	//loadTrends();
 
@@ -57,18 +80,23 @@ function loadExtras() {
     */
 
     HG_loadJournalViews([new HG_Journals_View("TeaJournalEntries", 
-                                              document.getElementById("journal_tab"), 
-                                              function() {
-	                                            loadTeaJournal(0, "DESC", null);
-                                              }),
+    					      null,
+                                              "journal_tab", 
+					      "renderShavingJournalEntry"),
                          new HG_Journals_View("TeaProductEntries", 
-                                              document.getElementById("products_tab"), 
+    					      null,
+                                              "products_tab", 
                                               function() {
 	                                            loadTeaProducts(0, "DESC", "TYPE", null);
                                               }),
 
                         ], 
                         null);
+			/*
+                                              function() {
+	                                            loadTeaJournal(0, "DESC", null);
+                                              }),
+					      */
 
 	// Journal tab TODO: this needs to happen on each resize
 	//var journal_lyr = document.getElementById('journal_scroller');

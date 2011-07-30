@@ -16,7 +16,7 @@ var TeaFixins = ["Milk", "Cream", "Half & Half",
 
 function TeaProductEntryType(data) {
     this.ID = null;
-    this.ReviewDate = null;
+    this.Date = null;
     this.Name = null;
     this.Type = null; // Black / Flavored, Green / Flavored, White, Yellow, Oolong / Flavored, Sheng Pu-Erh, Shu Pu-Erh, Tisane
     this.Country = null;
@@ -48,7 +48,7 @@ function TeaProductEntryType(data) {
 
         this.ID = data.id;
         if (data.date != null)
-            this.ReviewDate = new Date(data.date);
+            this.Date = new Date(data.date);
         this.Name = data.name;
         this.Type = data.type;
         this.Country = data.country;
@@ -78,6 +78,7 @@ function TeaProductEntryType(data) {
 }
 
 function TeaJournalEntryType(data) {
+    this.Date = null;
     this.EntryDate = null;
     this.EntryTime = null;
     this.Tea = null;
@@ -89,13 +90,6 @@ function TeaJournalEntryType(data) {
     this.Rating = null;
     this.Comments = null;
     this.Pictures = [];
-
-	this.getEntryDate = function() {
-		var d = new Date(this.EntryDate);
-		d.setMinutes(this.EntryTime.substr(-2));
-		d.setHours(this.EntryTime.substr(0, this.EntryTime.length-2));
-		return d;
-	}
 
     this._loadPictures = function(pics) {
         if (pics == undefined) return;
@@ -119,10 +113,15 @@ function TeaJournalEntryType(data) {
         //console.log("TeaJournalEntryType(", data, ")");
         if (data == null) return;
 
-        //if (data.date != null)
-        this.EntryDate = data.date;
-        //if (data.time != null)
-        this.EntryTime = data.time;
+        if (data.date != null) {
+        	this.EntryDate = data.date;
+		this.Date = new Date(this.EntryDate);
+        	if (data.time != null) {
+        		this.EntryTime = data.time;
+			this.Date.setMinutes(this.EntryTime.substr(-2));
+			this.Date.setHours(this.EntryTime.substr(0, this.EntryTime.length-2));
+		}
+	}
 
         this.Tea = HG_getProductByID(TeaProductEntries, data.tea);
         this.SteepTime = data.steeptime;
@@ -145,6 +144,11 @@ function sortTeaProducts() {
 }
 
 function sortTeaJournal() {
+	TeaJournalEntries.sort(function(a,b) { 
+		if (!(a.Date instanceof Date)) return 1;
+		if (!(b.Date instanceof Date)) return 0;
+		return a.Date.getTime() - b.Date.getTime(); 
+	});
 }
 
 function getTeaData(cb) {
