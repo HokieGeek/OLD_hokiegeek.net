@@ -520,62 +520,6 @@ function hideProductPreview() {
 	if (prodPreview == null) prodPreview = document.getElementById('journal_product_preview');
 	setStyle(prodPreview, "visibility: hidden;");
 }
-var countExpanded = 0;
-function toggleEntryElement(elem, expand) {
-	if (elem == null || elem == undefined) return;
-	var classes = elem.getAttribute("class");
-	if (classes == null || classes == undefined) classes = "";
-
-	if (classes.indexOf("entry_full") == -1) return;
-
-	if (expand == null) 
-		expand = (classes.indexOf("entry_full_hide") != -1);
-	classes = classes.replace(" entry_full_hide", "");
-	if (expand)
-		elem.setAttribute("class", classes);
-	else
-		elem.setAttribute("class", classes+" entry_full_hide");
-
-	countExpanded += (expand) ? 1 : -1;
-}
-function genExpandCollapseControls(expand, collapse) {
-	var ctrls = "";
-	if (expand) 
-		ctrls += '<a href="javascript://" onclick="toggleJournalExpand(true)">Expand All</a>';
-	else 
-		ctrls += "Expand All";
-	ctrls += ' <span style="color: #000; position: relative; top: 0px"> | </span>';
-	if (collapse) 
-		ctrls += '<a href="javascript://" onclick="toggleJournalExpand(false)">Collapse All</a>';
-	else 
-		ctrls += "Collapse All";
-
-	return ctrls;
-}
-function toggleEntryDetails(entry, single, expand) {
-	var children = entry.getElementsByTagName('span');
-	for (var i = 0; i < children.length; i++) toggleEntryElement(children[i], expand);
-	children = entry.getElementsByTagName('tr');
-	for (var i = 0; i < children.length; i++) toggleEntryElement(children[i], expand);
-
-	if (single) {
-		var controls = document.getElementById('journal_expand_collapse');
-		controls.innerHTML = genExpandCollapseControls(true, (countExpanded > 0));
-	}
-}
-function toggleJournalExpand(expand) {
-	//console.log("toggleJournalExpand(", expand, ")");
-	var controls = document.getElementById('journal_expand_collapse');
-
-	// Now expand or collapse all of the entries
-	if (journalTable == null) journalTable = document.getElementById("journal");
-	var children = journalTable.childNodes;
-	for (var i = children.length-1; i >= 0; i--) {
-		if (children[i].nodeName.toLowerCase() == "tr")
-			toggleEntryDetails(children[i], false, expand);
-	}
-	controls.innerHTML = genExpandCollapseControls(!expand, (countExpanded > 0));
-}
 function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	//console.log("renderShavingJournalEntry(", entry, ", ", num_displayed, ")");
 	// Now add the notes

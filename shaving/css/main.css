@@ -1,8 +1,3 @@
-.distinct_row {
-	/*background-color: #f2f2f2 !important;*/
-	/*background-color: #fdf6f1 !important;*/
-	background-color: #e4ecc5 !important;
-}
 .sort_arrow {
 	position: relative;
 	top: -2px;
@@ -12,21 +7,6 @@
 }
 #metrics tr td {
 	font-weight: bold;
-}
-.tab_name {
-	background-color: #b58455;/*ac7e51;a87b4f;*/
-	/*border-color: #ce9660;8b6541;694d31;*/
-	border-color: #8b6541;/*694d31;*/
-}
-.tab_name:hover {
-	background-color: #cc9f72;
-}
-.top_tab > .selected_tab {
-	background-color: #ffffff;
-	border-color: #c0c0c0;
-}
-.tab_content {
-	background-color: #ffffff;
 }
 /* JOURNAL */
 .entry_grades img {
@@ -43,11 +23,6 @@
 	float: right;
 	padding-top: 6px;
 	padding-right: 55px;
-}
-#journal_scroller {
-	overflow-y: scroll;
-	overflow-x: hidden;
-	height: 57%;
 }
 #journal_product_preview {
 	position: absolute;
@@ -79,40 +54,6 @@
 	width: 25px;
 }
 */
-#journal_control_area {
-	background-color: #ffffff;
-	height: 45px;
-	border-bottom: 1px solid #998374;
-}	
-#journal_expand_collapse {
-	position: absolute;
-	top: 8px;
-	left: 10px;
-	color: #c0c0c0;
-	font-family: Verdana;
-	font-size: 0.7em;
-}
-#journal_expand_collapse a {
-	color: #000;
-}
-#journal_sorter {
-	position: absolute;
-	top: 35px;
-	left: 10px;
-	width: 100%;
-	cursor: pointer;
-	font-family: Garamond;
-	font-size: 0.9em;
-	font-weight: bold;
-}
-#journal_sorter span + span {
-	float: right;
-	margin-right: 35px;
-}
-#journal {
-	width: 100%;
-	position: relative;
-}
 /*#journal tr th {
 	text-align: left;
 	cursor: pointer;
