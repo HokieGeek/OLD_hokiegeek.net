@@ -26,9 +26,18 @@ body {
 	/*top: 8px;*/
 	width: 99.98% !important; 
 }
+.tab_name {
+	background-color: #b58455;/*ac7e51;a87b4f;*/
+	/*border-color: #ce9660;8b6541;694d31;*/
+	border-color: #8b6541;/*694d31;*/
+}
+.tab_name:hover {
+	background-color: #cc9f72;
+}
 .tab_content {
 	/*height: 700px !important;*/
 	width: 98.3% !important;
+	background-color: #ffffff;
 }
 .tab_content iframe {
 	border: none !important;
@@ -54,6 +63,10 @@ body {
 }
 .left_tab > .selected_tab:hover {
 	background-color: #eff4dd/*fdf6f1*/ !important;
+}
+.top_tab > .selected_tab {
+	background-color: #ffffff;
+	border-color: #c0c0c0;
 }
 .left_tab > .tab_content,
 .left_tab > .tab_content {
@@ -97,4 +110,43 @@ body {
 }
 #hg_journal_filter_exp [type="Text"] {
 	background-color: red;
+}
+#journal_scroller {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 57%;
+}
+#journal_control_area {
+	background-color: #ffffff;
+	height: 45px;
+	border-bottom: 1px solid #998374;
+}	
+#journal_expand_collapse {
+	position: absolute;
+	top: 8px;
+	left: 10px;
+	color: #c0c0c0;
+	font-family: Verdana;
+	font-size: 0.7em;
+}
+#journal_expand_collapse a {
+	color: #000;
+}
+#journal_sorter {
+	position: absolute;
+	top: 35px;
+	left: 10px;
+	width: 100%;
+	cursor: pointer;
+	font-family: Garamond;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+#journal_sorter span + span {
+	float: right;
+	margin-right: 35px;
+}
+#journal {
+	width: 100%;
+	position: relative;
 }
