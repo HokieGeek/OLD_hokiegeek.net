@@ -302,7 +302,7 @@ function setupFeatures(e) {
 				var steeping_details = document.createElement("div");
 				steeping_details.setAttribute("id", "latest_cuppa_steeping_details");
 				steeping_details.innerHTML = "Steeped ";
-				steeping_details.innerHTML += getVagueTime(d.getEntryDate()).toLowerCase()+" ";
+				steeping_details.innerHTML += getVagueTime(d.Date).toLowerCase()+" ";
 
 				if (d.SteepTime != null) 
 					steeping_details.innerHTML += "for <i>"+d.SteepTime+"</i> ";
