@@ -64,6 +64,11 @@
 	text-align: right;
 }
 */
+#journal tr td + td hr {
+	width: 80%;
+	border-style: solid;
+	border-color: #e9e9e9;
+}
 
 /* REVIEWS */
 #review_controls {
