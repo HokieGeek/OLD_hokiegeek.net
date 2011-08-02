@@ -21,7 +21,7 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	cell.appendChild(document.createTextNode(entry.Tea.getName()));
 	cell.setAttribute("id", "tea_name");
 	if (entry.Tea.Type == "Blend") {
-		cell.appendChild(document.createTextNode(" ( "+entry.Tea.BlendRatio+" "+entry.Tea.Type+")"));
+		cell.appendChild(document.createTextNode(" ("+entry.Tea.BlendRatio+" "+entry.Tea.Type+")"));
 	} else
 		cell.appendChild(document.createTextNode(" ("+entry.Tea.Type+")"));
 	row.appendChild(cell);
