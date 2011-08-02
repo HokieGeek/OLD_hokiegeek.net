@@ -1,3 +1,8 @@
-/*#journal_scroller {
-	height: 93%;
-}*/
+#tea_name {
+	font-weight: bold;
+}
+
+#tea_fixins {
+	font-size: 0.75em;
+	font-weight: normal;
+}

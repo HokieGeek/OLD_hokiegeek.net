@@ -13,8 +13,31 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	row.appendChild(cell);
 	cell = document.createElement("td");
 	cell.appendChild(document.createTextNode(entry.Tea.getName()));
+	cell.setAttribute("id", "tea_name");
+	if (d.Tea.Type != "Blend")
+		cell.appendChild(document.createTextNode(" ("+d.Tea.Type+")"));
 	row.appendChild(cell);
 	entry_elem.appendChild(row);
+
+	// Fixins
+	var tea_fixins = entry.Fixins;
+	//tea_fixins = ["Milk", "Honey"]; // FIXME
+	if (tea_fixins != null) {
+		var fixins_list = document.createElement("div");
+		fixins_list.setAttribute("id", "tea_fixins");
+		fixins_list.innerHTML = "with ";
+		//for (var i = 0; i < tea_fixins.length; i++) {
+		for (var i = tea_fixins.length-1; i >= 0; i--) {
+			//if (i == tea_fixins.length-1)
+			if (i == 0)
+				fixins_list.innerHTML += " and ";
+			//else if (i != 0)
+			else if (i != tea_fixins.length-1)
+				fixins_list.innerHTML += ", ";
+			fixins_list.innerHTML += tea_fixins[i].toLowerCase();;
+		}
+		ceal.appendChild(fixins_list);
+	} 
 
 	if (row != undefined) delete row;
 	if (cell != undefined) delete cell;
