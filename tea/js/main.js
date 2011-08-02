@@ -5,7 +5,7 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	var cell = null;
 
 	var img = document.createElement("img");
-	img.setAttribute("src", entry.Tea.Pictures[0].getURL(100));
+	img.setAttribute("src", entry.Tea.Pictures[0].getURL(150));
 
 	row = document.createElement("tr");
 	cell = document.createElement("td");

@@ -69,6 +69,22 @@
 	border-style: solid;
 	border-color: #e9e9e9;
 }
+#journal tr td + td {
+	background-repeat: no-repeat !important;
+	background-position: 99% 2px !important;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #9ca578;
+}
+#journal tr td + td span center img {
+	border: 1px solid black;
+}
+#journal tr td table tr td {
+	border: none;
+	padding: 0px;
+	padding-right: 8px;
+}
+#journal tr td table tr td + td span:hover {
+	text-decoration: underline;	
 
 /* REVIEWS */
 #review_controls {
