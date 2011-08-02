@@ -85,6 +85,7 @@
 }
 #journal tr td table tr td + td span:hover {
 	text-decoration: underline;	
+}
 
 /* REVIEWS */
 #review_controls {
