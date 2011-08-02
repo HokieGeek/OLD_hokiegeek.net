@@ -42,6 +42,8 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	} 
 
 	// Rating
+	row.appendChild(cell);
+	cell = document.createElement("td");
 	var tea_ratings_num = 4;
 	var rating = document.createElement("div");
 	rating.setAttribute("id", "tea_rating");
@@ -55,6 +57,7 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 		rating.appendChild(img);
 	}
 	cell.appendChild(rating);
+	row.appendChild(cell);
 
 	if (row != undefined) delete row;
 	if (cell != undefined) delete cell;
