@@ -64,6 +64,9 @@
 	text-align: right;
 }
 */
+#journal tr td {
+	padding-right: 10px;
+}
 #journal tr td + td hr {
 	width: 80%;
 	border-style: solid;

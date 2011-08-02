@@ -14,7 +14,9 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	cell = document.createElement("td");
 	cell.appendChild(document.createTextNode(entry.Tea.getName()));
 	cell.setAttribute("id", "tea_name");
-	if (entry.Tea.Type != "Blend")
+	if (entry.Tea.Type == "Blend") {
+		cell.appendChild(document.createTextNode(" ( "+entry.Tea.BlendRatio+" "+entry.Tea.Type+")"));
+	} else
 		cell.appendChild(document.createTextNode(" ("+entry.Tea.Type+")"));
 	row.appendChild(cell);
 	entry_elem.appendChild(row);
@@ -38,6 +40,21 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 		}
 		cell.appendChild(fixins_list);
 	} 
+
+	// Rating
+	var tea_ratings_num = 4;
+	var rating = document.createElement("div");
+	rating.setAttribute("id", "tea_rating");
+	for (var ii = 0; ii < tea_ratings_num; ii++) {
+		var img = document.createElement("img");
+		var img_src = "img/tea_cup";
+		if (ii > entry.Rating-1) img_src += "_greyed";
+		img_src += ".png";
+		img.setAttribute("src", img_src);
+		img.setAttribute("title", entry.Rating+"/"+tea_ratings_num+" steaming tea cups");
+		rating.appendChild(img);
+	}
+	cell.appendChild(rating);
 
 	if (row != undefined) delete row;
 	if (cell != undefined) delete cell;

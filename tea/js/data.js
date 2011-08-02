@@ -59,7 +59,7 @@ function TeaProductEntryType(data) {
 		this.LeafGrade = data.leafgrade;
 		if (this.Type == "Blend") {
 			this.BlendedTeas = data.blendedteas;
-			this.BlendRatio = data.blendratio;
+			this.BlendRatio = data.blendratio.replace(/;/g, ":");
 		}
         this.PurchaseLocation = data.purchaselocation;
         if (data.purchasedate != null)
