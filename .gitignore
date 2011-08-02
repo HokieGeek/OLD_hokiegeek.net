@@ -12,8 +12,3 @@ logs
 sss/*
 hg.git
 
-
-js/*.js
-shaving/js/*.js
-css/*.css
-shaving/css/*.css
