@@ -24,7 +24,7 @@ var PRODUCT_GRADES = [["Weight", "Aggresiveness", "Balance", "Grip", "Look", "Pr
 					   ["Scent", "Efficacy", "Price", "Quality"], // Preshave
 					   ["Cooling", "Burn", "Scent", "Efficacy", "Price", "Quality"], // Aftershave
 					   ["Scent", "Longevity", "Price", "Quality"], // Cologne
-					   ["Efficacy", "Price", "Look", "Quality"], // Cologne
+					   ["Efficacy", "Price", "Look", "Quality"] // Cologne
 					  ];
 
 function ShavingComboType(data) {

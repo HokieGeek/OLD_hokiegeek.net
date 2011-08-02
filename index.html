@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>hokiegeek.net</title>
-<script type="text/JavaScript" src="js/jquery-1.5.1.js" async="true"></script>
+<script type="text/JavaScript" src="js/jquery.js" async="true"></script>
 <script type="text/JavaScript" src="js/hg_main.js" async="true"></script>
 <script type="text/JavaScript" src="js/hg_nav.js" async="true"></script>
 
@@ -302,7 +302,7 @@ function setupFeatures(e) {
 				var steeping_details = document.createElement("div");
 				steeping_details.setAttribute("id", "latest_cuppa_steeping_details");
 				steeping_details.innerHTML = "Steeped ";
-				steeping_details.innerHTML += getVagueTime(d.getEntryDate()).toLowerCase()+" ";
+				steeping_details.innerHTML += getVagueTime(d.Date).toLowerCase()+" ";
 
 				if (d.SteepTime != null) 
 					steeping_details.innerHTML += "for <i>"+d.SteepTime+"</i> ";

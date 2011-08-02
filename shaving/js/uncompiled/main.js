@@ -1047,10 +1047,9 @@ function loadExtras() {
                                               "review_tabs", 
                                               function() {
 	                                            loadShavingReviews(0, "DESC", "TYPE", null);
-                                              }),
+                                              })
 
-                        ], 
-                        exclusion_list);
+                        ], exclusion_list);
 
 	// Journal tab TODO: this needs to happen on each resize
 	var journal_lyr = document.getElementById('journal_scroller');
