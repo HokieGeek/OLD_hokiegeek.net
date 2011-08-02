@@ -11,7 +11,13 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	cell = document.createElement("td");
 	cell.appendChild(img);
 	row.appendChild(cell);
+
 	cell = document.createElement("td");
+
+	//var details = document.createElement("table");
+	//var details_row = document.createElement("tr");
+	//var details_cell = document.createElement("td");
+
 	cell.appendChild(document.createTextNode(entry.Tea.getName()));
 	cell.setAttribute("id", "tea_name");
 	if (entry.Tea.Type == "Blend") {
@@ -43,7 +49,7 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 
 	// Rating
 	row.appendChild(cell);
-	cell = document.createElement("td");
+	/*cell = document.createElement("td");
 	var tea_ratings_num = 4;
 	var rating = document.createElement("div");
 	rating.setAttribute("id", "tea_rating");
@@ -58,6 +64,7 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	}
 	cell.appendChild(rating);
 	row.appendChild(cell);
+	*/
 
 	if (row != undefined) delete row;
 	if (cell != undefined) delete cell;
