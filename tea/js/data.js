@@ -6,7 +6,8 @@ var TeaProductEntries = [];
 var TeaAlbum = null;
 var TeaFixins = ["Milk", "Cream", "Half & Half",
 				 "Sugar", "Brown Sugar", "Raw Sugar",
-				 "Honey", "Vanilla Extract", "Vanilla Bean"];
+				 "Honey", "Vanilla Extract", "Vanilla Bean",
+				 "Maple Cream", "Maple Sugar"];
 
 /* Product Ratings
  *      Tea: Leaf Aroma, Brewed Aroma, Taste, Value
