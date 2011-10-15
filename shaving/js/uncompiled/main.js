@@ -1024,13 +1024,13 @@ function loadExtras() {
     sortProducts();
 
     if (ShavingCombos == null || ShavingCombos.length <= 0) createShavingCombos();
-	loadTrends();
+	//loadTrends();
 
 	var exclusion_list = null;
 	if (window.location.hostname == "localhost") {
 		loadForms();
 	} else {
-		exclusion_list = ["Submit Entry", "TODO"];
+		exclusion_list = ["Trends", "Submit Entry", "TODO"];
 		var forms = document.getElementById("forms");
 		forms.parentNode.parentNode.removeChild(forms.parentNode);
 	}

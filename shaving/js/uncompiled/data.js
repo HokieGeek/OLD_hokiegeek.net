@@ -444,10 +444,6 @@ function loadUnreviewed() {
 	"purchaselocation": "VintageScent.com",
 		444 Aftershave Balm, 5.43
 
-	"purchasedate": "02/20/2011",
-	"purchaselocation": "ShoeBoxShaving.com",
-		Superior 70 Bay Rum, 6.49
-
 	"purchasedate": "02/21/2011",
 	"purchaselocation": "B&B User: life2short1971",
 		Coticule, 65
@@ -478,7 +474,7 @@ function loadUnreviewed() {
 		"purchaselocation": "ShoeboxShaveShop.com",
 		"productvendor": "Booster",
 		"productname": "Aftershave",
-		"scent": "Mosswood | Aquarius | June Clover | Iced Limes | Island Bay Ram | Oriental Spice",
+		"scent": "Iced Limes",
 		"size": "sample",
 		"purchaseprice": 2.5
 	}));
@@ -501,5 +497,21 @@ function loadUnreviewed() {
 		"scent": "Mentholated Bay Rum",
 		"purchaseprice": 7.49
 	}));
+
+	Razor
+	08/27/2011
+	Antique Emporium (Booth B-7)
+	Giesen & Forsthoff
+	Adoration Ax
+	?SIZE?
+	$18
+
+	Razor
+	03/19/2011
+	Old Glory Antique Marketplace in Frederick, MD
+	Union Cutlery
+	Spike
+	5/8 Half hollow
+	$12
 }
 */
