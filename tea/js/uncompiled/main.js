@@ -134,10 +134,8 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
 		var steepTime = 0;
 		var journalEntries = entry.getJournalEntries();
 		for (var jj = 0; jj < journalEntries.length; jj++) {
-            //if (entry.ID == 2) 
-                //console.log(HG_formatDate(journalEntries[jj].Date), ": ", journalEntries[jj].SteepTime, 
-                                                                          //", ", formatSteepTime(journalEntries[jj].SteepTime));
-			steepTime += parseInt(journalEntries[jj].SteepTime);
+            if (journalEntries[jj].Rating > 1)
+			    steepTime += parseInt(journalEntries[jj].SteepTime);
 		}
 		if (steepTime > 0) {
 			steepTime /= journalEntries.length;
