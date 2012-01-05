@@ -1,6 +1,6 @@
 var journalSorterLyr = null;
 var journalTable = null;
-var filteredTabsHeight = 305;
+var filteredTabsHeight = 105;
 
 /* Metrics */
 

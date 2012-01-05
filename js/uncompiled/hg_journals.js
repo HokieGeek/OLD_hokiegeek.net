@@ -132,6 +132,9 @@ function HG_getJournalData(data, progress_message_cb) {
 function HG_formatDate(d, f) {
 	var fmt = f;
 	if (f == undefined) fmt = "%M/%D/%Y";
+	if (d == undefined || !(d instanceof Date)) {
+		return d;
+	}
 	var month = d.getMonth()+1;
 	if (month.toString().length < 2) month = "0"+month;
 	var day = d.getDate();
@@ -176,9 +179,67 @@ function HG_Journal_loadingMessage(msg) {
     }
 }
 
+var countExpanded = 0;
 var filterBox = null;
 var filterMsg = null;
 var filter = null;
+function genExpandCollapseControls(expand, collapse) {
+	var ctrls = "";
+	if (expand) 
+		ctrls += '<a href="javascript://" onclick="toggleJournalExpand(true)">Expand All</a>';
+	else 
+		ctrls += "Expand All";
+	ctrls += ' <span style="color: #000; position: relative; top: 0px"> | </span>';
+	if (collapse) 
+		ctrls += '<a href="javascript://" onclick="toggleJournalExpand(false)">Collapse All</a>';
+	else 
+		ctrls += "Collapse All";
+
+	return ctrls;
+}
+function toggleJournalExpand(expand) {
+	//console.log("toggleJournalExpand(", expand, ")");
+	var controls = document.getElementById('journal_expand_collapse');
+
+	// Now expand or collapse all of the entries
+	if (journalTable == null) journalTable = document.getElementById("journal");
+	var children = journalTable.childNodes;
+	/*
+	*/
+	for (var i = children.length-1; i >= 0; i--) {
+		if (children[i].nodeName.toLowerCase() == "tr")
+			toggleEntryDetails(children[i], false, expand);
+	}
+	controls.innerHTML = genExpandCollapseControls(!expand, (countExpanded > 0));
+}
+function toggleEntryElement(elem, expand) {
+	if (elem == null || elem == undefined) return;
+	var classes = elem.getAttribute("class");
+	if (classes == null || classes == undefined) classes = "";
+
+	if (classes.indexOf("entry_full") == -1) return;
+
+	if (expand == null) 
+		expand = (classes.indexOf("entry_full_hide") != -1);
+	classes = classes.replace(" entry_full_hide", "");
+	if (expand)
+		elem.setAttribute("class", classes);
+	else
+		elem.setAttribute("class", classes+" entry_full_hide");
+
+	countExpanded += (expand) ? 1 : -1;
+}
+function toggleEntryDetails(entry, single, expand) {
+	var children = entry.getElementsByTagName('span');
+	for (var i = 0; i < children.length; i++) toggleEntryElement(children[i], expand);
+	children = entry.getElementsByTagName('tr');
+	for (var i = 0; i < children.length; i++) toggleEntryElement(children[i], expand);
+
+	if (single) {
+		var controls = document.getElementById('journal_expand_collapse');
+		controls.innerHTML = genExpandCollapseControls(true, (countExpanded > 0));
+	}
+}
 function HG_Journal_clearFilterValue() {
 	if (filterMsg == null) filterMsg = document.getElementById("hg_journal_filter").getElementsByTagName("span")[0];
 	if (filterBox == null) filterBox = document.getElementById("hg_journal_filter_exp");
@@ -194,12 +255,15 @@ function HG_Journal_resizeTabs() {
 			var height = 0;
 			var parent_classes = divs[i].parentNode.parentNode.parentNode.getAttribute("class");
 			if (parent_classes != null && parent_classes.indexOf("tab_content") != -1) {
-				var toptab = divs[i].parentNode.parentNode.parentNode.getAttribute("id");
-				var offset = (toptab == "forms") ? 90 : filteredTabsHeight;
+				//var toptab = divs[i].parentNode.parentNode.parentNode.getAttribute("id");
+				//var offset = (toptab == "forms") ? 90 : filteredTabsHeight;
+				var offset = filteredTabsHeight;
 				height = (parseInt(document.documentElement.clientHeight-offset));
+				console.log("tab_content!: offset = ", offset, ", height = ", height);
 			} else {
 				height = (parseInt(document.documentElement.clientHeight-60));
 			}
+			//console.log("HEIGHT("+parent_classes+"): ", height);
 			setStyle(divs[i], "height: "+height+"px !important;");
 		}
 	}
@@ -221,7 +285,7 @@ function HG_Journal_addControls() {
     loader.setAttribute("id", "hg_journal_loading");
     loader.appendChild(document.createTextNode("Loading..."));
     var loader_img = document.createElement("img");
-    loader_img.setAttribute("src", "../img/progress.gif");
+    loader_img.setAttribute("src", "http://hokiegeek.net/img/progress.gif");
     loader.appendChild(loader_img); 
     document.body.insertBefore(loader, document.body.firstChild);
 
@@ -321,6 +385,8 @@ function HG_createJournalSorter(ctrls, view) {
 	sorter.innerHTML = "";
 
 	//var sortable_fields = ["Date", "Grade"];
+	if (view.sortable_fields == null) return;
+
 	for (var i = 0; i < view.sortable_fields.length; i++) {
 		var sortField = document.createElement('span');
 		sortField.appendChild(document.createTextNode(view.sortable_fields[i]));
@@ -387,11 +453,33 @@ function HG_createJournalSorter(ctrls, view) {
 }
 //function HG_renderJournal(ctrls, data, entry_renderer) {
 function HG_renderJournal(ctrls, view) {
+/*
+<div id="journal_control_area">
+	<div id="journal_product_preview"></div>
+	<div id="journal_expand_collapse">
+		<a href="javascript://" onclick="toggleJournalExpand(true)">Expand All</a> 
+		<span style="color: #000; position: relative; top: 0px;">|</span>
+		Collapse All
+	</div>
+	<div id="journal_sorter"></div>
+</div>
+<div id="journal_scroller">
+	<table id="journal"></table>
+</div>
+*/
 	var data = eval(view.data);
 	var entry_renderer = view.renderer;
-	//console.log("PARSED FILTER: ", filter);
+
+	var journalLyr = document.getElementById(view.elem_id);
+	var scroller = document.createElement("div");
+	scroller.setAttribute("id", "journal_scroller");
+	journalTable = document.createElement("table");
+	journalTable.setAttribute("id", "journal");
+	scroller.appendChild(journalTable);
+	journalLyr.appendChild(scroller);
+	
 	// Retrieve the layers we need
-	if (journalTable == null) journalTable = document.getElementById("journal");
+	//if (journalTable == null) journalTable = document.getElementById("journal");
 	var controls = document.getElementById('journal_expand_collapse');
 
 	// Add the expand/collapse controls
@@ -426,7 +514,7 @@ function HG_renderJournal(ctrls, view) {
 		// console.log("ENTRY #"+i+": ", entries[i]);
 		//console.log("ENTRY #"+0+": ", entries[0]);
 		if (ctrls.filter != null && !eval(ctrls.filter)) continue;
-        // console.log(">> Got past first break");
+        	//console.log(">> Got past first break: ", entries[i], entries);
 
 		// Create the entry date
 		entry_date = document.createElement('td');
@@ -449,8 +537,9 @@ function HG_renderJournal(ctrls, view) {
 		journalTable.appendChild(row);
 	}
 
-	if (displayed_entries <= 3) 
+	if (displayed_entries <= 3) {
 		toggleJournalExpand(true);
+	}
 
 	delete num_entries;
 	delete categories;
@@ -459,7 +548,7 @@ function HG_renderJournal(ctrls, view) {
 function HG_loadJournalViews(views, exclusion_list) {
 /* views = array of objects of the following format
 */
-	console.log("HG_loadJournalViews(", views, ")");
+	//console.log("HG_loadJournalViews(", views, ")");
 	// TODO: 1. displayed_entries is specific ?
     setStyle(document.getElementById("hg_journal_loading"), "visibility: hidden;");	
 
