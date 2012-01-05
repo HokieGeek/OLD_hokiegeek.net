@@ -209,10 +209,9 @@ function loadExtras() {
                                               "products_tab", 
                                               function() {
 	                                            loadTeaProducts(0, "DESC", "TYPE", null);
-                                              }),
-
+                                              }) 
                         ], 
-                        null);
+			null);
 			/*
                                               function() {
 	                                            loadTeaJournal(0, "DESC", null);
