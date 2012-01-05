@@ -55,11 +55,11 @@ if $js_only; then
 
     minifyAll "js" "../js/uncompiled" "../js" "hg_journals.js"
     minifyAll "js" "../shaving/js/uncompiled" "../shaving/js"
-    #minifyAll "js" "../tea/js/uncompiled" "../tea/js"
+    minifyAll "js" "../tea/js/uncompiled" "../tea/js"
 fi
 
 if $css_only; then
     minifyAll "css" "../css/uncompiled" "../css"
     minifyAll "css" "../shaving/css/uncompiled" "../shaving/css"
-    #minifyAll "css" "../tea/css/uncompiled" "../tea/css"
+    minifyAll "css" "../tea/css/uncompiled" "../tea/css"
 fi
