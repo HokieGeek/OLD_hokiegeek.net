@@ -305,7 +305,7 @@ function setupFeatures(e) {
 				steeping_details.innerHTML += getVagueTime(d.Date).toLowerCase()+" ";
 
 				if (d.SteepTime != null) 
-					steeping_details.innerHTML += "for <i>"+d.SteepTime+"</i> ";
+					steeping_details.innerHTML += "for <i>"+formatSteepTime(d.SteepTime)+"</i> ";
 				if (d.Temperature != null) 
 				steeping_details.innerHTML += "<br />at <i>"+d.Temperature+"&deg;F</i> ";
 				if (d.SteepingVessel != null) 
