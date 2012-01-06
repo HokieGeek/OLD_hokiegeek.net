@@ -100,12 +100,20 @@ function renderTeaJournalEntry(entry, num_displayed) {
     console.log("Done adding journal entries");
 }
 
+function createRatingWidget(rating) {
+	var widget = $("<span></span>");
+			//.width("20px").css("padding-right", "5px")
+	for (var i = 1; i <= 4; i++) {
+		widget.append(
+			$("<img/>")
+				.attr("src", "http://tea.hokiegeek.net/img/tea_cup"+((i > rating) ? "_greyed" : "")+".png"));
+	}
+	return widget;
+}
+
 function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
 	/* TODO
 	 * 	- Pics slideshow
-	 * 	- Average steep time
-	 * 	- Rating (Leaf Aroma, Brewed Aroma, Taste, Value)
-	 *
 	 * 	- Stocked
 	 * 	- Review Date?
 	 * 	- Comments
@@ -117,33 +125,55 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
         //if (entry.ID == 2)
 		    //console.log(entry.ID+") journal entries: ", entry.getJournalEntries());
 
+		//> Build the pictures widget
 		var pic = ((entry.Pictures[0] == undefined) ? "img/tea_cup_greyed.png" : entry.Pictures[0].getURL(140));
 		var pics = $("<img />").attr("src", pic);
 
+		//> Build the purchase and packging info
 		var purchaseInfo = "";
 		if (entry.PurchasePrice != null) purchaseInfo += "$"+entry.PurchasePrice+" ";
 		if (entry.PurchaseLocation != null) purchaseInfo += "from "+entry.PurchaseLocation+" ";
 		if (entry.PurchaseDate != null) purchaseInfo += "on "+HG_formatDate(entry.PurchaseDate);
-
 		var packaging = "";
 		if (entry.Size != undefined) packaging += entry.Size+" ";
 		packaging += entry.getPackaging();
 
-		var ratings = "TODO";
-
+		//> Get average steep time and taste ratings
 		var steepTime = 0;
+		var tasteRating = 0;
 		var journalEntries = entry.getJournalEntries();
 		for (var jj = 0; jj < journalEntries.length; jj++) {
             if (journalEntries[jj].Rating > 1)
 			    steepTime += parseInt(journalEntries[jj].SteepTime);
+
+			tasteRating += parseInt(journalEntries[jj].Rating);
 		}
 		if (steepTime > 0) {
 			steepTime /= journalEntries.length;
-			//if (entry.ID == 2) console.log("STEEPTIME: ", steepTime);
 			steepTime = formatSteepTime(steepTime);
 		} else 
 			steepTime = "N/A";
 
+		tasteRating /= journalEntries.length;
+
+		//> Build the ratings
+		var ratings = $("<table></table>");
+		if (entry.Ratings.length <= 0) {
+			ratings.append($("<tr></tr>").append("<td></td>").append("Unrated"));
+		} else {
+			if (tasteRating >= 0) {
+				ratings.append($("<tr></tr>").attr("title", "Taste Rating: Averaged from all journal entries")
+											 .append($("<td></td>").append("Taste"))
+											 .append($("<td></td>").append(createRatingWidget(Math.ceil(tasteRating)))));
+			}
+			// for (rating in entry.Ratings) {
+			for (var rating = 0; rating < entry.Ratings.length; rating++) {
+				ratings.append($("<tr></tr>").append($("<td></td>").append(TeaProductRatings[rating]))
+											 .append($("<td></td>").append(createRatingWidget(entry.Ratings[rating]))));
+			}
+		}
+
+		//> Build the details
 		var details = $("<table></table>").addClass("tea_product_entry_details");
 		if (entry.Type != "Blend") {
 			details
@@ -160,10 +190,12 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
 								  .append($("<td></td>").append("Steep Time"))
 								  .append($("<td></td>").append(steepTime)
 								  							.attr("title", "Steep Time: Averaged from best journal entries")))
-			.append($("<tr></tr>").append($("<td></td>").append("Ratings"))
+			.append($("<tr></tr>").addClass("tea_product_entry_ratings")
+								  .append($("<td></td>").append("Ratings"))
 								  .append($("<td></td>").append(ratings)))
 		;
 
+		//> Build the name and append the details
 		var main = $("<table></table>")
 			.append($("<tr></tr>").addClass("tea_product_entry_name").append($("<td></td>")
 																	   .append(entry.getName()+" ["+entry.ID+"]")
@@ -174,6 +206,7 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
 			.append($("<tr></tr>").append($("<td></td>").append(details)))
 		;
 
+		//> Append main and pics
         table.append($("<tr></tr>").addClass("tea_product_entry")
               .append($("<td></td>").addClass("tea_product_entry_pics").append(pics))
               .append($("<td></td>").append(main)))

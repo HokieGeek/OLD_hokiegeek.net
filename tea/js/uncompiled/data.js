@@ -8,7 +8,7 @@ var TeaFixins = ["Milk", "Cream", "Half & Half",
 				 "Sugar", "Brown Sugar", "Raw Sugar",
 				 "Honey", "Vanilla Extract", "Vanilla Bean",
 				 "Maple Cream", "Maple Sugar"];
-var TeaProductRatings = ["Leaf Aroma", "Brewed Aroma", "Taste", "Value"];
+var TeaProductRatings = ["Value", "Leaf Aroma", "Brewed Aroma"];
 var TeaFlushTypes = ["1st Flush", "2nd Flush", "Monsoon Flush", "Autumn Flush"];
 var TeaPackagingTypes = ["Loose Leaf", "Bagged"];
 
@@ -35,7 +35,7 @@ function TeaProductEntryType(data) {
     this.PurchaseLocation = null;
     this.PurchaseDate = null;
     this.PurchasePrice = null;
-    this.Ratings = null; 
+    this.Ratings = []; 
     this.Comments = null;
     this.Pictures = [];
 
@@ -47,8 +47,16 @@ function TeaProductEntryType(data) {
 
 	this._loadRatings = function(ratings) {
 		if (ratings == undefined) return;
+		/*var ratings_array = ratings.split(";");
 
-        this.Ratings = ratings;
+		// var TeaProductRatings = ["Value", "Leaf Aroma", "Brewed Aroma"];
+        this.Ratings = { 
+						TeaProductRatings[0] :  ratings_array[0],
+						TeaProductRatings[1] :  ratings_array[1],
+						TeaProductRatings[2] :  ratings_array[2]
+					   };
+					   */
+		this.Ratings = ratings.split(";");
 	}
 
     this._load = function(data) {

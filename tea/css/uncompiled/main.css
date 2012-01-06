@@ -70,15 +70,18 @@
 	font-family: Tahoma, 'Gill Sans', 'Century Gothic', Tahoma, sans-serif;
 }
 
+.tea_product_entry_details,
+.tea_product_entry_ratings td table td {
+    font-size: 0.7em;
+	font-family: Tahoma, sans-serif;
+}
+
 .tea_product_entry_details {
 	position: relative;
 	top: -10px;
 	margin-top: 0px;
 	padding-top: 0px;
-    font-size: 0.7em;
-	font-family: Tahoma, sans-serif;
 }
-
 .tea_product_entry_details tr td,
 .tea_product_entry_details tr td + td + td
 {
@@ -95,4 +98,18 @@
 
 .tea_product_entry_details tr td + td + td {
 	padding-left: 10px;
+}
+
+.tea_product_entry_ratings td 
+{
+	vertical-align: top;
+}
+
+.tea_product_entry_ratings td table td {
+	font-weight: normal !important;
+}
+
+.tea_product_entry_ratings img {
+	width: 15px;
+	padding-right: 3px;
 }
