@@ -130,7 +130,6 @@ function createTeaRatingWidget(storeField) {
 		widget.append(
 			$("<a></a>").attr("href", "javascript://")
 						.attr("title", "I would rate this a '"+i+"'")
-						.attr("valueFieldID", storeloc)
 						.attr("rated", false)
 
 						.attr("onclick", "$(this).attr('rated', !eval($(this).attr('rated'))); "+
