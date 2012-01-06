@@ -73,9 +73,9 @@ GoogleDataRetrieval.prototype.Callback = function(ret) {
         }
 	} catch (err) {
 		//console.log("GoogleDataRetrieval.Callback(): "+this.UserCallback);
-		console.log("  RET: ", ret);
-		console.log("GoogleDataRetrieval.Callback: err = "+err);
-		console.trace();
+		// console.log("  RET: ", ret);
+		// console.log("GoogleDataRetrieval.Callback: err = "+err);
+		// console.trace();
         entries = null;
 	} finally {
 		if (this.UserCallbackArguments != null)  {
