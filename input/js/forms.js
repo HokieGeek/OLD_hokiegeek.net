@@ -1,5 +1,5 @@
 /** Journal **/
-var journal_entry_url = "http://spreadsheets0.google.com/formResponse?formkey=dENEbllUbFdlTHg0WThDLTdqWXRLMWc6MQ";
+var shaving_journal_entry_url = "http://spreadsheets0.google.com/formResponse?formkey=dENEbllUbFdlTHg0WThDLTdqWXRLMWc6MQ";
 function loadProductInJournalEntry(product) {
 	// Retrieve the appropriate list
 	console.log("loadProductInJournalEntry(): ", product);
@@ -53,6 +53,7 @@ function removeNewItemBox(box) {
 	setStyle(list, "visibility: visible; position: static;");
 }
 function addProductOption(list_id, val, name) {
+	// console.log("addProductOptions(", list_id, ", ", val, ", ", name, ")");
 	var list = document.getElementById(list_id);
 	if (list == null || val == undefined) {
 		console.log("woah! Couldn't find '"+list_id+"'?:"+list);
@@ -211,7 +212,7 @@ function loadUsedProducts() {
 function createJournalGradeScales() {
 	var scales_start = 10;
 	var tmp = new JournalEntryType(null);
-	var scales_tbl = document.getElementById("journal_grade_scales");
+	var scales_tbl = document.getElementById("shaving_journal_grade_scales");
 	var row = null;
 	var cell = null;
 	for (var gt in tmp.Grades) {
@@ -229,7 +230,7 @@ function createJournalGradeScales() {
 		scales_tbl.appendChild(row);
 	}
 }
-//var journal_entry_url_TEST = "https://spreadsheets.google.com/formResponse?formkey=dGVuNWUtSVp0WWE4MEdGX0p3WXdBMXc6MA";
+//var shaving_journal_entry_url_TEST = "https://spreadsheets.google.com/formResponse?formkey=dGVuNWUtSVp0WWE4MEdGX0p3WXdBMXc6MA";
 var submissionMessageInterval = null;
 var submissionMessageLayer = null;
 function submissionMessage(lyr) {
@@ -241,9 +242,9 @@ function submissionMessage(lyr) {
 	submissionMessageInterval = window.setInterval('submissionMessageLayer.innerHTML += "."', 1000);
 }
 function postJournalEntry() {
-	submissionMessage(document.getElementById('journal_submit').parentNode);
+	submissionMessage(document.getElementById('shaving_journal_submit').parentNode);
 
-	postEntry(journal_entry_url, document.getElementById('journal_entry_form'));
+	postEntry(shaving_journal_entry_url, document.getElementById('shaving_journal_entry_form'));
 
 	getShavingData();
 	// When new data has been retrieved, refresh the journal view and switch to it
@@ -255,44 +256,44 @@ function postJournalEntry() {
 									 });
 }
 function clearJournalForm() {
-	var journal_form = document.getElementById("journal_entry_form");
-	clearForm(journal_form);
-	init_form("journal_form_date");
+	var shaving_journal_form = document.getElementById("shaving_journal_entry_form");
+	clearForm(shaving_journal_form);
+	init_form("shaving_journal_form_date");
 	// TODO: delete the grades
 	//createJournalGradeScales();
 }
 
 /** Reviews **/
-var review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dEFMb0ZoVDdhYkJEcVo3czBJSEFRcGc6MQ";
-//var review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dHJEQ1JweDcxTTRZOUowZWlsSXI4NFE6MA&ifq";
+var shaving_review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dEFMb0ZoVDdhYkJEcVo3czBJSEFRcGc6MQ";
+//var shaving_review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dHJEQ1JweDcxTTRZOUowZWlsSXI4NFE6MA&ifq";
 var pics_list_hidden = null;
-var review_pics_view = null;
+var shaving_review_pics_view = null;
 var pw_sel_obj = null;
 function clearPictures() {
 	if (pics_list_hidden == null) pics_list_hidden = document.getElementById('picture_list');
-	if (review_pics_view == null) review_pics_view = document.getElementById('pictures_view');
+	if (shaving_review_pics_view == null) shaving_review_pics_view = document.getElementById('pictures_view');
 	pics_list_hidden.value = "";
-	review_pics_view.innerHTML = "";
+	shaving_review_pics_view.innerHTML = "";
 }
 function addReviewPicture(pics) {
 	console.log("Adding pic: ", pics.value);
 	if (pics_list_hidden == null) pics_list_hidden = document.getElementById('picture_list');
-	if (review_pics_view == null) review_pics_view = document.getElementById('pictures_view');
+	if (shaving_review_pics_view == null) shaving_review_pics_view = document.getElementById('pictures_view');
 
 	pics_list_hidden.value += "pics/"+pics.value+";";
 	var img = document.createElement('img');
 	img.setAttribute('src', "pics/"+pics.value);
-	review_pics_view.appendChild(img);
+	shaving_review_pics_view.appendChild(img);
 }
-var review_product_type = null;
-var review_grades_input = "hidden_review_grades";
-var hidden_review_grades = null;
+var shaving_review_product_type = null;
+var shaving_review_grades_input = "hidden_shaving_review_grades";
+var hidden_shaving_review_grades = null;
 function loadReviewGrades(type, elem) {
 	var scales_tbl = document.getElementById(elem);
-	if (hidden_review_grades == null) 
-		hidden_review_grades = document.getElementById(review_grades_input);
+	if (hidden_shaving_review_grades == null) 
+		hidden_shaving_review_grades = document.getElementById(shaving_review_grades_input);
 	scales_tbl.innerHTML = "";
-	hidden_review_grades.setAttribute("value", "");
+	hidden_shaving_review_grades.setAttribute("value", "");
 
 	var row = null;
 	var cell = null;
@@ -314,15 +315,15 @@ function loadReviewGrades(type, elem) {
 	}
 }
 function compileGrades() {
-	if (hidden_review_grades == null) 
-		hidden_review_grades = document.getElementById(review_grades_input);
-	if (review_product_type == null) {
-		var	type_obj = document.getElementById('review_product_type');
+	if (hidden_shaving_review_grades == null) 
+		hidden_shaving_review_grades = document.getElementById(shaving_review_grades_input);
+	if (shaving_review_product_type == null) {
+		var	type_obj = document.getElementById('shaving_review_product_type');
 		if (type_obj != null)
-			review_product_type = type_obj.value;
+			shaving_review_product_type = type_obj.value;
 	}
-	//console.log("Compiling grades for type: ", review_product_type);
-	var grade_list = PRODUCT_GRADES[PRODUCT_CATEGORIES.indexOf(review_product_type.toLowerCase())]
+	//console.log("Compiling grades for type: ", shaving_review_product_type);
+	var grade_list = PRODUCT_GRADES[PRODUCT_CATEGORIES.indexOf(shaving_review_product_type.toLowerCase())]
 	var grades = "";
 	for (var i = 0; i < grade_list.length; i++) {
 		if (i != 0) grades += ";";
@@ -333,30 +334,30 @@ function compileGrades() {
 		else			
 			grades += grade_val;
 	}
-	hidden_review_grades.setAttribute("value", grades);
+	hidden_shaving_review_grades.setAttribute("value", grades);
 }
 var fromJournalEntry = false;
 function startEntryReview(type) {
-	var type_list = document.getElementById("review_product_type");
+	var type_list = document.getElementById("shaving_review_product_type");
 	type_list.selectedIndex = PRODUCT_CATEGORIES.indexOf(type.toLowerCase());
-	loadReviewGrades(type, 'review_grade_scales')
+	loadReviewGrades(type, 'shaving_review_grade_scales')
 
 	fromJournalEntry = true;
 
 	tabsObj.NestedTabs[3].ToggleTab(1);	
 }
 function postReviewEntry() { 
-	submissionMessage(document.getElementById('review_submit').parentNode);
+	submissionMessage(document.getElementById('shaving_review_submit').parentNode);
 
 	// Generate a ProductType object
 	var entry = new ProductType(null);
-	entry.ID = document.getElementById("review_entry_id").value;
-	entry.Type = document.getElementById("review_product_type").value;
-	entry.Vendor = document.getElementById("review_product_vendor").value;
-	entry.Name = document.getElementById("review_product_name").value;
-	entry.Size = document.getElementById("review_product_size").value;
-	entry.Color = document.getElementById("review_product_color").value;
-	entry.Scent = document.getElementById("review_product_scent").value;
+	entry.ID = document.getElementById("shaving_review_entry_id").value;
+	entry.Type = document.getElementById("shaving_review_product_type").value;
+	entry.Vendor = document.getElementById("shaving_review_product_vendor").value;
+	entry.Name = document.getElementById("shaving_review_product_name").value;
+	entry.Size = document.getElementById("shaving_review_product_size").value;
+	entry.Color = document.getElementById("shaving_review_product_color").value;
+	entry.Scent = document.getElementById("shaving_review_product_scent").value;
 
 	// do the pictures
 	var pics_sel = document.getElementById("pictures_select");
@@ -368,7 +369,7 @@ function postReviewEntry() {
 		}
 	}
 	compileGrades();
-	postEntry(review_entry_url, document.getElementById('review_entry_form'));
+	postEntry(shaving_review_entry_url, document.getElementById('shaving_review_entry_form'));
 
 	if (fromJournalEntry) {
 		fromJournalEntry = false;
@@ -386,13 +387,13 @@ function postReviewEntry() {
 									type += "s";
 									var type_tab = 0;
 									var tab_count = 0;
-									var review_tabs = document.getElementById('review_tabs').getElementsByTagName('span');
-									for (var i = 0; i < review_tabs.length; i++) {
-										if (review_tabs[i].getAttribute("class") == "tab_name") {
-											//console.log("FIRST CHILD: ", review_tabs[i].firstChild.nodeValue, type);
+									var shaving_review_tabs = document.getElementById('shaving_review_tabs').getElementsByTagName('span');
+									for (var i = 0; i < shaving_review_tabs.length; i++) {
+										if (shaving_review_tabs[i].getAttribute("class") == "tab_name") {
+											//console.log("FIRST CHILD: ", shaving_review_tabs[i].firstChild.nodeValue, type);
 											tab_count++;
-											if (review_tabs[i].firstChild.nodeValue == type) {
-											//if (eval(review_tabs[i].firstChild).toLowerCase() == entry.Type.toLowerCase()) {
+											if (shaving_review_tabs[i].firstChild.nodeValue == type) {
+											//if (eval(shaving_review_tabs[i].firstChild).toLowerCase() == entry.Type.toLowerCase()) {
 												type_tab = tab_count-1;
 												//console.log("  ^^w00t!^^: ", type_tab);
 												break;
@@ -408,9 +409,9 @@ function postReviewEntry() {
 }
 function clearReviewForm() {
 	console.log(">> Clearing Review Form");
-	var review_form = document.getElementById("review_entry_form");
-	clearForm(review_form);
-	init_form("review_form_date");
+	var shaving_review_form = document.getElementById("shaving_review_entry_form");
+	clearForm(shaving_review_form);
+	init_form("shaving_review_form_date");
 	// TODO: delete the grades
 	clearPictures();
 	//HG_getNextProductID(ShavingReviewedProducts);
@@ -496,10 +497,10 @@ function GradeScaleControl (parent_elem, value_field_id, label, listener) {
 			else
 				l.setAttribute("onclick", "GradeScaleControl_selectGrade(this, "+i+");");
 			//l.setAttribute("onclick", "GradeScaleControl_selectGrade(this, "+i+")");
-			l.setAttribute("onmouseover", "this.firstChild.setAttribute('src', 'img/shave_grade_"+g+".png');");
-			l.setAttribute("onmouseout", "if (document.getElementById('"+this.valueFieldID+"').value != '"+i+"') this.firstChild.setAttribute('src', 'img/shave_grade_"+g+"_dark.png');");
+			l.setAttribute("onmouseover", "this.firstChild.setAttribute('src', 'http://shaving.hokiegeek.net/img/shave_grade_"+g+".png');");
+			l.setAttribute("onmouseout", "if (document.getElementById('"+this.valueFieldID+"').value != '"+i+"') this.firstChild.setAttribute('src', 'http://shaving.hokiegeek.net/img/shave_grade_"+g+"_dark.png');");
 			var gi = document.createElement("img");
-			gi.setAttribute("src", "img/shave_grade_"+g+"_dark.png");
+			gi.setAttribute("src", "http://shaving.hokiegeek.net/img/shave_grade_"+g+"_dark.png");
 			l.appendChild(gi);
 			l.setAttribute("valueFieldID", this.valueFieldID);
 			scale.appendChild(l);
@@ -534,7 +535,7 @@ function GradeScaleControl_selectGrade(scaleElem, grade) {
 		// Reset any previously set grades
 		if (old_grade > -1) {
 			var imgs = scaleElem.parentNode.getElementsByTagName('img');
-			imgs[old_grade].setAttribute("src", "img/shave_grade_"+grade_scale[old_grade].toLowerCase()+"_dark.png");
+			imgs[old_grade].setAttribute("src", "http://shaving.hokiegeek.net/img/shave_grade_"+grade_scale[old_grade].toLowerCase()+"_dark.png");
 		}
 	}
 /*function GradeScaleControl_selectGrade(scaleElem, grade) {
@@ -558,7 +559,7 @@ function GradeScaleControl_selectGrade(scaleElem, grade) {
 			if (obj.gradeScale == null) 
 				obj.gradeScale = document.getElementById(obj.gradeScaleID);
 			var imgs = gradeScale.getElementsByTagName('img');
-			imgs[i].setAttribute("src", "img/shave_grade_"+old_grade.toLowerCase()+"_dark.png");
+			imgs[i].setAttribute("src", "http://shaving.hokiegeek.net/img/shave_grade_"+old_grade.toLowerCase()+"_dark.png");
 		}
 	}*/
 

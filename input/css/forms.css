@@ -22,19 +22,19 @@ table.entry_group tr {
 .form_label {
 	font-weight: bold;
 }
-/*#review_grade_scale img {
+/*#shaving_review_grade_scale img {
 	width: 30px;
 	margin-right: 5px;
 	+border: none;
 }*/
-#journal_grade_scales img,
-#review_grade_scales img {
+#shaving_journal_grade_scales img,
+#shaving_review_grade_scales img {
 	width: 30px;
 	margin-right: 5px;
 	border: none;
 }
-#journal_grade_scales tr td,
-#review_grade_scales tr td {
+#shaving_journal_grade_scales tr td,
+#shaving_review_grade_scales tr td {
 	padding-left: 10px;
 }
 #passes_label span {

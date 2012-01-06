@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>hokiegeek.net: Shaving</title>
+<title>hokiegeek.net: Data Input</title>
 <meta http-equiv="content-script-type" content="text/javascript">
 
 <link rel="shortcut icon" type="image/x-icon" href="http://hokiegeek.net/img/hg_icon.png">
@@ -15,56 +15,43 @@ body {
 <link type="text/css" rel="StyleSheet" href="http://hokiegeek.net/css/libslideshow.css" media="screen"/>
 <link type="text/css" rel="StyleSheet" href="http://hokiegeek.net/css/libpicasaweb.css" media="screen"/>
 <link type="text/css" rel="StyleSheet" href="http://hokiegeek.net/css/hg_journals.css" media="screen"/>
+
 <link type="text/css" rel="StyleSheet" href="css/main.css" />
 <link type="text/css" rel="StyleSheet" href="css/forms.css" />
 
+<script type="text/JavaScript" src="http://hokiegeek.net/js/jquery.js"></script>
 <script type="text/JavaScript" src="http://hokiegeek.net/js/hg_main.js"></script>
 <script type="text/JavaScript" src="http://hokiegeek.net/js/hg_nav.js"></script>
 <script type="text/JavaScript" src="http://hokiegeek.net/js/hg_journals.js"></script>
-<script type="text/JavaScript" src="http://hokiegeek.net/js/libkonami.js"></script>
 <script type="text/JavaScript" src="http://hokiegeek.net/js/libtabs.js"></script>
 <script type="text/JavaScript" src="http://hokiegeek.net/js/libslideshow.js"></script>
 <script type="text/JavaScript" src="http://hokiegeek.net/js/libhttprequest.js"></script>
 <script type="text/JavaScript" src="http://hokiegeek.net/js/libgoogledata.js"></script>
 <script type="text/JavaScript" src="http://hokiegeek.net/js/libpicasaweb.js"></script>
 
-<script type="text/JavaScript" src="js/data.js"></script>
+<script type="text/JavaScript" src="../shaving/js/data.js"></script>
+<script type="text/JavaScript" src="../tea/js/data.js"></script>
 <script type="text/JavaScript" src="js/forms.js"></script>
-<script type="text/JavaScript" src="js/trends.js"></script>
 <script type="text/JavaScript" src="js/main.js"></script>
 <script type="text/Javascript">
 window.onload = function() {
-    HG_Journal_init();
+    loadForms();
 }
-</script>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-24636368-1']);
-  _gaq.push(['_setDomainName', '.hokiegeek.net']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
 </script>
 </head>
 <body>
-<div id="hg_journal_tabs">
+<div id="hg_journal_input_tabs">
 	<div class="tab">
 		<span class="tab_name">Shaving</span>
-		<div class="tab_content" id="forms">
-			<div id="form_tabs">
+		<div class="tab_content" id="shaving_forms">
+			<div class="form_tabs">
 				<div class="tab">
 					<span class="tab_name">Journal</span>
 					<div class="tab_content">
-						<form action="javascript:postJournalEntry()" id="journal_entry_form">
+						<form action="javascript:postJournalEntry()" id="shaving_journal_entry_form">
 							<div class="entry_group">
 								<span class="form_label">Date</span><br />
-								<input type="text" name="entry.0.single" id="journal_form_date" value=""/>
+								<input type="text" name="entry.0.single" id="shaving_journal_form_date" value=""/>
 							</div>
 							<table class="entry_group">
 								<tr>
@@ -171,7 +158,7 @@ window.onload = function() {
 									</td>
 									<td>
 										<span class="form_label">Grades</span><br />
-										<table id="journal_grade_scales"></table>
+										<table id="shaving_journal_grade_scales"></table>
 									</td>
 								</tr>
 							</table>
@@ -180,7 +167,7 @@ window.onload = function() {
 								<textarea name="entry.9.single" rows="8" cols="75" id="entry_9"></textarea>
 							</div>
 							<div class="entry_group">
-								<input id="journal_submit" type="submit" name="submit" value="Submit"/>
+								<input id="shaving_journal_submit" type="submit" name="submit" value="Submit"/>
 							</div>
 							<input type="hidden" name="pageNumber" value="0">
 							<input type="hidden" name="backupCache" value="">
@@ -190,12 +177,12 @@ window.onload = function() {
 				<div class="tab">
 					<span class="tab_name">Review</span>
 					<div class="tab_content">
-						<form action="javascript:postReviewEntry()" id="review_entry_form">
+						<form action="javascript:postReviewEntry()" id="shaving_review_entry_form">
 							<table class="entry_group">
 								<tr>
 									<td>
 										<span class="form_label">Date</span><br />
-										<input type="text" name="entry.0.single" id="review_form_date"/>
+										<input type="text" name="entry.0.single" id="shaving_review_form_date"/>
 									</td>
 								</tr>
 							</table>
@@ -205,7 +192,7 @@ window.onload = function() {
 									<tr>
 										<td>
 											<span class="form_label">Product Type</span><br />
-											<select name="entry.1.single" id="review_product_type" onchange="loadReviewGrades(this.value, 'review_grade_scales')">
+											<select name="entry.1.single" id="shaving_review_product_type" onchange="loadReviewGrades(this.value, 'shaving_review_grade_scales')">
 												<option value="Razor">Razor</option>
 												<option value="Blade">Blade</option>
 												<option value="Strop">Strop</option>
@@ -232,11 +219,11 @@ window.onload = function() {
 									<tr>
 										<td>
 											<span class="form_label">Product Vendor</span><br />
-											<input type="text" id="review_product_vendor" name="entry.2.single" />
+											<input type="text" id="shaving_review_product_vendor" name="entry.2.single" />
 										</td>
 										<td>
 											<span class="form_label">Product Name</span><br />
-											<input type="text" id="review_product_name" name="entry.3.single" />
+											<input type="text" id="shaving_review_product_name" name="entry.3.single" />
 										</td>
 										<td>
 											<span class="form_label">Price</span><br />
@@ -248,15 +235,15 @@ window.onload = function() {
 									<tr>
 										<td>
 											<span class="form_label">Size</span><br />
-											<input type="text" id="review_product_size" name="entry.4.single" />
+											<input type="text" id="shaving_review_product_size" name="entry.4.single" />
 										</td>
 										<td>
 											<span class="form_label">Color</span><br />
-											<input type="text" id="review_product_color" name="entry.5.single" />
+											<input type="text" id="shaving_review_product_color" name="entry.5.single" />
 										</td>
 										<td>
 											<span class="form_label">Scent</span><br />
-											<input type="text" id="review_product_scent" name="entry.6.single" />
+											<input type="text" id="shaving_review_product_scent" name="entry.6.single" />
 										</td>
 									</tr>
 								</table>
@@ -265,17 +252,14 @@ window.onload = function() {
 								<tr>
 									<td>
 										<span class="form_label">Grades</span><br />
-										<input type="hidden" name="entry.10.single" id="hidden_review_grades" value=""/>
-										<table id="review_grade_scales"></table>
+										<input type="hidden" name="entry.10.single" id="hidden_shaving_review_grades" value=""/>
+										<table id="shaving_review_grade_scales"></table>
 									</td>
 									<td style="width: 450px">
 										<span class="form_label">Pictures</span><br />
 										<div id="pictures_select"></div>
 										<div id="pictures_view"></div>
 										<input type="hidden" name="entry.12.single" id="picture_list" />
-										<!--input type="file" name="add_picture" id="add_picture" onchange="addReviewPicture(this);" />
-										<input type="button" name="addPicBtn" value="Add pic..." onclick="var f = document.getElementById('add_picture'); add_picture.click();" />
-										<input type="button" name="picsClearBtn" value="Clear" onclick="clearPictures();" /-->
 									</td>
 								</tr>
 							</table>
@@ -284,19 +268,126 @@ window.onload = function() {
 								<textarea name="entry.11.single" rows="8" cols="75"></textarea>
 							</div>
 							<div class="entry_group">
-								<input id="review_submit" type="submit" name="submit" value="Submit" />
+								<input id="shaving_review_submit" type="submit" name="submit" value="Submit" />
 								<input type="button" name="clearBtn" value="Clear" onclick="clearReviewForm()" />
 							</div>
 							<input type="hidden" name="pageNumber" value="0">
 							<input type="hidden" name="backupCache" value="">
 							<input type="hidden" name="entry.13.single" value="TRUE"/>
-							<input type="hidden" name="entry.14.single" id="review_entry_id"/>
+							<input type="hidden" name="entry.14.single" id="shaving_review_entry_id"/>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> <!-- Shaving -->
+	<div class="tab">
+		<span class="tab_name">Tea</span>
+		<div class="tab_content" class="forms">
+			<div class="form_tabs">
+				<div class="tab">
+					<span class="tab_name">Journal</span>
+					<div class="tab_content">
+						<form action="javascript:postJournalEntry()" id="tea_journal_entry_form">
+							<table class="entry_group">
+								<tr>
+									<td>
+										<span class="form_label">Date</span><br />
+										<input type="text" name="entry.0.single" id="tea_journal_form_date" value=""/>
+									</td>
+									<td>
+										<span class="form_label">Time</span><br />
+										<input type="text" name="entry.1.single" id="tea_journal_form_time" value=""/>
+									</td>
+								</tr>
+							</table>
+							<table class="entry_group">
+								<tr>
+									<td>
+										<span class="form_label">Tea</span><br />
+										<select name="entry.2.single" id="list_teas" onchange="addNewListItem(this)">
+											<optgroup label="Other">
+												<option value="">N/A</option>
+												<option value="_ADDNEW_">Add New Item...</option>
+											</optgroup>
+										</select>
+									</td>
+									<td>
+										<span class="form_label">Session Instance</span><br />
+										<input type="text" name="entry.9.single" value=""/>
+									</td>
+								</tr>
+							</table>
+							<table class="entry_group">
+								<tr>
+									<td>
+										<span class="form_label">Steep Time</span><br />
+										<input type="text" name="entry.6.single" value=""/>
+									</td>
+									<td>
+										<span class="form_label">Steeping Vessel</span><br />
+										<input type="text" name="entry.7.single" value=""/>
+									</td>
+									<td>
+										<span class="form_label">Steep Temperature</span><br />
+										<input type="text" name="entry.8.single" value=""/>
+									</td>
+								</tr>
+							</table>
+							<table class="entry_group">
+								<tr>
+									<td>
+										<span class="form_label">Fixins</span><br />
+										<select name="entry.10.single" id="list_fixins" onchange="addNewListItem(this)">
+											<optgroup label="Other">
+												<option value="">N/A</option>
+												<option value="_ADDNEW_">Add New Item...</option>
+											</optgroup>
+										</select>
+									</td>
+									<td>
+										<span class="form_label">Rating</span><br />
+										<table id="tea_journal_rating_widget"></table>
+										<input type="hidden" id="tea_journal_entry_rating" name="entry.3.single" value=""/>
+									</td>
+									<!-- TODO?
+									<td style="width: 450px">
+										<span class="form_label">Pictures</span><br />
+										<div id="pictures_select"></div>
+										<div id="pictures_view"></div>
+										<input type="hidden" name="entry.5.single" id="tea_journal_picture_list" />
+									</td>
+									//-->
+								</tr>
+							</table>
+							<!--table class="entry_group">
+								<tr>
+									<td>
+										<span class="form_label">Rating</span><br />
+										<table id="tea_journal_grade_scales" afp="entry.3.single"></table>
+									</td>
+								</tr>
+							</table-->
+							<div class="entry_group">
+								<span class="form_label">Notes</span><br />
+								<textarea name="entry.4.single" rows="8" cols="75" id="entry_9"></textarea>
+							</div>
+							<div class="entry_group">
+								<input id="tea_journal_submit" type="submit" name="submit" value="Submit"/>
+							</div>
+							<input type="hidden" name="pageNumber" value="0">
+							<input type="hidden" name="backupCache" value="">
+						</form>
+					</div>
+				</div>
+				<div class="tab">
+					<span class="tab_name">Review</span>
+					<div class="tab_content">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- Tea -->
 </div>
 </body>
 </html>
