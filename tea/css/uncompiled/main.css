@@ -18,6 +18,10 @@
 	font-weight: normal;
 }
 
+.tea_journal_entry_steeping_details {
+    padding-top: 8px;
+}
+
 .tea_journal_entry_rating {
     display: table-cell;
     vertical-align: bottom;

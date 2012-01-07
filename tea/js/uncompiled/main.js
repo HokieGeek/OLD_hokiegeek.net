@@ -49,14 +49,15 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
     cell.appendChild(table_name);
 
     var steeping_details = document.createElement("div");
-    steeping_details.setAttribute("id", "tea_journal_entry_steeping_details");
+    steeping_details.setAttribute("class", "tea_journal_entry_steeping_details");
     steeping_details.innerHTML = "Steeped ";
-    steeping_details.innerHTML += getVagueTime(entry.Date).toLowerCase()+" ";
+    // steeping_details.innerHTML += getVagueTime(entry.Date).toLowerCase()+" ";
 
     if (entry.SteepTime != null)
         steeping_details.innerHTML += "for <i>"+formatSteepTime(entry.SteepTime)+"</i> ";
     if (entry.Temperature != null)
-        steeping_details.innerHTML += "<br />at <i>"+entry.Temperature+"&deg;F</i> ";
+        steeping_details.innerHTML += "at <i>"+entry.Temperature+"&deg;F</i> ";
+        //steeping_details.innerHTML += "<br />at <i>"+entry.Temperature+"&deg;F</i> ";
     if (entry.SteepingVessel != null)
         steeping_details.innerHTML += "using the "+entry.SteepingVessel.toLowerCase();
     cell.appendChild(steeping_details);
