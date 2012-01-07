@@ -7,6 +7,8 @@
 }
 
 .tea_journal_entry_picture {
+    width: 120px;
+    text-align: center;
 }
 
 .tea_journal_entry_name {
