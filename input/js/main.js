@@ -205,9 +205,7 @@ function loadForms() {
 	// Listen for keypresses to perform some specific duties
 	//AddOKDListener(HG_Journal_keyboardHandler);
 
-    //getShavingData(loadShavingForms);
+    getShavingData(loadShavingForms);
 	getTeaData(loadTeaForms);
-	
 	// getSpeakeasyData(loadSpeakeasyForms());
-
 }
