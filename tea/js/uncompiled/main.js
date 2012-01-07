@@ -245,22 +245,19 @@ function loadExtras() {
     */
 
     HG_loadJournalViews([new HG_Journals_View("TeaJournalEntries", 
-    					      null,
+    					                      null,
                                               "journal_tab", 
-					      "renderShavingJournalEntry"),
+					                          "renderShavingJournalEntry",
+                                              "%vague"),
                          new HG_Journals_View("TeaProductEntries", 
-    					      null,
+    					                      null,
                                               "products_tab", 
                                               function() {
 	                                            loadTeaProducts(0, "DESC", "TYPE", null);
-                                              }) 
+                                              },
+                                              null) 
                         ], 
-			null);
-			/*
-                                              function() {
-	                                            loadTeaJournal(0, "DESC", null);
-                                              }),
-					      */
+			            null);
 
 	// Journal tab TODO: this needs to happen on each resize
 	//var journal_lyr = document.getElementById('journal_scroller');

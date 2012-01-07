@@ -1041,13 +1041,15 @@ function loadExtras() {
     HG_loadJournalViews([new HG_Journals_View("ShavingJournalEntries", 
 											  ["Date", "Grade"],
                                               "journal_tab", 
-											  "renderShavingJournalEntry"),
+											  "renderShavingJournalEntry",
+                                              null),
                          new HG_Journals_View("ShavingReviewedProducts", 
 						 					  null,
                                               "review_tabs", 
                                               function() {
 	                                            loadShavingReviews(0, "DESC", "TYPE", null);
-                                              })
+                                              },
+                                              null)
 
                         ], exclusion_list);
 
