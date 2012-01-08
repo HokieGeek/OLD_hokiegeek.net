@@ -130,19 +130,23 @@ function HG_getJournalData(data, progress_message_cb) {
 }
 
 function HG_formatDate(d, f) {
-	var fmt = f;
-	if (f == undefined) fmt = "%M/%D/%Y";
 	if (d == undefined || !(d instanceof Date)) {
 		return d;
 	}
-	var month = d.getMonth()+1;
-	if (month.toString().length < 2) month = "0"+month;
-	var day = d.getDate();
-	if (day.toString().length < 2) day = "0"+day;
-	var year = d.getFullYear();
-	return fmt.replace("%Y", year).replace("%M", month).replace("%D", day);
-	//return fmt;
-	//return month+"/"+day+"/"+year;
+
+	var fmt = f;
+	if (f == undefined) fmt = "%M/%D/%Y";
+
+    if (f != undefined && f == "%vague") {
+        return getVagueTime(d);
+    } else {
+        var month = d.getMonth()+1;
+        if (month.toString().length < 2) month = "0"+month;
+        var day = d.getDate();
+        if (day.toString().length < 2) day = "0"+day;
+        var year = d.getFullYear();
+        return fmt.replace("%Y", year).replace("%M", month).replace("%D", day);
+    }
 }
 
 function HG_getNextProductID(products) {
@@ -373,11 +377,12 @@ function HG_viewControls() {
 	this.sort_group = null;
 	this.filter = null;
 }
-function HG_Journals_View(d, f, e, r) {
+function HG_Journals_View(d, f, e, r, df) {
     this.data = d;
 	this.sortable_fields = f;
     this.elem_id = e;
     this.renderer = r;
+    this.dateFormat = df;
 }
 function HG_createJournalSorter(ctrls, view) {
 	var sorter = document.getElementById('journal_sorter');
@@ -517,7 +522,7 @@ function HG_renderJournal(ctrls, view) {
 
 		// Create the entry date
 		entry_date = document.createElement('td');
-		entry_date.innerHTML = HG_formatDate(entries[i].Date);
+		entry_date.innerHTML = HG_formatDate(entries[i].Date, view.dateFormat);
 
 		// Create the entry cell
 		entry_elem = document.createElement('td');
@@ -545,8 +550,6 @@ function HG_renderJournal(ctrls, view) {
 }
 
 function HG_loadJournalViews(views, exclusion_list) {
-/* views = array of objects of the following format
-*/
 	//console.log("HG_loadJournalViews(", views, ")");
 	// TODO: 1. displayed_entries is specific ?
     setStyle(document.getElementById("hg_journal_loading"), "visibility: hidden;");	
