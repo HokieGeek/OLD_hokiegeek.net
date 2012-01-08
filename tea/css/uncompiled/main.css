@@ -1,14 +1,19 @@
-#products_scroller {
+/*#products_tab {
     margin-top: 30px;
+}
+*/
+
+.products_scroller {
     border-top: 1px solid #998374;
     overflow-x: hidden;
     overflow-y: scroll;
     height: 93%;
+    width: 93%;
 }
 
 .tea_journal_entry_picture {
     width: 120px;
-    text-align: center;
+    text-align: center !important;
 }
 
 .tea_journal_entry_name {
@@ -83,8 +88,8 @@
 }
 
 .tea_product_entry_details {
-	position: relative;
-	top: -10px;
+	/*position: relative;
+	top: -10px;*/
 	margin-top: 0px;
 	padding-top: 0px;
 }

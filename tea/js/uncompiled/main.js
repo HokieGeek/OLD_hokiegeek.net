@@ -26,7 +26,7 @@ function renderShavingJournalEntry2(entry_elem, entry, num_displayed) {
 	} 
 
     var steeping_details = $("<div></div>").addClass("tea_journal_entry_steeping_details")
-                                           .append("Steeped");
+                                           .append("Steeped ");
     // .append(getVagueTime(entry.Date).toLowerCase())
 
     if (entry.SteepTime != null)
@@ -50,7 +50,7 @@ function renderShavingJournalEntry2(entry_elem, entry, num_displayed) {
 	}
     main.append(rating);
 
-	entry_elem.append($("<tr></tr>")
+	$(entry_elem).append($("<tr></tr>")
         // Add the tea image
         .append($("<td></td>").addClass("tea_journal_entry_picture").append($("<img/>").attr("src", pic)))
         .append($("<td></td>").append(main))
@@ -261,13 +261,20 @@ function renderTeaProductEntry(entry) {
 								  .append($("<td></td>").append(ratings)))
 		;
 
-		//> Build the name and append the details
-		var main = $("<table></table>")
+/*
 			.append($("<tr></tr>").addClass("tea_product_entry_name").append($("<td></td>")
 																	   .append(entry.getName()+" ["+entry.ID+"]")
 																	   .append($("<span></span>").append((entry.Stocked ? "" : "X")))
 																	   .append($("<div></div>").addClass("tea_product_entry_type")
 																	   		.append("&lt;"+entry.getType().toLowerCase()+"&gt;")))
+					)
+                    */
+		//> Build the name and append the details
+		var main = $("<table></table>")
+			.append($("<tr></tr>").addClass("tea_product_entry_name")
+                                  .append($("<td></td>").append(entry.getName()+" ["+entry.ID+"]")
+														.append($("<span></span>").append((entry.Stocked ? "" : "X")))
+                                                        )
 					)
 			.append($("<tr></tr>").append($("<td></td>").append(details)))
 		;
@@ -277,18 +284,34 @@ function renderTeaProductEntry(entry) {
 }
 
 function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
+    console.log("loadTeaProducts(", sort_field, ", ", sort_dir, ", ", sort_group, ", ", filter, ")");
     /*  TODO
      *  - Create left tabs grouping the teas by: type, rating, availability, country, etc...
 	 */
     var table = $("<table></table>");
+    var groups = {};
     for (var ii = 0; ii < TeaProductEntries.length; ii++) {
         var entry = TeaProductEntries[ii];
+        var group = entry[sort_group];
+        if (groups[group] == undefined) groups[group] = $("<table></table>");
 
-		//> Append to the table
-        table.append(renderTeaProductEntry(entry));
+        groups[group].append(renderTeaProductEntry(entry));
+
+        // table.append(renderTeaProductEntry(entry));
     }
-    $("#products_tab").append($("<div></div>").attr("id", "products_scroller").append(table));
-    //console.log("Done adding products");
+
+    // Add the various groups to the main tab
+    for (group in groups) {
+        $("#products_tab").append(
+            $("<div></div>").addClass("tab")
+                            .append($("<span></span>").addClass("tab_name").append(group))
+                            .append($("<div></div>").addClass("tab_content")
+                                                    .append($("<div></div>").addClass("products_scroller")
+                                                                            .append(groups[group])))
+         );
+    }
+
+    // $("#products_tab").append($("<div></div>").addClass("products_scroller").append(table));
 }
 
 function loadExtras() {
@@ -309,13 +332,13 @@ function loadExtras() {
     HG_loadJournalViews([new HG_Journals_View("TeaJournalEntries", 
     					                      null,
                                               "journal_tab", 
-					                          "renderShavingJournalEntry",
+					                          "renderShavingJournalEntry2",
                                               "%vague"),
                          new HG_Journals_View("TeaProductEntries", 
     					                      null,
                                               "products_tab", 
                                               function() {
-	                                            loadTeaProducts(0, "DESC", "TYPE", null);
+	                                            loadTeaProducts(0, "DESC", "Type", null);
                                               },
                                               null) 
                         ], 
