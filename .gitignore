@@ -5,6 +5,7 @@ do
 .bashrc
 .bash_history
 .viminfo
+.vimrc
 .lesshst
 .ssh
 
