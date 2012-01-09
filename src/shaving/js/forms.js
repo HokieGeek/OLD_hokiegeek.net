@@ -1,34 +1,633 @@
-var journal_entry_url="http://spreadsheets0.google.com/formResponse?formkey=dENEbllUbFdlTHg0WThDLTdqWXRLMWc6MQ";function loadProductInJournalEntry(a){console.log("loadProductInJournalEntry(): ",a);var c=a.Type.toLowerCase();c=="brush"&&(c+="e");c+="s";var c=document.getElementById("list_"+c),b=document.createElement("option");b.setAttribute("value",a.ID);b.setAttribute("selected","true");b.appendChild(document.createTextNode(a.getName()));c.insertBefore(b,c.getElementsByTagName("option")[0])}
-function addNewListItem(a){a.value=="_ADDNEW_"&&(clearReviewForm(),a=a.getAttribute("id").replace(/list_/,""),a=="brushes"&&(a=a.replace(/es$/,"")),a=a.replace(/s$/,""),startEntryReview(a))}
-function addNewItem(a){var c=a.parentNode.getElementsByTagName("select")[0],b=a.firstChild.value,d=document.createElement("option");d.setAttribute("value",b);d.setAttribute("selected","true");d.appendChild(document.createTextNode(b));b=c.getElementsByTagName("optgroup")[0];c.insertBefore(d,b);a.parentNode.removeChild(a);setStyle(c,"visibility: visible; position: static;")}
-function removeNewItemBox(a){var c=a.parentNode.getElementsByTagName("select")[0];c.getElementsByTagName("option")[0].setAttribute("selected","true");a.parentNode.removeChild(a);setStyle(c,"visibility: visible; position: static;")}
-function addProductOption(a,c,b){var d=document.getElementById(a);if(d==null||c==void 0)console.log("woah! Couldn't find '"+a+"'?:"+d);else if(a=document.createElement("option"),a.setAttribute("value",c),a.appendChild(document.createTextNode(b)),c=d.getElementsByTagName("optgroup")[0],d.insertBefore(a,c),d.getElementsByTagName("option").length<=3)d.selectedIndex=0}
-function sortProductList(a){var c=document.getElementById(a);if(c==null)console.log(">> NOT Sorting: ",a);else{for(var b=[],d=c.getElementsByTagName("option"),e=d.length-1;e>=0;e--){var g=d[e].firstChild.nodeValue;if(g!="Add New Item..."&&g!="N/A"){var h=d[e].getAttribute("value");b.push({name:g,id:h});c.removeChild(d[e])}}for(e=0;e<b.length+45;e++)b.sort(function(a,b){return a.name<b.name});for(e=b.length-1;e>=0;e--)addProductOption(a,b[e].id,b[e].name);b!=null&&delete b}}
-function loadUsedProducts(){for(var a=[],c=[],b=[],d=[],e=[],g=[],h=[],i=[],f="",j=ShavingReviewedProducts.length-1;j>=0;j--){var k=ShavingReviewedProducts[j];if(k.inDen)switch(f=k.getName(),k.Type.toLowerCase()){case "razor":addProductOption("list_razors",k.ID,f);a.push(f);break;case "blade":addProductOption("list_blades",k.ID,f);c.push(f);break;case "strop":addProductOption("list_strops",k.ID,f);b.push(f);break;case "brush":addProductOption("list_brushes",k.ID,f);d.push(f);break;case "soap":addProductOption("list_soaps",
-k.ID,f);e.push(f);break;case "cream":addProductOption("list_creams",k.ID,f);g.push(f);break;case "preshave":addProductOption("list_preshaves",k.ID,f);h.push(f);break;case "aftershave":addProductOption("list_aftershaves",k.ID,f),i.push(f)}}sortProductList("list_razors");sortProductList("list_blades");sortProductList("list_strops");sortProductList("list_brushes");sortProductList("list_soaps");sortProductList("list_creams");sortProductList("list_preshaves");sortProductList("list_aftershaves");a=[];j=
-ShavingJournalEntries[ShavingJournalEntries.length-1];j.Blade==null?a.push(document.getElementById("list_blades")):a.push(document.getElementById("list_strops"));j.Soap==null?a.push(document.getElementById("list_soaps")):a.push(document.getElementById("list_creams"));for(j=a.length-1;j>0;j--)a[j].selectedIndex=a[j].getElementsByTagName("option").length-2}
-function createJournalGradeScales(){var a=10,c=new JournalEntryType(null),b=document.getElementById("journal_grade_scales"),d=null,e=null,g;for(g in c.Grades)d=document.createElement("tr"),e=document.createElement("td"),e.appendChild(document.createTextNode(g+":")),d.appendChild(e),e=document.createElement("td"),new GradeScaleControl(e,"entry."+a+".single"),a++,d.appendChild(e),b.appendChild(d)}var submissionMessageInterval=null,submissionMessageLayer=null;
-function submissionMessage(a){submissionMessageLayer=document.createElement("span");submissionMessageLayer.setAttribute("id","submission_message_lyr");submissionMessageLayer.innerHTML="Sending..";a.appendChild(submissionMessageLayer);submissionMessageInterval=window.setInterval('submissionMessageLayer.innerHTML += "."',1E3)}
-function postJournalEntry(){submissionMessage(document.getElementById("journal_submit").parentNode);postEntry(journal_entry_url,document.getElementById("journal_entry_form"));getShavingData();loadDataWhenAvailable(function(){loadJournal(0,"DESC",null);tabsObj.ToggleTab(0);toggleEntryDetails(document.getElementById("journal").getElementsByTagName("tr")[1],!0);clearJournalForm()})}
-function clearJournalForm(){var a=document.getElementById("journal_entry_form");clearForm(a);init_form("journal_form_date")}var review_entry_url="https://spreadsheets.google.com/formResponse?formkey=dEFMb0ZoVDdhYkJEcVo3czBJSEFRcGc6MQ",pics_list_hidden=null,review_pics_view=null,pw_sel_obj=null;
-function clearPictures(){pics_list_hidden==null&&(pics_list_hidden=document.getElementById("picture_list"));review_pics_view==null&&(review_pics_view=document.getElementById("pictures_view"));pics_list_hidden.value="";review_pics_view.innerHTML=""}
-function addReviewPicture(a){console.log("Adding pic: ",a.value);pics_list_hidden==null&&(pics_list_hidden=document.getElementById("picture_list"));review_pics_view==null&&(review_pics_view=document.getElementById("pictures_view"));pics_list_hidden.value+="pics/"+a.value+";";var c=document.createElement("img");c.setAttribute("src","pics/"+a.value);review_pics_view.appendChild(c)}var review_product_type=null,review_grades_input="hidden_review_grades",hidden_review_grades=null;
-function loadReviewGrades(a,c){var b=document.getElementById(c);hidden_review_grades==null&&(hidden_review_grades=document.getElementById(review_grades_input));b.innerHTML="";hidden_review_grades.setAttribute("value","");for(var d=null,e=null,g=PRODUCT_GRADES[PRODUCT_CATEGORIES.indexOf(a.toLowerCase())],h=0;h<g.length;h++)d=document.createElement("tr"),e=document.createElement("td"),e.appendChild(document.createTextNode(g[h]+":")),d.appendChild(e),e=document.createElement("td"),new GradeScaleControl(e,
-"grade_"+g[h].toLowerCase(),null,"compileGrades"),d.appendChild(e),b.appendChild(d)}
-function compileGrades(){hidden_review_grades==null&&(hidden_review_grades=document.getElementById(review_grades_input));if(review_product_type==null){var a=document.getElementById("review_product_type");if(a!=null)review_product_type=a.value}for(var a=PRODUCT_GRADES[PRODUCT_CATEGORIES.indexOf(review_product_type.toLowerCase())],c="",b=0;b<a.length;b++){b!=0&&(c+=";");var d=document.getElementById("grade_"+a[b].toLowerCase()).getAttribute("value");c+=d==null?"0":d}hidden_review_grades.setAttribute("value",
-c)}var fromJournalEntry=!1;function startEntryReview(a){document.getElementById("review_product_type").selectedIndex=PRODUCT_CATEGORIES.indexOf(a.toLowerCase());loadReviewGrades(a,"review_grade_scales");fromJournalEntry=!0;tabsObj.NestedTabs[3].ToggleTab(1)}
-function postReviewEntry(){submissionMessage(document.getElementById("review_submit").parentNode);var a=new ProductType(null);a.ID=document.getElementById("review_entry_id").value;a.Type=document.getElementById("review_product_type").value;a.Vendor=document.getElementById("review_product_vendor").value;a.Name=document.getElementById("review_product_name").value;a.Size=document.getElementById("review_product_size").value;a.Color=document.getElementById("review_product_color").value;a.Scent=document.getElementById("review_product_scent").value;
-if(document.getElementById("pictures_select")!=null&&pw_sel_obj!=null){pics_list_hidden==null&&(pics_list_hidden=document.getElementById("picture_list"));for(var c=pw_sel_obj.getSelected(),b=0;b<c.length;b++)pics_list_hidden.value+=c[b].name+";"}compileGrades();postEntry(review_entry_url,document.getElementById("review_entry_form"));fromJournalEntry?(fromJournalEntry=!1,loadProductInJournalEntry(a),tabsObj.ToggleTab(3),tabsObj.NestedTabs[3].ToggleTab(0)):(getProductReviews(),loadDataWhenAvailable(function(){var b=
-a.Type;b=="Brush"&&(b+="e");b+="s";for(var e=0,c=0,h=document.getElementById("review_tabs").getElementsByTagName("span"),i=0;i<h.length;i++)if(h[i].getAttribute("class")=="tab_name"&&(c++,h[i].firstChild.nodeValue==b)){e=c-1;break}tabsObj.ToggleTab(1);tabsObj.NestedTabs[1].ToggleTab(e);refreshReviews();clearReviewForm()}))}
-function clearReviewForm(){console.log(">> Clearing Review Form");var a=document.getElementById("review_entry_form");clearForm(a);init_form("review_form_date");clearPictures()}function switchToSoap(){switchProductTab(["list_soaps_label","list_soaps"],["list_creams_label","list_creams"]);document.getElementById("list_soaps").selectedIndex=0}
-function switchToCream(){switchProductTab(["list_creams_label","list_creams"],["list_soaps_label","list_soaps"]);document.getElementById("list_creams").selectedIndex=0}function switchToStrop(){switchProductTab(["list_strops_label","list_strops"],["list_blades_label","list_blades"]);document.getElementById("list_strops").selectedIndex=0}
-function switchToBlade(){switchProductTab(["list_blades_label","list_blades"],["list_strops_label","list_strops"]);document.getElementById("list_blades").selectedIndex=0}
-function switchProductTab(a,c){var b=document.getElementById(a[0]),d=document.getElementById(a[1]),e=b.getAttribute("class"),g=d.getAttribute("class");console.log("SOURCE: ",e);b.setAttribute("class",e+" sel_prod_type_label");d.setAttribute("class",g+" sel_prod_type_list");d.selectedIndex=d.getElementsByTagName("option").length-2;b=document.getElementById(c[0]);d=document.getElementById(c[1]);e=b.getAttribute("class");g=d.getAttribute("class");console.log("TARGET: ",e);e!=null&&e.length>0&&b.setAttribute("class",
-e.replace(/ *sel_prod_type_label/g,""));g!=null&&g.length>0&&d.setAttribute("class",g.replace(/ *sel_prod_type_list/g,""))}
-function GradeScaleControl(a,c,b,d){this.gradeScale=null;this.valueFieldID=c;this.valueField=null;this.scaleLabel=b==void 0?null:b;this.listeners=[];d!=null&&this.listeners.push(d);this.loadGradeScale=function(){this.gradeScale=document.createElement("span");this.gradeScale.setAttribute("class","grade_scale");setStyle(this.gradeScale,"vertical-align: top;");if(this.scaleLabel!=null){var b=document.createElement("span");b.appendChild(document.createTextNode(this.scaleLabel+": "));setStyle(b,"vertical-align: top; margin-right: 10px;");
-this.gradeScale.appendChild(b)}for(var b=document.createElement("span"),c=0;c<grade_scale.length;c++){var d=grade_scale[c].toLowerCase(),i=document.createElement("a");i.setAttribute("href","javascript://");i.setAttribute("title",grade_scale[c]);this.listeners.length>0?i.setAttribute("onclick","GradeScaleControl_selectGrade(this, "+c+"); "+this.listeners[0]+"()"):i.setAttribute("onclick","GradeScaleControl_selectGrade(this, "+c+");");i.setAttribute("onmouseover","this.firstChild.setAttribute('src', 'img/shave_grade_"+
-d+".png');");i.setAttribute("onmouseout","if (document.getElementById('"+this.valueFieldID+"').value != '"+c+"') this.firstChild.setAttribute('src', 'img/shave_grade_"+d+"_dark.png');");var f=document.createElement("img");f.setAttribute("src","img/shave_grade_"+d+"_dark.png");i.appendChild(f);i.setAttribute("valueFieldID",this.valueFieldID);b.appendChild(i)}this.gradeScale.appendChild(b);b=document.createElement("input");b.setAttribute("type","hidden");b.setAttribute("name",this.valueFieldID);b.setAttribute("id",
-this.valueFieldID);this.gradeScale.appendChild(b);a.appendChild(this.gradeScale)};this.loadGradeScale()}function GradeScaleControl_selectGrade(a,c){var b=a.getAttribute("valueFieldID"),b=document.getElementById(b),d=-1;if(b.value!=null&&b.value.length>0)d=b.value;b.value=c;d>-1&&a.parentNode.getElementsByTagName("img")[d].setAttribute("src","img/shave_grade_"+grade_scale[d].toLowerCase()+"_dark.png")}
-function init_form(a){var c=new Date;document.getElementById(a).value=c.getMonth()+1+"/"+c.getDate()+"/"+c.getFullYear()}
-function postEntry(a,c){for(var b=[],d=["select","textarea","input"],e=0;e<d.length;e++)for(var g=d[e],h=c.getElementsByTagName(g),i=0;i<h.length;i++){var f=h[i];switch(g){case "input":switch(f.getAttribute("type")){case "radio":if(!f.checked)continue;break;case "submit":continue}}var j=escape(f.getAttribute("name")),f=f.value.replace(/"/g,'\\"');b.push(j+"="+f)}console.log("sendData(",a,",",b,")");(new libHTTPRequest).sendData(a,b)}
-function clearForm(a){for(var c=["select","textarea","input"],b=0;b<c.length;b++)for(var d=c[b],e=a.getElementsByTagName(d),g=0;g<e.length;g++){var h=e[g];switch(d){case "textarea":h.value="";break;case "select":h.selectedIndex=0;break;case "input":switch(h.getAttribute("type")){case "text":h.value="";break;case "radio":h.checked=!1}}}submissionMessageLayer!=null&&(clearInterval(submissionMessageInterval),submissionMessageLayer.parentNode.removeChild(submissionMessageLayer))};
+/** Journal **/
+var journal_entry_url = "http://spreadsheets0.google.com/formResponse?formkey=dENEbllUbFdlTHg0WThDLTdqWXRLMWc6MQ";
+function loadProductInJournalEntry(product) {
+	// Retrieve the appropriate list
+	console.log("loadProductInJournalEntry(): ", product);
+	var type = product.Type.toLowerCase();
+	if (type == "brush") type += "e";
+	type += "s";
+	var list = document.getElementById("list_"+type);
+
+	// Create new option;
+	var option = document.createElement('option');
+	option.setAttribute('value', product.ID);
+	option.setAttribute('selected', 'true');
+	option.appendChild(document.createTextNode(product.getName()));
+
+	// add to the very top
+	list.insertBefore(option, list.getElementsByTagName('option')[0]);
+
+}
+function addNewListItem(list) { // This guy should switch to the review tab
+	if (list.value != "_ADDNEW_") return;
+
+	// Clear the form, JIC
+	clearReviewForm();
+
+	//
+	var type = list.getAttribute("id").replace(/list_/, "");
+	if (type == "brushes") type = type.replace(/es$/, "");
+	type = type.replace(/s$/, "");
+	
+	startEntryReview(type);
+}
+function addNewItem(box) {
+	var list = box.parentNode.getElementsByTagName('select')[0];
+	var newItem = box.firstChild.value;
+	var option = document.createElement('option');
+	option.setAttribute('value', newItem);
+	option.setAttribute('selected', 'true');
+	option.appendChild(document.createTextNode(newItem));
+
+	// add before 'N/A' or 'Add New Item...'
+	var last = list.getElementsByTagName('optgroup')[0];
+	list.insertBefore(option, last);
+
+	box.parentNode.removeChild(box);
+	setStyle(list, "visibility: visible; position: static;");
+}
+function removeNewItemBox(box) {
+	var list = box.parentNode.getElementsByTagName('select')[0];
+	list.getElementsByTagName("option")[0].setAttribute('selected', 'true');
+	box.parentNode.removeChild(box);
+	setStyle(list, "visibility: visible; position: static;");
+}
+function addProductOption(list_id, val, name) {
+	var list = document.getElementById(list_id);
+	if (list == null || val == undefined) {
+		console.log("woah! Couldn't find '"+list_id+"'?:"+list);
+		return;
+	}
+
+	var opt = document.createElement('option');
+	opt.setAttribute('value', val);
+	opt.appendChild(document.createTextNode(name));
+	//opt.appendChild(document.createTextNode(val));
+	var group = list.getElementsByTagName('optgroup')[0];
+	list.insertBefore(opt, group);
+	var list_opts = list.getElementsByTagName('option');
+	if (list_opts.length <= 3)
+		list.selectedIndex = 0;
+	//list.sort();
+}
+function sortProductList(list_id) {
+	var list = document.getElementById(list_id);
+	if (list == null) {
+		console.log(">> NOT Sorting: ", list_id);
+		return;
+	}
+	//console.log("Sorting: ", list_id);
+
+	// 1. Retrieve all of the options in this list into an array
+	var options = [];
+	var optsArray = list.getElementsByTagName("option");
+	//console.log(" optsArray {"+optsArray.length+"}: ", optsArray);
+	for (var i = optsArray.length-1; i >= 0; i--) {
+		var prodName = optsArray[i].firstChild.nodeValue;
+		if (prodName != "Add New Item..." && prodName != "N/A") {
+			var prodID = optsArray[i].getAttribute("value");
+			//if (list_id == "list_soaps")
+				//console.log("Found: "+prodName+" ("+prodID+")");
+			options.push({"name":prodName,"id":prodID});
+
+			// 2. Delete them from the list
+			list.removeChild(optsArray[i]);
+		}
+	}
+	//console.log("   list[pre] = ", list);
+
+	/*if (list_id == "list_soaps") {
+		for (var i = 0; i < options.length; i++)
+			console.log("   options{pre}["+i+"] = ", options[i].name);
+	}*/
+	// 3. Sort the array by the text node
+	for (var i = 0; i < options.length+45; i++)
+		options.sort(function(a,b) { return a.name < b.name });
+
+	/*if (list_id == "list_soaps") {
+		for (var i = 0; i < options.length; i++)
+			console.log("   options{post}["+i+"] = ", options[i].name);
+	}*/
+
+	// 4. Add the options back into the list
+	//var lastJournalEntry = ShavingJournalEntries[ShavingJournalEntries.length-1];
+	for (var i = options.length-1; i >= 0; i--) {
+		addProductOption(list_id, options[i].id, options[i].name);
+	}
+	//console.log("   list[post] = ", list);
+
+	if (options != null)
+		delete options;
+}
+
+function loadUsedProducts() {
+	var razors = [];
+	var blades = [];
+	var strops = [];
+	var brushes = [];
+	var soaps = [];
+	var creams = [];
+	var preshaves = [];
+	var aftershaves = [];
+	var name = "";
+	for (var i = ShavingReviewedProducts.length-1; i >= 0; i--) {
+		var data = ShavingReviewedProducts[i];
+		if (!data.inDen) continue; // TODO: make it a checkbox?
+
+		//name = (data.getName != undefined) ? data.getName() : data;
+		name = data.getName();
+		//console.log(" USED PRODUCT: ", data, data.Type, name);
+		switch (data.Type.toLowerCase()) {
+		case 'razor': 
+			addProductOption('list_razors', data.ID, name);
+			razors.push(name); 
+			break;
+		case 'blade': 
+			addProductOption('list_blades', data.ID, name);
+			blades.push(name); 
+			break;
+		case 'strop': 
+			addProductOption('list_strops', data.ID, name);
+			strops.push(name); 
+			break;
+		case 'brush': 
+			addProductOption('list_brushes', data.ID, name);
+			brushes.push(name); 
+			break;
+		case 'soap': 
+			addProductOption('list_soaps', data.ID, name);
+			soaps.push(name); 
+			break;
+		case 'cream': 
+			addProductOption('list_creams', data.ID, name);
+			creams.push(name); 
+			break;
+		case 'preshave': 
+			addProductOption('list_preshaves', data.ID, name);
+			preshaves.push(name); 
+			break;
+		case 'aftershave': 
+			addProductOption('list_aftershaves', data.ID, name);
+			aftershaves.push(name); 
+			break;
+		}
+	}
+
+	// Now sort the lists
+	sortProductList('list_razors');
+	sortProductList('list_blades');
+	sortProductList('list_strops');
+	sortProductList('list_brushes');
+	sortProductList('list_soaps');
+	sortProductList('list_creams');
+	sortProductList('list_preshaves');
+	sortProductList('list_aftershaves');
+
+	// Determine which to null (cream or soap) depending on last journal entry
+	var toNA = [];
+	var lastEntry = ShavingJournalEntries[ShavingJournalEntries.length-1];
+	// Blade vs. Strop
+	if (lastEntry.Blade == null) {
+		toNA.push(document.getElementById('list_blades'));
+		//switchToStrop();
+	} else {
+		toNA.push(document.getElementById('list_strops'));
+		//switchToBlade();
+	}
+
+	// Cream vs. Soap
+	if (lastEntry.Soap == null) {
+		toNA.push(document.getElementById('list_soaps'));
+		//switchToCream();
+	} else {
+		toNA.push(document.getElementById('list_creams'));
+		//switchToSoap();
+	}
+
+	// Now null them out
+	for (var i = toNA.length-1; i > 0; i--) 
+		toNA[i].selectedIndex = toNA[i].getElementsByTagName("option").length-2;
+}
+function createJournalGradeScales() {
+	var scales_start = 10;
+	var tmp = new JournalEntryType(null);
+	var scales_tbl = document.getElementById("journal_grade_scales");
+	var row = null;
+	var cell = null;
+	for (var gt in tmp.Grades) {
+		row = document.createElement('tr');
+		// Label
+		cell = document.createElement('td');
+		cell.appendChild(document.createTextNode(gt+":"));
+		row.appendChild(cell);
+		// Scale
+		cell = document.createElement('td');
+		new GradeScaleControl(cell, "entry."+scales_start+".single");
+		scales_start++;
+		row.appendChild(cell);
+
+		scales_tbl.appendChild(row);
+	}
+}
+//var journal_entry_url_TEST = "https://spreadsheets.google.com/formResponse?formkey=dGVuNWUtSVp0WWE4MEdGX0p3WXdBMXc6MA";
+var submissionMessageInterval = null;
+var submissionMessageLayer = null;
+function submissionMessage(lyr) {
+	submissionMessageLayer = document.createElement('span');
+	submissionMessageLayer.setAttribute("id", "submission_message_lyr");
+	submissionMessageLayer.innerHTML = "Sending..";
+	lyr.appendChild(submissionMessageLayer);
+
+	submissionMessageInterval = window.setInterval('submissionMessageLayer.innerHTML += "."', 1000);
+}
+function postJournalEntry() {
+	submissionMessage(document.getElementById('journal_submit').parentNode);
+
+	postEntry(journal_entry_url, document.getElementById('journal_entry_form'));
+
+	getShavingData();
+	// When new data has been retrieved, refresh the journal view and switch to it
+	loadDataWhenAvailable(function() {
+							loadJournal(0, "DESC", null);
+							tabsObj.ToggleTab(0);	
+							toggleEntryDetails(document.getElementById('journal').getElementsByTagName('tr')[1], true);
+							clearJournalForm();
+									 });
+}
+function clearJournalForm() {
+	var journal_form = document.getElementById("journal_entry_form");
+	clearForm(journal_form);
+	init_form("journal_form_date");
+	// TODO: delete the grades
+	//createJournalGradeScales();
+}
+
+/** Reviews **/
+var review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dEFMb0ZoVDdhYkJEcVo3czBJSEFRcGc6MQ";
+//var review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dHJEQ1JweDcxTTRZOUowZWlsSXI4NFE6MA&ifq";
+var pics_list_hidden = null;
+var review_pics_view = null;
+var pw_sel_obj = null;
+function clearPictures() {
+	if (pics_list_hidden == null) pics_list_hidden = document.getElementById('picture_list');
+	if (review_pics_view == null) review_pics_view = document.getElementById('pictures_view');
+	pics_list_hidden.value = "";
+	review_pics_view.innerHTML = "";
+}
+function addReviewPicture(pics) {
+	console.log("Adding pic: ", pics.value);
+	if (pics_list_hidden == null) pics_list_hidden = document.getElementById('picture_list');
+	if (review_pics_view == null) review_pics_view = document.getElementById('pictures_view');
+
+	pics_list_hidden.value += "pics/"+pics.value+";";
+	var img = document.createElement('img');
+	img.setAttribute('src', "pics/"+pics.value);
+	review_pics_view.appendChild(img);
+}
+var review_product_type = null;
+var review_grades_input = "hidden_review_grades";
+var hidden_review_grades = null;
+function loadReviewGrades(type, elem) {
+	var scales_tbl = document.getElementById(elem);
+	if (hidden_review_grades == null) 
+		hidden_review_grades = document.getElementById(review_grades_input);
+	scales_tbl.innerHTML = "";
+	hidden_review_grades.setAttribute("value", "");
+
+	var row = null;
+	var cell = null;
+	var grades = PRODUCT_GRADES[PRODUCT_CATEGORIES.indexOf(type.toLowerCase())];
+	//console.log("GRADES: ", grades);
+	for (var i = 0; i < grades.length; i++) {
+		row = document.createElement('tr');
+		// Label
+		cell = document.createElement('td');
+		cell.appendChild(document.createTextNode(grades[i]+":"));
+		row.appendChild(cell);
+		// Scale
+		cell = document.createElement('td');
+		//var gsc = new GradeScaleControl(cell, "grade_"+grades[i].toLowerCase(), null, compileGrades);
+		var gsc = new GradeScaleControl(cell, "grade_"+grades[i].toLowerCase(), null, "compileGrades");
+		row.appendChild(cell);
+
+		scales_tbl.appendChild(row);
+	}
+}
+function compileGrades() {
+	if (hidden_review_grades == null) 
+		hidden_review_grades = document.getElementById(review_grades_input);
+	if (review_product_type == null) {
+		var	type_obj = document.getElementById('review_product_type');
+		if (type_obj != null)
+			review_product_type = type_obj.value;
+	}
+	//console.log("Compiling grades for type: ", review_product_type);
+	var grade_list = PRODUCT_GRADES[PRODUCT_CATEGORIES.indexOf(review_product_type.toLowerCase())]
+	var grades = "";
+	for (var i = 0; i < grade_list.length; i++) {
+		if (i != 0) grades += ";";
+		var grade = document.getElementById("grade_"+grade_list[i].toLowerCase());
+		var grade_val = grade.getAttribute("value");
+		if (grade_val == null)
+			grades += "0";
+		else			
+			grades += grade_val;
+	}
+	hidden_review_grades.setAttribute("value", grades);
+}
+var fromJournalEntry = false;
+function startEntryReview(type) {
+	var type_list = document.getElementById("review_product_type");
+	type_list.selectedIndex = PRODUCT_CATEGORIES.indexOf(type.toLowerCase());
+	loadReviewGrades(type, 'review_grade_scales')
+
+	fromJournalEntry = true;
+
+	tabsObj.NestedTabs[3].ToggleTab(1);	
+}
+function postReviewEntry() { 
+	submissionMessage(document.getElementById('review_submit').parentNode);
+
+	// Generate a ProductType object
+	var entry = new ProductType(null);
+	entry.ID = document.getElementById("review_entry_id").value;
+	entry.Type = document.getElementById("review_product_type").value;
+	entry.Vendor = document.getElementById("review_product_vendor").value;
+	entry.Name = document.getElementById("review_product_name").value;
+	entry.Size = document.getElementById("review_product_size").value;
+	entry.Color = document.getElementById("review_product_color").value;
+	entry.Scent = document.getElementById("review_product_scent").value;
+
+	// do the pictures
+	var pics_sel = document.getElementById("pictures_select");
+	if (pics_sel != null && pw_sel_obj != null) {
+		if (pics_list_hidden == null) pics_list_hidden = document.getElementById('picture_list');
+		var pics = pw_sel_obj.getSelected();
+		for (var i = 0; i < pics.length; i++) {
+			pics_list_hidden.value += pics[i].name+";";
+		}
+	}
+	compileGrades();
+	postEntry(review_entry_url, document.getElementById('review_entry_form'));
+
+	if (fromJournalEntry) {
+		fromJournalEntry = false;
+		loadProductInJournalEntry(entry);
+
+		// Switch to the Journal Entry form and return the product review object
+		tabsObj.ToggleTab(3);	
+		tabsObj.NestedTabs[3].ToggleTab(0);	
+	} else {
+		getProductReviews();
+		// Switch to reviews tab and the appropriate category
+		loadDataWhenAvailable(function() {
+									var type = entry.Type;
+									if (type == "Brush") type += "e";
+									type += "s";
+									var type_tab = 0;
+									var tab_count = 0;
+									var review_tabs = document.getElementById('review_tabs').getElementsByTagName('span');
+									for (var i = 0; i < review_tabs.length; i++) {
+										if (review_tabs[i].getAttribute("class") == "tab_name") {
+											//console.log("FIRST CHILD: ", review_tabs[i].firstChild.nodeValue, type);
+											tab_count++;
+											if (review_tabs[i].firstChild.nodeValue == type) {
+											//if (eval(review_tabs[i].firstChild).toLowerCase() == entry.Type.toLowerCase()) {
+												type_tab = tab_count-1;
+												//console.log("  ^^w00t!^^: ", type_tab);
+												break;
+											}
+										}
+									}
+									tabsObj.ToggleTab(1);	
+									tabsObj.NestedTabs[1].ToggleTab(type_tab);
+									refreshReviews();
+									clearReviewForm();
+										});
+	}
+}
+function clearReviewForm() {
+	console.log(">> Clearing Review Form");
+	var review_form = document.getElementById("review_entry_form");
+	clearForm(review_form);
+	init_form("review_form_date");
+	// TODO: delete the grades
+	clearPictures();
+	//HG_getNextProductID(ShavingReviewedProducts);
+}
+
+/** Common **/
+function switchToSoap() {
+	switchProductTab(['list_soaps_label', 'list_soaps'], ['list_creams_label', 'list_creams']);
+    var list = document.getElementById('list_soaps');
+    list.selectedIndex = 0;
+}
+function switchToCream() {
+	switchProductTab(['list_creams_label', 'list_creams'], ['list_soaps_label', 'list_soaps']);
+    var list = document.getElementById('list_creams');
+    list.selectedIndex = 0;
+}
+function switchToStrop() {
+	switchProductTab(['list_strops_label', 'list_strops'], ['list_blades_label', 'list_blades']);
+    var list = document.getElementById('list_strops');
+    list.selectedIndex = 0;
+}
+function switchToBlade() {
+	switchProductTab(['list_blades_label', 'list_blades'], ['list_strops_label', 'list_strops']);
+    var list = document.getElementById('list_blades');
+    list.selectedIndex = 0;
+}
+function switchProductTab(source, target) {
+	var src_lbl = document.getElementById(source[0]);
+	var src_lst = document.getElementById(source[1]);
+	var src_lbl_classes = src_lbl.getAttribute("class");
+	var src_lst_classes = src_lst.getAttribute("class");
+	console.log("SOURCE: ", src_lbl_classes);
+	src_lbl.setAttribute("class", src_lbl_classes+" sel_prod_type_label");
+	src_lst.setAttribute("class", src_lst_classes+" sel_prod_type_list");
+	// Select N/A as the option
+	src_lst.selectedIndex = src_lst.getElementsByTagName("option").length-2;
+
+	var tgt_lbl = document.getElementById(target[0]);
+	var tgt_lst = document.getElementById(target[1]);
+	var tgt_lbl_classes = tgt_lbl.getAttribute("class");
+	var tgt_lst_classes = tgt_lst.getAttribute("class");
+	console.log("TARGET: ", tgt_lbl_classes);
+	if (tgt_lbl_classes != null && tgt_lbl_classes.length > 0)
+		tgt_lbl.setAttribute("class", tgt_lbl_classes.replace(/ *sel_prod_type_label/g, ""));
+	if (tgt_lst_classes != null && tgt_lst_classes.length > 0)
+		tgt_lst.setAttribute("class", tgt_lst_classes.replace(/ *sel_prod_type_list/g, ""));
+
+	//console.log("SWITCH TARGET LIST: ", tgt_lst);
+}
+function GradeScaleControl (parent_elem, value_field_id, label, listener) {
+	this.gradeScale = null;
+	this.valueFieldID = value_field_id;
+	this.valueField = null;
+	this.scaleLabel = (label == undefined) ? null : label;
+	this.listeners = [];
+	if (listener != null)
+		this.listeners.push(listener);
+
+	this.loadGradeScale = function() {
+
+		this.gradeScale = document.createElement('span');
+		this.gradeScale.setAttribute("class", "grade_scale");
+		setStyle(this.gradeScale, "vertical-align: top;");
+
+		if (this.scaleLabel != null) {
+			var label = document.createElement('span');
+			label.appendChild(document.createTextNode(this.scaleLabel+": "));
+			setStyle(label, "vertical-align: top; margin-right: 10px;");
+			this.gradeScale.appendChild(label);
+		}
+
+		// Add the actual scale
+		var scale = document.createElement('span');
+		for (var i = 0; i < grade_scale.length; i++) {
+			var g = grade_scale[i].toLowerCase();
+			var l = document.createElement("a");
+			l.setAttribute("href", "javascript://");
+			l.setAttribute("title", grade_scale[i]);
+			//l.setAttribute("onclick", this+".selectGrade("+i+")");
+			//l.setAttribute("onclick", "GradeScaleControl_selectGrade("+this+", "+i+")");
+			if (this.listeners.length > 0)
+				l.setAttribute("onclick", "GradeScaleControl_selectGrade(this, "+i+"); "+this.listeners[0]+"()");
+			else
+				l.setAttribute("onclick", "GradeScaleControl_selectGrade(this, "+i+");");
+			//l.setAttribute("onclick", "GradeScaleControl_selectGrade(this, "+i+")");
+			l.setAttribute("onmouseover", "this.firstChild.setAttribute('src', 'img/shave_grade_"+g+".png');");
+			l.setAttribute("onmouseout", "if (document.getElementById('"+this.valueFieldID+"').value != '"+i+"') this.firstChild.setAttribute('src', 'img/shave_grade_"+g+"_dark.png');");
+			var gi = document.createElement("img");
+			gi.setAttribute("src", "img/shave_grade_"+g+"_dark.png");
+			l.appendChild(gi);
+			l.setAttribute("valueFieldID", this.valueFieldID);
+			scale.appendChild(l);
+		}
+		this.gradeScale.appendChild(scale);
+
+		// Add the hidden input
+		var hidden = document.createElement('input');
+		hidden.setAttribute("type", "hidden");
+		hidden.setAttribute("name", this.valueFieldID);
+		hidden.setAttribute("id", this.valueFieldID);
+		this.gradeScale.appendChild(hidden);
+
+		// Now add the scale
+		parent_elem.appendChild(this.gradeScale);
+	}
+
+
+	this.loadGradeScale();
+}
+function GradeScaleControl_selectGrade(scaleElem, grade) {
+		//console.log("selectGrade("+grade+")");
+		//console.log("  OLD: ", old_grade);
+		// Update the hidden input
+		var fieldID = scaleElem.getAttribute("valueFieldID");
+		var valueField = document.getElementById(fieldID);
+		var old_grade = -1;
+		if (valueField.value != null && valueField.value.length > 0)
+			old_grade = valueField.value;
+		valueField.value = grade;
+
+		// Reset any previously set grades
+		if (old_grade > -1) {
+			var imgs = scaleElem.parentNode.getElementsByTagName('img');
+			imgs[old_grade].setAttribute("src", "img/shave_grade_"+grade_scale[old_grade].toLowerCase()+"_dark.png");
+		}
+	}
+/*function GradeScaleControl_selectGrade(scaleElem, grade) {
+		console.log("selectGrade(",scaleElem, grade+")");
+		var obj = scaleElem.getAttribute("scaleobj");
+		// Now update the hidden input
+		//if (obj.valueField == null)
+			obj.valueField = document.getElementById(obj.valueFieldID);
+
+		var old_grade = obj.valueField.value;
+		obj.valueField.value = grade_scale[grade];
+
+		// Reset any previously set grades
+		if (old_grade != null && old_grade.length > 0) {
+			var i = 0; // 'Meh'
+			switch (old_grade) {
+				case 'DFS': i = 1; break;
+				case 'CCS': i = 2; break;
+				case 'BBS': i = 3; break;
+			}
+			if (obj.gradeScale == null) 
+				obj.gradeScale = document.getElementById(obj.gradeScaleID);
+			var imgs = gradeScale.getElementsByTagName('img');
+			imgs[i].setAttribute("src", "img/shave_grade_"+old_grade.toLowerCase()+"_dark.png");
+		}
+	}*/
+
+function init_form(form_date) {
+	// Add today's date to form
+	var today = new Date();
+	document.getElementById(form_date).value = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear();
+
+}
+
+function postEntry(url, form) {
+	var params = [];
+	var elem_types = ["select", "textarea", "input"];
+	for (var t = 0; t < elem_types.length; t++) {
+		var type = elem_types[t];
+		var elems = form.getElementsByTagName(type);
+		for (var i = 0; i < elems.length; i++) {
+			var elem = elems[i];
+			switch (type) {
+			case "input":
+				switch (elem.getAttribute("type")) {
+				case "radio": 
+					if (!elem.checked)
+						continue;
+					break;
+				case "submit": 
+					continue; 
+					break;
+				}
+				break;
+			default: break;
+			}
+			var name = escape(elem.getAttribute("name"));
+			//var val = escape(encodeURI(elem.value.replace(/&/g, "\\\&").replace(/"/g, "\\\"")));
+			//var val = escape(encodeURI(elem.value.replace(/"/g, "\\\"")));
+			var val = elem.value.replace(/"/g, "\\\"");
+			params.push(name+"="+val);
+		}
+	}
+
+	// Now send the request
+	console.log("sendData(", url,",", params, ")");
+	(new libHTTPRequest()).sendData(url, params);
+}
+function clearForm(form) {
+	var elem_types = ["select", "textarea", "input"];
+	for (var t = 0; t < elem_types.length; t++) {
+		var type = elem_types[t];
+		var elems = form.getElementsByTagName(type);
+		for (var i = 0; i < elems.length; i++) {
+			var elem = elems[i];
+			switch (type) {
+			case "textarea": elem.value = ""; break;
+			case "select": elem.selectedIndex = 0; break;
+			case "input":
+				switch (elem.getAttribute("type")) {
+				case "text": elem.value = ""; break;
+				case "radio": elem.checked = false; break;
+				case "submit": continue; break;
+				}
+				break;
+			default: break;
+			}
+		}
+	}
+
+	// Remove submission message
+	if (submissionMessageLayer != null) {
+		clearInterval(submissionMessageInterval);
+		submissionMessageLayer.parentNode.removeChild(submissionMessageLayer);
+	}
+}
