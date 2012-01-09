@@ -10,6 +10,6 @@ do
 .ssh
 
 logs
-sss/*
+src/sss/*
 hg.git
 
