@@ -1,0 +1,149 @@
+body {
+	overflow-x: hidden;
+	/*background-color: #796354;*/ /*#674e3d;*/
+	/*background-color: #FF6600; Burnt Orange*/
+	/*background-color: #660000; Chicago Maroon*/
+	background-image: url('../img/hg_bg.jpg');	
+}
+a { text-decoration: none; }
+#hg_nav_main {
+	position: relative;
+	top: -11px;
+	right: -11px;
+	float: right;
+	text-align: center;
+	margin-right: 0px;
+	padding: 5px 20px 10px 20px;
+	border-style: solid;
+	border-color: #1f0f04;
+	border-width: 0px 0px 4px 4px;
+	border-bottom-left-radius: 30px;
+	background-image: url('../img/hg_logo_bg.jpg');
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+#hg_nav_main_shadow {
+	position: relative;
+	top: 1px;
+	right: 1px;
+	float: right;
+	margin-right: 0px;
+	padding: 15px;
+	padding-right: 20px;
+	border-style: solid;
+	border-color: black;
+	border-width: 0px 0px 4px 4px;
+	border-bottom-left-radius: 30px;
+	background-color: black;
+}
+#hg_subdomains  { 
+	margin: 20px 0px 10px 18px; /* Bottom, Right, Top, Left */
+	text-align: center;
+}
+#hg_subdomains div {
+	width: 100%;
+	margin-bottom: 10px;
+	text-align: right;
+}
+#hg_subdomains a { 
+	color: #fff; 
+	margin: 5px;
+	padding: 0px;
+	padding-top: 2px;
+}
+#hg_subdomains a:hover { 
+	border-top: 1px solid #fff;
+}
+
+#social {
+	position: absolute;
+	top: 30px;
+	width: 420px;
+}
+
+#tweet img {
+	float: left;
+	width: 80px;
+	padding-top: 30px;
+	margin-right: 15px;
+	border: none;
+}
+#tweet div {
+	overflow: hidden;
+	background-color: #fff;
+	width: 300px;
+	height: 70px;
+	text-align: center;
+	padding: 2px;
+	font-family: Verdana, sans-serif;
+	font-size: .8em;
+	border: 2px solid #bfa391;
+}
+#tweet div span a {
+	color: #65310d;
+}
+#tweet div span a:hover {
+	text-decoration: underline;
+}
+
+#tweet div span + span {
+	font-size: .7em;
+	color: #c0c0c0;
+	margin-left: 5px;
+}
+#other {
+	position: relative;
+	top: 15px;
+	float: right;
+    padding-right: 15px;
+}
+#other img {
+	width: 40px;
+	margin-right: 5px;
+	border: none;
+}
+#features {
+	position: relative;
+	top: 40px;
+	left: 5px;
+	width: 100%;
+	clear: right;
+}
+#footer {
+	position: absolute;
+    bottom: 1px;
+	color: #1f0f04;
+	font-size: .8em;
+    margin-bottom: 5px;
+    width: 98%;
+    text-align: center;
+}
+.tab { 
+	border-color: #fff !important;
+}
+.tab_name {
+	background-color: #bfa391 !important;
+	border-color: #d3b4a0 !important;
+}
+.tab_name:hover {
+	background-color: #d3b4a0 !important;
+}
+.left_tab > .tab_name {
+	border-right-color: #af9685 !important;
+}
+.left_tab .tab_content {
+	width: 91% !important;
+}
+.selected_tab , 
+.selected_tab:hover {
+	background-color: #fff !important;
+	border-color: #998374 !important;
+	font-weight: bold !important;
+}
+.selected_tab_bridge {
+	border-color: #998374 !important;
+}
+.tab_content {
+	background-color: #fff !important;
+	border-color: #998374 !important;
+}
