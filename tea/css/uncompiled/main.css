@@ -1,14 +1,45 @@
-/*#products_tab {
-    margin-top: 30px;
+#products_tab {
+    padding-top: 35px;
 }
-*/
+
+.left_tab span.tab_name {
+    width: 94px !important;
+}
+
+.left_tab div.tab_content {
+    left: 106px !important;
+}
 
 .products_scroller {
-    border-top: 1px solid #998374;
     overflow-x: hidden;
     overflow-y: scroll;
     height: 93%;
-    width: 93%;
+    width: 92.5%;
+}
+
+#products_controls {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	font-size: 0.9em;
+}
+#products_controls div {
+	display: inline;
+	margin-right: 10px;
+}
+#products_controls div > span {
+	font-weight: bold;
+	padding-right: 5px;
+}
+#products_controls div > span + span,
+#products_controls div > select {
+	font-weight: normal;
+	font-size: 0.8em;
+}
+#products_controls select {
+}
+#products_controls a {
+	cursor: pointer;
 }
 
 .tea_journal_entry_picture {
@@ -43,7 +74,6 @@
 }
 
 .tea_product_entry {
-	background-color: #f0f0f0;
 	font-size: .8em;
 }
 
@@ -53,7 +83,7 @@
 
 .tea_product_entry td + td {
 	height: 100%;
-	border-bottom: solid 2px #a0a0a0;
+    border-top: 1px solid #9CA578;
 }
 
 .tea_product_entry_name td {
@@ -88,8 +118,6 @@
 }
 
 .tea_product_entry_details {
-	/*position: relative;
-	top: -10px;*/
 	margin-top: 0px;
 	padding-top: 0px;
 }
