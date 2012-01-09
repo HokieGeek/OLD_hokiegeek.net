@@ -12,10 +12,6 @@ var TeaProductRatings = ["Value", "Leaf Aroma", "Brewed Aroma"];
 var TeaFlushTypes = ["1st Flush", "2nd Flush", "Monsoon Flush", "Autumn Flush"];
 var TeaPackagingTypes = ["Loose Leaf", "Bagged"];
 
- /* Journal Rating:
- *      Taste
- */
-
 function TeaProductEntryType(data) {
     this.ID = null;
     this.Date = null;
@@ -79,7 +75,7 @@ function TeaProductEntryType(data) {
 		}
 		this.Stocked = (data.stocked == "TRUE" ? true : false);
 		this.Aging = (data.aging == "TRUE" ? true : false);
-		this.Packaging = data.packaging;
+		this.Packaging = TeaPackagingTypes[data.packaging]; // TODO hmmm
         this.PurchaseLocation = data.purchaselocation;
         if (data.purchasedate != null)
             this.PurchaseDate = new Date(data.purchasedate);
