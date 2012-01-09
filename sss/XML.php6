@@ -1,0 +1,75 @@
+<?php
+class XML {
+	private $data;
+
+	public function __construct($str) {
+		$this->data = new SimpleXMLElement($str);
+		//var_dump($this->data);
+	}
+
+	private function getElemAttributes($elem) {
+		$num_attr = count($elem->attributes());
+		if ($num_attr <= 0) return "";
+		//if (1==1) return "\"@\": \"\"";
+		//echo "NUM_ATTR: ".$num_attr."<br />";
+
+		$attr = "\"@\": {";
+		$i = 0;
+		foreach ($elem->attributes() as $k => $v) {
+			$i++;
+			//$attr .= "{ \"".$k."\":\"".$v."\" }";
+			$attr .= "\"".$k."\":\"".$v."\"";
+			if ($i < $num_attr && $num_attr > 1) $attr .= ",";
+		}
+		$attr .= "}";
+		return $attr;
+	}
+	private function XMLElemToJSON2($elem) {
+		// Retrieve the name
+		$json .= "\"".$elem->getName()."\":";
+		$json .= "\"\"";
+		return $json;
+	}
+
+	private function XMLElemToJSON($elem) {
+		// Retrieve the name
+		$json .= "\"".$elem->getName()."\":{";
+		
+		// Retrieve any text
+		$text = trim($elem[0]);
+
+		// Retrieve the attributes
+		$attr = $this->getElemAttributes($elem);
+		if (strlen($attr) > 0) {
+			$json .= $attr;
+			if ($elem->count() > 0 || strlen($text) > 0) 
+				$json .= ",";
+		//} else if ($elem->count() > 0) {
+			//$json .= "{";
+		}
+
+		// If children found, then retrieve their data
+		if ($elem->count() > 0) {
+			$json .= "\"#\":[";
+			$i = 0;
+			foreach ($elem->children() as $child) {
+				$i++;
+				$json .= "{".$this->XMLElemToJSON($child)."}";
+				if ($i < $elem->count()) $json .= ",";
+			}
+			$json .= "]";
+		} else if (strlen($text)) { // else look for, and add, any text
+			$json .= "\"$\":\"".$text."\"";
+			//$json .= "\"".$text."\"";
+		}
+		//if (strlen($attr) > 0 || $elem->count() > 0) {
+			$json .= "}";
+		//}
+		return $json;
+	}
+	public function toJSON() {
+		return "[{".$this->XMLElemToJSON($this->data)."}]";
+		//return "[{".$this->XMLElemToJSON2($this->data)."}]";
+	}
+}
+?>
