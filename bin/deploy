@@ -1,0 +1,119 @@
+#!/bin/bash
+
+cd `dirname $0`
+
+#src_dir="${HOME}/src"
+#deploy_dir="${HOME}"
+src_dir="../src"
+deploy_dir=".."
+
+if [ "$1" == "--clean" ]; then
+	cd ${deploy_dir}
+
+	for f in `ls -a1 | egrep -v "^(\.)*$" | egrep "^(css|js|img|shaving|tea|hobbies|house|input|info|index.html|index_beta.html|.htaccess)"`; do
+		echo "DELETING: $f"
+		rm -rf $f
+	done
+
+	exit 0
+elif [ "$1" == "--verify" ]; then
+	src_verify=/tmp/src_dir.verify
+	deploy_verify=/tmp/deploy_dir.verify
+
+	find ${src_dir} -print | sed 's;src/;;' | egrep -v '^\.\./src$' | egrep -v "/orig" > ${src_verify}
+	find ${deploy_dir} -print | egrep -v "../(src|bin)" | egrep -v '^\.\.$' > ${deploy_verify}
+
+	echo "SRC:    `cat ${src_verify} | wc -l`"
+	echo "DEPLOY: `cat ${deploy_verify} | wc -l`"
+
+	diff ${src_verify} ${deploy_verify} 
+	[ $? -ne 0 ] || vimdiff ${src_verify} ${deploy_verify}
+
+	rm -rf ${src_verify} ${deploy_verify}
+
+	exit 0
+fi
+
+function compress() {
+	file=$1; shift
+	deleteSrc=false
+	[ $# -gt 0 ] && dest=$1 || {
+		mv ${file} ${file}.nogz
+		dest=${file}
+		file=${file}.nogz
+		deleteSrc=true
+	}
+
+	echo "`pwd`: gzip -c ${file} > ${dest}"
+	#gzip --best -c ${file} > ${dest}
+	gzip -c ${file} > ${dest}
+
+	$deleteSrc && rm -rf ${file}
+}
+
+#exclusion_list="/orig jquery-"
+function deployFile() {
+	f=$1
+	file=`echo ${f} | sed "s;${src_dir}/;;"`
+	dir=`dirname ${file}`
+	name=`basename ${file}`
+
+	[ ${name} == "." -o ${name} == ".." ] && continue
+	#echo "f =      $f"
+	#echo "  file = $file"
+	#echo "  dir = $dir"
+	#echo "  name = $name"
+	[ `echo ${f} | grep -c "/orig"` -ge 1 ] && continue # Ignore all orig
+	[ `echo ${f} | grep -c "jquery-"` -ge 1 ] && continue # Ignore all jquery which are versioned
+
+	# 
+	if [ ! -d ${deploy_dir}/${dir} ]; then 
+		echo "CREATING: ${deploy_dir}/${dir}"
+		mkdir -p ${deploy_dir}/${dir}
+		# cp ${src_dir}/.htaccess ${deploy_dir}/${dir}
+	fi
+
+	# No need to go any further if it's just a directory
+	[ -d ${f} ] && continue 
+
+	ext=`echo ${name}  | awk -F. '{ print $NF }' | tr '[:upper:]' '[:lower:]'`
+	#echo "  ext = $ext"
+
+	src_file=${src_dir}/${file}
+	dest_file=${deploy_dir}/${file}
+
+	case ${ext} in
+	html|txt) compress ${src_file} ${dest_file} 
+		;;
+	js) 
+    	if [ ${name} == "hg_journals.js" ]; then
+			cp ${src_file} ${dest_file} 
+		else
+			doJsMinify ${dest_file} ${src_file} 
+		fi
+		[ -f ${dest_file} ] && compress ${dest_file}
+		;;
+	css) doCssMinify ${dest_file} ${src_file}
+		 [ -f ${dest_file} ] && compress ${dest_file}
+		 ;;
+	*) cp ${src_file} ${dest_file} 
+		;;
+	esac
+}
+
+[ "$1" == "--new" -o $# -le 0 ] && mode="new"
+[ "$1" == "--all" ] && mode="everything"
+mode="everything"
+
+source ./minify --sourced
+
+case $mode in
+everything) 
+	for f in `find ${src_dir} -print | sed 's;^\./;;'`; do
+		deployFile ${f}
+	done
+	;;
+new) # TODO
+	;;
+*) exit 1 ;;
+esac

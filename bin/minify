@@ -1,10 +1,15 @@
 #!/bin/bash
 
+#echo "HERE: `dirname $0`, `pwd`"
+#exit 42
+
 `[ $# -gt 0 -a "$1" == "--js" ] || [ $# -le 0 ]` && js_only=true || js_only=false
 `[ $# -gt 0 -a "$1" == "--css" ] || [ $# -le 0 ]` && css_only=true || css_only=false
+`[ $# -gt 0 -a "$1" == "--sourced" ] || [ $# -le 0 ]` && runNow=true || runNow=false
 
-js_minifier=compiler.jar
-
+#js_minifier="`pwd`/`dirname $0`/compiler.jar"
+#css_minifier="`pwd`/`dirname $0`/yuicompressor.jar"
+js_minifier="compiler.jar"
 css_minifier="yuicompressor.jar"
 
 function doJsMinify() {
@@ -14,6 +19,7 @@ function doJsMinify() {
         args="--js=$l "$args
     done
     [ -f $out ] && rm -rf $out
+    #echo "java -jar $js_minifier $args --js_output_file=$out"
     java -jar $js_minifier $args --js_output_file=$out
 }
 
@@ -21,7 +27,8 @@ function doCssMinify() {
     # TODO: if not worth minifying, then just copy over
     out=$1; shift
     [ -f $out ] && rm -rf $out
-    java -jar $css_minifier --verbose --type css -o $out $@
+    #echo "java -jar $css_minifier --charset UTF-8 --verbose --type css -o $out $@"
+    java -jar $css_minifier --charset UTF-8 --verbose --type css -o $out $@
 }
 
 function minifyAll() {
@@ -47,21 +54,23 @@ function minifyAll() {
     done
 }
 
-if $js_only; then
-    ## First, we create the libs js
-    #doJsMinify $js_bin_dir/hg_libs.js \
-    #           $js_src_dir/libtabs.js $js_src_dir/libhttprequest.js $js_src_dir/libgoogledata.js \
-    #           $js_src_dir/libpicasaweb.js $js_src_dir/libslideshow.js 
+if $runNow; then
+	if $js_only; then
+    	## First, we create the libs js
+    	#doJsMinify $js_bin_dir/hg_libs.js \
+    	#           $js_src_dir/libtabs.js $js_src_dir/libhttprequest.js $js_src_dir/libgoogledata.js \
+    	#           $js_src_dir/libpicasaweb.js $js_src_dir/libslideshow.js 
 
-    minifyAll "js" "../js/uncompiled" "../js" "hg_journals.js"
-    minifyAll "js" "../shaving/js/uncompiled" "../shaving/js"
-    minifyAll "js" "../tea/js/uncompiled" "../tea/js"
-    # minifyAll "js" "../input/js/uncompiled" "../input/js"
-fi
+    	minifyAll "js" "../js/uncompiled" "../js" "hg_journals.js"
+    	minifyAll "js" "../shaving/js/uncompiled" "../shaving/js"
+    	minifyAll "js" "../tea/js/uncompiled" "../tea/js"
+    	# minifyAll "js" "../input/js/uncompiled" "../input/js"
+	fi
 
-if $css_only; then
-    minifyAll "css" "../css/uncompiled" "../css"
-    minifyAll "css" "../shaving/css/uncompiled" "../shaving/css"
-    minifyAll "css" "../tea/css/uncompiled" "../tea/css"
-    # minifyAll "css" "../input/css/uncompiled" "../input/css"
+	if $css_only; then
+    	minifyAll "css" "../css/uncompiled" "../css"
+    	minifyAll "css" "../shaving/css/uncompiled" "../shaving/css"
+    	minifyAll "css" "../tea/css/uncompiled" "../tea/css"
+    	# minifyAll "css" "../input/css/uncompiled" "../input/css"
+	fi
 fi
