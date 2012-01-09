@@ -129,7 +129,7 @@ function loadInBulk() {
 	if (1 == 1) return;
 
 	var bulk = [
-				   [1956, "", "FALSE", ""],
+				   [1956, "", "FALSE", ""]
 				  ];
 	var url = "https://spreadsheets.google.com/formResponse?formkey=dGpnYzlqbjc4aF9kbTlVNjBDRzYyZEE6MQ";
 	var defaults = ["entry.10.single=Pennies", "entry.0.group=coin", 
