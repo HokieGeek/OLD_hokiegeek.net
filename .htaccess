@@ -24,7 +24,7 @@
 #</ifModule>
 
 #<IfModule mod_headers.c>
-  <FilesMatch "\.(js|css|xml|gz)$">
+  <FilesMatch "\.(html|php|js|css|xml|gz)$">
     Header append Vary Accept-Encoding
     Header add Access-Control-Allow-Origin *
   </FilesMatch>

@@ -19,7 +19,7 @@ if ($gs) {
 	$gAuth = GetGoogleServiceAuth($gs);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Authorization: GoogleLogin auth=$gAuth"));
 }
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Access-Control-Allow-Origin: *"));
+//curl_setopt($ch, CURLOPT_HTTPHEADER, array("Access-Control-Allow-Origin: *"));
 curl_setopt($ch, CURLOPT_URL, $u);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);  
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);  
