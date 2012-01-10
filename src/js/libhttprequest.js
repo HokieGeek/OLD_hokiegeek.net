@@ -110,7 +110,7 @@ libHTTPRequest._loadFromBackup = function (reqIdx) {
 	/*this.StoreLocation = "http://"+window.location.hostname+"/sss/gen";*/
 	this.StoreLocation = "http://hokiegeek.net/sss/gen";
 	var file = dm.StoreLocation+"/"+request.StoreFileName+".json";
-	console.log("libHTTPRequest._loadFromBackup("+reqIdx+"): ", file);
+	//console.log("libHTTPRequest._loadFromBackup("+reqIdx+"): ", file);
 	var r = request.getXmlRequest("GET", file, reqIdx);
 	request.Request = r;
   	r.send(null);
@@ -160,7 +160,7 @@ libHTTPRequest.prototype.getData = function(u, o, cb, bk) {
 	// Make the request
 	libHTTPRequest_Requests.push(this);
 	var reqIdx = libHTTPRequest_Requests.length-1;
-	console.log("libHTTPRequest.getData(", u, o, "cb,", bk,"): ", reqIdx);
+	//console.log("libHTTPRequest.getData(", u, o, "cb,", bk,"): ", reqIdx);
 	//console.log(">>>> this.DataScript = ", this.DataScript);
 	var r = this.getXmlRequest("GET", this.DataScript+"?u="+u+"&"+o, reqIdx);
 	this.Request = r;
