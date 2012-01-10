@@ -34,7 +34,7 @@ elif [ "$1" == "--verify" ]; then
 	exit 0
 elif [ "$1" == "--commit" ]; then
 	git add `git status | grep "modified:" | awk '{ print $3 }' | cut -d'/' -f1 | sort -u | xargs`
-	git commit -m "Deployment"
+	#git commit -m "Deployment"
 fi
 
 function compress() {
