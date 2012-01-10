@@ -103,19 +103,22 @@ function deployFile() {
 	esac
 }
 
-[ "$1" == "--new" -o $# -le 0 ] && mode="new"
-[ "$1" == "--all" ] && mode="everything"
-mode="everything"
+#[ "$1" == "--new" -o $# -le 0 ] && mode="new"
+#[ "$1" == "--all" ] && mode="all"
+#mode="all"
 
 source ./minify --sourced
 
-case $mode in
-everything) 
+case $1 in
+--all) 
 	for f in `find ${src_dir} -print | sed 's;^\./;;'`; do
 		deployFile ${f}
 	done
 	;;
-new) # TODO
+--new)
+    for f in `git status | grep "modified:" | awk '{ print $3 }' | grep "src/"`; do
+		deployFile ${f}
+	done
 	;;
 *) exit 1 ;;
 esac
