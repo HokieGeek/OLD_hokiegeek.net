@@ -2,7 +2,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 
 header('Access-Control-Allow-Origin: *');
-//ob_start("ob_gzhandler");
+ob_start("ob_gzhandler");
 
 include "GoogleServiceAuth.php";
 include "XML.php6";
