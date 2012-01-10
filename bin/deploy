@@ -32,6 +32,9 @@ elif [ "$1" == "--verify" ]; then
 	rm -rf ${src_verify} ${deploy_verify}
 
 	exit 0
+elif [ "$1" == "--commit" ]; then
+	git add `git status | grep "modified:" | awk '{ print $3 }' | cut -d'/' -f1 | sort -u | xargs`
+	git commit -m "Deployment"
 fi
 
 function compress() {
