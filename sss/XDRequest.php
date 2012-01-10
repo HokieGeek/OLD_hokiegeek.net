@@ -2,6 +2,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 
 header('Access-Control-Allow-Origin: *');
+ob_start("ob_gzhandler");
 
 include "GoogleServiceAuth.php";
 include "XML.php6";
@@ -81,8 +82,10 @@ if (isset($store)) {
 	//if ($isJSON) $js .= ");";
 
 	$fh = fopen("gen/".$store.".json", 'w');
-	fwrite($fh, $c);
+	//fwrite($fh, $c);
+	fwrite($fh, gzencode($c, 6));
 	fclose($fh);
 }
 echo $c; // Return the parsed content
+//echo gzencode($c, 6); // Return the parsed content
 ?>
