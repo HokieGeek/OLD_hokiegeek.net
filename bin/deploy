@@ -10,7 +10,7 @@ deploy_dir=".."
 if [ "$1" == "--clean" ]; then
 	cd ${deploy_dir}
 
-	for f in `ls -a1 | egrep -v "^(\.)*$" | egrep "^(css|js|img|shaving|tea|hobbies|house|input|info|index.html|index_beta.html|.htaccess)"`; do
+	for f in `ls -a1 | egrep -v "^(\.)*$" | egrep "^(css|js|img|shaving|tea|hobbies|house|input|index.html|index_beta.html|.htaccess)"`; do
 		echo "DELETING: $f"
 		rm -rf $f
 	done
@@ -44,9 +44,8 @@ function compress() {
 		deleteSrc=true
 	}
 
-	echo "`pwd`: gzip -c ${file} > ${dest}"
-	#gzip --best -c ${file} > ${dest}
-	gzip -c ${file} > ${dest}
+	#echo "`pwd`: gzip -c ${file} > ${dest}"
+	gzip --best -c ${file} > ${dest}
 
 	$deleteSrc && rm -rf ${file}
 }
@@ -86,7 +85,7 @@ function deployFile() {
 	html|txt) compress ${src_file} ${dest_file} 
 		;;
 	js) 
-    	if [ ${name} == "hg_journals.js" ]; then
+    	if [ "${name}" == "hg_journals.js" -o "${name}" == "jquery.js" ]; then
 			cp ${src_file} ${dest_file} 
 		else
 			doJsMinify ${dest_file} ${src_file} 
