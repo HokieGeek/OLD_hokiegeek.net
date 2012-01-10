@@ -9,10 +9,12 @@ var libHTTPRequest_Constants = {
 };
 function libHTTPRequest_DataManager() {
 	//FTP: server26.000webhost.com/a4877499/hughkares69 hughkares@guerrillamailblock.com
-    this.Scripts = [ "http://"+window.location.hostname+"/sss/XDRequest.php" ];
+    //this.Scripts = [ "http://"+window.location.hostname+"/sss/XDRequest.php" ];
+    this.Scripts = [ "http://hokiegeek.net/sss/XDRequest.php" ];
 			    //"http://hokiegeek.thruhere.net/sss/XDRequest.php",
 			    //"http://workhorse.comuv.com/XDRequest.php"];
-	this.StoreLocation = "http://"+window.location.hostname+"/sss/gen";
+	this.StoreLocation = "http://hokiegeek.net/sss/gen";
+	//this.StoreLocation = "http://"+window.location.hostname+"/sss/gen";
 	//this.StoreLocation = "http://dl.dropbox.com/u/6524/hokiegeek.net/sss/gen";
 };
 
@@ -108,8 +110,9 @@ libHTTPRequest._onreadystatechange = function(reqIdx){
 libHTTPRequest._loadFromBackup = function (reqIdx) {
 	var request = libHTTPRequest_Requests[reqIdx];
 	var dm = new libHTTPRequest_DataManager();
-	this.StoreLocation = "http://dl.dropbox.com/u/6524/hokiegeek.net/sss/gen";
+	//this.StoreLocation = "http://dl.dropbox.com/u/6524/hokiegeek.net/sss/gen";
 	//this.StoreLocation = "http://"+window.location.hostname+"/sss/gen";
+	this.StoreLocation = "http://hokiegeek.net/sss/gen";
 	var file = dm.StoreLocation+"/"+request.StoreFileName+".json";
 	//console.log("libHTTPRequest._loadFromBackup("+reqIdx+"): ", file);
 	var r = request.getXmlRequest("GET", file, reqIdx);
