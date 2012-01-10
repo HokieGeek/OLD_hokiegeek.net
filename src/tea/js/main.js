@@ -235,6 +235,7 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
 	$("#products_controls").html("").append(createTeaProductsControls(sort_field, sort_dir, sort_group));
 
     var groups = {};
+    var group_names = [];
     for (var ii = 0; ii < TeaProductEntries.length; ii++) {
         var entry = TeaProductEntries[ii];
 
@@ -243,10 +244,15 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
 
         if (groups[group] == undefined) groups[group] = $("<table></table>");
         groups[group].append(renderTeaProductEntry(entry));
+
+        group_names.push(group);
     }
+    group_names.sort();
 
     // Add the various groups to the main tab
-    for (group in groups) {
+    //for (group in groups) {
+    for (var ii = 0; ii < group_names.length; ii++) {
+        var group = group_names[ii];
         $("#products_tabs").append(
             $("<div></div>").addClass("tab")
                             .append($("<span></span>").addClass("tab_name").append(group))
