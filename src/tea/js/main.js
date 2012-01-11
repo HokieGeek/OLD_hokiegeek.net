@@ -245,14 +245,19 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
         if (groups[group] == undefined) groups[group] = $("<table></table>");
         groups[group].append(renderTeaProductEntry(entry));
 
-        group_names.push(group);
+        //console.log("FOUND GROUP: ", group);
+        if (!group_names.contains(group.toString()))
+            group_names.push(group.toString());
     }
+    console.log("GROUPS (unsorted): ", group_names);
     group_names.sort();
+    //console.log("GROUPS (sorted  ): ", group_names);
 
     // Add the various groups to the main tab
     //for (group in groups) {
     for (var ii = 0; ii < group_names.length; ii++) {
         var group = group_names[ii];
+        //console.log("APPENDING GROUP: ", group);
         $("#products_tabs").append(
             $("<div></div>").addClass("tab")
                             .append($("<span></span>").addClass("tab_name").append(group))
