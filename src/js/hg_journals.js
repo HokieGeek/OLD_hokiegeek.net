@@ -532,7 +532,10 @@ function HG_renderJournal(ctrls, view) {
 		//if (!(i % 2)) entry_elem.setAttribute("class", "distinct_row");
 		if (!(displayed_entries % 2)) entry_elem.setAttribute("class", "distinct_row");
 	
-		if (!eval(entry_renderer+"(entry_elem, entries["+i+"], displayed_entries)")) continue;
+        // var renderer_func = eval(entry_renderer);
+		// if (!renderer_func(entry_elem, entries[i], displayed_entries)) continue;
+		if (!(eval(entry_renderer)(entry_elem, entries[i], displayed_entries))) continue;
+		//if (!eval(entry_renderer+"(entry_elem, entries["+i+"], displayed_entries)")) continue;
 		
 		displayed_entries++;
 
