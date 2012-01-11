@@ -180,19 +180,11 @@ function renderTeaProductEntry(entry) {
 								  .append($("<td></td>").append(ratings)))
 		;
 
-/*
-			.append($("<tr></tr>").addClass("tea_product_entry_name").append($("<td></td>")
-																	   .append(entry.getName()+" ["+entry.ID+"]")
-																	   .append($("<span></span>").append((entry.Stocked ? "" : "X")))
-																	   .append($("<div></div>").addClass("tea_product_entry_type")
-																	   		.append("&lt;"+entry.getType().toLowerCase()+"&gt;")))
-					)
-                    */
 		//> Build the name and append the details
 		var main = $("<table></table>")
 			.append($("<tr></tr>").addClass("tea_product_entry_name")
                                   .append($("<td></td>").append(entry.getName()+" ["+entry.ID+"]")
-														.append($("<span></span>").append((entry.Stocked ? "" : "X")))
+														.append($("<span></span>").append((entry.Stocked ? "" : "unavailable")))
                                                         )
 					)
 			.append($("<tr></tr>").append($("<td></td>").append(details)))
@@ -245,19 +237,15 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
         if (groups[group] == undefined) groups[group] = $("<table></table>");
         groups[group].append(renderTeaProductEntry(entry));
 
-        //console.log("FOUND GROUP: ", group);
         if (!group_names.contains(group.toString()))
             group_names.push(group.toString());
     }
-    console.log("GROUPS (unsorted): ", group_names);
     group_names.sort();
-    //console.log("GROUPS (sorted  ): ", group_names);
 
     // Add the various groups to the main tab
     //for (group in groups) {
     for (var ii = 0; ii < group_names.length; ii++) {
         var group = group_names[ii];
-        //console.log("APPENDING GROUP: ", group);
         $("#products_tabs").append(
             $("<div></div>").addClass("tab")
                             .append($("<span></span>").addClass("tab_name").append(group))

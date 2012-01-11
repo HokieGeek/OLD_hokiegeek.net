@@ -96,8 +96,10 @@
 
 .tea_product_entry_name td span {
 	color: red;
-	font-weight: bold;
-	font-size: 1.3em;
+    font-family: Tahoma, sans-serif;
+	font-weight: normal;
+	font-size: 0.6em;
+    padding-left: 8px;
 }
 
 .tea_product_entry_type {
