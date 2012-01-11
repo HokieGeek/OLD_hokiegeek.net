@@ -1,4 +1,4 @@
-var filteredTabsHeight = 45;
+var filteredTabsHeight = 75;
 
 function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	//console.log("renderShavingJournalEntry(", entry, ", ", num_displayed, ")");
