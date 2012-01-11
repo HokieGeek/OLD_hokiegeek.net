@@ -28,7 +28,10 @@ function HG_loadSpreadsheetEntries(entries, progress_message_cb, sheet_info) {
 	        progress_message_cb("Loading "+sheet_info.name+"...");
 
 		for (var i = entries.length-1; i >= 0; i--) {
-            eval(sheet_info.entries_var+".push(new "+sheet_info.entries_type+"(entries["+i+"]))");
+            var array = eval(sheet_info.entries_var);
+            var entry_type = eval(sheet_info.entries_type);
+            array.push(new entry_type(entries[i]));
+            // eval(sheet_info.entries_var+".push(new "+sheet_info.entries_type+"(entries["+i+"]))");
 		}
 	}
 }
