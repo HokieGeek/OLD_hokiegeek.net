@@ -248,22 +248,3 @@
 	width: 25px;
 	padding: 10px;
 }
-
-/* FORMS */
-#form_tabs .tab_content,
-#form_tabs .selected_content{
-	overflow-y: scroll;
-	overflow-x: auto;
-}
-#pictures_select {
-	height: 250px;
-	width: 550px;
-}
-/*
-#forms { 
-	height: 720px !important;
-	background-color: #f0f0f0 !important;
-}
-#form_tabs .tab_content {
-	width: 89% !important;
-}*/
