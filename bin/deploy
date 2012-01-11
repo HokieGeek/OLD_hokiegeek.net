@@ -88,7 +88,7 @@ function deployFile() {
 	html|txt) compress ${src_file} ${dest_file} 
 		;;
 	js) 
-    	if [ "${name}" == "hg_journals.js" -o "${name}" == "jquery.js" ]; then
+    	if [ "${name}" == "jquery.js" ]; then
 			cp ${src_file} ${dest_file} 
 		else
 			doJsMinify ${dest_file} ${src_file} 
