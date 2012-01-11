@@ -51,6 +51,17 @@
 	font-weight: bold;
 }
 
+.tea_journal_entry_type {
+	position: relative;
+	top: -7px;
+	margin: 0px;
+	padding: 0px 170px;
+
+    color: #5c442c;
+	font-size: 0.98em;
+	font-family: Tahoma, 'Gill Sans', 'Century Gothic', Tahoma, sans-serif;
+}
+
 .tea_journal_entry_fixins {
 	font-size: 0.75em;
 	font-weight: normal;
@@ -100,17 +111,6 @@
 	font-weight: normal;
 	font-size: 0.6em;
     padding-left: 8px;
-}
-
-.tea_product_entry_type {
-	position: relative;
-	top: -7px;
-	margin: 0px;
-	padding: 0px 240px;
-
-	color: rgb(92, 68, 44);
-	font-size: 0.85em;
-	font-family: Tahoma, 'Gill Sans', 'Century Gothic', Tahoma, sans-serif;
 }
 
 .tea_product_entry_details,

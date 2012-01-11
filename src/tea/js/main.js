@@ -8,7 +8,10 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
     
     // Name
     main.append($("<div></div>").addClass("tea_journal_entry_name")
-                                .append(entry.Tea.getName()+" ("+entry.Tea.getType()+")"));
+                                .append(entry.Tea.getName())
+                                .append($("<div></div>").addClass("tea_journal_entry_type")
+                                                        .append("&lt;"+entry.Tea.getType().toLowerCase()+"&gt;"))
+                                );
 
 	// Fixins
 	var tea_fixins = entry.Fixins;
