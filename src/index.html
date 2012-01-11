@@ -13,7 +13,7 @@
 <meta name="robots" content="follow,index" />
 <meta name="description" content="My personal site where I share stuff I am interested in. In no way is this a blog." />
 
-<script type="text/JavaScript" src="js/jquery.js" async="true"></script>
+<script type="text/JavaScript" src="js/jquery.js"></script>
 <script type="text/JavaScript" src="js/hg_main.js" async="true"></script>
 <script type="text/JavaScript" src="js/hg_nav.js" async="true"></script>
 
@@ -42,6 +42,8 @@ window.onload = function() {
     nav_desc_lyr = document.getElementById("hg_nav_main").getElementsByTagName('div')[0];
     hg_nav_main("hg_nav_main");
     //setupSubdomainDesc();
+
+    $("#features").css("visibility", "visible");//toggle();
 
     // Now update the tweet box
     requestTweet();
@@ -84,7 +86,7 @@ _gaq.push(['_trackPageview']);
         </div>
     </div>
 
-    <div id="features">
+    <div id="features" style="visibility: hidden">
         <div style="font-size: 1.5em; font-family: Helvetica">
             Loading features...
             <img src="img/progress.gif"/>
