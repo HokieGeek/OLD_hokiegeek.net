@@ -517,6 +517,8 @@ function HG_renderJournal(ctrls, view) {
 	// Now add the notes
 	var num_entries = entries.length-1;
 	displayed_entries = 0;
+	row = document.createElement('tr');
+    var distinct_row = false;
 	for (var ii = num_entries; ii > -1; ii--) {
 		var i = (ctrls.sort_dir == "DESC") ? ii : (num_entries-ii);
 		// console.log("ENTRY #"+i+": ", entries[i]);
@@ -528,21 +530,33 @@ function HG_renderJournal(ctrls, view) {
 
 		// Create the entry cell
 		entry_elem = document.createElement('td');
-		if (!(displayed_entries % 2)) entry_elem.setAttribute("class", "distinct_row");
+		if (distinct_row) entry_elem.setAttribute("class", "distinct_row");
+        $(entry_elem).addClass("entry_column");
+		// if (!(displayed_entries % 2)) entry_elem.setAttribute("class", "distinct_row");
 	
 		if (!(eval(entry_renderer)(entry_elem, entries[i], displayed_entries))) continue;
 		
 		displayed_entries++;
 
-        if ((displayed_entries % view.numColumns) == 0) {
-            console.log("COLUMN?: ", entry_elem);
-        }
+		row.setAttribute("onclick", "toggleEntryDetails(this, true)");
+		row.appendChild(entry_date);
+		row.appendChild(entry_elem);
 
+        if ((displayed_entries % view.numColumns) == 0) {
+            //console.log("COLUMN?: ", entry_elem);
+            $(entry_elem).removeClass("entry_column");
+		    journalTable.appendChild(row);
+		    row = document.createElement('tr');
+            distinct_row = !distinct_row;
+        }
+        
+        /*
 		row = document.createElement('tr');
 		row.setAttribute("onclick", "toggleEntryDetails(this, true)");
 		row.appendChild(entry_date);
 		row.appendChild(entry_elem);
 		journalTable.appendChild(row);
+        */
 	}
 
 	if (displayed_entries <= 3) {
