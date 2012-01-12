@@ -216,7 +216,7 @@ function getVagueTime(t) {
 
 	// First we do the date. We only care if it's not from today
 	if (today.getFullYear() != t.getFullYear()) {
-		time = t.getMonth()+"/"+t.getDate()+"/"+t.getFullYear()+" ";
+		time = (t.getMonth()+1)+"/"+t.getDate()+"/"+t.getFullYear()+" ";
 	} else if (!sameDay(today, t)) {
 		if (today.getDate()-1 == t.getDate()) { // Check if it's yesterday
 				time = "Yesterday ";
