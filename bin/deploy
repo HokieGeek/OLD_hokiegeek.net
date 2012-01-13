@@ -33,8 +33,10 @@ elif [ "$1" == "--verify" ]; then
 
 	exit 0
 elif [ "$1" == "--commit" ]; then
+	shift
+	[ $# -gt 0 ] && m="$@" || m="Deployment"
 	git add `git status | grep "modified:" | awk '{ print $3 }' | cut -d'/' -f1 | sort -u | xargs`
-	git commit -m "Deployment"
+	git commit -m "${m}"
 fi
 
 function compress() {
@@ -105,11 +107,11 @@ function deployFile() {
 
 #[ "$1" == "--new" -o $# -le 0 ] && mode="new"
 #[ "$1" == "--all" ] && mode="all"
-#mode="all"
+[ $# -gt 0 ] && mode="$1" || mode="--new"
 
 source ./minify --sourced
 
-case $1 in
+case ${mode} in
 --all) 
 	for f in `find ${src_dir} -print | sed 's;^\./;;'`; do
 		deployFile ${f}
