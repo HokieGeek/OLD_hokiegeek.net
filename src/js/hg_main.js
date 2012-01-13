@@ -247,18 +247,18 @@ function getVagueTime(t) {
 		else {
 			if (t.getHours() < 11)
 				time = "This morning";
-			else if (t.getHours() > 11 && t.getHours() < 17)
-				time = "This afternoon";
-			else
+			else if (t.getHours() >= 17)
 				time = "Earlier this evening";
+			else
+				time = "This afternoon";
 		}
 	} else if (today.getDate()-1 == t.getDate()) { // Yesterday
 		if (t.getHours() < 11)
 			time += "morning";
-		else if (t.getHours() > 11 && t.getHours() < 17)
-			time += "afternoon";
-		else
+		else if (t.getHours() >= 17)
 			time += "evening";
+		else
+			time += "afternoon";
 	} else if (today.getDate()-t.getDate() > 3) {
 		time += (t.getHours() % 12)+":"+t.getMinutes();
 		time += (t.getHours() > 11) ? "pm" : "am";
