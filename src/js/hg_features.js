@@ -46,12 +46,13 @@ HG_FeatureView.prototype.create = function() {
 	content.setAttribute("class", this.HG_FEATURE_CONTENT_CLASS);
 
     // Add them
+	this.elem.appendChild(header);
+	this.elem.appendChild(content);
+
     if (this.data.link != null) {
-        var link = $("<a></a>").attr("href", this.data.link).append(header).append(content);
-	    this.elem.appendChild(link.get(0));
-    } else {
-	    this.elem.appendChild(header);
-	    this.elem.appendChild(content);
+        var link = $("<a></a>").attr("href", this.data.link).append(this.elem);
+	    //this.elem.parentNode.appendChild(link.get(0));
+	    this.elem = link.get(0);
     }
 
 	this.created = true;
