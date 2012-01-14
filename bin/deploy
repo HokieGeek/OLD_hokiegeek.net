@@ -87,10 +87,12 @@ function deployFile() {
 	dest_file=${deploy_dir}/${file}
 
 	case ${ext} in
-	html|txt) compress ${src_file} ${dest_file} 
+	txt) compress ${src_file} ${dest_file} 
 		;;
-	js) 
-    	if [ "${name}" == "jquery.js" ]; then
+    html|xml) doXmlMinify ${src_file} ${dest_file}
+		      [ -f ${dest_file} ] && compress ${dest_file}
+              ;;
+	js) if [ "${name}" == "jquery.js" ]; then
 			cp ${src_file} ${dest_file} 
 		else
 			doJsMinify ${dest_file} ${src_file} 

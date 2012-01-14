@@ -12,6 +12,12 @@
 js_minifier="compiler.jar"
 css_minifier="yuicompressor.jar"
 
+function doXmlMinify() {
+    in=$1; shift
+    out=$1
+    sed -e "s/^\s*//g" -e "s/\s*$//g" ${in} | tr -d '\n' > ${out}
+}
+
 function doJsMinify() {
     out=$1; shift
     args=""
