@@ -49,7 +49,6 @@ HG_FeatureView.prototype.create = function() {
 
     if (this.data.link != null) {
         var link = $("<a></a>").attr("href", this.data.link).append(this.elem);
-	    //this.elem.parentNode.appendChild(link.get(0));
 	    this.elem = link.get(0);
     }
 
@@ -57,8 +56,7 @@ HG_FeatureView.prototype.create = function() {
 }
 
 HG_FeatureView.prototype.render = function() {
-	//return this.content_renderer(this.elem.lastChild);
-	return this.content_renderer($(this.elem).find("."+this.HG_FEATURE_CLASS).get(0));
+	return this.content_renderer($(this.elem).find("."+this.HG_FEATURE_CONTENT_CLASS).get(0));
 }
 
 HG_FeatureView.prototype.refresh = function() {
