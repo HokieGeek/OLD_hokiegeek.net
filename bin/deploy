@@ -86,6 +86,8 @@ function deployFile() {
 	src_file=${src_dir}/${file}
 	dest_file=${deploy_dir}/${file}
 
+	echo "Deploying: ${src_file}"
+
 	case ${ext} in
 	txt) compress ${src_file} ${dest_file} 
 		;;
@@ -107,13 +109,14 @@ function deployFile() {
 	esac
 }
 
-#[ "$1" == "--new" -o $# -le 0 ] && mode="new"
+#[ "$1" == "--new" -o $# -le 0 ] && opt="new"
 #[ "$1" == "--all" ] && mode="all"
-[ $# -gt 0 ] && mode="$1" || mode="--new"
+#[ $# -gt 0 ] && opt="$1" || opt="--new"
+[ $# -le 0 ] && opt="--new"
 
 source ./minify --sourced
 
-case ${mode} in
+case ${opt} in
 --all) 
 	for f in `find ${src_dir} -print | sed 's;^\./;;'`; do
 		deployFile ${f}
@@ -124,5 +127,6 @@ case ${mode} in
 		deployFile ${f}
 	done
 	;;
-*) exit 1 ;;
+*) deployFile ${1} 
+    ;;
 esac
