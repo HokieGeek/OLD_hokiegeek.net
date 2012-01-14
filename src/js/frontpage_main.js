@@ -210,8 +210,9 @@ function setupFeatures(e) {
 	));
 
     // Tea
+//"http://tea.hokiegeek.net",
     featuresMgr.addFeature(new HG_FeatureView(
-        new HG_Feature("Give us a Cuppa, Govna", "http://tea.hokiegeek.net",
+        new HG_Feature("Give us a Cuppa, Govna", null
             function() {
                 this.data = TeaJournalEntries[0];
                 this.data_updated = true;

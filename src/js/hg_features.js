@@ -35,8 +35,8 @@ HG_FeatureView.prototype.create = function() {
 	this.elem.setAttribute("class", this.HG_FEATURE_CLASS);
 
 	// Add the header
-	//this.elem.appendChild(this._createHeader());
-	var header = this._createHeader();
+	this.elem.appendChild(this._createHeader());
+	// var header = this._createHeader();
 
 	// Add the content
 	var content = document.createElement("div");
@@ -46,7 +46,7 @@ HG_FeatureView.prototype.create = function() {
 	content.setAttribute("class", this.HG_FEATURE_CONTENT_CLASS);
 
     // Add them
-	this.elem.appendChild(header);
+	//this.elem.appendChild(header);
 	this.elem.appendChild(content);
 
     if (this.data.link != null) {
