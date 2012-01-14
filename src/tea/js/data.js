@@ -10,7 +10,7 @@ var TeaFixins = ["Milk", "Cream", "Half & Half",
 				 "Maple Cream", "Maple Sugar"];
 var TeaProductRatings = ["Value", "Leaf Aroma", "Brewed Aroma"];
 var TeaFlushTypes = ["1st Flush", "2nd Flush", "Monsoon Flush", "Autumn Flush"];
-var TeaPackagingTypes = ["Loose Leaf", "Bagged"];
+var TeaPackagingTypes = ["Loose Leaf", "Bagged", "Tuo", "Beeng", "Brick", "Mushroom", "Square"];
 
 function TeaProductEntryType(data) {
     this.ID = null;

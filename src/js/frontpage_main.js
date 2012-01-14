@@ -136,7 +136,7 @@ function setupFeatures(e) {
 
 	// Retrieve the shaving stuff
 	featuresMgr.addFeature(new HG_FeatureView(
-		new HG_Feature("Baby Butt Smooth",
+		new HG_Feature("Baby Butt Smooth", "http://shaving.hokiegeek.net",
 			function() {
 				this.data = ShavingJournalEntries[0];
 			    this.data_updated = true;
@@ -211,7 +211,7 @@ function setupFeatures(e) {
 
     // Tea
     featuresMgr.addFeature(new HG_FeatureView(
-        new HG_Feature("Give us a Cuppa, Govna", 
+        new HG_Feature("Give us a Cuppa, Govna", "http://tea.hokiegeek.net",
             function() {
                 this.data = TeaJournalEntries[0];
                 this.data_updated = true;
@@ -341,7 +341,8 @@ function setupFeatures(e) {
 	// Create the reading corner
     /*
 	featuresMgr.addFeature(new HG_FeatureView(
-		new HG_Feature("Reading Corner", function() { this.data_updated = true; }, null, -1),
+		new HG_Feature("Reading Corner", "http://www.librarything.com/catalog/HokieGeek"
+        function() { this.data_updated = true; }, null, -1),
 		function(content_elem) {
 			if (content_elem == null) return false;
 
@@ -401,7 +402,7 @@ function setupFeatures(e) {
 
     // Drinks
     featuresMgr.addFeature(new HG_FeatureView(
-        new HG_Feature("Speakeasy", 
+        new HG_Feature("Speakeasy", "http://speakeasy.hokiegeek.net",
             function() {
                 this.data = null;
                 this.data_update = false;
@@ -420,7 +421,7 @@ function setupFeatures(e) {
 
     // Cheese/Food?
     featuresMgr.addFeature(new HG_FeatureView(
-        new HG_Feature("Glorious Food", 
+        new HG_Feature("Glorious Food", "http://food.hokiegeek.net",
             function() {
                 this.data = null;
                 this.data_update = false;
@@ -439,7 +440,7 @@ function setupFeatures(e) {
 
     // Smoking
     featuresMgr.addFeature(new HG_FeatureView(
-        new HG_Feature("Veil of Smoke", 
+        new HG_Feature("Veil of Smoke", "http://smoke.hokiegeek.net",
             function() {
                 this.data = null;
                 this.data_update = false;

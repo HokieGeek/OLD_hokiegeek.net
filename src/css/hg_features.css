@@ -18,6 +18,10 @@
     overflow-y: hidden;
 }
 
+.hg_feature a {
+    color: #000;
+}
+
 .hg_feature_header {
     text-align: right;
     font-family: "Century Gothic", Helvetica;

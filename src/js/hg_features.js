@@ -1,5 +1,6 @@
-function HG_Feature(title, data_update, data_retriever, update_rate) {
+function HG_Feature(title, link, data_update, data_retriever, update_rate) {
 	this.title = title;
+    this.link = link;
 	this.data = null;
 	this.data_updated = false;
 	this.data_update_callback = data_update;
@@ -24,16 +25,18 @@ HG_FeatureView.prototype._createHeader = function() {
 	header.appendChild(document.createTextNode(this.data.title));
     header.appendChild(document.createElement("hr"));
 
-	this.elem.appendChild(header);
+    return header;
+	// this.elem.appendChild(header);
 }
 
 HG_FeatureView.prototype.create = function() {
 	this.elem = document.createElement('div');
 	this.elem.setAttribute("class", this.HG_FEATURE_CLASS);
-	//this.elem.setAttribute("style", "height: "+this.height+"px; width: "+this.width+"px");
+	this.elem.setAttribute("class", this.HG_FEATURE_CLASS);
 
 	// Add the header
-	this._createHeader();
+	//this.elem.appendChild(this._createHeader());
+	var header = this._createHeader();
 
 	// Add the content
 	var content = document.createElement("div");
@@ -41,7 +44,15 @@ HG_FeatureView.prototype.create = function() {
 														 .replace(/\s/g, "_")
 														 .replace(/,/g, ""));
 	content.setAttribute("class", this.HG_FEATURE_CONTENT_CLASS);
-	this.elem.appendChild(content);
+
+    // Add them
+    if (this.data.link != null) {
+        var link = $("<a></a>").attr("href", this.data.link).append(header).append(content);
+	    this.elem.appendChild(link.get(0));
+    } else {
+	    this.elem.appendChild(header);
+	    this.elem.appendChild(content);
+    }
 
 	this.created = true;
 }
