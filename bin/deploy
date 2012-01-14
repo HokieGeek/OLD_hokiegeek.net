@@ -37,6 +37,7 @@ elif [ "$1" == "--commit" ]; then
 	[ $# -gt 0 ] && m="$@" || m="Deployment"
 	git add `git status | grep "modified:" | awk '{ print $3 }' | cut -d'/' -f1 | sort -u | xargs`
 	git commit -m "${m}"
+    exit 0
 fi
 
 function compress() {
