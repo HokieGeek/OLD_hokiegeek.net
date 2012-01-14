@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+<url>
+    <loc>http://hokiegeek.net/index.html</loc>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>http://hokiegeek.net/shaving/index.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+</url>
+<url>
+    <loc>http://hokiegeek.net/tea/index.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>http://hokiegeek.net/house/index.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+</url>
+</urlset>
