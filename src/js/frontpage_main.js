@@ -224,6 +224,7 @@ function setupFeatures(e) {
             30),
         function(content_elem) {
             if (content_elem == null) return false;
+            console.log("TEA RENDERER: ", content_elem);
 
             var d = this.data.data;
 
