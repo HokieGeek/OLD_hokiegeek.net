@@ -57,7 +57,8 @@ HG_FeatureView.prototype.create = function() {
 }
 
 HG_FeatureView.prototype.render = function() {
-	return this.content_renderer(this.elem.lastChild);
+	//return this.content_renderer(this.elem.lastChild);
+	return this.content_renderer($(this.elem).find("."+this.HG_FEATURE_CLASS).get(0));
 }
 
 HG_FeatureView.prototype.refresh = function() {
