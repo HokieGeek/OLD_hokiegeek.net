@@ -57,6 +57,13 @@ window.onload = function() { tabsObj = new LibTabs("tabsObj", $("#tabs").get(0),
 				<span class="tab_name">httprequest</span>
 				<div class="tab_content">
 					<ul>
+                        <li style="font-weight: bold; font-size: 1.5em; color: red;">Add filtering to the PHP object.<br/>
+                            <ul>
+                                <li>Have the GoogleData retriever remove any extrenous data from the received json</li>
+                                <li>Have the main object receive filtering commands through a url</li>
+                                <li style="text-decoration: underline">A great filter would be to only retrieve a certain number of entries</li>
+                            </ul>
+                        </li>
 						<li>This guy is my bottleneck. Need to refactor and improve efficiency.</li>
 					</ul>
 				</div>
@@ -78,7 +85,7 @@ window.onload = function() { tabsObj = new LibTabs("tabsObj", $("#tabs").get(0),
 				<span class="tab_name">Features</span>
 				<div class="tab_content">
 					<ul>
-						<li>Link to their main pages</li>
+						<li>Add a tooltip to explain the lcoation of the clicky</li>
 						<li>Drop-shadow on hover</li>
 						<li><i>Reading corner</i>: Tabs for 'Currently Reading', 'Upcoming', 'Read this year'</li>
                         <li><i>Workouts</i>: Latest workout, Latest stats</li>
