@@ -271,12 +271,27 @@ function JournalEntryType(data) {
 	}
 
 	this._getReview = function(type, p) {
+        /*
 		if (isNaN(p)) {
 			return this._getReview2(type, p);
 		} else {
 			var prod = HG_getProductByID(ShavingReviewedProducts, eval(p));
 			if (prod != null) return prod;
 		}
+        */
+
+        if (p != undefined && isNaN(p)) {
+            return this._getReview2(type, p);
+        } else {
+            // console.log("_getReview(", type, ", ", p, ")");
+            if (type == "Preshave" && p != undefined && (p == -1 || isNaN(p))) {
+                return "Softening with lather"
+            } else {
+                var prod = HG_getProductByID(ShavingReviewedProducts, eval(p));
+                if (prod != null) return prod;
+            }
+        }
+
 		return p;
 	}
 	this._load = function(data) {
