@@ -233,7 +233,7 @@ function getVagueTime(t) {
 
 	// Next we do the time	
 	if (sameDay(today, t)) { //<1hr ago
-		var delta_hours = today.getHours()-t.getHours();
+		var delta_hours = (today.getTime()-t.getTime()) / 3600000;
 		if (t.getHours() > today.getHours()) // The FUTURE!
 			time = "From the mysterious future!";
 		else if (delta_hours < 1) 
