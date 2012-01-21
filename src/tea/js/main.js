@@ -188,11 +188,12 @@ function renderTeaProductEntry(entry) {
 		var main = $("<table></table>")
 			.append($("<tr></tr>").addClass("tea_product_entry_name")
                                   .append($("<td></td>").append(entry.getName())
-														.append($("<span></span>").append((entry.Stocked ? "" : "unavailable")))
+														.append($("<span></span>").append((entry.Stocked ? "" : "you drank it all")))
                                                         )
 					)
 			.append($("<tr></tr>").append($("<td></td>").append(details)))
 		;
+														//.append($("<span></span>").append((entry.Stocked ? "" : "unavailable")))
                                   // .append($("<td></td>").append(entry.getName()+" ["+entry.ID+"]")
 
     return ($("<tr></tr>").addClass("tea_product_entry")
