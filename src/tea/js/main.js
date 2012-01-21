@@ -1,4 +1,5 @@
 var filteredTabsHeight = 75;
+var displayed_teas = 0;
 
 function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
 	//console.log("renderShavingJournalEntry(", entry, ", ", num_displayed, ")");
@@ -192,6 +193,7 @@ function renderTeaProductEntry(entry) {
 					)
 			.append($("<tr></tr>").append($("<td></td>").append(details)))
 		;
+
     return ($("<tr></tr>").addClass("tea_product_entry")
                           .append($("<td></td>").addClass("tea_product_entry_pics").append(pics))
                           .append($("<td></td>").append(main)));
@@ -258,7 +260,7 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
          );
     }
 
-    displayed_entries = TeaProductEntries.length;
+    displayed_teas = TeaProductEntries.length;
 }
 
 function refreshProducts(tab) {
@@ -270,6 +272,15 @@ function refreshProducts(tab) {
 
 	HG_Journal_tabsObj.NestedTabs[1].ReloadTabs();
 	HG_Journal_tabsObj.NestedTabs[1].ToggleTab(((tab != undefined && tab != null) ? tab : 0));
+}
+
+function onTabToggle(from, to) {
+    switch (to) {
+    case 0: filterMsg.innerHTML = "Showing "+displayed_entries+" entries"; break; // Journal
+    case 1: filterMsg.innerHTML = "Showing "+displayed_teas+" teas"; break; // Teas
+    // case 0: $(filterMsg).html("Showing "+displayed_entries+" entries"); break; // Journal
+    // case 1: $(filterMsg).html("Showing "+displayed_teas+" teas"); break; // Teas
+    }
 }
 
 function loadExtras() {
@@ -292,7 +303,7 @@ function loadExtras() {
                         ], 
 			            null);
 
-	//HG_Journal_tabsObj.AddToggleListener(onTabToggle);
+	HG_Journal_tabsObj.AddToggleListener(onTabToggle);
 }
 
 function HG_Journal_local_init() {
