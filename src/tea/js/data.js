@@ -9,7 +9,10 @@ var TeaFixins = ["Milk", "Cream", "Half & Half",
 				 "Honey", "Vanilla Extract", "Vanilla Bean",
 				 "Maple Cream", "Maple Sugar"];
 var TeaProductRatings = ["Value", "Leaf Aroma", "Brewed Aroma"];
-var TeaFlushTypes = ["1st Flush", "2nd Flush", "Monsoon Flush", "Autumn Flush"];
+var TeaFlushTypes = [ ["Spring", "Summer", "Fall", "Winter"],
+                      ["1st Flush", "2nd Flush", "Monsoon Flush", "Autumn Flush"] ];
+var TeaFlushTypes_Std = 0;
+var TeaFlushTypes_Indian = 1;
 var TeaPackagingTypes = ["Loose Leaf", "Bagged", "Tuo", "Beeng", "Brick", "Mushroom", "Square"];
 
 function TeaProductEntryType(data) {
@@ -89,8 +92,11 @@ function TeaProductEntryType(data) {
     this.getName = function() {
 		var name = "";
 
+        var flush_index = ((this.Country != null && this.Country == "India") ? TeaFlushTypes_Indian : TeaFlushTypes_Std);
+
 		if (this.Year != null) name += this.Year+" ";
-		if (this.Flush != null) name += TeaFlushTypes[this.Flush-1]+" ";
+		// if (this.Flush != null) name += TeaFlushTypes[this.Flush-1]+" ";
+		if (this.Flush != null) name += TeaFlushTypes[flush_index][this.Flush-1]+" ";
 		name += this.Name;
 		if (this.LeafGrade != null) name += " "+this.LeafGrade;
 
