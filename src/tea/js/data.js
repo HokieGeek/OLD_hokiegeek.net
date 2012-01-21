@@ -92,15 +92,20 @@ function TeaProductEntryType(data) {
     this.getName = function() {
 		var name = "";
 
-        var flush_index = ((this.Country != null && this.Country == "India") ? TeaFlushTypes_Indian : TeaFlushTypes_Std);
 
 		if (this.Year != null) name += this.Year+" ";
 		// if (this.Flush != null) name += TeaFlushTypes[this.Flush-1]+" ";
-		if (this.Flush != null) name += TeaFlushTypes[flush_index][this.Flush-1]+" ";
+		// if (this.Flush != null) name += TeaFlushTypes[flush_index][this.Flush-1]+" ";
+		if (this.Flush != null) name += this.getFlush()+" ";
 		name += this.Name;
 		if (this.LeafGrade != null) name += " "+this.LeafGrade;
 
         return name;
+    }
+
+    this.getFlush = function() {
+        var flush_index = ((this.Country != null && this.Country == "India") ? TeaFlushTypes_Indian : TeaFlushTypes_Std);
+		return TeaFlushTypes[flush_index][this.Flush-1];
     }
 
 	this.getOrigin = function() {
