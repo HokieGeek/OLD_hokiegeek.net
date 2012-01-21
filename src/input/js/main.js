@@ -172,10 +172,43 @@ function loadTeaForms() {
 	//// Journal entry form
 	init_form("tea_journal_form_date");
 
+    TeaProductEntries.sort(function(a,b) {
+        if (a.Name < b.Name) return 1;
+        if (a.Name > b.Name) return -1;
+        return 0;
+        /* return a.ID > b.ID ? 1 : a.ID < b.ID : -1 : 0;
+        if (aID > bID) return 1;
+        if (aID < bID) return -1;
+        return 0;
+        return aID > bID ? 1 : aID < bID : -1 : 0;*/
+    });
+
 	// Load the teas
 	// var list_tea = $("#list_teas");
 	for (var ii = TeaProductEntries.length-1; ii >= 0; ii--) {
-		addProductOption("list_teas", TeaProductEntries[ii].ID, TeaProductEntries[ii].getName());
+        var tea = TeaProductEntries[ii];
+        if (!tea.Stocked) {
+            continue; // Ignore teas that aren't stocked, of course!
+        }
+
+        console.log("TEA ("+ii+"): ", parseInt(tea.ID),tea);
+        if (parseInt(tea.ID) < 100) console.log("  <100");
+        if (parseInt(tea.ID) < 10) console.log("  <10");
+
+        // var label = "["+tea.ID+"] "+tea.Name+", "+tea.Year+" "+tea.getFlush();
+        var label = "[";
+        if (parseInt(tea.ID) < 100) label += " "; 
+        if (parseInt(tea.ID) < 10) label += "  "; 
+        label += tea.ID+"] "+tea.Name;
+        if (tea.Year != undefined) {
+            label += ", "+tea.Year;
+            if (tea.Flush != undefined)
+                label += " "+tea.getFlush();
+        }
+
+
+		// addProductOption("list_teas", tea.ID, "["+tea.ID+"] "+tea.getName());
+		addProductOption("list_teas", tea.ID, label);
 	}
 	
 	
@@ -205,7 +238,7 @@ function loadForms() {
 	// Listen for keypresses to perform some specific duties
 	//AddOKDListener(HG_Journal_keyboardHandler);
 
-    getShavingData(loadShavingForms);
+    // getShavingData(loadShavingForms);
 	getTeaData(loadTeaForms);
 	// getSpeakeasyData(loadSpeakeasyForms());
 }

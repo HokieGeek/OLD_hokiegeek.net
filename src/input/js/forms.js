@@ -1,5 +1,8 @@
-/** Journal **/
 var shaving_journal_entry_url = "http://spreadsheets0.google.com/formResponse?formkey=dENEbllUbFdlTHg0WThDLTdqWXRLMWc6MQ";
+var shaving_review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dEFMb0ZoVDdhYkJEcVo3czBJSEFRcGc6MQ";
+var tea_journal_entry_url = "https://docs.google.com/spreadsheet/formResponse?pli=1&amp;hl=en_US&amp;formkey=dGdLc2JlYzYtYUppVnJaTDZxUko3aGc6MQ&amp;ifq"
+
+/** Journal **/
 function loadProductInJournalEntry(product) {
 	// Retrieve the appropriate list
 	console.log("loadProductInJournalEntry(): ", product);
@@ -230,7 +233,6 @@ function createJournalGradeScales() {
 		scales_tbl.appendChild(row);
 	}
 }
-//var shaving_journal_entry_url_TEST = "https://spreadsheets.google.com/formResponse?formkey=dGVuNWUtSVp0WWE4MEdGX0p3WXdBMXc6MA";
 var submissionMessageInterval = null;
 var submissionMessageLayer = null;
 function submissionMessage(lyr) {
@@ -264,7 +266,6 @@ function clearJournalForm() {
 }
 
 /** Reviews **/
-var shaving_review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dEFMb0ZoVDdhYkJEcVo3czBJSEFRcGc6MQ";
 //var shaving_review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dHJEQ1JweDcxTTRZOUowZWlsSXI4NFE6MA&ifq";
 var pics_list_hidden = null;
 var shaving_review_pics_view = null;

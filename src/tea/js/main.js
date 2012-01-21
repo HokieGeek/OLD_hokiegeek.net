@@ -187,12 +187,13 @@ function renderTeaProductEntry(entry) {
 		//> Build the name and append the details
 		var main = $("<table></table>")
 			.append($("<tr></tr>").addClass("tea_product_entry_name")
-                                  .append($("<td></td>").append(entry.getName()+" ["+entry.ID+"]")
+                                  .append($("<td></td>").append(entry.getName())
 														.append($("<span></span>").append((entry.Stocked ? "" : "unavailable")))
                                                         )
 					)
 			.append($("<tr></tr>").append($("<td></td>").append(details)))
 		;
+                                  // .append($("<td></td>").append(entry.getName()+" ["+entry.ID+"]")
 
     return ($("<tr></tr>").addClass("tea_product_entry")
                           .append($("<td></td>").addClass("tea_product_entry_pics").append(pics))
