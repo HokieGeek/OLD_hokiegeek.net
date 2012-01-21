@@ -20,7 +20,7 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
         var fixins_list = $("<div></div>").addClass("tea_journal_entry_fixins").append("with ");
 
 		for (var i = tea_fixins.length-1; i >= 0; i--) {
-			if (i == 0)
+			if (i == 0 && tea_fixins.length > 1)
                 fixins_list.append(" and ");
 			else if (i != tea_fixins.length-1)
                 fixins_list.append(", ");
