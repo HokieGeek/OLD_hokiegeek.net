@@ -14,6 +14,8 @@ var TeaFlushTypes = [ ["Spring", "Summer", "Fall", "Winter"],
 var TeaFlushTypes_Std = 0;
 var TeaFlushTypes_Indian = 1;
 var TeaPackagingTypes = ["Loose Leaf", "Bagged", "Tuo", "Beeng", "Brick", "Mushroom", "Square"];
+var TeaSteepingVessels = ["French Press", "Shipiao Yixing", "Tea-zer Tumbler", 
+                          "Tea Stick", "Mesh Spoon", "Sauce Pan", "Cup", "Other"];
 
 function TeaProductEntryType(data) {
     this.ID = null;
@@ -213,7 +215,8 @@ function TeaJournalEntryType(data) {
 
         this.Tea = HG_getProductByID(TeaProductEntries, data.tea);
         this.Temperature = ((data.steeptemperature == null) ? 212 : data.steeptemperature);
-        this.SteepingVessel = data.steepingvessel;
+        //this.SteepingVessel = data.steepingvessel;
+        this.SteepingVessel = TeaSteepingVessels[data.steepingvessel];
 		this.SessionInstance = data.sessioninstance;
         this.Rating = data.rating;
         this.Comments = data.comments;
