@@ -183,7 +183,7 @@ libHTTPRequest.prototype.sendData = function(u, p) {
 	//console.log("libHTTPRequest.sendData(", u, ",", p, "): ", reqIdx);
 	var r = this.getXmlRequest("POST", this.DataScript+"?u="+u, reqIdx);
 	r.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	r.setRequestHeader("Access-Control-Allow-Origin", "*");
+	//r.setRequestHeader("Access-Control-Allow-Origin", "*");
 	this.Request = r;
   	r.send(params); 
 }
