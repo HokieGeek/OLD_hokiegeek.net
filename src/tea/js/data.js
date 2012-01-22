@@ -15,7 +15,8 @@ var TeaFlushTypes_Std = 0;
 var TeaFlushTypes_Indian = 1;
 var TeaPackagingTypes = ["Loose Leaf", "Bagged", "Tuo", "Beeng", "Brick", "Mushroom", "Square"];
 var TeaSteepingVessels = ["French Press", "Shipiao Yixing", "Tea-zer Tumbler", 
-                          "Tea Stick", "Mesh Spoon", "Sauce Pan", "Cup", "Other"];
+                          "Tea Stick", "Mesh Spoon", "Sauce Pan", 
+                          "Cup", "Bowl", "Other"];
 
 function TeaProductEntryType(data) {
     this.ID = null;
