@@ -48,7 +48,7 @@ window.onload = function() {
 				<div class="tab">
 					<span class="tab_name">Journal</span>
 					<div class="tab_content">
-						<form action="javascript:postJournalEntry()" id="shaving_journal_entry_form">
+						<form action="javascript:postShavingJournalEntry()" id="shaving_journal_entry_form">
 							<div class="entry_group">
 								<span class="form_label">Date</span><br />
 								<input type="text" name="entry.0.single" id="shaving_journal_form_date" value=""/>
@@ -288,7 +288,7 @@ window.onload = function() {
 				<div class="tab">
 					<span class="tab_name">Journal</span>
 					<div class="tab_content">
-						<form action="javascript:postJournalEntry()" id="tea_journal_entry_form">
+						<form action="javascript:postTeaJournalEntry()" id="tea_journal_entry_form">
 							<table class="entry_group">
 								<tr>
 									<td>
@@ -326,7 +326,8 @@ window.onload = function() {
 									</td>
 									<td>
 										<span class="form_label">Steeping Vessel</span><br />
-										<input type="text" name="entry.7.single" value=""/>
+										<select name="entry.7.single" id="list_vessels"></select>
+										<!--input type="text" name="entry.7.single" value=""/-->
 									</td>
 									<td>
 										<span class="form_label">Steep Temperature</span><br />
@@ -338,12 +339,8 @@ window.onload = function() {
 								<tr>
 									<td>
 										<span class="form_label">Fixins</span><br />
-										<select name="entry.10.single" id="list_fixins" onchange="addNewListItem(this)">
-											<optgroup label="Other">
-												<option value="">N/A</option>
-												<option value="_ADDNEW_">Add New Item...</option>
-											</optgroup>
-										</select>
+										<input type="hidden" name="entry.10.single" id="tea_fixins">
+                                        <table id="fixins_checkboxes"></table> 
 									</td>
 									<td>
 										<span class="form_label">Rating</span><br />
@@ -370,7 +367,7 @@ window.onload = function() {
 							</table-->
 							<div class="entry_group">
 								<span class="form_label">Notes</span><br />
-								<textarea name="entry.4.single" rows="8" cols="75" id="entry_9"></textarea>
+								<textarea name="entry.4.single" rows="6" cols="75" id="entry_9"></textarea>
 							</div>
 							<div class="entry_group">
 								<input id="tea_journal_submit" type="submit" name="submit" value="Submit"/>

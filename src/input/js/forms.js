@@ -1,6 +1,8 @@
 var shaving_journal_entry_url = "http://spreadsheets0.google.com/formResponse?formkey=dENEbllUbFdlTHg0WThDLTdqWXRLMWc6MQ";
 var shaving_review_entry_url = "https://spreadsheets.google.com/formResponse?formkey=dEFMb0ZoVDdhYkJEcVo3czBJSEFRcGc6MQ";
-var tea_journal_entry_url = "https://docs.google.com/spreadsheet/formResponse?pli=1&amp;hl=en_US&amp;formkey=dGdLc2JlYzYtYUppVnJaTDZxUko3aGc6MQ&amp;ifq"
+var tea_journal_entry_url = "http://spreadsheets0.google.com/formResponse?formkey=dGdLc2JlYzYtYUppVnJaTDZxUko3aGc6MQ&amp"
+//var tea_journal_entry_url = "https://docs.google.com/spreadsheet/formResponse?pli=1&amp;hl=en_US&amp;formkey=dGdLc2JlYzYtYUppVnJaTDZxUko3aGc6MQ&amp;ifq"
+var tea_review_entry_url = "https://docs.google.com/spreadsheet/formResponse?hl=en_US&amp;formkey=dERyQ2tPdk5yc3ZoSmhudDhtcGMtbEE6MQ&amp;ifq"
 
 /** Journal **/
 function loadProductInJournalEntry(product) {
@@ -243,7 +245,7 @@ function submissionMessage(lyr) {
 
 	submissionMessageInterval = window.setInterval('submissionMessageLayer.innerHTML += "."', 1000);
 }
-function postJournalEntry() {
+function postShavingJournalEntry() {
 	submissionMessage(document.getElementById('shaving_journal_submit').parentNode);
 
 	postEntry(shaving_journal_entry_url, document.getElementById('shaving_journal_entry_form'));
@@ -564,11 +566,17 @@ function GradeScaleControl_selectGrade(scaleElem, grade) {
 		}
 	}*/
 
-function init_form(form_date) {
+function init_form(form_date, form_time) {
+    console.log("init_form(", form_date,", ", form_time, ")");
 	// Add today's date to form
 	var today = new Date();
 	document.getElementById(form_date).value = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear();
-
+    if (form_time != null && form_time != undefined) {
+        var h=parseInt(today.getHours()); if (h < 10) h = "0"+h;
+        var m=parseInt(today.getMinutes()); if (m < 10) m = "0"+m;
+        console.log("TIME: ", today.getHours(),today.getMinutes(), h+""+m);
+        $("#"+form_time).attr("value", h+""+m);
+    }
 }
 
 function postEntry(url, form) {
@@ -593,7 +601,9 @@ function postEntry(url, form) {
 				break;
 			default: break;
 			}
-			var name = escape(elem.getAttribute("name"));
+			var name = elem.getAttribute("name");
+            if (name == null || name == "null") continue;
+			name = escape(name);
 			//var val = escape(encodeURI(elem.value.replace(/&/g, "\\\&").replace(/"/g, "\\\"")));
 			//var val = escape(encodeURI(elem.value.replace(/"/g, "\\\"")));
 			var val = elem.value.replace(/"/g, "\\\"");
@@ -618,6 +628,7 @@ function clearForm(form) {
 			case "input":
 				switch (elem.getAttribute("type")) {
 				case "text": elem.value = ""; break;
+                case "checkbox":
 				case "radio": elem.checked = false; break;
 				case "submit": continue; break;
 				}
@@ -632,4 +643,33 @@ function clearForm(form) {
 		clearInterval(submissionMessageInterval);
 		submissionMessageLayer.parentNode.removeChild(submissionMessageLayer);
 	}
+}
+
+/** TEA */
+function postTeaJournalEntry() {
+    console.log("FIXINS: ", $("#fixins_checkboxes").find(':checked'));
+    var fixins = "";
+    var fixins_boxes = $("#fixins_checkboxes").find(':checked')
+    for (var i = 0; i < fixins_boxes.length; i++) {
+        if (i != 0) fixins += ";";
+        fixins += $(fixins_boxes[i]).attr("value");
+    }
+    $("#tea_fixins").attr("value", fixins);
+    
+
+	submissionMessage(document.getElementById('tea_journal_submit').parentNode);
+
+	postEntry(tea_journal_entry_url, document.getElementById('tea_journal_entry_form'));
+
+	clearForm(document.getElementById("tea_journal_entry_form"));
+/*
+	getTeaData();
+	// When new data has been retrieved, refresh the journal view and switch to it
+	loadDataWhenAvailable(function() {
+							loadJournal(0, "DESC", null);
+							tabsObj.ToggleTab(0);	
+							toggleEntryDetails(document.getElementById('journal').getElementsByTagName('tr')[1], true);
+							clearJournalForm();
+									 });
+*/
 }

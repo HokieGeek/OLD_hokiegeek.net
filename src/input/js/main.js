@@ -1,4 +1,4 @@
-var filteredTabsHeight = 90;
+var filteredTabsHeight = 190;
 var HG_Journal_Input_tabsObj = null;
 
 function onTabToggle(from, to) {
@@ -107,21 +107,23 @@ function loadShavingForms() {
 }
 
 function teaRating_rollover(widget, rating, enable) { 
-	console.log("teaRating_rollover(widget, ", rating, ", ", enable, ")");
+	// console.log("teaRating_rollover(widget, ", rating, ", ", enable, ")");
  	var pic = "http://tea.hokiegeek.net/img/tea_cup"+(enable ? "" : "_greyed")+".png";
 	var imgs = widget.find('img');
-	console.log("   > FOUND '", imgs.length,"' IMG OBJECTS");
+	// console.log("   > FOUND '", imgs.length,"' IMG OBJECTS");
 	// for (img in imgs) {
 	for (var ii = 0; ii < imgs.length; ii++) {
 		if ((ii+1) <= rating) {
-			console.log("   IMG: ", imgs[ii]);
+			// console.log("   IMG: ", imgs[ii]);
 			$(imgs[ii]).attr('src', pic);
 		}
 	}
 }
 
 function teaRating_select(field, pos, rating) {
-	console.log("teaRating_select(field, ", pos, ", ", rating, ")");
+	console.log("teaRating_select(", field,", ", pos, ", ", rating, ")");
+    // $('input[name="entry.3.single"]').attr("value", rating);
+    $("#tea_journal_entry_rating").attr("value", rating);
 }
 
 function createTeaRatingWidget(storeField) {
@@ -133,7 +135,7 @@ function createTeaRatingWidget(storeField) {
 						.attr("rated", false)
 
 						.attr("onclick", "$(this).attr('rated', !eval($(this).attr('rated'))); "+
-										 "teaRating_select($('"+storeField+"'), 0, "+i+")")
+										 "teaRating_select($('#"+storeField+"'), 0, "+i+")")
 						.attr("onmouseover", "teaRating_rollover($(this.parentNode), "+i+", true)")
 						.attr("onmouseout", "if (!eval($(this).attr('rated'))) teaRating_rollover($(this.parentNode), "+i+", false);")
 
@@ -170,7 +172,7 @@ function createTeaRatingWidget(storeField) {
 
 function loadTeaForms() {
 	//// Journal entry form
-	init_form("tea_journal_form_date");
+	init_form("tea_journal_form_date", "tea_journal_form_time");
 
     TeaProductEntries.sort(function(a,b) {
         if (a.Name < b.Name) return 1;
@@ -191,15 +193,18 @@ function loadTeaForms() {
             continue; // Ignore teas that aren't stocked, of course!
         }
 
+        /*
         console.log("TEA ("+ii+"): ", parseInt(tea.ID),tea);
         if (parseInt(tea.ID) < 100) console.log("  <100");
         if (parseInt(tea.ID) < 10) console.log("  <10");
+        */
 
         // var label = "["+tea.ID+"] "+tea.Name+", "+tea.Year+" "+tea.getFlush();
         var label = "[";
         if (parseInt(tea.ID) < 100) label += " "; 
-        if (parseInt(tea.ID) < 10) label += "  "; 
+        if (parseInt(tea.ID) < 10) label += " "; 
         label += tea.ID+"] "+tea.Name;
+        if (tea.LeafGrade != undefined) label += " "+tea.LeafGrade;
         if (tea.Year != undefined) {
             label += ", "+tea.Year;
             if (tea.Flush != undefined)
@@ -208,13 +213,34 @@ function loadTeaForms() {
 
 
 		// addProductOption("list_teas", tea.ID, "["+tea.ID+"] "+tea.getName());
+        // console.log(label);
 		addProductOption("list_teas", tea.ID, label);
 	}
 	
+    // Load the vessels
 	
+//var TeaSteepingVessels = ["French Press", "Shipiao Yixing", "Tea-zer Tumbler", 
+                          //"Tea Stick", "Mesh Spoon", "Sauce Pan", "Cup", "Other"];
+	var vessels_list = $("#list_vessels");
+    for (var ii = 0; ii < TeaSteepingVessels.length; ii++) {
+        vessels_list.append($("<option></option>").attr("value", ii)
+                                                  .append(TeaSteepingVessels[ii]));
+    }
+
 	// Load the fixins
+    var num_fixins_cols = 4;
+    var fixins_table = $("#fixins_checkboxes");
+    var fixins_row = $("<tr></td>");
 	for (var ii = 0; ii < TeaFixins.length; ii++) {
-		addProductOption("list_fixins", ii, TeaFixins[ii]);
+        fixins_row.append($("<td></td>").append($("<input/>").attr("type", "checkbox")
+                                                             .attr("value", ii))
+                                        .append(TeaFixins[ii]).append($("<br />")));
+                                                             //.attr("name", "entry.10.single")
+        if (((ii % num_fixins_cols) == 2) || ii == TeaFixins.length-1) {
+            fixins_table.append(fixins_row);
+            fixins_row = $("<tr></td>");
+        }
+		// addProductOption("list_fixins", ii, TeaFixins[ii]);
 	}
 	
 	// Load the ratings...
@@ -231,7 +257,7 @@ function loadForms() {
 	hg_small_nav(); 
 
 	HG_Journal_Input_tabsObj = new LibTabs("HG_Journal_Input_tabsObj", document.getElementById("hg_journal_input_tabs"), 
-											0, LibTabs_Orientation.TOP, null);
+											1, LibTabs_Orientation.TOP, null);
     //console.log("Created tabs: ", HG_Journal_tabsObj, document.getElementById("hg_journal_tabs"));
 	//HG_Journal_Input_tabsObj.HandleKeyboardInputs();
 
