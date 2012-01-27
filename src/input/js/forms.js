@@ -567,14 +567,14 @@ function GradeScaleControl_selectGrade(scaleElem, grade) {
 	}*/
 
 function init_form(form_date, form_time) {
-    console.log("init_form(", form_date,", ", form_time, ")");
+    // console.log("init_form(", form_date,", ", form_time, ")");
 	// Add today's date to form
 	var today = new Date();
 	document.getElementById(form_date).value = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear();
     if (form_time != null && form_time != undefined) {
         var h=parseInt(today.getHours()); if (h < 10) h = "0"+h;
         var m=parseInt(today.getMinutes()); if (m < 10) m = "0"+m;
-        console.log("TIME: ", today.getHours(),today.getMinutes(), h+""+m);
+        // console.log("TIME: ", today.getHours(),today.getMinutes(), h+""+m);
         $("#"+form_time).attr("value", h+""+m);
     }
 }
@@ -647,7 +647,6 @@ function clearForm(form) {
 
 /** TEA */
 function postTeaJournalEntry() {
-    console.log("FIXINS: ", $("#fixins_checkboxes").find(':checked'));
     var fixins = "";
     var fixins_boxes = $("#fixins_checkboxes").find(':checked')
     for (var i = 0; i < fixins_boxes.length; i++) {
@@ -656,12 +655,15 @@ function postTeaJournalEntry() {
     }
     $("#tea_fixins").attr("value", fixins);
     
+    // console.log("SESSION OPTIONS: ", $("#tea_sessions").find('input[type="radio"]'));
+    // console.log("SESSION SELECTED: ", $("#tea_sessions").find(':checked'));
 
 	submissionMessage(document.getElementById('tea_journal_submit').parentNode);
 
 	postEntry(tea_journal_entry_url, document.getElementById('tea_journal_entry_form'));
 
 	clearForm(document.getElementById("tea_journal_entry_form"));
+	init_form("tea_journal_form_date", "tea_journal_form_time");
 /*
 	getTeaData();
 	// When new data has been retrieved, refresh the journal view and switch to it

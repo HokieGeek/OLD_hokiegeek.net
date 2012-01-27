@@ -170,6 +170,47 @@ function createTeaRatingWidget(storeField) {
 	return widget;
 }
 
+function selectTeaSession(selection) {
+/*
+    // Load the session stuff
+    $("#tea_sessions").append($("<input />").attr("type", "radio")
+                                            .attr("onclick", '$("#tea_session").attr("value", "")')
+                                            .attr("checked", true)).append(" None");
+    $("#tea_sessions").append($("<input />").attr("type", "radio")
+                                                .attr("onclick", '$("#tea_session").attr("value", "")')).append(" New")
+    if (tea.numSessions() > 0) {
+        $("#tea_sessions").append($("<input />").attr("type", "radio")
+                                                .attr("onclick", '$("#tea_session").attr("value", "")')).append(" Next");
+    }
+*/
+    switch ($(selection).attr("value")) {
+    case "NO_SESSION": console.log("  NO"); break;
+    case "NEW_SESSION": console.log("  NEW"); break;
+    case "NEXT_SESSION": console.log("  NEXT"); break;
+    }
+}
+
+function selectTea(list) {
+    //console.log("TODO: respond to tea selection: ", $("#tea_sessions").find('input[type="radio"]'));
+    //$("#tea_sessions").find('input[type="radio"]')[0].attr("checked", "true");
+	if (list.value == "_ADDNEW_") {
+        addNewListItem(list);
+    } else {
+        var selected = HG_getProductByID(TeaProductEntries, list.value);
+        var journal = selected.getJournalEntries();
+        // var selected = TeaProductEntries[list.value];
+        console.log("TEA: "+selected.getName());
+        // TODO: session stuff
+        if (selected.numSessions() > 0) {
+            console.log("TODO: session?");
+        }
+        // TODO: most likely vessel
+        // TODO: most likely steep time
+        // TODO: most likely temperature
+        // TODO: most likely fixins
+    }
+}
+
 function loadTeaForms() {
 	//// Journal entry form
 	init_form("tea_journal_form_date", "tea_journal_form_time");
@@ -217,10 +258,18 @@ function loadTeaForms() {
 		addProductOption("list_teas", tea.ID, label);
 	}
 	
+    // Load the session stuff
+    $("#tea_sessions").append($("<input />").attr("type", "radio")
+                                            .attr("onclick", '$("#tea_session").attr("value", "")')
+                                            .attr("checked", true)).append(" None");
+    $("#tea_sessions").append($("<input />").attr("type", "radio")
+                                                .attr("onclick", '$("#tea_session").attr("value", "")')).append(" New")
+    if (tea.getSessions().length > 0) {
+        $("#tea_sessions").append($("<input />").attr("type", "radio")
+                                                .attr("onclick", '$("#tea_session").attr("value", "")')).append(" Next");
+    }
     // Load the vessels
 	
-//var TeaSteepingVessels = ["French Press", "Shipiao Yixing", "Tea-zer Tumbler", 
-                          //"Tea Stick", "Mesh Spoon", "Sauce Pan", "Cup", "Other"];
 	var vessels_list = $("#list_vessels");
     for (var ii = 0; ii < TeaSteepingVessels.length; ii++) {
         vessels_list.append($("<option></option>").attr("value", ii)

@@ -40,6 +40,7 @@ function TeaProductEntryType(data) {
     this.Ratings = []; 
     this.Comments = null;
     this.Pictures = [];
+    this.Sessions = [];
 
     this._loadPictures = function(pics) {
         if (pics == undefined) return;
@@ -137,8 +138,43 @@ function TeaProductEntryType(data) {
 			}
 		}
 
+        entries.sort(function(a,b) {
+		    if (!(a.Date instanceof Date)) return 1;
+		    if (!(b.Date instanceof Date)) return 0;
+		    return a.Date.getTime() - b.Date.getTime(); 
+	    });
+        
+
 		return entries;
 	}
+
+    this.getSessions = function() {
+        if (this.Sessions == null) {
+            // TODO
+            var entries = this.getJournalEntries();
+            for (var ii = 0; ii < entries.length; ii++) {
+                // this.sessions.push(entries[ii].SessionInstance.substr(3));
+                this.Sessions.push(new TeaSessionInstance(entries[ii]));
+            }
+            console.log("SESSIONS: ", this.Sessions);
+        }
+        return this.Sessions;
+    }
+
+    this._load(data);
+}
+
+function TeaSessionInstance(data) {
+    this.Tea = -1;
+    this.Session = -1;
+    this.Instance = -1;
+
+    this._load = function(d) {
+        var boom = d.split("_");
+        this.Tea = boom[0];    
+        this.Session = boom[1];    
+        this.Instance = boom[2];    
+    }
 
     this._load(data);
 }

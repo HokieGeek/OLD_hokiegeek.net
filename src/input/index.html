@@ -30,7 +30,8 @@ body {
 <script type="text/JavaScript" src="http://hokiegeek.net/js/libpicasaweb.js"></script>
 
 <script type="text/JavaScript" src="http://shaving.hokiegeek.net/js/data.js"></script>
-<script type="text/JavaScript" src="http://tea.hokiegeek.net/js/data.js"></script>
+<!--script type="text/JavaScript" src="http://tea.hokiegeek.net/js/data.js"></script-->
+<script type="text/JavaScript" src="../tea/js/data.js"></script>
 <script type="text/JavaScript" src="js/forms.js"></script>
 <script type="text/JavaScript" src="js/main.js"></script>
 <script type="text/Javascript">
@@ -293,11 +294,15 @@ window.onload = function() {
 								<tr>
 									<td>
 										<span class="form_label">Date</span><br />
-										<input type="text" name="entry.0.single" id="tea_journal_form_date" value=""/>
+										<input type="text" name="entry.0.single" id="tea_journal_form_date" style="width: 80px" />
 									</td>
 									<td>
 										<span class="form_label">Time</span><br />
-										<input type="text" name="entry.1.single" id="tea_journal_form_time" value=""/>
+										<input type="text" name="entry.1.single" id="tea_journal_form_time" style="width: 60px" />
+                                        <a href="javascript://" 
+                                           onclick="init_form('tea_journal_form_date', 'tea_journal_form_time')">
+                                                refresh
+                                        </a>
 									</td>
 								</tr>
 							</table>
@@ -305,16 +310,17 @@ window.onload = function() {
 								<tr>
 									<td>
 										<span class="form_label">Tea</span><br />
-										<select name="entry.2.single" id="list_teas" onchange="addNewListItem(this)">
+										<select name="entry.2.single" id="list_teas" onchange="selectTea(this)">
 											<optgroup label="Other">
-												<option value="">N/A</option>
+												<!--option value="">N/A</option-->
 												<option value="_ADDNEW_">Add New Item...</option>
 											</optgroup>
 										</select>
 									</td>
 									<td>
-										<span class="form_label">Session Instance</span><br />
-										<input type="text" name="entry.9.single" value=""/>
+										<span class="form_label">Session</span><br />
+										<input type="hidden" id="tea_session" name="entry.9.single" />
+                                        <span id="tea_sessions"></span>
 									</td>
 								</tr>
 							</table>
@@ -322,16 +328,15 @@ window.onload = function() {
 								<tr>
 									<td>
 										<span class="form_label">Steep Time</span><br />
-										<input type="text" name="entry.6.single" value=""/>
+										<input type="text" name="entry.6.single" style="width: 80px" />
 									</td>
 									<td>
 										<span class="form_label">Steeping Vessel</span><br />
 										<select name="entry.7.single" id="list_vessels"></select>
-										<!--input type="text" name="entry.7.single" value=""/-->
 									</td>
 									<td>
 										<span class="form_label">Steep Temperature</span><br />
-										<input type="text" name="entry.8.single" value=""/>
+										<input type="text" name="entry.8.single" style="width: 40px" />&deg;F
 									</td>
 								</tr>
 							</table>
@@ -367,7 +372,7 @@ window.onload = function() {
 							</table-->
 							<div class="entry_group">
 								<span class="form_label">Notes</span><br />
-								<textarea name="entry.4.single" rows="6" cols="75" id="entry_9"></textarea>
+								<textarea name="entry.4.single" rows="5" cols="75" id="entry_9"></textarea>
 							</div>
 							<div class="entry_group">
 								<input id="tea_journal_submit" type="submit" name="submit" value="Submit"/>
