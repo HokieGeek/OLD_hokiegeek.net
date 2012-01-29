@@ -154,7 +154,6 @@ function TeaProductEntryType(data) {
         if (this.Sessions == null) {
 			this.Sessions = [];
             var entries = this.getJournalEntries();
-        	console.log("getSessions(): entries.length = ", entries.length);
             for (var ii = 0; ii < entries.length; ii++) {
                 var instance = entries[ii].SessionInstance;
                 if (instance != undefined)
@@ -164,18 +163,23 @@ function TeaProductEntryType(data) {
         return this.Sessions;
     }
 
-    /*
-    this.getAverageVessel = function() {
+    this.getVessel = function() {
         var avgVessel = 0;
+        var lastVessel = 0;
         var entries = this.getJournalEntries();
         for (var ii = 0; ii < entries.length; ii++) {
-            avgVessel += parseInt(entries.SteepingVessel);
+            // console.log("entries["+ii+"] = ", entries[ii]);
+            // console.log("entries["+ii+"].SteepingVessel = ", entries[ii].SteepingVessel);
+            lastVessel = entries[ii].SteepingVessel;
+            avgVessel += parseInt(lastVessel);
         }
+        console.log("lastVessel = ", lastVessel);
         avgVessel /= entries.length;
 
-        console.log("getAverageVessel = ", avgVessel);
+        console.log("getAverageVessel() = ", avgVessel);
+
+        return lastVessel;
     }
-    */
 
     this._load(data);
 }
@@ -197,7 +201,8 @@ function TeaSessionInstance(data) {
 		return this.Tea+this.delim+this.Session+this.delim+this.Instance;
 	}
 
-    this._load(data);
+    if (data != undefined)
+        this._load(data);
 }
 
 function TeaJournalEntryType(data) {

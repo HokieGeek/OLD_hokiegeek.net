@@ -5,6 +5,9 @@
 	border: none;
 	margin-left: 5px;
 }
+.selected_content {
+    height: 98% !important;
+}
 #metrics tr td {
 	font-weight: bold;
 }

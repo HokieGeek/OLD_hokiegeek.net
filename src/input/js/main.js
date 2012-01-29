@@ -188,7 +188,6 @@ function generateSessionRadios(tea) {
     if (sessions.length > 0) {
         var lastSession = sessions[sessions.length-1];
         var delim = lastSession.delim;
-        console.log("lastSession = ", lastSession, parseInt(lastSession.Session), (parseInt(lastSession.Session) + 1));
         var next = (parseInt(lastSession.Session) + 1);
         if (next < 10) next = "0"+next;	
         var nextSession = tea.ID+delim+next+delim+"A";
@@ -219,8 +218,11 @@ function selectTea(list) {
         
         generateSessionRadios(selected);
 
-		// TODO: most likely vessel
-        selected.getSeepingVessel();
+		// most likely vessel
+	    var selectedVessels = $("#list_vessels").children("option").find(':selected');
+        if (selectedVessels.length > 0) selectedVessels.removeAttr("selected");
+	    $($("#list_vessels").children("option")[selected.getVessel()]).attr("selected", true);
+
 		// TODO: most likely steep time
         // TODO: most likely temperature
         // TODO: most likely fixins

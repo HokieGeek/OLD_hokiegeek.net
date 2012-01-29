@@ -265,7 +265,7 @@ function HG_Journal_resizeTabs() {
 				var toptab = divs[i].parentNode.parentNode.parentNode.getAttribute("id");
 				var offset = (toptab == "forms") ? 90 : filteredTabsHeight;
 				height = (parseInt(document.documentElement.clientHeight-offset));
-				console.log("tab_content!: ",height);
+				// console.log("tab_content!: ",height);
 			} else {
 				height = (parseInt(document.documentElement.clientHeight-60));
 			}
