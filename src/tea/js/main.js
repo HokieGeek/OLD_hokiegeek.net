@@ -188,7 +188,7 @@ function renderTeaProductEntry(entry) {
 		var main = $("<table></table>")
 			.append($("<tr></tr>").addClass("tea_product_entry_name")
                                   .append($("<td></td>").append(entry.getName())
-														.append($("<span></span>").append((entry.Stocked ? "" : "you drank it all")))
+														.append($("<span></span>").append((entry.Stocked ? "" : "drank it all")))
                                                         )
 					)
 			.append($("<tr></tr>").append($("<td></td>").append(details)))

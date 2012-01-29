@@ -40,7 +40,7 @@ function TeaProductEntryType(data) {
     this.Ratings = []; 
     this.Comments = null;
     this.Pictures = [];
-    this.Sessions = [];
+    this.Sessions = null;
 
     this._loadPictures = function(pics) {
         if (pics == undefined) return;
@@ -151,13 +151,15 @@ function TeaProductEntryType(data) {
     this.getSessions = function() {
         if (this.Sessions == null) {
             // TODO
+			this.Sessions = [];
             var entries = this.getJournalEntries();
+        	console.log("getSessions(): entries.length = ", entries.length);
             for (var ii = 0; ii < entries.length; ii++) {
                 // this.sessions.push(entries[ii].SessionInstance.substr(3));
-                this.Sessions.push(new TeaSessionInstance(entries[ii]));
+                this.Sessions.push(new TeaSessionInstance(entries[ii].SessionInstance));
             }
-            console.log("SESSIONS: ", this.Sessions);
-        }
+		}
+        console.log("SESSIONS: ", this.Sessions);
         return this.Sessions;
     }
 
@@ -165,16 +167,21 @@ function TeaProductEntryType(data) {
 }
 
 function TeaSessionInstance(data) {
+	this.delim = "_";
     this.Tea = -1;
     this.Session = -1;
     this.Instance = -1;
 
     this._load = function(d) {
-        var boom = d.split("_");
-        this.Tea = boom[0];    
-        this.Session = boom[1];    
-        this.Instance = boom[2];    
+        var boom = d.split(this.delim);
+        this.Tea = boom[0];
+        this.Session = parseInt(boom[1]);
+        this.Instance = boom[2];
     }
+
+	this.toString = function() {
+		return this.Tea+this.delim+this.Session+this.delim+this.Instance;
+	}
 
     this._load(data);
 }

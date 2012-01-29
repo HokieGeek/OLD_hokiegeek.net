@@ -201,11 +201,42 @@ function selectTea(list) {
         // var selected = TeaProductEntries[list.value];
         console.log("TEA: "+selected.getName());
         // TODO: session stuff
-        if (selected.numSessions() > 0) {
-            console.log("TODO: session?");
-        }
-        // TODO: most likely vessel
-        // TODO: most likely steep time
+		var sessions_div = $("#tea_sessions");
+		sessions_div.html("");
+    	sessions_div.append($("<input />").attr("type", "radio")
+                                          .attr("onclick", '$("#tea_session").attr("value", "")')
+                                          .attr("checked", true)).append(" None");
+    	var sessions = selected.getSessions();
+        if (sessions.length > 0) {
+			var lastSession = sessions[sessions.length-1];
+			var delim = lastSession.delim;
+			console.log("lastSession = ", lastSession, parseInt(lastSession.Session), (parseInt(lastSession.Session) + 1));
+			var next = (parseInt(lastSession.Session) + 1);
+			if (next < 10) next = "0"+next;	
+			var nextSession = selected.ID+delim+next+delim+"A";
+			next = String.fromCharCode(parseInt(lastSession.Instance.charCodeAt(0)) + 1);
+			var sessionId = lastSession.Session;
+			if (sessionId < 10) sessionId = "0"+sessionId;
+			var nextInstance = selected.ID+delim+sessionId+delim+next;
+
+			console.log(" LAST SESSION: ", lastSession.toString());
+			console.log(" NEXT SESSION: ", nextSession);
+			console.log("NEXT INSTANCE: ", nextInstance);
+
+			sessions_div.append($("<input />").attr("type", "radio")
+											  .attr("onclick", '$("#tea_session").attr("value", "'+nextSession+'")')
+											  .attr("title", "'"+nextSession+"'")).append(" New")
+			sessions_div.append($("<input />").attr("type", "radio")
+											  .attr("onclick", '$("#tea_session").attr("value", "'+nextInstance+'")')
+											  .attr("title", "'"+nextInstance+"'")).append(" Next");
+		} else {
+			sessions_div.append($("<input />").attr("type", "radio")
+                                              .attr("onclick", '$("#tea_session").attr("value", "'+selected.ID+'_01_A")')
+											  .attr("title", "'"+selected.ID+"_01_A'")).append(" New")
+		}
+
+		// TODO: most likely vessel
+		// TODO: most likely steep time
         // TODO: most likely temperature
         // TODO: most likely fixins
     }
@@ -219,26 +250,14 @@ function loadTeaForms() {
         if (a.Name < b.Name) return 1;
         if (a.Name > b.Name) return -1;
         return 0;
-        /* return a.ID > b.ID ? 1 : a.ID < b.ID : -1 : 0;
-        if (aID > bID) return 1;
-        if (aID < bID) return -1;
-        return 0;
-        return aID > bID ? 1 : aID < bID : -1 : 0;*/
     });
 
 	// Load the teas
-	// var list_tea = $("#list_teas");
 	for (var ii = TeaProductEntries.length-1; ii >= 0; ii--) {
         var tea = TeaProductEntries[ii];
         if (!tea.Stocked) {
             continue; // Ignore teas that aren't stocked, of course!
         }
-
-        /*
-        console.log("TEA ("+ii+"): ", parseInt(tea.ID),tea);
-        if (parseInt(tea.ID) < 100) console.log("  <100");
-        if (parseInt(tea.ID) < 10) console.log("  <10");
-        */
 
         // var label = "["+tea.ID+"] "+tea.Name+", "+tea.Year+" "+tea.getFlush();
         var label = "[";
@@ -257,17 +276,35 @@ function loadTeaForms() {
         // console.log(label);
 		addProductOption("list_teas", tea.ID, label);
 	}
-	
-    // Load the session stuff
+
     $("#tea_sessions").append($("<input />").attr("type", "radio")
                                             .attr("onclick", '$("#tea_session").attr("value", "")')
                                             .attr("checked", true)).append(" None");
-    $("#tea_sessions").append($("<input />").attr("type", "radio")
-                                                .attr("onclick", '$("#tea_session").attr("value", "")')).append(" New")
-    if (tea.getSessions().length > 0) {
+    var sessions = tea.getSessions();
+    if (sessions.length > 0) {
+		var lastSession = sessions[sessions.length-1];
+		var next = parseInt(lastSession.Session) + 1;
+		if (next < 10) next = "0"+next;	
+		var nextSession = lastSession.Tea+lastSession.delim+next+lastSession.delim+"A";
+		next = String.fromCharCode(parseInt(v.charCodeAt(0)) + 1);
+		var nextInstance = this.Tea+this.delim+this.Session+this.delim+next;
+
+		console.log(" LAST SESSION: ", lastSession.toString());
+		console.log(" NEXT SESSION: ", nextSession);
+		console.log("NEXT INSTANCE: ", nextInstance);
+
+    	$("#tea_sessions").append($("<input />").attr("type", "radio")
+                                                .attr("onclick", '$("#tea_session").attr("value", "'+nextSession+'")')
+												.attr("title", "'"+nextSession+"'")).append(" New")
         $("#tea_sessions").append($("<input />").attr("type", "radio")
-                                                .attr("onclick", '$("#tea_session").attr("value", "")')).append(" Next");
-    }
+                                                .attr("onclick", '$("#tea_session").attr("value", "'+nextInstance+'")')
+												.attr("title", "'"+nextInstance+"'")).append(" Next");
+    } else {
+    	$("#tea_sessions").append($("<input />").attr("type", "radio")
+                                                .attr("onclick", '$("#tea_session").attr("value", "'+tea.ID+'_01_A")')
+												.attr("title", "'"+tea.ID+"_01_A'")).append(" New")
+	}
+
     // Load the vessels
 	
 	var vessels_list = $("#list_vessels");
