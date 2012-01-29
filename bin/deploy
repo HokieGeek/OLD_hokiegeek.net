@@ -113,12 +113,12 @@ function deployFile() {
 #[ "$1" == "--new" -o $# -le 0 ] && opt="new"
 #[ "$1" == "--all" ] && mode="all"
 #[ $# -gt 0 ] && opt="$1" || opt="--new"
-[ $# -le 0 ] && opt="--new"
+[ $# -le 0 ] && opt="--new" || opt="$1"
 
 source ./minify --sourced
 
 case ${opt} in
---all) 
+--all)
 	for f in `find ${src_dir} -print | sed 's;^\./;;'`; do
 		deployFile ${f}
 	done
