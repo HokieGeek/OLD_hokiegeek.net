@@ -663,15 +663,8 @@ function postTeaJournalEntry() {
 	postEntry(tea_journal_entry_url, document.getElementById('tea_journal_entry_form'));
 
 	clearForm(document.getElementById("tea_journal_entry_form"));
+	$("#tea_journal_rating_widget").html("");
+	$("#tea_journal_rating_widget").append("<tr></tr>").append("<td></td>")
+								   .append(createTeaRatingWidget("tea_journal_entry_rating"));
 	init_form("tea_journal_form_date", "tea_journal_form_time");
-/*
-	getTeaData();
-	// When new data has been retrieved, refresh the journal view and switch to it
-	loadDataWhenAvailable(function() {
-							loadJournal(0, "DESC", null);
-							tabsObj.ToggleTab(0);	
-							toggleEntryDetails(document.getElementById('journal').getElementsByTagName('tr')[1], true);
-							clearJournalForm();
-									 });
-*/
 }

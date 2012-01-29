@@ -288,7 +288,7 @@ function setupFeatures(e) {
 				if (d.Temperature != null) 
 				steeping_details.innerHTML += "<br />at <i>"+d.Temperature+"&deg;F</i> ";
 				if (d.SteepingVessel != null) 
-					steeping_details.innerHTML += "using the "+d.SteepingVessel.toLowerCase();
+					steeping_details.innerHTML += "using the "+d.getSteepingVessel().toLowerCase();
 				//row = document.createElement("tr");
 				//row.appendChild(steeping_details);
 				//table.appendChild(row);

@@ -40,6 +40,7 @@ function TeaProductEntryType(data) {
     this.Ratings = []; 
     this.Comments = null;
     this.Pictures = [];
+    this.JournalEntries = null;
     this.Sessions = null;
 
     this._loadPictures = function(pics) {
@@ -130,38 +131,51 @@ function TeaProductEntryType(data) {
 	}
 
 	this.getJournalEntries = function() {
-		var entries = [];
+        if (this.JournalEntries == null) {
+            this.JournalEntries = [];
 
-    	for (var ii = 0; ii < TeaJournalEntries.length; ii++) {
-			if (TeaJournalEntries[ii].Tea.ID == this.ID) {
-				entries.push(TeaJournalEntries[ii]);
-			}
-		}
+            for (var ii = 0; ii < TeaJournalEntries.length; ii++) {
+                if (TeaJournalEntries[ii].Tea.ID == this.ID) {
+                    this.JournalEntries.push(TeaJournalEntries[ii]);
+                }
+            }
 
-        entries.sort(function(a,b) {
-		    if (!(a.Date instanceof Date)) return 1;
-		    if (!(b.Date instanceof Date)) return 0;
-		    return a.Date.getTime() - b.Date.getTime(); 
-	    });
-        
+            this.JournalEntries.sort(function(a,b) {
+                                        if (!(a.Date instanceof Date)) return 1;
+                                        if (!(b.Date instanceof Date)) return 0;
+                                        return a.Date.getTime() - b.Date.getTime(); 
+                                    });
+        }
 
-		return entries;
+		return this.JournalEntries;
 	}
 
     this.getSessions = function() {
         if (this.Sessions == null) {
-            // TODO
 			this.Sessions = [];
             var entries = this.getJournalEntries();
         	console.log("getSessions(): entries.length = ", entries.length);
             for (var ii = 0; ii < entries.length; ii++) {
-                // this.sessions.push(entries[ii].SessionInstance.substr(3));
-                this.Sessions.push(new TeaSessionInstance(entries[ii].SessionInstance));
+                var instance = entries[ii].SessionInstance;
+                if (instance != undefined)
+                    this.Sessions.push(new TeaSessionInstance(entries[ii].SessionInstance));
             }
 		}
-        console.log("SESSIONS: ", this.Sessions);
         return this.Sessions;
     }
+
+    /*
+    this.getAverageVessel = function() {
+        var avgVessel = 0;
+        var entries = this.getJournalEntries();
+        for (var ii = 0; ii < entries.length; ii++) {
+            avgVessel += parseInt(entries.SteepingVessel);
+        }
+        avgVessel /= entries.length;
+
+        console.log("getAverageVessel = ", avgVessel);
+    }
+    */
 
     this._load(data);
 }
@@ -259,8 +273,8 @@ function TeaJournalEntryType(data) {
 
         this.Tea = HG_getProductByID(TeaProductEntries, data.tea);
         this.Temperature = ((data.steeptemperature == null) ? 212 : data.steeptemperature);
-        //this.SteepingVessel = data.steepingvessel;
-        this.SteepingVessel = TeaSteepingVessels[data.steepingvessel];
+        this.SteepingVessel = data.steepingvessel;
+        //this.SteepingVessel = TeaSteepingVessels[data.steepingvessel];
 		this.SessionInstance = data.sessioninstance;
         this.Rating = data.rating;
         this.Comments = data.comments;
@@ -268,6 +282,10 @@ function TeaJournalEntryType(data) {
         this._loadSteepTime(data.steeptime);
 		this._loadFixins(data.fixins);
         this._loadPictures(data.pictures);
+    }
+
+    this.getSteepingVessel = function() {
+        return TeaSteepingVessels[this.SteepingVessel];
     }
 
     this._load(data);

@@ -38,7 +38,7 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
     if (entry.Temperature != null)
         steeping_details.append("at ").append($("<i></i>").append(entry.Temperature+"&deg;F "));
     if (entry.SteepingVessel != null)
-        steeping_details.append("using the "+entry.SteepingVessel.toLowerCase());
+        steeping_details.append("using the "+entry.getSteepingVessel().toLowerCase());
     main.append(steeping_details);
 
     // Rating

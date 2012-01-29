@@ -294,15 +294,15 @@ window.onload = function() {
 								<tr>
 									<td>
 										<span class="form_label">Date</span><br />
-										<input type="text" name="entry.0.single" id="tea_journal_form_date" style="width: 80px" />
+										<input type="text" name="entry.0.single" id="tea_journal_form_date" style="width: 80px"
+                                           onclick="init_form('tea_journal_form_date', 'tea_journal_form_time')"
+                                        />
 									</td>
 									<td>
 										<span class="form_label">Time</span><br />
-										<input type="text" name="entry.1.single" id="tea_journal_form_time" style="width: 60px" />
-                                        <a href="javascript://" 
-                                           onclick="init_form('tea_journal_form_date', 'tea_journal_form_time')">
-                                                refresh
-                                        </a>
+										<input type="text" name="entry.1.single" id="tea_journal_form_time" style="width: 60px" 
+                                           onclick="init_form('tea_journal_form_date', 'tea_journal_form_time')"
+                                        />
 									</td>
 								</tr>
 							</table>
