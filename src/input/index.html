@@ -4,10 +4,10 @@
 <meta http-equiv="content-script-type" content="text/javascript">
 
 <link rel="shortcut icon" type="image/x-icon" href="http://hokiegeek.net/img/hg_icon.png">
-<style type="text/css"> 
+<style type="text/css">
 body {
-	overflow-x: hidden;
-	background-image: url('http://hokiegeek.net/img/hg_bg.jpg');
+    overflow-x: hidden;
+    background-image: url('http://hokiegeek.net/img/hg_bg.jpg');
 }
 </style>
 <link type="text/css" rel="StyleSheet" href="http://hokiegeek.net/css/hg_nav.css" media="screen" />
@@ -42,354 +42,354 @@ window.onload = function() {
 </head>
 <body>
 <div id="hg_journal_input_tabs">
-	<div class="tab">
-		<span class="tab_name">Shaving</span>
-		<div class="tab_content" id="shaving_forms">
-			<div class="form_tabs">
-				<div class="tab">
-					<span class="tab_name">Journal</span>
-					<div class="tab_content">
-						<form action="javascript:postShavingJournalEntry()" id="shaving_journal_entry_form">
-							<div class="entry_group">
-								<span class="form_label">Date</span><br />
-								<input type="text" name="entry.0.single" id="shaving_journal_form_date" value=""/>
-							</div>
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Razor</span><br />
-										<select name="entry.1.single" id="list_razors" onchange="addNewListItem(this)">
-											<optgroup label="Other">
-												<option value="_ADDNEW_">Add New Item...</option>
-											</optgroup>
-										</select>
-									</td>
-									<td>
-										<div class="prod_type_labels">
-											<span id="list_blades_label" class="form_label sel_prod_type_label" onclick="switchToBlade()">Blade</span>
-											<span id="list_strops_label" class="form_label" onclick="switchToStrop()">Strop</span>
-										</div>
-										<div class="prod_type_lists">
-											<select name="entry.2.single" id="list_blades" onchange="addNewListItem(this)">
-												<optgroup label="Other">
-													<option value="">N/A</option>
-													<option value="_ADDNEW_">Add New Item...</option>
-												</optgroup>
-											</select>
-											<select name="entry.14.single" id="list_strops" onchange="addNewListItem(this)">
-												<optgroup label="Other">
-													<option value="">N/A</option>
-													<option value="_ADDNEW_">Add New Item...</option>
-												</optgroup>
-											</select>
-										</div>
-									</td>
-								</tr>
-							</table>
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Brush</span><br />
-										<select name="entry.3.single" id="list_brushes" onchange="addNewListItem(this)">
-											<optgroup label="Other">
-												<option value="">N/A</option>
-												<option value="_ADDNEW_">Add New Item...</option>
-											</optgroup>
-										</select>
-									</td>
-									<td>
-										<div class="prod_type_labels">
-											<span id="list_creams_label" class="form_label sel_prod_type_label" onclick="switchToCream()">Cream</span>
-											<span id="list_soaps_label" class="form_label" onclick="switchToSoap()">Soap</span>
-										</div>
-										<div class="prod_type_lists">
-											<select name="entry.5.single" id="list_creams" onchange="addNewListItem(this)">
-												<optgroup label="Other">
-													<option value="">N/A</option>
-													<option value="_ADDNEW_">Add New Item...</option>
-												</optgroup>
-											</select>
-											<select name="entry.4.single" id="list_soaps" onchange="addNewListItem(this)">
-												<optgroup label="Other">
-													<option value="">N/A</option>
-													<option value="_ADDNEW_">Add New Item...</option>
-												</optgroup>
-											</select>
-										</div>
-									</td>
-								</tr>
-							</table>
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Preshave</span><br />
-										<select name="entry.6.single" id="list_preshaves" onchange="addNewListItem(this)">
-											<option value="Softening with lather">Softening with lather</option>
-											<optgroup label="Other">
-												<option value="">N/A</option>
-												<option value="_ADDNEW_">Add New Item...</option>
-											</optgroup>
-										</select>
-									</td>
-									<td>
-										<span class="form_label">Aftershave</span><br />
-										<select name="entry.7.single" id="list_aftershaves" onchange="addNewListItem(this)">
-											<optgroup label="Other">
-												<option value="">N/A</option>
-												<option value="_ADDNEW_">Add New Item...</option>
-											</optgroup>
-										</select>
-									</td>
-								</tr>
-							</table>
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Number of Passes</span><br />
-										<div id="passes_label">
-											<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-										</div>
-										<span>
-											<input type="radio" name="entry.8.group" value="1" class="passes_radio" id="group_7_1"/>
-											<input type="radio" name="entry.8.group" value="2" class="passes_radio" id="group_7_2"/>
-											<input type="radio" name="entry.8.group" value="3" class="passes_radio" id="group_7_3"/>
-											<input type="radio" name="entry.8.group" value="4" class="passes_radio" id="group_7_4"/>
-											<input type="radio" name="entry.8.group" value="5" class="passes_radio" id="group_7_5"/>
-										</span>
-									</td>
-									<td>
-										<span class="form_label">Grades</span><br />
-										<table id="shaving_journal_grade_scales"></table>
-									</td>
-								</tr>
-							</table>
-							<div class="entry_group">
-								<span class="form_label">Notes</span><br />
-								<textarea name="entry.9.single" rows="8" cols="75" id="entry_9"></textarea>
-							</div>
-							<div class="entry_group">
-								<input id="shaving_journal_submit" type="submit" name="submit" value="Submit"/>
-							</div>
-							<input type="hidden" name="pageNumber" value="0">
-							<input type="hidden" name="backupCache" value="">
-						</form>
-					</div>
-				</div>
-				<div class="tab">
-					<span class="tab_name">Review</span>
-					<div class="tab_content">
-						<form action="javascript:postReviewEntry()" id="shaving_review_entry_form">
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Date</span><br />
-										<input type="text" name="entry.0.single" id="shaving_review_form_date"/>
-									</td>
-								</tr>
-							</table>
-							<table id="display_details" class="entry_group"></table>
-							<div id="enter_details">
-								<table class="entry_group">
-									<tr>
-										<td>
-											<span class="form_label">Product Type</span><br />
-											<select name="entry.1.single" id="shaving_review_product_type" onchange="loadReviewGrades(this.value, 'shaving_review_grade_scales')">
-												<option value="Razor">Razor</option>
-												<option value="Blade">Blade</option>
-												<option value="Strop">Strop</option>
-												<option value="Brush">Brush</option>
-												<option value="Cream">Cream</option>
-												<option value="Soap">Soap</option>
-												<option value="Preshave">Preshave</option>
-												<option value="Aftershave">Aftershave</option>
-												<option value="Cologne">EDT</option>
-												<option value="Other">Other</option>
-											</select>
-										</td>
-										<td>
-											<span class="form_label">Purchase Date</span><br />
-											<input type="text" name="entry.7.single" />
-										</td>
-										<td>
-											<span class="form_label">Location</span><br />
-											<input type="text" name="entry.9.single" />
-										</td>
-									</tr>
-								</table>
-								<table class="entry_group">
-									<tr>
-										<td>
-											<span class="form_label">Product Vendor</span><br />
-											<input type="text" id="shaving_review_product_vendor" name="entry.2.single" />
-										</td>
-										<td>
-											<span class="form_label">Product Name</span><br />
-											<input type="text" id="shaving_review_product_name" name="entry.3.single" />
-										</td>
-										<td>
-											<span class="form_label">Price</span><br />
-											<input type="text" name="entry.8.single" />
-										</td>
-									</tr>
-								</table>
-								<table class="entry_group">
-									<tr>
-										<td>
-											<span class="form_label">Size</span><br />
-											<input type="text" id="shaving_review_product_size" name="entry.4.single" />
-										</td>
-										<td>
-											<span class="form_label">Color</span><br />
-											<input type="text" id="shaving_review_product_color" name="entry.5.single" />
-										</td>
-										<td>
-											<span class="form_label">Scent</span><br />
-											<input type="text" id="shaving_review_product_scent" name="entry.6.single" />
-										</td>
-									</tr>
-								</table>
-							</div>
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Grades</span><br />
-										<input type="hidden" name="entry.10.single" id="hidden_shaving_review_grades" value=""/>
-										<table id="shaving_review_grade_scales"></table>
-									</td>
-									<td style="width: 450px">
-										<span class="form_label">Pictures</span><br />
-										<div id="pictures_select"></div>
-										<div id="pictures_view"></div>
-										<input type="hidden" name="entry.12.single" id="picture_list" />
-									</td>
-								</tr>
-							</table>
-							<div class="entry_group">
-								<span class="form_label">Comments</span><br />
-								<textarea name="entry.11.single" rows="8" cols="75"></textarea>
-							</div>
-							<div class="entry_group">
-								<input id="shaving_review_submit" type="submit" name="submit" value="Submit" />
-								<input type="button" name="clearBtn" value="Clear" onclick="clearReviewForm()" />
-							</div>
-							<input type="hidden" name="pageNumber" value="0">
-							<input type="hidden" name="backupCache" value="">
-							<input type="hidden" name="entry.13.single" value="TRUE"/>
-							<input type="hidden" name="entry.14.single" id="shaving_review_entry_id"/>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> <!-- Shaving -->
-	<div class="tab">
-		<span class="tab_name">Tea</span>
-		<div class="tab_content" class="forms">
-			<div class="form_tabs">
-				<div class="tab">
-					<span class="tab_name">Journal</span>
-					<div class="tab_content">
-						<form action="javascript:postTeaJournalEntry()" id="tea_journal_entry_form">
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Date</span><br />
-										<input type="text" name="entry.0.single" id="tea_journal_form_date" style="width: 80px"
+    <div class="tab">
+        <span class="tab_name">Shaving</span>
+        <div class="tab_content" id="shaving_forms">
+            <div class="form_tabs">
+                <div class="tab">
+                    <span class="tab_name">Journal</span>
+                    <div class="tab_content">
+                        <form action="javascript:postShavingJournalEntry()" id="shaving_journal_entry_form">
+                            <div class="entry_group">
+                                <span class="form_label">Date</span><br />
+                                <input type="text" name="entry.0.single" id="shaving_journal_form_date" value=""/>
+                            </div>
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Razor</span><br />
+                                        <select name="entry.1.single" id="list_razors" onchange="addNewListItem(this)">
+                                            <optgroup label="Other">
+                                                <option value="_ADDNEW_">Add New Item...</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="prod_type_labels">
+                                            <span id="list_blades_label" class="form_label sel_prod_type_label" onclick="switchToBlade()">Blade</span>
+                                            <span id="list_strops_label" class="form_label" onclick="switchToStrop()">Strop</span>
+                                        </div>
+                                        <div class="prod_type_lists">
+                                            <select name="entry.2.single" id="list_blades" onchange="addNewListItem(this)">
+                                                <optgroup label="Other">
+                                                    <option value="">N/A</option>
+                                                    <option value="_ADDNEW_">Add New Item...</option>
+                                                </optgroup>
+                                            </select>
+                                            <select name="entry.14.single" id="list_strops" onchange="addNewListItem(this)">
+                                                <optgroup label="Other">
+                                                    <option value="">N/A</option>
+                                                    <option value="_ADDNEW_">Add New Item...</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Brush</span><br />
+                                        <select name="entry.3.single" id="list_brushes" onchange="addNewListItem(this)">
+                                            <optgroup label="Other">
+                                                <option value="">N/A</option>
+                                                <option value="_ADDNEW_">Add New Item...</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="prod_type_labels">
+                                            <span id="list_creams_label" class="form_label sel_prod_type_label" onclick="switchToCream()">Cream</span>
+                                            <span id="list_soaps_label" class="form_label" onclick="switchToSoap()">Soap</span>
+                                        </div>
+                                        <div class="prod_type_lists">
+                                            <select name="entry.5.single" id="list_creams" onchange="addNewListItem(this)">
+                                                <optgroup label="Other">
+                                                    <option value="">N/A</option>
+                                                    <option value="_ADDNEW_">Add New Item...</option>
+                                                </optgroup>
+                                            </select>
+                                            <select name="entry.4.single" id="list_soaps" onchange="addNewListItem(this)">
+                                                <optgroup label="Other">
+                                                    <option value="">N/A</option>
+                                                    <option value="_ADDNEW_">Add New Item...</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Preshave</span><br />
+                                        <select name="entry.6.single" id="list_preshaves" onchange="addNewListItem(this)">
+                                            <option value="-1">Softening with lather</option>
+                                            <optgroup label="Other">
+                                                <option value="">N/A</option>
+                                                <option value="_ADDNEW_">Add New Item...</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <span class="form_label">Aftershave</span><br />
+                                        <select name="entry.7.single" id="list_aftershaves" onchange="addNewListItem(this)">
+                                            <optgroup label="Other">
+                                                <option value="">N/A</option>
+                                                <option value="_ADDNEW_">Add New Item...</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Number of Passes</span><br />
+                                        <div id="passes_label">
+                                            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                                        </div>
+                                        <span>
+                                            <input type="radio" name="entry.8.group" value="1" class="passes_radio" id="group_7_1"/>
+                                            <input type="radio" name="entry.8.group" value="2" class="passes_radio" id="group_7_2"/>
+                                            <input type="radio" name="entry.8.group" value="3" class="passes_radio" id="group_7_3"/>
+                                            <input type="radio" name="entry.8.group" value="4" class="passes_radio" id="group_7_4"/>
+                                            <input type="radio" name="entry.8.group" value="5" class="passes_radio" id="group_7_5"/>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="form_label">Grades</span><br />
+                                        <table id="shaving_journal_grade_scales"></table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="entry_group">
+                                <span class="form_label">Notes</span><br />
+                                <textarea name="entry.9.single" rows="8" cols="75" id="entry_9"></textarea>
+                            </div>
+                            <div class="entry_group">
+                                <input id="shaving_journal_submit" type="submit" name="submit" value="Submit"/>
+                            </div>
+                            <input type="hidden" name="pageNumber" value="0">
+                            <input type="hidden" name="backupCache" value="">
+                        </form>
+                    </div>
+                </div>
+                <div class="tab">
+                    <span class="tab_name">Review</span>
+                    <div class="tab_content">
+                        <form action="javascript:postReviewEntry()" id="shaving_review_entry_form">
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Date</span><br />
+                                        <input type="text" name="entry.0.single" id="shaving_review_form_date"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table id="display_details" class="entry_group"></table>
+                            <div id="enter_details">
+                                <table class="entry_group">
+                                    <tr>
+                                        <td>
+                                            <span class="form_label">Product Type</span><br />
+                                            <select name="entry.1.single" id="shaving_review_product_type" onchange="loadReviewGrades(this.value, 'shaving_review_grade_scales')">
+                                                <option value="Razor">Razor</option>
+                                                <option value="Blade">Blade</option>
+                                                <option value="Strop">Strop</option>
+                                                <option value="Brush">Brush</option>
+                                                <option value="Cream">Cream</option>
+                                                <option value="Soap">Soap</option>
+                                                <option value="Preshave">Preshave</option>
+                                                <option value="Aftershave">Aftershave</option>
+                                                <option value="Cologne">EDT</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span class="form_label">Purchase Date</span><br />
+                                            <input type="text" name="entry.7.single" />
+                                        </td>
+                                        <td>
+                                            <span class="form_label">Location</span><br />
+                                            <input type="text" name="entry.9.single" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="entry_group">
+                                    <tr>
+                                        <td>
+                                            <span class="form_label">Product Vendor</span><br />
+                                            <input type="text" id="shaving_review_product_vendor" name="entry.2.single" />
+                                        </td>
+                                        <td>
+                                            <span class="form_label">Product Name</span><br />
+                                            <input type="text" id="shaving_review_product_name" name="entry.3.single" />
+                                        </td>
+                                        <td>
+                                            <span class="form_label">Price</span><br />
+                                            <input type="text" name="entry.8.single" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="entry_group">
+                                    <tr>
+                                        <td>
+                                            <span class="form_label">Size</span><br />
+                                            <input type="text" id="shaving_review_product_size" name="entry.4.single" />
+                                        </td>
+                                        <td>
+                                            <span class="form_label">Color</span><br />
+                                            <input type="text" id="shaving_review_product_color" name="entry.5.single" />
+                                        </td>
+                                        <td>
+                                            <span class="form_label">Scent</span><br />
+                                            <input type="text" id="shaving_review_product_scent" name="entry.6.single" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Grades</span><br />
+                                        <input type="hidden" name="entry.10.single" id="hidden_shaving_review_grades" value=""/>
+                                        <table id="shaving_review_grade_scales"></table>
+                                    </td>
+                                    <td style="width: 450px">
+                                        <span class="form_label">Pictures</span><br />
+                                        <div id="pictures_select"></div>
+                                        <div id="pictures_view"></div>
+                                        <input type="hidden" name="entry.12.single" id="picture_list" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="entry_group">
+                                <span class="form_label">Comments</span><br />
+                                <textarea name="entry.11.single" rows="8" cols="75"></textarea>
+                            </div>
+                            <div class="entry_group">
+                                <input id="shaving_review_submit" type="submit" name="submit" value="Submit" />
+                                <input type="button" name="clearBtn" value="Clear" onclick="clearReviewForm()" />
+                            </div>
+                            <input type="hidden" name="pageNumber" value="0">
+                            <input type="hidden" name="backupCache" value="">
+                            <input type="hidden" name="entry.13.single" value="TRUE"/>
+                            <input type="hidden" name="entry.14.single" id="shaving_review_entry_id"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Shaving -->
+    <div class="tab">
+        <span class="tab_name">Tea</span>
+        <div class="tab_content" class="forms">
+            <div class="form_tabs">
+                <div class="tab">
+                    <span class="tab_name">Journal</span>
+                    <div class="tab_content">
+                        <form action="javascript:postTeaJournalEntry()" id="tea_journal_entry_form">
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Date</span><br />
+                                        <input type="text" name="entry.0.single" id="tea_journal_form_date" style="width: 80px"
                                            onclick="init_form('tea_journal_form_date', 'tea_journal_form_time')"
                                         />
-									</td>
-									<td>
-										<span class="form_label">Time</span><br />
-										<input type="text" name="entry.1.single" id="tea_journal_form_time" style="width: 60px" 
+                                    </td>
+                                    <td>
+                                        <span class="form_label">Time</span><br />
+                                        <input type="text" name="entry.1.single" id="tea_journal_form_time" style="width: 60px" 
                                            onclick="init_form('tea_journal_form_date', 'tea_journal_form_time')"
                                         />
-									</td>
-								</tr>
-							</table>
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Tea</span><br />
-										<select name="entry.2.single" id="list_teas" onchange="selectTea(this)">
-											<optgroup label="Other">
-												<!--option value="">N/A</option-->
-												<option value="_ADDNEW_">Add New Item...</option>
-											</optgroup>
-										</select>
-									</td>
-									<td>
-										<span class="form_label">Session</span><br />
-										<input type="hidden" id="tea_session" name="entry.9.single" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Tea</span><br />
+                                        <select name="entry.2.single" id="list_teas" onchange="selectTea(this)">
+                                            <optgroup label="Other">
+                                                <!--option value="">N/A</option-->
+                                                <option value="_ADDNEW_">Add New Item...</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <span class="form_label">Session</span><br />
+                                        <input type="hidden" id="tea_session" name="entry.9.single" />
                                         <span id="tea_sessions"></span>
-									</td>
-								</tr>
-							</table>
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Steep Time</span><br />
-										<input type="text" name="entry.6.single" style="width: 80px" />
-									</td>
-									<td>
-										<span class="form_label">Steeping Vessel</span><br />
-										<select name="entry.7.single" id="list_vessels"></select>
-									</td>
-									<td>
-										<span class="form_label">Steep Temperature</span><br />
-										<input type="text" name="entry.8.single" style="width: 40px" />&deg;F
-									</td>
-								</tr>
-							</table>
-							<table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Fixins</span><br />
-										<input type="hidden" name="entry.10.single" id="tea_fixins">
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Steep Time</span><br />
+                                        <input type="text" name="entry.6.single" style="width: 80px" />
+                                    </td>
+                                    <td>
+                                        <span class="form_label">Steeping Vessel</span><br />
+                                        <select name="entry.7.single" id="list_vessels"></select>
+                                    </td>
+                                    <td>
+                                        <span class="form_label">Steep Temperature</span><br />
+                                        <input type="text" name="entry.8.single" style="width: 40px" />&deg;F
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Fixins</span><br />
+                                        <input type="hidden" name="entry.10.single" id="tea_fixins">
                                         <table id="fixins_checkboxes"></table> 
-									</td>
-									<td>
-										<span class="form_label">Rating</span><br />
-										<table id="tea_journal_rating_widget"></table>
-										<input type="hidden" id="tea_journal_entry_rating" name="entry.3.single" value=""/>
-									</td>
-									<!-- TODO?
-									<td style="width: 450px">
-										<span class="form_label">Pictures</span><br />
-										<div id="pictures_select"></div>
-										<div id="pictures_view"></div>
-										<input type="hidden" name="entry.5.single" id="tea_journal_picture_list" />
-									</td>
-									//-->
-								</tr>
-							</table>
-							<!--table class="entry_group">
-								<tr>
-									<td>
-										<span class="form_label">Rating</span><br />
-										<table id="tea_journal_grade_scales" afp="entry.3.single"></table>
-									</td>
-								</tr>
-							</table-->
-							<div class="entry_group">
-								<span class="form_label">Notes</span><br />
-								<textarea name="entry.4.single" rows="5" cols="75" id="entry_9"></textarea>
-							</div>
-							<div class="entry_group">
-								<input id="tea_journal_submit" type="submit" name="submit" value="Submit"/>
-							</div>
-							<input type="hidden" name="pageNumber" value="0">
-							<input type="hidden" name="backupCache" value="">
-						</form>
-					</div>
-				</div>
-				<div class="tab">
-					<span class="tab_name">Review</span>
-					<div class="tab_content">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> <!-- Tea -->
+                                    </td>
+                                    <td>
+                                        <span class="form_label">Rating</span><br />
+                                        <table id="tea_journal_rating_widget"></table>
+                                        <input type="hidden" id="tea_journal_entry_rating" name="entry.3.single" value=""/>
+                                    </td>
+                                    <!-- TODO?
+                                    <td style="width: 450px">
+                                        <span class="form_label">Pictures</span><br />
+                                        <div id="pictures_select"></div>
+                                        <div id="pictures_view"></div>
+                                        <input type="hidden" name="entry.5.single" id="tea_journal_picture_list" />
+                                    </td>
+                                    //-->
+                                </tr>
+                            </table>
+                            <!--table class="entry_group">
+                                <tr>
+                                    <td>
+                                        <span class="form_label">Rating</span><br />
+                                        <table id="tea_journal_grade_scales" afp="entry.3.single"></table>
+                                    </td>
+                                </tr>
+                            </table-->
+                            <div class="entry_group">
+                                <span class="form_label">Notes</span><br />
+                                <textarea name="entry.4.single" rows="5" cols="75" id="entry_9"></textarea>
+                            </div>
+                            <div class="entry_group">
+                                <input id="tea_journal_submit" type="submit" name="submit" value="Submit"/>
+                            </div>
+                            <input type="hidden" name="pageNumber" value="0">
+                            <input type="hidden" name="backupCache" value="">
+                        </form>
+                    </div>
+                </div>
+                <div class="tab">
+                    <span class="tab_name">Review</span>
+                    <div class="tab_content">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Tea -->
 </div>
 </body>
 </html>
