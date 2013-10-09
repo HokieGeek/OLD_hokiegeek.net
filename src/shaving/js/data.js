@@ -285,7 +285,7 @@ function JournalEntryType(data) {
         } else {
             // console.log("_getReview(", type, ", ", p, ")");
             if (type == "Preshave" && p != undefined && (p == -1 || isNaN(p))) {
-                return "Softening with lather"
+                return "-1"
             } else {
                 var prod = HG_getProductByID(ShavingReviewedProducts, eval(p));
                 if (prod != null) return prod;
