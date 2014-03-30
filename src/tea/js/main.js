@@ -2,7 +2,7 @@ var filteredTabsHeight = 75;
 var displayed_teas = 0;
 
 function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
-	//console.log("renderShavingJournalEntry(", entry, ", ", num_displayed, ")");
+    //console.log("renderShavingJournalEntry(", entry, ", ", num_displayed, ")");
     var pic = ((entry.Tea.Pictures[0] == undefined) ? "img/tea_cup_greyed.png" : entry.Tea.Pictures[0].getURL(120));
 
     var main = $("<td></td>");
@@ -14,20 +14,20 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
                                                         .append("&lt;"+entry.Tea.getType().toLowerCase()+"&gt;"))
                                 );
 
-	// Fixins
-	var tea_fixins = entry.Fixins;
-	if (tea_fixins != null) {
+    // Fixins
+    var tea_fixins = entry.Fixins;
+    if (tea_fixins != null) {
         var fixins_list = $("<div></div>").addClass("tea_journal_entry_fixins").append("with ");
 
-		for (var i = tea_fixins.length-1; i >= 0; i--) {
-			if (i == 0 && tea_fixins.length > 1)
+        for (var i = tea_fixins.length-1; i >= 0; i--) {
+            if (i == 0 && tea_fixins.length > 1)
                 fixins_list.append(" and ");
-			else if (i != tea_fixins.length-1)
+            else if (i != tea_fixins.length-1)
                 fixins_list.append(", ");
             fixins_list.append(tea_fixins[i].toLowerCase());
-		}
+        }
         main.first().append(fixins_list);
-	} 
+    } 
 
     var steeping_details = $("<div></div>").addClass("tea_journal_entry_steeping_details")
                                            .append("Steeped ");
@@ -44,23 +44,23 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
     // Rating
     var tea_ratings_num = 4;
     var rating = $("<div></div>").addClass("tea_journal_entry_rating");
-	for (var ii = 0; ii < tea_ratings_num; ii++) {
-		var img_src = "img/tea_cup";
-		if (ii > entry.Rating-1) img_src += "_greyed";
-		img_src += ".png";
+    for (var ii = 0; ii < tea_ratings_num; ii++) {
+        var img_src = "img/tea_cup";
+        if (ii > entry.Rating-1) img_src += "_greyed";
+        img_src += ".png";
 
         rating.append($("<img/>").attr("src", img_src)
                                  .attr("title", entry.Rating+"/"+tea_ratings_num+" steaming tea cups"));
-	}
+    }
     main.append(rating);
 
-	$(entry_elem).append($("<tr></tr>")
+    $(entry_elem).append($("<tr></tr>")
         // Add the tea image
         .append($("<td></td>").addClass("tea_journal_entry_picture").append($("<img/>").attr("src", pic)))
         .append($("<td></td>").append(main))
     );
 
-	return true;
+    return true;
 }
 
 function loadTeaJournal(sort_field, sort_dir, filter) {
@@ -94,106 +94,106 @@ function renderTeaJournalEntry(entry, num_displayed) {
 }
 
 function createRatingWidget(rating) {
-	var widget = $("<span></span>");
-			//.width("20px").css("padding-right", "5px")
-	for (var i = 1; i <= 4; i++) {
-		widget.append(
-			$("<img/>")
-				.attr("src", "http://tea.hokiegeek.net/img/tea_cup"+((i > rating) ? "_greyed" : "")+".png"));
-	}
-	return widget;
+    var widget = $("<span></span>");
+            //.width("20px").css("padding-right", "5px")
+    for (var i = 1; i <= 4; i++) {
+        widget.append(
+            $("<img/>")
+                .attr("src", "http://tea.hokiegeek.net/img/tea_cup"+((i > rating) ? "_greyed" : "")+".png"));
+    }
+    return widget;
 }
 
 function renderTeaProductEntry(entry) {
-	/* TODO
-	 * 	- Pics slideshow
-	 * 	- Stocked
-	 * 	- Review Date?
-	 * 	- Comments
+    /* TODO
+     *     - Pics slideshow
+     *     - Stocked
+     *     - Review Date?
+     *     - Comments
      *
      *  - Count taste ratings in blended teas too?
      *  - Need to spread the ratings into two columns
      */
-		//> Build the pictures widget
-		var pic = ((entry.Pictures[0] == undefined) ? "img/tea_cup_greyed.png" : entry.Pictures[0].getURL(140));
-		var pics = $("<img />").attr("src", pic);
+        //> Build the pictures widget
+        var pic = ((entry.Pictures[0] == undefined) ? "img/tea_cup_greyed.png" : entry.Pictures[0].getURL(140));
+        var pics = $("<img />").attr("src", pic);
 
-		//> Build the purchase and packging info
-		var purchaseInfo = "";
-		if (entry.PurchasePrice != null) purchaseInfo += "$"+entry.PurchasePrice+" ";
-		if (entry.PurchaseLocation != null) purchaseInfo += "from "+entry.PurchaseLocation+" ";
-		if (entry.PurchaseDate != null) purchaseInfo += "on "+HG_formatDate(entry.PurchaseDate);
-		var packaging = "";
-		if (entry.Size != undefined) packaging += entry.Size+" ";
-		packaging += entry.Packaging;
+        //> Build the purchase and packging info
+        var purchaseInfo = "";
+        if (entry.PurchasePrice != null) purchaseInfo += "$"+entry.PurchasePrice+" ";
+        if (entry.PurchaseLocation != null) purchaseInfo += "from "+entry.PurchaseLocation+" ";
+        if (entry.PurchaseDate != null) purchaseInfo += "on "+HG_formatDate(entry.PurchaseDate);
+        var packaging = "";
+        if (entry.Size != undefined) packaging += entry.Size+" ";
+        packaging += entry.Packaging;
 
-		//> Get average steep time and taste ratings
-		var steepTime = 0;
-		var tasteRating = 0;
-		var journalEntries = entry.getJournalEntries();
-		for (var jj = 0; jj < journalEntries.length; jj++) {
+        //> Get average steep time and taste ratings
+        var steepTime = 0;
+        var tasteRating = 0;
+        var journalEntries = entry.getJournalEntries();
+        for (var jj = 0; jj < journalEntries.length; jj++) {
             if (journalEntries[jj].Rating > 1)
-			    steepTime += parseInt(journalEntries[jj].SteepTime);
+                steepTime += parseInt(journalEntries[jj].SteepTime);
 
-			tasteRating += parseInt(journalEntries[jj].Rating);
-		}
-		if (steepTime > 0) {
-			steepTime /= journalEntries.length;
-			steepTime = formatSteepTime(steepTime);
-		} else 
-			steepTime = "N/A";
+            tasteRating += parseInt(journalEntries[jj].Rating);
+        }
+        if (steepTime > 0) {
+            steepTime /= journalEntries.length;
+            steepTime = formatSteepTime(steepTime);
+        } else 
+            steepTime = "N/A";
 
-		tasteRating /= journalEntries.length;
+        tasteRating /= journalEntries.length;
 
-		//> Build the ratings
-		var ratings = $("<table></table>");
-		if (entry.Ratings.length <= 0) {
-			ratings.append($("<tr></tr>").append("<td></td>").append("Unrated"));
-		} else {
-			if (tasteRating >= 0) {
-				ratings.append($("<tr></tr>").attr("title", "Taste Rating: Averaged from all journal entries")
-											 .append($("<td></td>").append("Taste"))
-											 .append($("<td></td>").append(createRatingWidget(Math.ceil(tasteRating)))));
-			}
-			// for (rating in entry.Ratings) {
-			for (var rating = 0; rating < entry.Ratings.length; rating++) {
-				ratings.append($("<tr></tr>").append($("<td></td>").append(TeaProductRatings[rating]))
-											 .append($("<td></td>").append(createRatingWidget(entry.Ratings[rating]))));
-			}
-		}
+        //> Build the ratings
+        var ratings = $("<table></table>");
+        if (entry.Ratings.length <= 0) {
+            ratings.append($("<tr></tr>").append("<td></td>").append("Unrated"));
+        } else {
+            if (tasteRating >= 0) {
+                ratings.append($("<tr></tr>").attr("title", "Taste Rating: Averaged from all journal entries")
+                                             .append($("<td></td>").append("Taste"))
+                                             .append($("<td></td>").append(createRatingWidget(Math.ceil(tasteRating)))));
+            }
+            // for (rating in entry.Ratings) {
+            for (var rating = 0; rating < entry.Ratings.length; rating++) {
+                ratings.append($("<tr></tr>").append($("<td></td>").append(TeaProductRatings[rating]))
+                                             .append($("<td></td>").append(createRatingWidget(entry.Ratings[rating]))));
+            }
+        }
 
-		//> Build the details
-		var details = $("<table></table>").addClass("tea_product_entry_details");
-		if (entry.Type != "Blend") {
-			details
-				.append($("<tr></tr>").append($("<td></td>").append("Origin"))
-								  	  .append($("<td></td>").append(entry.getOrigin()))
-									  .append($("<td></td>").append("Price"))
-								  	  .append($("<td></td>").append(purchaseInfo)))
-			;
-		}
+        //> Build the details
+        var details = $("<table></table>").addClass("tea_product_entry_details");
+        if (entry.Type != "Blend") {
+            details
+                .append($("<tr></tr>").append($("<td></td>").append("Origin"))
+                                        .append($("<td></td>").append(entry.getOrigin()))
+                                      .append($("<td></td>").append("Price"))
+                                        .append($("<td></td>").append(purchaseInfo)))
+            ;
+        }
 
-		details
-			.append($("<tr></tr>").append($("<td></td>").append("Packaging"))
-								  .append($("<td></td>").append(packaging))
-								  .append($("<td></td>").append("Steep Time"))
-								  .append($("<td></td>").append(steepTime)
-								  							.attr("title", "Steep Time: Averaged from best journal entries")))
-			.append($("<tr></tr>").addClass("tea_product_entry_ratings")
-								  .append($("<td></td>").append("Ratings"))
-								  .append($("<td></td>").append(ratings)))
-		;
+        details
+            .append($("<tr></tr>").append($("<td></td>").append("Packaging"))
+                                  .append($("<td></td>").append(packaging))
+                                  .append($("<td></td>").append("Steep Time"))
+                                  .append($("<td></td>").append(steepTime)
+                                                              .attr("title", "Steep Time: Averaged from best journal entries")))
+            .append($("<tr></tr>").addClass("tea_product_entry_ratings")
+                                  .append($("<td></td>").append("Ratings"))
+                                  .append($("<td></td>").append(ratings)))
+        ;
 
-		//> Build the name and append the details
-		var main = $("<table></table>")
-			.append($("<tr></tr>").addClass("tea_product_entry_name")
+        //> Build the name and append the details
+        var main = $("<table></table>")
+            .append($("<tr></tr>").addClass("tea_product_entry_name")
                                   .append($("<td></td>").append(entry.getName())
-														.append($("<span></span>").append((entry.Stocked ? "" : "drank it all")))
+                                                        .append($("<span></span>").append((entry.Stocked ? "" : "drank it all")))
                                                         )
-					)
-			.append($("<tr></tr>").append($("<td></td>").append(details)))
-		;
-														//.append($("<span></span>").append((entry.Stocked ? "" : "unavailable")))
+                    )
+            .append($("<tr></tr>").append($("<td></td>").append(details)))
+        ;
+                                                        //.append($("<span></span>").append((entry.Stocked ? "" : "unavailable")))
                                   // .append($("<td></td>").append(entry.getName()+" ["+entry.ID+"]")
 
     return ($("<tr></tr>").addClass("tea_product_entry")
@@ -227,11 +227,11 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
      *  - Would like to alphabetically sort the groups...
      *  - Apply 'filter'
      *  - Sort the entries
-	 */
+     */
 
     $("#products_tabs").html("");
 
-	$("#products_controls").html("").append(createTeaProductsControls(sort_field, sort_dir, sort_group));
+    $("#products_controls").html("").append(createTeaProductsControls(sort_field, sort_dir, sort_group));
 
     var groups = {};
     var group_names = [];
@@ -268,12 +268,12 @@ function loadTeaProducts(sort_field, sort_dir, sort_group, filter) {
 function refreshProducts(tab) {
     console.log("refreshProducts(", tab, ")");
 
-	// resize
-	$("#products_tabs").children("div")
+    // resize
+    $("#products_tabs").children("div")
                        .css("height", parseInt(document.documentElement.clientHeight-filteredTabsHeight));
 
-	HG_Journal_tabsObj.NestedTabs[1].ReloadTabs();
-	HG_Journal_tabsObj.NestedTabs[1].ToggleTab(((tab != undefined && tab != null) ? tab : 0));
+    HG_Journal_tabsObj.NestedTabs[1].ReloadTabs();
+    HG_Journal_tabsObj.NestedTabs[1].ToggleTab(((tab != undefined && tab != null) ? tab : 0));
 }
 
 function onTabToggle(from, to) {
@@ -286,26 +286,26 @@ function onTabToggle(from, to) {
 }
 
 function loadExtras() {
-	sortTeaJournal();
-	sortTeaProducts();
+    sortTeaJournal();
+    sortTeaProducts();
 
     HG_loadJournalViews([new HG_Journals_View("TeaJournalEntries", 
-    					                      null,
+                                              null,
                                               "journal_tab", 
-					                          "renderShavingJournalEntry",
+                                              "renderShavingJournalEntry",
                                               "%vague",
                                               2),
                          new HG_Journals_View("TeaProductEntries", 
-    					                      null,
+                                              null,
                                               "products_tab", 
                                               function() {
-	                                            loadTeaProducts(0, "DESC", "Type", null);
+                                                loadTeaProducts(0, "DESC", "Type", null);
                                               },
                                               null) 
                         ], 
-			            null);
+                        null);
 
-	HG_Journal_tabsObj.AddToggleListener(onTabToggle);
+    HG_Journal_tabsObj.AddToggleListener(onTabToggle);
 }
 
 function HG_Journal_local_init() {

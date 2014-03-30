@@ -1,36 +1,36 @@
 a { text-decoration: none; }
 ul { margin-top: 0px; margin-bottom: 9px;}
 #electrical_panel {
-	position: relative;
-	width: 204px;
-	height: 385px; 
-	float: left;
-	padding-right: 10px;
-	border: 0px;
+    position: relative;
+    width: 204px;
+    height: 385px; 
+    float: left;
+    padding-right: 10px;
+    border: 0px;
 }
 #electrical_panel_mapping_highlight {
     position: absolute; 
     visibility: hidden;
 }
 #electrical_floors {
-	position: relative;
-	top: 0px;
-	left: -8px;
-	height: 30px;
+    position: relative;
+    top: 0px;
+    left: -8px;
+    height: 30px;
 }
 #electrical_circuit_images {
     overflow-x: scroll;
 }
 #electrical_legend_img {
-	position: absolute;
-	height: 30px;
-	top: 22px;
-	right: 40px; 
-	border: 2px solid #000;
-	visibility: hidden;
+    position: absolute;
+    height: 30px;
+    top: 22px;
+    right: 40px; 
+    border: 2px solid #000;
+    visibility: hidden;
 }
 .electrical_floor_name:hover,
 .electrical_circuit_name:hover 
 {
-	text-decoration: underline;
+    text-decoration: underline;
 }

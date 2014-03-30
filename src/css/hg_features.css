@@ -1,20 +1,20 @@
 .hg_features { 
-	text-align: center;
+    text-align: center;
 }
 
 .hg_feature {
-	height: 200px;
-	width: 47%;
-	max-width: 600px;
-	min-width: 200px;
-	border: 4px double #333333;
-	background-color: tan;
-	background-image: url('../img/hg_feature.jpg');
-	padding: 5px;
-	margin-right: 5px;
-	margin-left: 7px;
-	margin-bottom: 10px;
-	float: left;
+    height: 200px;
+    width: 47%;
+    max-width: 600px;
+    min-width: 200px;
+    border: 4px double #333333;
+    background-color: tan;
+    background-image: url('../img/hg_feature.jpg');
+    padding: 5px;
+    margin-right: 5px;
+    margin-left: 7px;
+    margin-bottom: 10px;
+    float: left;
     overflow-y: hidden;
 }
 
@@ -34,7 +34,7 @@
 .hg_feature_header hr {
     width: 80%;
     border-top-style: solid;
-	border-color: #8b7143;
+    border-color: #8b7143;
     text-align: center;
     margin-top: 4px;
     margin-bottom: 10px;
@@ -52,13 +52,13 @@
     float: left;
     margin-right: 5px;
     margin-left: 5px;
-	text-align: center;
+    text-align: center;
 }
 
 .hg_feature_content_pic {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 */
 .hg_feature_content_pic img, 
@@ -68,7 +68,7 @@
     float: left;
     margin-right: 5px;
     margin-left: 5px;
-	text-align: center;
+    text-align: center;
 }
 
 .hg_feature_content table tr td {
@@ -120,14 +120,14 @@ div.tab_gutter {
 }    
 
 .hg_feature_content table tr td + td div {
-	margin-top: 8px;
-	margin-left: 20px;
-	text-align: center;
+    margin-top: 8px;
+    margin-left: 20px;
+    text-align: center;
 }
 #feature_baby_butt_smooth div table + div {
-	margin-top: 10px;
-	margin-left: 25px;
-	text-align: center;
+    margin-top: 10px;
+    margin-left: 25px;
+    text-align: center;
 }
 #feature_baby_butt_smooth div table + div img ,
 .hg_feature_content table tr td + td div img {
@@ -157,46 +157,46 @@ div.tab_gutter {
 */
 
 #feature_give_us_a_cuppa_govna {
-	font-size: .99em !important;
+    font-size: .99em !important;
 }
 
 #feature_give_us_a_cuppa_govna div {
-	text-align: center;
-	height: 25%;
+    text-align: center;
+    height: 25%;
 }
 
 /*
 #feature_give_us_a_cuppa_govna div table {
-	width: 60%;
+    width: 60%;
 }
 #feature_give_us_a_cuppa_govna div table td {
-	text-align: center;
+    text-align: center;
 }
 */
 
 #latest_cuppa_tea_name {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 #latest_cuppa_tea_fixins {
-	font-size: 0.75em;
+    font-size: 0.75em;
 }
 
 #latest_cuppa_steeping_details {
-	font-weight: normal;
+    font-weight: normal;
 }
 
 #latest_cuppa_rating {
-	/*
-	margin-top: 25px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	*/
-	position: relative;
-	top: 8%;
-	float: right;
-	width: 46%;
+    /*
+    margin-top: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    */
+    position: relative;
+    top: 8%;
+    float: right;
+    width: 46%;
 }
 #latest_cuppa_rating img {
     height: 40px;

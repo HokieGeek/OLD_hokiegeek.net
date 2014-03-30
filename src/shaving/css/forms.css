@@ -1,98 +1,98 @@
 form {
-	background: #9CA578 url("../img/zenspring.png") no-repeat right bottom;
-	padding-top: 10px;
-	padding-bottom: 5px;
+    background: #9CA578 url("../img/zenspring.png") no-repeat right bottom;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 .entry_group {
-	background-color: #FAFAEC;
-	border: 1px solid #BCC2A4;
-	margin-bottom: 15px;
-	margin-left: 10px;
-	padding: 10px;
-	width: 848px;
+    background-color: #FAFAEC;
+    border: 1px solid #BCC2A4;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    padding: 10px;
+    width: 848px;
 }
 table.entry_group {
-	width: 870px;
+    width: 870px;
 }
 table tr td,
 table.entry_group tr {
-	vertical-align: top;
-	text-align: left;
+    vertical-align: top;
+    text-align: left;
 }
 .form_label {
-	font-weight: bold;
+    font-weight: bold;
 }
 /*#review_grade_scale img {
-	width: 30px;
-	margin-right: 5px;
-	+border: none;
+    width: 30px;
+    margin-right: 5px;
+    +border: none;
 }*/
 #journal_grade_scales img,
 #review_grade_scales img {
-	width: 30px;
-	margin-right: 5px;
-	border: none;
+    width: 30px;
+    margin-right: 5px;
+    border: none;
 }
 #journal_grade_scales tr td,
 #review_grade_scales tr td {
-	padding-left: 10px;
+    padding-left: 10px;
 }
 #passes_label span {
-	margin-left: 7px;
-	margin-right: 10px;
+    margin-left: 7px;
+    margin-right: 10px;
 }
 #add_picture {
-	display: inline;
-	position: absolute;
-	visibility: hidden;
+    display: inline;
+    position: absolute;
+    visibility: hidden;
 }
 #pictures_view {
-	height: 80px;
-	width: 450px;
-	overflow-x: auto;
+    height: 80px;
+    width: 450px;
+    overflow-x: auto;
 }
 #pictures_view img {
-	height: 80px;
+    height: 80px;
 }
 #display_details {
-	position: absolute;
-	visibility: hidden;
+    position: absolute;
+    visibility: hidden;
 }
 #display_details tr td,
 #display_details tr td + td + td,
 #display_details tr td + td + td + td + td
 { 
-	font-weight: bold;
+    font-weight: bold;
 }
 #display_details tr td + td,
 #display_details tr td + td + td + td,
 #display_details tr td + td + td + td + td + td
 { 
-	font-weight: normal;
+    font-weight: normal;
 }
 
 /* PRODUCT TABS */
 .prod_type_labels span {
-	display: inline;	
-	cursor: pointer;
-	color: #b9b9b9;
-	padding: 4px;
-	margin-left: 2px;
-	padding-top: 0px;
+    display: inline;    
+    cursor: pointer;
+    color: #b9b9b9;
+    padding: 4px;
+    margin-left: 2px;
+    padding-top: 0px;
 }
 .prod_type_labels span.sel_prod_type_label {
-	color: #000000;
-	background-color: #E4ECC5;/*#e0e0e0;*/
-	border-top: 1px solid #9CA578;
-	cursor: default;
+    color: #000000;
+    background-color: #E4ECC5;/*#e0e0e0;*/
+    border-top: 1px solid #9CA578;
+    cursor: default;
 }
 .prod_type_lists select {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	visibility: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    visibility: hidden;
 }
 .prod_type_lists select.sel_prod_type_list {
-	position: relative;
-	visibility: visible;
+    position: relative;
+    visibility: visible;
 }

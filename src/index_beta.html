@@ -30,87 +30,87 @@ var nav_desc_lyr = null;
 var tweet_msg_lyr = null;
 var TWEET_UPDATE_INTERVAL = 50000; // Every 50 seconds
 function updateTwitter(ret) {
-	var msg = null;
-	var time = "\u00a0";
-	if (ret == null) {
-		msg = "No tweets!";
-	} else {
-		//console.log("updateTwitter()", ret);
-		if (eval(ret) == null || eval(ret)[0] == null) return;
-		var update = eval(ret)[0];
+    var msg = null;
+    var time = "\u00a0";
+    if (ret == null) {
+        msg = "No tweets!";
+    } else {
+        //console.log("updateTwitter()", ret);
+        if (eval(ret) == null || eval(ret)[0] == null) return;
+        var update = eval(ret)[0];
 
-		// Format the text by dealing with special strings (replys, links, hashtags)
-		var tweet_text = update.text;
-		var special = tweet_text.match(/(https?:\/\/|[@#])\S+/g);
-		//console.log("special: ", special);
-		msg = document.createElement('span');
-		if (special != null && special.length > 0) {
-			var pos = 0;
-			var last_pos = 0;
-			for (i in special) {
-				//console.log(i);
-				if (i == "contains" || i == "indexOf" || i == "shuffle") continue;
-				var s = special[i];
-				pos = tweet_text.indexOf(s);
-				var text = tweet_text.substring(last_pos, pos);
-				last_pos = pos+s.length;
+        // Format the text by dealing with special strings (replys, links, hashtags)
+        var tweet_text = update.text;
+        var special = tweet_text.match(/(https?:\/\/|[@#])\S+/g);
+        //console.log("special: ", special);
+        msg = document.createElement('span');
+        if (special != null && special.length > 0) {
+            var pos = 0;
+            var last_pos = 0;
+            for (i in special) {
+                //console.log(i);
+                if (i == "contains" || i == "indexOf" || i == "shuffle") continue;
+                var s = special[i];
+                pos = tweet_text.indexOf(s);
+                var text = tweet_text.substring(last_pos, pos);
+                last_pos = pos+s.length;
 
-				if (text.length > 0) {
-					//console.log("TEXT: ", text);
-					msg.appendChild(document.createTextNode(text));
-				}
-				var lnk = document.createElement('a');
-				var l = "";
-				var ttl = "";
-				var s2 = s.substring(1);
-				switch (s.charAt(0)) {
-				case '@': l = "http://twitter.com/"+s2; 
-						  ttl = "View "+s2+"'s twitter stream";
-						  break;
-				case '#': l = "http://twitter.com/search?q=%23"+s2; 
-						  ttl = "Search twitter for how '"+s2+"' is trending";
-						  break;
-			    	default: l = s; break;
-				}
-				lnk.setAttribute('href', l);
-				lnk.setAttribute('title', ttl);
-				lnk.appendChild(document.createTextNode(s));
-				//console.log("LINK: ", lnk);
-				msg.appendChild(lnk);
-			}
-		} else
-			msg.appendChild(document.createTextNode(tweet_text));
+                if (text.length > 0) {
+                    //console.log("TEXT: ", text);
+                    msg.appendChild(document.createTextNode(text));
+                }
+                var lnk = document.createElement('a');
+                var l = "";
+                var ttl = "";
+                var s2 = s.substring(1);
+                switch (s.charAt(0)) {
+                case '@': l = "http://twitter.com/"+s2; 
+                          ttl = "View "+s2+"'s twitter stream";
+                          break;
+                case '#': l = "http://twitter.com/search?q=%23"+s2; 
+                          ttl = "Search twitter for how '"+s2+"' is trending";
+                          break;
+                    default: l = s; break;
+                }
+                lnk.setAttribute('href', l);
+                lnk.setAttribute('title', ttl);
+                lnk.appendChild(document.createTextNode(s));
+                //console.log("LINK: ", lnk);
+                msg.appendChild(lnk);
+            }
+        } else
+            msg.appendChild(document.createTextNode(tweet_text));
 
-		// Now take care of the time
-		var t = update.created_at;
-		time = "shhhh....";
-		if (t != null)
-			time = getVagueTime(t);
-	} 
+        // Now take care of the time
+        var t = update.created_at;
+        time = "shhhh....";
+        if (t != null)
+            time = getVagueTime(t);
+    } 
 
-	if (tweet_msg_lyr == null)
-		tweet_msg_lyr = document.getElementById("tweet").getElementsByTagName('div')[0];
-	if (msg != null) {
-		tweet_msg_lyr.removeChild(tweet_msg_lyr.firstChild);
-		tweet_msg_lyr.insertBefore(msg, tweet_msg_lyr.firstChild);
-		if (time != null)
-			tweet_msg_lyr.firstChild.nextSibling.innerHTML = time;
-	}
+    if (tweet_msg_lyr == null)
+        tweet_msg_lyr = document.getElementById("tweet").getElementsByTagName('div')[0];
+    if (msg != null) {
+        tweet_msg_lyr.removeChild(tweet_msg_lyr.firstChild);
+        tweet_msg_lyr.insertBefore(msg, tweet_msg_lyr.firstChild);
+        if (time != null)
+            tweet_msg_lyr.firstChild.nextSibling.innerHTML = time;
+    }
 }
 function requestTweet() {
-	//(new libHTTPRequest()).getData(twitterJSON, "l=HokieGeek:keri2782", updateTwitter, true);
-	(new libHTTPRequest()).getData(twitterJSON, null, updateTwitter, true);
+    //(new libHTTPRequest()).getData(twitterJSON, "l=HokieGeek:keri2782", updateTwitter, true);
+    (new libHTTPRequest()).getData(twitterJSON, null, updateTwitter, true);
 }
 function showSubDesc(sub) {
-	setStyle(nav_desc_lyr, "visibility: visible;");
-	nav_desc_lyr.innerHTML = hg_subdomains[sub][1];
+    setStyle(nav_desc_lyr, "visibility: visible;");
+    nav_desc_lyr.innerHTML = hg_subdomains[sub][1];
 }
 function setupSubdomainDesc() {
-	var subs = document.getElementById(hg_nav_subs_id).getElementsByTagName('a');
-	for (var i = subs.length-1; i >= 0; i--) {
-		subs[i].setAttribute("onmouseover", "showSubDesc("+i+")");
-		subs[i].setAttribute("onmouseout", "setStyle(nav_desc_lyr, 'visibility: hidden;')");
-	}
+    var subs = document.getElementById(hg_nav_subs_id).getElementsByTagName('a');
+    for (var i = subs.length-1; i >= 0; i--) {
+        subs[i].setAttribute("onmouseover", "showSubDesc("+i+")");
+        subs[i].setAttribute("onmouseout", "setStyle(nav_desc_lyr, 'visibility: hidden;')");
+    }
 }
 
 function loadingMessage(m) { } // FIXME
@@ -119,65 +119,65 @@ var featuresMgr = null;
 var readingTabs = null;
 
 function createTableFromObject(obj, props, ratings) {
-	var table = document.createElement("table");
+    var table = document.createElement("table");
     var tr = null;
     var cell = null;
     var prop = null;
 
-	for (var ii = 0; ii < props.length; ii++) {
-		p = props[ii];
-		var name = p.charAt(0).toUpperCase()+p.substr(1);
-		//console.log("OBJ: ", obj, ", p: ", p);
-		var val = "n/a";
-		if (obj[p] != null) {
-			val = (obj[p].getName != undefined) ? obj[p].getName() : obj[p];
-			/*
-			if (name == "Ratings" && ratings != undefined) {
-				name = "Rating";
-				//val = ratings[obj[p]];
-            	var img = document.createElement("img");
-				img.setAttribute("src", ratings[obj[p]]);
-				img.setAttribute("title", obj[p]);
-				val = img;
-				} else
-			 */
-				//val = document.createTextNode(val);
-		}
-		tr = document.createElement("tr");
+    for (var ii = 0; ii < props.length; ii++) {
+        p = props[ii];
+        var name = p.charAt(0).toUpperCase()+p.substr(1);
+        //console.log("OBJ: ", obj, ", p: ", p);
+        var val = "n/a";
+        if (obj[p] != null) {
+            val = (obj[p].getName != undefined) ? obj[p].getName() : obj[p];
+            /*
+            if (name == "Ratings" && ratings != undefined) {
+                name = "Rating";
+                //val = ratings[obj[p]];
+                var img = document.createElement("img");
+                img.setAttribute("src", ratings[obj[p]]);
+                img.setAttribute("title", obj[p]);
+                val = img;
+                } else
+             */
+                //val = document.createTextNode(val);
+        }
+        tr = document.createElement("tr");
         cell = document.createElement("td");
         cell.appendChild(document.createTextNode(name));
         tr.appendChild(cell);
         cell = document.createElement("td");
         cell.appendChild(document.createTextNode(val));
         tr.appendChild(cell);
-		table.appendChild(tr);
-	}
+        table.appendChild(tr);
+    }
 
-	return table;
+    return table;
 }
 function setupFeatures(e) {
-	if (featuresMgr == null) {
-		featuresMgr = new HG_FeatureManager()
-		featuresMgr.create(e);
-	}
+    if (featuresMgr == null) {
+        featuresMgr = new HG_FeatureManager()
+        featuresMgr.create(e);
+    }
 
-	// Retrieve the shaving stuff
-	featuresMgr.addFeature(new HG_FeatureView(
-		new HG_Feature("Baby Butt Smooth",
-			function() {
-				this.data = ShavingJournalEntries[0];
-			    this.data_updated = true;
-			}, 
-			function() {
-				getShavingData(null);
+    // Retrieve the shaving stuff
+    featuresMgr.addFeature(new HG_FeatureView(
+        new HG_Feature("Baby Butt Smooth",
+            function() {
+                this.data = ShavingJournalEntries[0];
+                this.data_updated = true;
+            }, 
+            function() {
+                getShavingData(null);
                 return "(ShavingJournalEntries != undefined && ShavingJournalEntries.length > 0)";
-			},
-			30),
-		function(content_elem) {
-			if (content_elem == null) return false;
-			if (!this.data.data_updated || this.data.data == null) return false;
+            },
+            30),
+        function(content_elem) {
+            if (content_elem == null) return false;
+            if (!this.data.data_updated || this.data.data == null) return false;
 
-			var d = this.data.data;
+            var d = this.data.data;
             if (d == null) {
                 console.log("ERROR: Could not find shaving data!");
                 return false;
@@ -185,27 +185,27 @@ function setupFeatures(e) {
                 console.log("Found shaving data: ", d);
 
             // TODO: This should be a looping slideshow of all the primary pictures in this shave
-			var picLyr = document.createElement("div");
-			picLyr.setAttribute("class", "hg_feature_content_pic");
-			var shave_image = document.createElement("img");
-			var pic = d.Razor.Pictures[0];
-			if (pic.getURL != undefined) pic = pic.getURL(200);
+            var picLyr = document.createElement("div");
+            picLyr.setAttribute("class", "hg_feature_content_pic");
+            var shave_image = document.createElement("img");
+            var pic = d.Razor.Pictures[0];
+            if (pic.getURL != undefined) pic = pic.getURL(200);
             shave_image.setAttribute("src", pic);
-			//picLyr.appendChild(shave_image);
-			//content_elem.appendChild(picLyr);
-			content_elem.appendChild(shave_image);
+            //picLyr.appendChild(shave_image);
+            //content_elem.appendChild(picLyr);
+            content_elem.appendChild(shave_image);
 
-			var shave_details = document.createElement("div");
-			var products = [];
-			products.push("Razor");
-			products.push("Brush");
+            var shave_details = document.createElement("div");
+            var products = [];
+            products.push("Razor");
+            products.push("Brush");
             if (d.Strop != null) products.push("Strop");
             else products.push("Blade");
             if (d.Cream != null) products.push("Cream");
             else products.push("Soap");
 
-			var table = createTableFromObject(d, products);
-			//shave_details.appendChild(table);
+            var table = createTableFromObject(d, products);
+            //shave_details.appendChild(table);
 
             //var ratings = document.createElement("div");
 
@@ -219,22 +219,22 @@ function setupFeatures(e) {
                 img.setAttribute("title", grade_scale[ii]);
                 ratings.appendChild(img);
             }
-			//shave_details.appendChild(ratings);
-			tr = document.createElement("tr");
+            //shave_details.appendChild(ratings);
+            tr = document.createElement("tr");
             cell = document.createElement("td");
             //cell.appendChild(document.createTextNode("Rating"));
             tr.appendChild(cell);
             cell = document.createElement("td");
             cell.appendChild(ratings);
             tr.appendChild(cell);
-			table.appendChild(tr);
-			shave_details.appendChild(table);
+            table.appendChild(tr);
+            shave_details.appendChild(table);
 
-			content_elem.appendChild(shave_details);
+            content_elem.appendChild(shave_details);
 
             return true;
-		}
-	));
+        }
+    ));
 
     // Tea
     featuresMgr.addFeature(new HG_FeatureView(
@@ -253,98 +253,98 @@ function setupFeatures(e) {
 
             var d = this.data.data;
 
-			//var pic = document.createElement("div");
-			var img = document.createElement("img");
-			img.setAttribute("class", "hg_feature_content_pic");
-			img.setAttribute("src", d.Tea.Pictures[0].getURL(200));
-			//pic.appendChild(img);
-			//content_elem.appendChild(pic);
-			content_elem.appendChild(img);
+            //var pic = document.createElement("div");
+            var img = document.createElement("img");
+            img.setAttribute("class", "hg_feature_content_pic");
+            img.setAttribute("src", d.Tea.Pictures[0].getURL(200));
+            //pic.appendChild(img);
+            //content_elem.appendChild(pic);
+            content_elem.appendChild(img);
 
-			var details = document.createElement("div");
+            var details = document.createElement("div");
 
-			var table = document.createElement("table");
-			var row = null;
-			var cell = null;
+            var table = document.createElement("table");
+            var row = null;
+            var cell = null;
 
-			// Name
-			var tea_name = document.createElement("div");
-			tea_name.setAttribute("id", "latest_cuppa_tea_name");
-			tea_name.appendChild(document.createTextNode(d.Tea.getName()));
-			if (d.Tea.Type != "Blend")
-				tea_name.appendChild(document.createTextNode(" ("+d.Tea.Type+")"));
-		
-			// Fixins
-			var tea_fixins = d.Fixins;
-			//tea_fixins = ["Milk", "Honey"]; // FIXME
-			if (tea_fixins != null) {
-				var fixins_list = document.createElement("div");
-				fixins_list.setAttribute("id", "latest_cuppa_tea_fixins");
-				fixins_list.innerHTML = "with ";
-				//for (var i = 0; i < tea_fixins.length; i++) {
-				for (var i = tea_fixins.length-1; i >= 0; i--) {
-					//if (i == tea_fixins.length-1)
-					if (i == 0)
-						fixins_list.innerHTML += " and ";
-					//else if (i != 0)
-					else if (i != tea_fixins.length-1)
-						fixins_list.innerHTML += ", ";
-					fixins_list.innerHTML += tea_fixins[i].toLowerCase();;
-				}
-				tea_name.appendChild(fixins_list);
-			} 
-			// TODO: sessions
+            // Name
+            var tea_name = document.createElement("div");
+            tea_name.setAttribute("id", "latest_cuppa_tea_name");
+            tea_name.appendChild(document.createTextNode(d.Tea.getName()));
+            if (d.Tea.Type != "Blend")
+                tea_name.appendChild(document.createTextNode(" ("+d.Tea.Type+")"));
+        
+            // Fixins
+            var tea_fixins = d.Fixins;
+            //tea_fixins = ["Milk", "Honey"]; // FIXME
+            if (tea_fixins != null) {
+                var fixins_list = document.createElement("div");
+                fixins_list.setAttribute("id", "latest_cuppa_tea_fixins");
+                fixins_list.innerHTML = "with ";
+                //for (var i = 0; i < tea_fixins.length; i++) {
+                for (var i = tea_fixins.length-1; i >= 0; i--) {
+                    //if (i == tea_fixins.length-1)
+                    if (i == 0)
+                        fixins_list.innerHTML += " and ";
+                    //else if (i != 0)
+                    else if (i != tea_fixins.length-1)
+                        fixins_list.innerHTML += ", ";
+                    fixins_list.innerHTML += tea_fixins[i].toLowerCase();;
+                }
+                tea_name.appendChild(fixins_list);
+            } 
+            // TODO: sessions
 
-			//row = document.createElement("tr");
-			//row.appendChild(tea_name);
-			//table.appendChild(row);
-			content_elem.appendChild(tea_name);
+            //row = document.createElement("tr");
+            //row.appendChild(tea_name);
+            //table.appendChild(row);
+            content_elem.appendChild(tea_name);
 
-			// Steeping details
-			if (d.EntryDate != null || d.SteepTime != null || 
-				d.Temperature != null || d.SteepingVessel != null) {
+            // Steeping details
+            if (d.EntryDate != null || d.SteepTime != null || 
+                d.Temperature != null || d.SteepingVessel != null) {
 
-				var steeping_details = document.createElement("div");
-				steeping_details.setAttribute("id", "latest_cuppa_steeping_details");
-				steeping_details.innerHTML = "Steeped ";
-				steeping_details.innerHTML += getVagueTime(d.getEntryDate()).toLowerCase()+" ";
+                var steeping_details = document.createElement("div");
+                steeping_details.setAttribute("id", "latest_cuppa_steeping_details");
+                steeping_details.innerHTML = "Steeped ";
+                steeping_details.innerHTML += getVagueTime(d.getEntryDate()).toLowerCase()+" ";
 
-				if (d.SteepTime != null) 
-					steeping_details.innerHTML += "for <i>"+d.SteepTime+"</i> ";
-				if (d.Temperature != null) 
-				steeping_details.innerHTML += "<br />at <i>"+d.Temperature+"&deg;F</i> ";
-				if (d.SteepingVessel != null) 
-					steeping_details.innerHTML += "using the "+d.SteepingVessel.toLowerCase();
-				//row = document.createElement("tr");
-				//row.appendChild(steeping_details);
-				//table.appendChild(row);
-				content_elem.appendChild(steeping_details);
+                if (d.SteepTime != null) 
+                    steeping_details.innerHTML += "for <i>"+d.SteepTime+"</i> ";
+                if (d.Temperature != null) 
+                steeping_details.innerHTML += "<br />at <i>"+d.Temperature+"&deg;F</i> ";
+                if (d.SteepingVessel != null) 
+                    steeping_details.innerHTML += "using the "+d.SteepingVessel.toLowerCase();
+                //row = document.createElement("tr");
+                //row.appendChild(steeping_details);
+                //table.appendChild(row);
+                content_elem.appendChild(steeping_details);
 
-			}
+            }
 
-			// Rating
-			var tea_ratings_num = 4;
-			var rating = document.createElement("div");
-			rating.setAttribute("id", "latest_cuppa_rating");
-			for (var ii = 0; ii < tea_ratings_num; ii++) {
-				var img = document.createElement("img");
-				var img_src = "tea/img/tea_cup";
-				if (ii > d.Rating-1) img_src += "_greyed";
-				img_src += ".png";
-				img.setAttribute("src", img_src);
-				img.setAttribute("title", d.Rating+"/"+tea_ratings_num+" steaming tea cups");
-				rating.appendChild(img);
-			}
-			//row = document.createElement("tr");
-			//cell = document.createElement("td");
-			//cell.appendChild(rating);
-			//row.appendChild(cell);
-			//table.appendChild(row);
+            // Rating
+            var tea_ratings_num = 4;
+            var rating = document.createElement("div");
+            rating.setAttribute("id", "latest_cuppa_rating");
+            for (var ii = 0; ii < tea_ratings_num; ii++) {
+                var img = document.createElement("img");
+                var img_src = "tea/img/tea_cup";
+                if (ii > d.Rating-1) img_src += "_greyed";
+                img_src += ".png";
+                img.setAttribute("src", img_src);
+                img.setAttribute("title", d.Rating+"/"+tea_ratings_num+" steaming tea cups");
+                rating.appendChild(img);
+            }
+            //row = document.createElement("tr");
+            //cell = document.createElement("td");
+            //cell.appendChild(rating);
+            //row.appendChild(cell);
+            //table.appendChild(row);
 
-			//details.appendChild(table);
-			content_elem.appendChild(rating);
+            //details.appendChild(table);
+            content_elem.appendChild(rating);
 
-			//content_elem.appendChild(details);
+            //content_elem.appendChild(details);
 
             return true;
         }
@@ -359,24 +359,24 @@ function setupFeatures(e) {
             http://www.librarything.com/wiki/index.php/LibraryThing_JSON_Books_API
             Key: 523352441
 
-			var div = document.createElement("div");
-			div.setAttribute("id", "w9f8a9b8746cf68a2f7acd097fbb66fec");
-			div.setAttribute("style", "border: 1px solid #bfa391;");
-			tabc.appendChild(div);
+            var div = document.createElement("div");
+            div.setAttribute("id", "w9f8a9b8746cf68a2f7acd097fbb66fec");
+            div.setAttribute("style", "border: 1px solid #bfa391;");
+            tabc.appendChild(div);
 
-			var script = document.createElement("script");
-			script.setAttribute("type", "text/javascript");
-			script.setAttribute("charset", "UTF-8");
-			script.setAttribute("src", "http://www.librarything.com/widget_get.php?userid=HokieGeek&theID=w9f8a9b8746cf68a2f7acd097fbb66fec");
-			//tabc.appendChild(script);
+            var script = document.createElement("script");
+            script.setAttribute("type", "text/javascript");
+            script.setAttribute("charset", "UTF-8");
+            script.setAttribute("src", "http://www.librarything.com/widget_get.php?userid=HokieGeek&theID=w9f8a9b8746cf68a2f7acd097fbb66fec");
+            //tabc.appendChild(script);
             document.head.appendChild(script);
             */
-	// Create the reading corner
+    // Create the reading corner
     /*
-	featuresMgr.addFeature(new HG_FeatureView(
-		new HG_Feature("Reading Corner", function() { this.data_updated = true; }, null, -1),
-		function(content_elem) {
-			if (content_elem == null) return false;
+    featuresMgr.addFeature(new HG_FeatureView(
+        new HG_Feature("Reading Corner", function() { this.data_updated = true; }, null, -1),
+        function(content_elem) {
+            if (content_elem == null) return false;
 
             var tabs = document.createElement("div");
             tabs.setAttribute("class", "feature_tabs");
@@ -429,8 +429,8 @@ function setupFeatures(e) {
             content_elem.appendChild(tab_gutter);
             //content_elem.innerHTML = "TODO: A bottom-tabbed view of: Currently Reading, Upcoming books, Books Read";
             //content_elem.innerHTML = "";
-		}
-	));
+        }
+    ));
 
     // Drinks
     featuresMgr.addFeature(new HG_FeatureView(
@@ -492,7 +492,7 @@ function setupFeatures(e) {
 
     /*
     // Last set of links?
-		//<!--a href="http://del.icio.us/HokieGeek" title="My Delicious Bookmarks"><img src="img/delicious.png" /></a-->
+        //<!--a href="http://del.icio.us/HokieGeek" title="My Delicious Bookmarks"><img src="img/delicious.png" /></a-->
 
     // Latest project
 
@@ -518,170 +518,170 @@ function setupFeatures(e) {
     */
 }
 window.onload = function() {
-	// Setup the nav
-	nav_desc_lyr = document.getElementById("hg_nav_main").getElementsByTagName('div')[0];
-	hg_nav_main("hg_nav_main");
-	//setupSubdomainDesc();
+    // Setup the nav
+    nav_desc_lyr = document.getElementById("hg_nav_main").getElementsByTagName('div')[0];
+    hg_nav_main("hg_nav_main");
+    //setupSubdomainDesc();
 
-	// Now update the tweet box
-	requestTweet();
-	setInterval("requestTweet()", TWEET_UPDATE_INTERVAL);
+    // Now update the tweet box
+    requestTweet();
+    setInterval("requestTweet()", TWEET_UPDATE_INTERVAL);
 
-	// Add the features
-	setupFeatures(document.getElementById("features"));
+    // Add the features
+    setupFeatures(document.getElementById("features"));
 
     $("#footer").css("top", (getDocHeight()-30)+"px");
 }
 </script>
 <style type="text/css">
 body {
-	overflow-x: hidden;
-	/*background-color: #796354;*/ /*#674e3d;*/
-	/*background-color: #FF6600; Burnt Orange*/
-	/*background-color: #660000; Chicago Maroon*/
-	background-image: url('../img/hg_bg.jpg');	
+    overflow-x: hidden;
+    /*background-color: #796354;*/ /*#674e3d;*/
+    /*background-color: #FF6600; Burnt Orange*/
+    /*background-color: #660000; Chicago Maroon*/
+    background-image: url('../img/hg_bg.jpg');    
 }
 a { text-decoration: none; }
 #hg_nav_main {
-	position: relative;
-	top: -11px;
-	right: -11px;
-	float: right;
-	text-align: center;
-	margin-right: 0px;
-	padding: 5px 20px 10px 20px;
-	border-style: solid;
-	border-color: #1f0f04;
-	border-width: 0px 0px 4px 4px;
-	border-bottom-left-radius: 30px;
-	background-image: url('img/hg_logo_bg.jpg');
-	background-repeat: no-repeat;
-	background-position: 0px 0px;
+    position: relative;
+    top: -11px;
+    right: -11px;
+    float: right;
+    text-align: center;
+    margin-right: 0px;
+    padding: 5px 20px 10px 20px;
+    border-style: solid;
+    border-color: #1f0f04;
+    border-width: 0px 0px 4px 4px;
+    border-bottom-left-radius: 30px;
+    background-image: url('img/hg_logo_bg.jpg');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
 }
 #hg_nav_main_shadow {
-	position: relative;
-	top: 1px;
-	right: 1px;
-	float: right;
-	margin-right: 0px;
-	padding: 15px;
-	padding-right: 20px;
-	border-style: solid;
-	border-color: black;
-	border-width: 0px 0px 4px 4px;
-	border-bottom-left-radius: 30px;
-	background-color: black;
+    position: relative;
+    top: 1px;
+    right: 1px;
+    float: right;
+    margin-right: 0px;
+    padding: 15px;
+    padding-right: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 0px 4px 4px;
+    border-bottom-left-radius: 30px;
+    background-color: black;
 }
 #hg_subdomains  { 
-	margin: 20px 0px 10px 18px; /* Bottom, Right, Top, Left */
-	text-align: center;
+    margin: 20px 0px 10px 18px; /* Bottom, Right, Top, Left */
+    text-align: center;
 }
 #hg_subdomains div {
-	width: 100%;
-	margin-bottom: 10px;
-	text-align: right;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: right;
 }
 #hg_subdomains a { 
-	color: #fff; 
-	margin: 5px;
-	padding: 0px;
-	padding-top: 2px;
+    color: #fff; 
+    margin: 5px;
+    padding: 0px;
+    padding-top: 2px;
 }
 #hg_subdomains a:hover { 
-	border-top: 1px solid #fff;
+    border-top: 1px solid #fff;
 }
 
 #social {
-	position: absolute;
-	top: 30px;
-	width: 420px;
+    position: absolute;
+    top: 30px;
+    width: 420px;
 }
 
 #tweet img {
-	float: left;
-	width: 80px;
-	padding-top: 30px;
-	margin-right: 15px;
-	border: none;
+    float: left;
+    width: 80px;
+    padding-top: 30px;
+    margin-right: 15px;
+    border: none;
 }
 #tweet div {
-	overflow: hidden;
-	background-color: #fff;
-	width: 300px;
-	height: 70px;
-	text-align: center;
-	padding: 2px;
-	font-family: Verdana, sans-serif;
-	font-size: .8em;
-	border: 2px solid #bfa391;
+    overflow: hidden;
+    background-color: #fff;
+    width: 300px;
+    height: 70px;
+    text-align: center;
+    padding: 2px;
+    font-family: Verdana, sans-serif;
+    font-size: .8em;
+    border: 2px solid #bfa391;
 }
 #tweet div span a {
-	color: #65310d;
+    color: #65310d;
 }
 #tweet div span a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 #tweet div span + span {
-	font-size: .7em;
-	color: #c0c0c0;
-	margin-left: 5px;
+    font-size: .7em;
+    color: #c0c0c0;
+    margin-left: 5px;
 }
 #other {
-	position: relative;
-	top: 15px;
-	float: right;
+    position: relative;
+    top: 15px;
+    float: right;
     padding-right: 15px;
 }
 #other img {
-	width: 40px;
-	margin-right: 5px;
-	border: none;
+    width: 40px;
+    margin-right: 5px;
+    border: none;
 }
 #features {
-	position: relative;
-	top: 40px;
-	left: 5px;
-	width: 100%;
-	clear: right;
+    position: relative;
+    top: 40px;
+    left: 5px;
+    width: 100%;
+    clear: right;
 }
 #footer {
-	position: absolute;
+    position: absolute;
     bottom: 1px;
-	color: #1f0f04;
-	font-size: .8em;
+    color: #1f0f04;
+    font-size: .8em;
     margin-bottom: 5px;
     width: 98%;
     text-align: center;
 }
 .tab { 
-	border-color: #fff !important;
+    border-color: #fff !important;
 }
 .tab_name {
-	background-color: #bfa391 !important;
-	border-color: #d3b4a0 !important;
+    background-color: #bfa391 !important;
+    border-color: #d3b4a0 !important;
 }
 .tab_name:hover {
-	background-color: #d3b4a0 !important;
+    background-color: #d3b4a0 !important;
 }
 .left_tab > .tab_name {
-	border-right-color: #af9685 !important;
+    border-right-color: #af9685 !important;
 }
 .left_tab .tab_content {
-	width: 91% !important;
+    width: 91% !important;
 }
 .selected_tab , 
 .selected_tab:hover {
-	background-color: #fff !important;
-	border-color: #998374 !important;
-	font-weight: bold !important;
+    background-color: #fff !important;
+    border-color: #998374 !important;
+    font-weight: bold !important;
 }
 .selected_tab_bridge {
-	border-color: #998374 !important;
+    border-color: #998374 !important;
 }
 .tab_content {
-	background-color: #fff !important;
-	border-color: #998374 !important;
+    background-color: #fff !important;
+    border-color: #998374 !important;
 }
 </style>
 <!--script type="text/JavaScript" src="js/hg_googleanalytics.js"></script-->
@@ -701,30 +701,30 @@ a { text-decoration: none; }
 </script>
 </head>
 <body>
-	<div id="hg_nav_main"></div>
-	<div id="social">
-		<div id="tweet">
-			<a href="http://twitter.com/HokieGeek" title="My Twitter page"><img src="img/twitter.png" /></a>
-			<div>
-				<span>Please stay tuned...</span>
-			</div>
-		</div>
-		<div id="other">
-			<a href="http://www.google.com/profiles/andres.f.perez" title="My Google+ Profile"><img src="img/google.png" /></a>
-			<a href="http://www.facebook.com/HokieGeek" title="My Facebook profile"><img src="img/facebook.png" /></a>
-			<a href="http://www.linkedin.com/in/andresperez" title="My LinkedIn Profile"><img src="img/linkedin.png" /></a>
-		</div>
-	</div>
+    <div id="hg_nav_main"></div>
+    <div id="social">
+        <div id="tweet">
+            <a href="http://twitter.com/HokieGeek" title="My Twitter page"><img src="img/twitter.png" /></a>
+            <div>
+                <span>Please stay tuned...</span>
+            </div>
+        </div>
+        <div id="other">
+            <a href="http://www.google.com/profiles/andres.f.perez" title="My Google+ Profile"><img src="img/google.png" /></a>
+            <a href="http://www.facebook.com/HokieGeek" title="My Facebook profile"><img src="img/facebook.png" /></a>
+            <a href="http://www.linkedin.com/in/andresperez" title="My LinkedIn Profile"><img src="img/linkedin.png" /></a>
+        </div>
+    </div>
 
-	<div id="features">
-		<div style="font-size: 1.5em; font-family: Helvetica">
-			Loading features...
-			<img src="img/progress.gif"/>
-		</div>
-	</div>
+    <div id="features">
+        <div style="font-size: 1.5em; font-family: Helvetica">
+            Loading features...
+            <img src="img/progress.gif"/>
+        </div>
+    </div>
 
-	<div id="footer">
-		All original content licensed under Creative Commons unless otherwise specified
-	</div>
+    <div id="footer">
+        All original content licensed under Creative Commons unless otherwise specified
+    </div>
 </body>
 </html>

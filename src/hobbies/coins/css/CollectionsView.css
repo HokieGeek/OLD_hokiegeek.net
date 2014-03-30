@@ -1,100 +1,100 @@
 .CollectionsView {
-	width: 100%;
+    width: 100%;
 }
 
 .CollectionsView_Panel {
-	height: 100%;
-	overflow-y: hidden;
+    height: 100%;
+    overflow-y: hidden;
 }
 div.CollectionsView_Panel {
-	float: left;
-	width: 8%;
+    float: left;
+    width: 8%;
 }
 div.CollectionsView_Panel + div {
-	float: right;
-	width: 91%;
-	overflow-y: auto;
+    float: right;
+    width: 91%;
+    overflow-y: auto;
 }
 
 .CurrencyList {
-	cursor: pointer;
-	text-align: right;
-	width: 4.5em;
-	height: 100%;
-	margin-left: 5px;
-	padding-right: 5px;
-	margin-right: 10px;
-	overflow-y: auto;
-	overflow-x: hidden;
-	background-color: #F5F5F5;
+    cursor: pointer;
+    text-align: right;
+    width: 4.5em;
+    height: 100%;
+    margin-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #F5F5F5;
 }
 
 .CurrencyList_Acquired {
-	background-color: #B0B0B0;
+    background-color: #B0B0B0;
 }
 
 .CurrencyList_Item_Selected {
-	font-weight: bold;
-	background-color: #FFFFCC;
+    font-weight: bold;
+    background-color: #FFFFCC;
 }
 
 .CurrencyDetails_Item {
-	float: left;
-	height: 200px;
-	width: 240px;
-	margin-right: 10px;
-	margin-bottom: 10px;
+    float: left;
+    height: 200px;
+    width: 240px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 
-	background-color: #F5F5F5;
-	border: 1px solid #E0E0E0;
+    background-color: #F5F5F5;
+    border: 1px solid #E0E0E0;
 }
 
 .CurrencyDetails_Item_Acquired {
-	background-color: #E0E0E0;
+    background-color: #E0E0E0;
 }
 
 .CurrencyDetails_Item_Selected {
-	border-color: #FFFF33;
-	background-color: #FFFF99;
+    border-color: #FFFF33;
+    background-color: #FFFF99;
 }
 
 .CurrencyDetails_Item_Acquired {
-	border: 1px solid #D0D0D0;
-	background-image: url("../img/selected_item.png");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    border: 1px solid #D0D0D0;
+    background-image: url("../img/selected_item.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .CurrencyDetails_Item > div {
-	text-align: center;
-	width: 100%;
-	padding-right: 5px;
-	padding-left: 5px;
+    text-align: center;
+    width: 100%;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 .CurrencyDetails_Item_Pics {
-	padding-top: 5px;
-	margin-bottom: 15px;
+    padding-top: 5px;
+    margin-bottom: 15px;
 }
 
 .CurrencyDetails_Item_Pics img {
-	width: 100px;
-	border: 0px;
-	padding: 2px;
+    width: 100px;
+    border: 0px;
+    padding: 2px;
 }
 
 .CurrencyDetails_Item_Id {
-	font-weight: bold;
-	font-family: "Helvetica", Arial, sans-serif;
+    font-weight: bold;
+    font-family: "Helvetica", Arial, sans-serif;
 }
 
 .CurrencyDetails_Item_CountryDenom {
-	position: relative;
-	font-size: 0.85em;
-	font-family: "Tahoma";
+    position: relative;
+    font-size: 0.85em;
+    font-family: "Tahoma";
 }
 
 .CurrencyDetails_Item_Notes {
-	margin-top: 10px;
-	font-family: "Helvetica", Arial, sans-serif;
-	font-size: 0.8em;
+    margin-top: 10px;
+    font-family: "Helvetica", Arial, sans-serif;
+    font-size: 0.8em;
 }

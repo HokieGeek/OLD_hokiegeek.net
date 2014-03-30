@@ -10,18 +10,18 @@ function sizeTabs() {
     contents.css("padding", "1px");
 }
 function loadPics() {
-	//console.log("loadPics()");
-	if (pw_albums == null) return;
+    //console.log("loadPics()");
+    if (pw_albums == null) return;
 
-	if (!pw_albums.isLoaded(pics_album_name)) {
-		setTimeout("loadPics()", 1500);
-		return;
-	}
+    if (!pw_albums.isLoaded(pics_album_name)) {
+        setTimeout("loadPics()", 1500);
+        return;
+    }
 
     //pics_album_view = new PicasaWeb_AlbumView(pw_albums.getAlbum(pics_album_name), $("#"+pics_id));
     pics_album_view = new PicasaWeb_AlbumView(pw_albums.getAlbum(pics_album_name), 
-											  document.getElementById(pics_id),
-											  false);
+                                              document.getElementById(pics_id),
+                                              false);
 }
 function addTab(name, id) {
     var t = $('<div></div>').addClass("tab");
@@ -41,13 +41,13 @@ function buildHouseContent() {
         $("#floorplans").append($('<iframe></iframe>').attr("src", floorplans_url));
     }
 
-	// Load the pictures
+    // Load the pictures
     if (pics_album_name != undefined && pics_album_name != null) {
         addTab("Pictures", pics_id);
 
-	    pw_albums = new PicasaWeb("andres.f.perez");
-	    if (pw_albums != null) loadPics();
-	    else console.log("WhiskeyTangoFoxtrot");
+        pw_albums = new PicasaWeb("andres.f.perez");
+        if (pw_albums != null) loadPics();
+        else console.log("WhiskeyTangoFoxtrot");
     }
 
     // Load the address
@@ -70,10 +70,10 @@ function init() {
 
     buildHouseContent();
 
-	// Setup the tabs
-	sizeTabs();
+    // Setup the tabs
+    sizeTabs();
     tabsObj = new LibTabs("tabsObj", document.getElementById("tabs"), 0);
-	tabsObj.HandleKeyboardInputs();
+    tabsObj.HandleKeyboardInputs();
 
-	$("#tabs_progress").attr("style", "visibility: hidden");
+    $("#tabs_progress").attr("style", "visibility: hidden");
 }

@@ -9,71 +9,71 @@ var circuits_per_plan = null;
 var stacks = null;
 var loaded = 0;
 function countLoaded() {
-	loaded++;
+    loaded++;
 }
 function displayMain() {
-	// Show the list of stuff
-	if (details_lyr == null)
-		details_lyr = document.getElementById('circuit_details');
-	var tbl = "<table border='0'><tr>";
-	for (var i = 0; i < stacks.length; i++) {
-		tbl += "<td border='0' valign='top' style='width: 260px'>";
-		for (var j = 0; j < stacks[i].length; j++) {
-			var floors_txt = "";
-			for (var k = 0; k < circuit_data[stacks[i][j]][2].length; k++) {
-				floors_txt += floorplans[circuit_data[stacks[i][j]][2][k]][2];
-				if (k != circuit_data[stacks[i][j]][2].length-1) floors_txt += ", ";
-			}
-			tbl += "<span style='color: "+circuit_data[stacks[i][j]][1]+
-					"; font-size: 1.25em;'><b>"+stacks[i][j]+"</b> ("+floors_txt+")<br />"+
-					circuit_data[stacks[i][j]][0]+"</span>";
-		}
-		tbl += "</td>";
-	}
-	tbl += "</tr></table>";
-	details_lyr.innerHTML = tbl;
+    // Show the list of stuff
+    if (details_lyr == null)
+        details_lyr = document.getElementById('circuit_details');
+    var tbl = "<table border='0'><tr>";
+    for (var i = 0; i < stacks.length; i++) {
+        tbl += "<td border='0' valign='top' style='width: 260px'>";
+        for (var j = 0; j < stacks[i].length; j++) {
+            var floors_txt = "";
+            for (var k = 0; k < circuit_data[stacks[i][j]][2].length; k++) {
+                floors_txt += floorplans[circuit_data[stacks[i][j]][2][k]][2];
+                if (k != circuit_data[stacks[i][j]][2].length-1) floors_txt += ", ";
+            }
+            tbl += "<span style='color: "+circuit_data[stacks[i][j]][1]+
+                    "; font-size: 1.25em;'><b>"+stacks[i][j]+"</b> ("+floors_txt+")<br />"+
+                    circuit_data[stacks[i][j]][0]+"</span>";
+        }
+        tbl += "</td>";
+    }
+    tbl += "</tr></table>";
+    details_lyr.innerHTML = tbl;
 
-	// Load the image overlay 
-	if (images_lyr == null)
-		images_lyr = document.getElementById('circuit_images');
-	images_lyr.innerHTML = "";
+    // Load the image overlay 
+    if (images_lyr == null)
+        images_lyr = document.getElementById('circuit_images');
+    images_lyr.innerHTML = "";
 
-	var img_top = 320;
-	for (var i = 0; i < floorplans.length; i++) {
-		var img_width = floorplans[i][1];
-		var img_src = floorplans[i][0];
-		var num_overlays = circuits_per_plan[i];
-		// Add the base floorplan
-		images_lyr.innerHTML += '<img onload="countLoaded()" src="'+img_src+
-								'" style="position: absolute; top: '+(img_top*i)+'px; left: 300px; '+
-								'clip:rect(0px '+img_width+'px 340px 0px); z-index: 2; "/>';
+    var img_top = 320;
+    for (var i = 0; i < floorplans.length; i++) {
+        var img_width = floorplans[i][1];
+        var img_src = floorplans[i][0];
+        var num_overlays = circuits_per_plan[i];
+        // Add the base floorplan
+        images_lyr.innerHTML += '<img onload="countLoaded()" src="'+img_src+
+                                '" style="position: absolute; top: '+(img_top*i)+'px; left: 300px; '+
+                                'clip:rect(0px '+img_width+'px 340px 0px); z-index: 2; "/>';
 
-		// Add the circuit overlay rect(top, right, bottom, left)
-		for (var j = 1; j <= num_overlays; j++) {
-			images_lyr.innerHTML += '<img src="'+img_src+
-								'" style="position: absolute; top: '+(img_top*i)+'px; left: '+(300-(img_width*j))+'px; '+
-								'clip:rect(0px '+((img_width*j)+img_width)+'px 340px '+(img_width*j)+'px); z-index: 3; "/>';
-		}
-	}
+        // Add the circuit overlay rect(top, right, bottom, left)
+        for (var j = 1; j <= num_overlays; j++) {
+            images_lyr.innerHTML += '<img src="'+img_src+
+                                '" style="position: absolute; top: '+(img_top*i)+'px; left: '+(300-(img_width*j))+'px; '+
+                                'clip:rect(0px '+((img_width*j)+img_width)+'px 340px '+(img_width*j)+'px); z-index: 3; "/>';
+        }
+    }
 }
 function init() {
-	circuits_per_plan = new Array(floorplans.length);
-	for (var i = 0; i < floorplans.length; i++) circuits_per_plan[i] = 0;
-	for (c in circuit_data) {
-		for (var i = 0; i < circuit_data[c][2].length; i++) {
-			circuits_per_plan[circuit_data[c][2][i]]++;
-		}
-	}
+    circuits_per_plan = new Array(floorplans.length);
+    for (var i = 0; i < floorplans.length; i++) circuits_per_plan[i] = 0;
+    for (c in circuit_data) {
+        for (var i = 0; i < circuit_data[c][2].length; i++) {
+            circuits_per_plan[circuit_data[c][2][i]]++;
+        }
+    }
 
-	stacks = [['STOVE', 'DRYER', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2'],
-			  ['A/C', 'I1', 'I2', 'J1', 'J2', 'K1', 'K2', 'N1', 'N2']];
+    stacks = [['STOVE', 'DRYER', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2'],
+              ['A/C', 'I1', 'I2', 'J1', 'J2', 'K1', 'K2', 'N1', 'N2']];
 
-	displayMain();
-	// TODO don't do this until all images are done loading
-	//while (loaded < 3)
-		//console.log(loaded);
-	//window.print(); window.close();
-	setTimeout("window.print(); window.close();", 250);
+    displayMain();
+    // TODO don't do this until all images are done loading
+    //while (loaded < 3)
+        //console.log(loaded);
+    //window.print(); window.close();
+    setTimeout("window.print(); window.close();", 250);
 }
 </script>
 <style type="text/css">
@@ -89,11 +89,11 @@ ul { margin-top: 0px; }
     <img src="../img/qrcode_househgnet.png" 
             style="position: relative; float: left; top: -15px; width: 100px; margin-right: 100px;"/>
 
-	<span style="position: relative; right: 1px; top: 10px;">
-		<span style="font-weight: bold; font-size: .9em; font-family: helvetica; 
-					 position: relative; top: -12px; left: -10px">Legend:</span>
-		<img src="legend.jpg" style="height: 50px; top: 15px" />
-	</span>
+    <span style="position: relative; right: 1px; top: 10px;">
+        <span style="font-weight: bold; font-size: .9em; font-family: helvetica; 
+                     position: relative; top: -12px; left: -10px">Legend:</span>
+        <img src="legend.jpg" style="height: 50px; top: 15px" />
+    </span>
 </div>
 
 </body>

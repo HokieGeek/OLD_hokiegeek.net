@@ -5,9 +5,9 @@ var TeaJournalEntries = [];
 var TeaProductEntries = [];
 var TeaAlbum = null;
 var TeaFixins = ["Milk", "Cream", "Half & Half",
-				 "Sugar", "Brown Sugar", "Raw Sugar",
-				 "Honey", "Vanilla Extract", "Vanilla Bean",
-				 "Maple Cream", "Maple Sugar"];
+                 "Sugar", "Brown Sugar", "Raw Sugar",
+                 "Honey", "Vanilla Extract", "Vanilla Bean",
+                 "Maple Cream", "Maple Sugar"];
 var TeaProductRatings = ["Value", "Leaf Aroma", "Brewed Aroma"];
 var TeaFlushTypes = [ ["Spring", "Summer", "Fall", "Winter"],
                       ["1st Flush", "2nd Flush", "Monsoon Flush", "Autumn Flush"] ];
@@ -28,12 +28,12 @@ function TeaProductEntryType(data) {
     this.Year = null;
     this.Flush = null;
     this.Size = null;
-	this.LeafGrade = null;
-	this.BlendedTeas = null;
-	this.BlendRatio = null;
-	this.Stocked = null;
-	this.Aging = null;
-	this.Packaging = null;
+    this.LeafGrade = null;
+    this.BlendedTeas = null;
+    this.BlendRatio = null;
+    this.Stocked = null;
+    this.Aging = null;
+    this.Packaging = null;
     this.PurchaseLocation = null;
     this.PurchaseDate = null;
     this.PurchasePrice = null;
@@ -49,19 +49,19 @@ function TeaProductEntryType(data) {
         this.Pictures = HG_retrievePicturesFromAlbum(pics, TeaAlbum);
     }
 
-	this._loadRatings = function(ratings) {
-		if (ratings == undefined) return;
-		/*var ratings_array = ratings.split(";");
+    this._loadRatings = function(ratings) {
+        if (ratings == undefined) return;
+        /*var ratings_array = ratings.split(";");
 
-		// var TeaProductRatings = ["Value", "Leaf Aroma", "Brewed Aroma"];
+        // var TeaProductRatings = ["Value", "Leaf Aroma", "Brewed Aroma"];
         this.Ratings = { 
-						TeaProductRatings[0] :  ratings_array[0],
-						TeaProductRatings[1] :  ratings_array[1],
-						TeaProductRatings[2] :  ratings_array[2]
-					   };
-					   */
-		this.Ratings = ratings.split(";");
-	}
+                        TeaProductRatings[0] :  ratings_array[0],
+                        TeaProductRatings[1] :  ratings_array[1],
+                        TeaProductRatings[2] :  ratings_array[2]
+                       };
+                       */
+        this.Ratings = ratings.split(";");
+    }
 
     this._load = function(data) {
         if (data == null) return;
@@ -76,61 +76,61 @@ function TeaProductEntryType(data) {
         this.Year = data.year;
         this.Flush = data.flush;
         this.Size = data.size;
-		this.LeafGrade = data.leafgrade;
-		if (this.Type == "Blend") {
-			this.BlendedTeas = data.blendedteas; // TODO Explode
-			this.BlendRatio = data.blendratio.replace(/;/g, ":");
-		}
-		this.Stocked = (data.stocked == "TRUE" ? true : false);
-		this.Aging = (data.aging == "TRUE" ? true : false);
-		this.Packaging = TeaPackagingTypes[data.packaging]; // TODO hmmm
+        this.LeafGrade = data.leafgrade;
+        if (this.Type == "Blend") {
+            this.BlendedTeas = data.blendedteas; // TODO Explode
+            this.BlendRatio = data.blendratio.replace(/;/g, ":");
+        }
+        this.Stocked = (data.stocked == "TRUE" ? true : false);
+        this.Aging = (data.aging == "TRUE" ? true : false);
+        this.Packaging = TeaPackagingTypes[data.packaging]; // TODO hmmm
         this.PurchaseLocation = data.purchaselocation;
         if (data.purchasedate != null)
             this.PurchaseDate = new Date(data.purchasedate);
         this.PurchasePrice = data.purchaseprice;
         this.Comments = data.comments;
 
-		this._loadRatings(data.ratings);
+        this._loadRatings(data.ratings);
         this._loadPictures(data.pictures);
     }
 
     this.getName = function() {
-		var name = "";
+        var name = "";
 
 
-		if (this.Year != null) name += this.Year+" ";
-		// if (this.Flush != null) name += TeaFlushTypes[this.Flush-1]+" ";
-		// if (this.Flush != null) name += TeaFlushTypes[flush_index][this.Flush-1]+" ";
-		if (this.Flush != null) name += this.getFlush()+" ";
-		name += this.Name;
-		if (this.LeafGrade != null) name += " "+this.LeafGrade;
+        if (this.Year != null) name += this.Year+" ";
+        // if (this.Flush != null) name += TeaFlushTypes[this.Flush-1]+" ";
+        // if (this.Flush != null) name += TeaFlushTypes[flush_index][this.Flush-1]+" ";
+        if (this.Flush != null) name += this.getFlush()+" ";
+        name += this.Name;
+        if (this.LeafGrade != null) name += " "+this.LeafGrade;
 
         return name;
     }
 
     this.getFlush = function() {
         var flush_index = ((this.Country != null && this.Country == "India") ? TeaFlushTypes_Indian : TeaFlushTypes_Std);
-		return TeaFlushTypes[flush_index][this.Flush-1];
+        return TeaFlushTypes[flush_index][this.Flush-1];
     }
 
-	this.getOrigin = function() {
-		var origin = "";
+    this.getOrigin = function() {
+        var origin = "";
 
-		if (this.Region != null) origin += this.Region+", ";
-		if (this.Country != null) origin += this.Country;
-		
-		return origin;
-	}
+        if (this.Region != null) origin += this.Region+", ";
+        if (this.Country != null) origin += this.Country;
+        
+        return origin;
+    }
 
-	this.getType = function() {
-		return ((this.Type == "Blend") ? this.BlendRatio+" " : "")+this.Type;
-	}
+    this.getType = function() {
+        return ((this.Type == "Blend") ? this.BlendRatio+" " : "")+this.Type;
+    }
 
-	this.getPackaging = function() {
-		return TeaPackagingTypes[this.Packaging];
-	}
+    this.getPackaging = function() {
+        return TeaPackagingTypes[this.Packaging];
+    }
 
-	this.getJournalEntries = function() {
+    this.getJournalEntries = function() {
         if (this.JournalEntries == null) {
             this.JournalEntries = [];
 
@@ -147,19 +147,19 @@ function TeaProductEntryType(data) {
                                     });
         }
 
-		return this.JournalEntries;
-	}
+        return this.JournalEntries;
+    }
 
     this.getSessions = function() {
         if (this.Sessions == null) {
-			this.Sessions = [];
+            this.Sessions = [];
             var entries = this.getJournalEntries();
             for (var ii = 0; ii < entries.length; ii++) {
                 var instance = entries[ii].SessionInstance;
                 if (instance != undefined)
                     this.Sessions.push(new TeaSessionInstance(entries[ii].SessionInstance));
             }
-		}
+        }
         return this.Sessions;
     }
 
@@ -185,7 +185,7 @@ function TeaProductEntryType(data) {
 }
 
 function TeaSessionInstance(data) {
-	this.delim = "_";
+    this.delim = "_";
     this.Tea = -1;
     this.Session = -1;
     this.Instance = -1;
@@ -197,9 +197,9 @@ function TeaSessionInstance(data) {
         this.Instance = boom[2];
     }
 
-	this.toString = function() {
-		return this.Tea+this.delim+this.Session+this.delim+this.Instance;
-	}
+    this.toString = function() {
+        return this.Tea+this.delim+this.Session+this.delim+this.Instance;
+    }
 
     if (data != undefined)
         this._load(data);
@@ -213,8 +213,8 @@ function TeaJournalEntryType(data) {
     this.SteepTime = null;
     this.SteepingVessel = null;
     this.Temperature = null;
-	this.SessionInstance = null;
-	this.Fixins = null;
+    this.SessionInstance = null;
+    this.Fixins = null;
     this.Rating = null;
     this.Comments = null;
     this.Pictures = [];
@@ -225,27 +225,27 @@ function TeaJournalEntryType(data) {
         this.Pictures = HG_retrievePicturesFromAlbum(pics, TeaAlbum);
     }
 
-	this._loadFixins = function(fixs) {
-		//console.log("_loadFixins: ", fixs);
-		if (fixs == undefined) return;
-		if (this.Fixins == null) this.Fixins = [];
+    this._loadFixins = function(fixs) {
+        //console.log("_loadFixins: ", fixs);
+        if (fixs == undefined) return;
+        if (this.Fixins == null) this.Fixins = [];
 
-		
-   		var retrieved = fixs.split(";");
-   		for (var i = retrieved.length-1; i >= 0; i--) {
-			this.Fixins.push(TeaFixins[retrieved[i]]);
-		}
-	}
+        
+           var retrieved = fixs.split(";");
+           for (var i = retrieved.length-1; i >= 0; i--) {
+            this.Fixins.push(TeaFixins[retrieved[i]]);
+        }
+    }
 
-	this._loadSteepTime = function(steeptime) {
+    this._loadSteepTime = function(steeptime) {
         if (steeptime == undefined) return;
-		var steeptime_array = steeptime.split(" ");
+        var steeptime_array = steeptime.split(" ");
 
-		var min = 0;
-		var sec = 0;
+        var min = 0;
+        var sec = 0;
         if (steeptime_array.length > 1) {
-		    min = parseInt(steeptime_array[0]);
-		    sec = parseInt(steeptime_array[1]);//steeptime_array.length-1]);
+            min = parseInt(steeptime_array[0]);
+            sec = parseInt(steeptime_array[1]);//steeptime_array.length-1]);
         } else {
             var val = steeptime_array[0];
             if (val.substr(-1, 1).toLowerCase() == "m")
@@ -254,38 +254,38 @@ function TeaJournalEntryType(data) {
                 sec = parseInt(val);
         }
 
-		this.SteepTime = ((min*60)+sec)*1000;
+        this.SteepTime = ((min*60)+sec)*1000;
 
         //if (this.ID == 2)
             //console.log(this.ID, "_loadSteepTime("+steeptime+"): min = ", min, " sec = ", sec, " >> ", this.SteepTime);
 
-		//this.SteepTime = data.steeptime;
-	}
+        //this.SteepTime = data.steeptime;
+    }
 
-	this._load = function(data) {
-		//console.log("TeaJournalEntryType(", data, ")");
-		if (data == null) return;
+    this._load = function(data) {
+        //console.log("TeaJournalEntryType(", data, ")");
+        if (data == null) return;
 
         if (data.date != null) {
-        	this.EntryDate = data.date;
-			this.Date = new Date(this.EntryDate);
-        	if (data.time != null) {
-        		this.EntryTime = data.time;
-				this.Date.setMinutes(this.EntryTime.substr(-2));
-				this.Date.setHours(this.EntryTime.substr(0, this.EntryTime.length-2));
-			}
-		}
+            this.EntryDate = data.date;
+            this.Date = new Date(this.EntryDate);
+            if (data.time != null) {
+                this.EntryTime = data.time;
+                this.Date.setMinutes(this.EntryTime.substr(-2));
+                this.Date.setHours(this.EntryTime.substr(0, this.EntryTime.length-2));
+            }
+        }
 
         this.Tea = HG_getProductByID(TeaProductEntries, data.tea);
         this.Temperature = ((data.steeptemperature == null) ? 212 : data.steeptemperature);
         this.SteepingVessel = data.steepingvessel;
         //this.SteepingVessel = TeaSteepingVessels[data.steepingvessel];
-		this.SessionInstance = data.sessioninstance;
+        this.SessionInstance = data.sessioninstance;
         this.Rating = data.rating;
         this.Comments = data.comments;
 
         this._loadSteepTime(data.steeptime);
-		this._loadFixins(data.fixins);
+        this._loadFixins(data.fixins);
         this._loadPictures(data.pictures);
     }
 
@@ -297,29 +297,29 @@ function TeaJournalEntryType(data) {
 }
 
 function sortTeaProducts() {
-	TeaProductEntries.sort(function(a,b) { 
-		// return a.ID > b.ID ? 1 : a.ID < b.ID : -1 : 0; 
-		var aID = parseInt(a.ID);
-		var bID = parseInt(b.ID);
-		if (aID > bID) return 1;
-		if (aID < bID) return -1;
-		return 0;
-		// return aID > bID ? 1 : aID < bID : -1 : 0; 
-	});
+    TeaProductEntries.sort(function(a,b) { 
+        // return a.ID > b.ID ? 1 : a.ID < b.ID : -1 : 0; 
+        var aID = parseInt(a.ID);
+        var bID = parseInt(b.ID);
+        if (aID > bID) return 1;
+        if (aID < bID) return -1;
+        return 0;
+        // return aID > bID ? 1 : aID < bID : -1 : 0; 
+    });
 }
 
 function sortTeaJournal() {
-	TeaJournalEntries.sort(function(a,b) { 
-		if (!(a.Date instanceof Date)) return 1;
-		if (!(b.Date instanceof Date)) return 0;
-		return a.Date.getTime() - b.Date.getTime(); 
-	});
+    TeaJournalEntries.sort(function(a,b) { 
+        if (!(a.Date instanceof Date)) return 1;
+        if (!(b.Date instanceof Date)) return 0;
+        return a.Date.getTime() - b.Date.getTime(); 
+    });
 }
 
 function formatSteepTime(millis) {
-	var seconds = millis/1000;
-	var min = Math.floor(seconds / 60);
-	var sec = Math.ceil(seconds - (min*60));
+    var seconds = millis/1000;
+    var min = Math.floor(seconds / 60);
+    var sec = Math.ceil(seconds - (min*60));
 
     // console.log("formatSteepTime("+millis+"): seconds = ", seconds);
     // console.log("formatSteepTime("+millis+"): min = ", min);
@@ -329,7 +329,7 @@ function formatSteepTime(millis) {
     if (min > 0) time = min+"m";
     if (sec > 0) time += " "+sec+"s";
 
-	return time;
+    return time;
 }
 
 function getTeaData(cb) {
@@ -342,8 +342,8 @@ function getTeaData(cb) {
                         "entries_type" : "TeaProductEntryType",
                         "retrieval_url" : url_tea_products
                     }
-					 ,
-					
+                     ,
+                    
                     {   "name": "journal",
                         "entries_var" : "TeaJournalEntries",
                         "entries_type" : "TeaJournalEntryType",

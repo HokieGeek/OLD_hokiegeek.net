@@ -3,170 +3,170 @@
 */
 
 .pics_main {
-	background-color: #FFF;
-	color: #000000;
-	font-family: arial,sans-serif;
-	font-size: 84%;
-	vertical-align: top;
-	/*width: 500px;*/
-	border: 1px solid #CCCCCC;
-	border-collapse: collapse
+    background-color: #FFF;
+    color: #000000;
+    font-family: arial,sans-serif;
+    font-size: 84%;
+    vertical-align: top;
+    /*width: 500px;*/
+    border: 1px solid #CCCCCC;
+    border-collapse: collapse
 }
 img.PicasaWeb_thumbnail {
-	border-collapse: collapse;
-	cursor: pointer;
-	margin: 4px;
+    border-collapse: collapse;
+    cursor: pointer;
+    margin: 4px;
 }
 
 /* PICS CONTROL BOX */
 
 .pics_controls {
-	background: #E7E7E7 url(gradient_bg.gif) repeat-x scroll center top;
-	border-bottom: 1px solid #CCCCCC;
-	border-top: 2px solid #C3D9FF;
-	padding: 0.2em;
-	width: 100%;
-	font-family:arial,sans-serif;
-	border-collapse: collapse;
+    background: #E7E7E7 url(gradient_bg.gif) repeat-x scroll center top;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 2px solid #C3D9FF;
+    padding: 0.2em;
+    width: 100%;
+    font-family:arial,sans-serif;
+    border-collapse: collapse;
 }
 
 img {
-	border: medium none;
+    border: medium none;
 }
 
 .pics_controls td {
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .pics_controls a {
-	color:#112ABB;
-	font-weight:normal;
+    color:#112ABB;
+    font-weight:normal;
 }
 
 .pics_controls img {
-	border: medium none;
+    border: medium none;
 }
 
 /* pics list */
 /*.pics_list_scrollLyr {
-	height: 2000px;
-	overflow: scroll;
+    height: 2000px;
+    overflow: scroll;
 }*/
 
 .lhcl_cbbox2 {
-	background: transparent url(cbright.gif) no-repeat scroll right top;
-	color: #4D4D4D;
-	cursor: pointer;
-	display: block;
-	font-weight: normal;
-	padding: 1px;
-	text-decoration: none;
-	top: 1px;
-	position: relative;
+    background: transparent url(cbright.gif) no-repeat scroll right top;
+    color: #4D4D4D;
+    cursor: pointer;
+    display: block;
+    font-weight: normal;
+    padding: 1px;
+    text-decoration: none;
+    top: 1px;
+    position: relative;
 }
 
 .lhcl_cbbox {
-	background: transparent url(cbright.gif) no-repeat scroll right bottom;
-	color: #4D4D4D;
-	cursor: pointer;
-	display: block;
-	font-weight: normal;
-	padding: 0pt;
-	text-decoration: none;
+    background: transparent url(cbright.gif) no-repeat scroll right bottom;
+    color: #4D4D4D;
+    cursor: pointer;
+    display: block;
+    font-weight: normal;
+    padding: 0pt;
+    text-decoration: none;
 }
 
 .lhcl_cbox_disabled {
-	cursor: auto;
-	height: 100%;
-	opacity: 0.5;
+    cursor: auto;
+    height: 100%;
+    opacity: 0.5;
 }
 
 .lhcl_cbdesc {
-	background: transparent url(cbleft.gif) no-repeat scroll left top;
-	margin: 0pt;
-	padding: 2px 4px 2px;
-	top: -1px;
-	position: relative;
+    background: transparent url(cbleft.gif) no-repeat scroll left top;
+    margin: 0pt;
+    padding: 2px 4px 2px;
+    top: -1px;
+    position: relative;
 }
 
 .lhcl_cblink {
-	background: transparent url(cbleft.gif) no-repeat scroll left bottom;
-	margin: 0pt;
-	padding: 0px 0px 0px 9px;
+    background: transparent url(cbleft.gif) no-repeat scroll left bottom;
+    margin: 0pt;
+    padding: 0px 0px 0px 9px;
 }
 
 .lhcl_cblink img {
-	margin-right: 4px;
-	vertical-align: middle;
-	border: medium none;
+    margin-right: 4px;
+    vertical-align: middle;
+    border: medium none;
 }
 
 .lhcl_cblink em {
-	font-size: 0.7em;
-	font-style: normal;
-	text-decoration: none;
-	padding-right: 5px;
-	top: -2px;
-	position: relative;
+    font-size: 0.7em;
+    font-style: normal;
+    text-decoration: none;
+    padding-right: 5px;
+    top: -2px;
+    position: relative;
 }
 
 .SPRITE_slideshow_icon {
-	background: transparent url(lh_sprite.gif) no-repeat scroll 0px 0px;
-	height: 10px;
-	width: 7px;
+    background: transparent url(lh_sprite.gif) no-repeat scroll 0px 0px;
+    height: 10px;
+    width: 7px;
 }
 
 .slideshow_control {
-	font-size: 14px;
+    font-size: 14px;
 }
 
 .PicasaWeb_HoverViewer 
 {
-	position: absolute;
-	visibility: hidden;
-	z-index: 2000;
-	border: 1px solid #4F4F4F;
-	background: #FFFFFF;
-	text-align: center;
+    position: absolute;
+    visibility: hidden;
+    z-index: 2000;
+    border: 1px solid #4F4F4F;
+    background: #FFFFFF;
+    text-align: center;
 }
 
 .PicasaWeb_HoverViewer img.progress
 {
-	width: 20px; 
-	height: 19px;
-	position: absolute;
+    width: 20px; 
+    height: 19px;
+    position: absolute;
 }
 
 .PicasaWeb_HoverViewer div.caption
 {
-	background: #749F6E;
-	padding: 8px;
-	top: -60px;
-	position: relative;
-	opacity: 0.5;
-	
-	/*width: 234px;*/
+    background: #749F6E;
+    padding: 8px;
+    top: -60px;
+    position: relative;
+    opacity: 0.5;
+    
+    /*width: 234px;*/
 }
 
 .PicasaWeb_HoverViewer div.caption span
 {
-	font-family: Arial;
-	font-size: 16px;
-	color: #FFF;/*#9F9F9F;*/
-	font-weight: bold;
-	vertical-align: middle;
-	/*width: 75%;*/
-	/*opacity: 1;*/
+    font-family: Arial;
+    font-size: 16px;
+    color: #FFF;/*#9F9F9F;*/
+    font-weight: bold;
+    vertical-align: middle;
+    /*width: 75%;*/
+    /*opacity: 1;*/
 }
 
 .PicasaWeb_PicViewer_Map 
 {
-	/*width: 234px; 
-	height: 174px;*/
-	position: relative; 
-	top: -212px; 
-	margin-left: 11px; 
-	border: 1px solid #4F4F4F;
+    /*width: 234px; 
+    height: 174px;*/
+    position: relative; 
+    top: -212px; 
+    margin-left: 11px; 
+    border: 1px solid #4F4F4F;
 }
 
 .PicasaWeb_PicViewer_Map a { background: none; }
