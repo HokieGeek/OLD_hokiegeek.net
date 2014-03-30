@@ -35,8 +35,13 @@ elif [ "$1" == "--verify" ]; then
 elif [ "$1" == "--commit" ]; then
 	shift
 	[ $# -gt 0 ] && m="$@" || m="Deployment"
-	git add `git status | grep "modified:" | awk '{ print $3 }' | cut -d'/' -f1 | sort -u | xargs`
-	git commit -m "${m}"
+	# git status | grep "modified:" | awk '{ print $3 }' | cut -d'/' -f1 | sort -u | xargs
+    cd ..
+	changes=`git status | awk '$1 ~ /modified:/ { print $2 }' | cut -d'/' -f1 | sort -u | sed 's/\<src\>\s//' | xargs`
+    if [ ! -z "${changes}" ]; then
+        # echo $changes
+        git add ${changes} && git commit -m "${m}"
+    fi
     exit 0
 fi
 
