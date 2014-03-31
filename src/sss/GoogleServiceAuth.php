@@ -99,7 +99,7 @@ function GetGoogleServiceAuth($service) {
         curl_setopt($ch, CURLOPT_URL, "https://www.google.com/accounts/ClientLogin");  
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);  
   
-        $authData = array('Email' => 'andres.f.perez@gmail.com',  'Passwd' => 'ouvertmoiopenmeabreme',  
+        $authData = array('Email' => 'andres.f.perez@gmail.com',  'Passwd' => 'keyflowerDominion1!',  
                               'accountType' => 'GOOGLE',  'source' => 'hokiegeek.net_TESTING', 
                               'service' => $service);  
   

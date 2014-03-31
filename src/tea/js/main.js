@@ -3,10 +3,11 @@ var displayed_teas = 0;
 
 function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
     //console.log("renderShavingJournalEntry(", entry, ", ", num_displayed, ")");
-    var pic = ((entry.Tea.Pictures[0] == undefined) ? "img/tea_cup_greyed.png" : entry.Tea.Pictures[0].getURL(120));
+    // var pic = ((entry.Tea.Pictures[0] == undefined) ? "img/tea_cup_greyed.png" : entry.Tea.Pictures[0].getURL(120));
+    var pic = "img/tea_cup_greyed.png";
 
     var main = $("<td></td>");
-    
+
     // Name
     main.append($("<div></div>").addClass("tea_journal_entry_name")
                                 .append(entry.Tea.getName())
@@ -27,7 +28,7 @@ function renderShavingJournalEntry(entry_elem, entry, num_displayed) {
             fixins_list.append(tea_fixins[i].toLowerCase());
         }
         main.first().append(fixins_list);
-    } 
+    }
 
     var steeping_details = $("<div></div>").addClass("tea_journal_entry_steeping_details")
                                            .append("Steeped ");
@@ -115,7 +116,8 @@ function renderTeaProductEntry(entry) {
      *  - Need to spread the ratings into two columns
      */
         //> Build the pictures widget
-        var pic = ((entry.Pictures[0] == undefined) ? "img/tea_cup_greyed.png" : entry.Pictures[0].getURL(140));
+        var pic = "img/tea_cup_greyed.png";
+        // var pic = ((entry.Pictures[0] == undefined) ? "img/tea_cup_greyed.png" : entry.Pictures[0].getURL(140));
         var pics = $("<img />").attr("src", pic);
 
         //> Build the purchase and packging info

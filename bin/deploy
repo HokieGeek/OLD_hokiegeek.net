@@ -35,7 +35,6 @@ elif [ "$1" == "--verify" ]; then
 elif [ "$1" == "--commit" ]; then
 	shift
 	[ $# -gt 0 ] && m="$@" || m="Deployment"
-	# git status | grep "modified:" | awk '{ print $3 }' | cut -d'/' -f1 | sort -u | xargs
     cd ..
 	changes=`git status | awk '$1 ~ /modified:/ { print $2 }' | cut -d'/' -f1 | sort -u | sed 's/\<src\>\s//' | xargs`
     if [ ! -z "${changes}" ]; then
@@ -129,7 +128,8 @@ case ${opt} in
 	done
 	;;
 --new)
-    for f in `git status | grep "modified:" | awk '{ print $3 }' | grep "src/"`; do
+    # for f in `git status | grep "modified:" | awk '{ print $3 }' | grep "src/"`; do
+	for f in `git status | awk '$1 ~ /modified:/ { print $2 }' | grep "src/"`; do
 		deployFile ${f}
 	done
 	;;

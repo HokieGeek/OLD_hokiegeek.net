@@ -1,7 +1,9 @@
 var pw_albums = null;
 var HG_Journal_tabsObj = null;
 
-
+var default_pic = new PicasaWeb_Pic(null);
+default_pic.url = "img";
+default_pic.name = "default.png";
 
 function HG_retrievePicturesFromAlbum(pics, album) {
    var retrieved = pics.split(";");
@@ -10,12 +12,14 @@ function HG_retrievePicturesFromAlbum(pics, album) {
         var orig = retrieved[i];
         if (album != null) {
             retrieved[i] = album.getPicture(retrieved[i]);
-        } else
-            retrieved[i] = null;
+        } else {
+            retrieved[i] = default_pic;
+            // retrieved[i] = null;
+        }
 
             // FIXME: this is not appropriate in here
-        if (retrieved[i] == null)
-            retrieved[i] = "img/default.png";
+        // if (retrieved[i] == null)
+            // retrieved[i] = "img/default.png";
     }
 
     return retrieved;

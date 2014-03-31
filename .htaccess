@@ -1,11 +1,11 @@
 <FilesMatch "\.(html)$">
-	AddType 'text/html; charset=ISO-8859-1' html
+    AddType 'text/html; charset=ISO-8859-1' html
 </FilesMatch>
 
 #<FilesMatch "\.(html)$">
 #<FilesMatch "\.(html|js)$">
 <FilesMatch "\.(html|js|css)$">
-	Header set Content-Encoding "x-gzip"
+    Header set Content-Encoding "x-gzip"
 </FilesMatch>
 
 <IfModule mod_deflate.c>
