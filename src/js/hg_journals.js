@@ -8,9 +8,10 @@ default_pic.name = "default.png";
 function HG_retrievePicturesFromAlbum(pics, album) {
    var retrieved = pics.split(";");
    retrieved.pop(); // Last one is always empty
-   for (var i = retrieved.length-1; i >= 0; i--) {
+   var i = 0;
+   for (i = retrieved.length-1; i >= 0; i--) {
         var orig = retrieved[i];
-        if (album != null) {
+        if (album !== null) {
             retrieved[i] = album.getPicture(retrieved[i]);
         } else {
             retrieved[i] = default_pic;
